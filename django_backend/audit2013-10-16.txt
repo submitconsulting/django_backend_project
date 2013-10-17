@@ -1,0 +1,55 @@
+[2013-10-16 04:51:42,729][INFO] [sistema] [/params/locality/edit/5.e66ae7d0da3d083672b7efe8a0ca3f53/][admin][127.0.0.1] Localidad <b>Mazamari</b> ha sido actualizado correctamente. 
+[2013-10-16 04:52:03,530][ERROR] [sistema] [/params/locality/edit/4.31717aab44fa5838b5c1bf373f2f8c08/][admin][127.0.0.1] Locality <b>2000y</b> name's already in use. 
+[2013-10-16 10:22:24,500][ERROR] [sistema] [/sad/resource/edit/134.6d0a7f65364cff4a93d9ea11f416a10b/][admin][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-16 10:57:42,161][ERROR] [sistema] [/sad/resource/edit/135.1955192598c3f11a5e1c1bd3ba27f9ce/][admin][127.0.0.1] Recurso no se encuentra en la base de datos. 
+[2013-10-16 11:16:26,308][ERROR] [sistema] [/sad/resource/edit/135.1955192598c3f11a5e1c1bd3ba27f9ce/][admin][127.0.0.1] columns content_type_id, codename are not unique 
+[2013-10-16 11:19:13,466][ERROR] [sistema] [/sad/resource/edit/135.1955192598c3f11a5e1c1bd3ba27f9ce/][admin][127.0.0.1] Codename <b>xcontrol</b> para el Recurso ya esta en uso. 
+[2013-10-16 11:19:48,454][ERROR] [sistema] [/sad/resource/edit/135.1955192598c3f11a5e1c1bd3ba27f9ce/][admin][127.0.0.1] Codename <b>/xap/xcontrol/</b> para el Recurso ya esta en uso. 
+[2013-10-16 11:20:05,519][ERROR] [sistema] [/sad/resource/edit/135.1955192598c3f11a5e1c1bd3ba27f9ce/][admin][127.0.0.1] Recurso <b>/xap/xcontrol/</b> ya esta en uso. 
+[2013-10-16 11:20:29,270][ERROR] [sistema] [/sad/resource/edit/135.1955192598c3f11a5e1c1bd3ba27f9ce/][admin][127.0.0.1] Recurso <b>/xap/xcontrol/</b> ya está. 
+[2013-10-16 11:20:38,874][ERROR] [sistema] [/sad/resource/edit/135.1955192598c3f11a5e1c1bd3ba27f9ce/][admin][127.0.0.1] Recurso <b>/xap/xcontrol/</b> ya existe. 
+[2013-10-16 11:21:06,411][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] columns content_type_id, codename are not unique 
+[2013-10-16 11:22:20,750][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] columns content_type_id, codename are not unique 
+[2013-10-16 11:22:25,640][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] columns content_type_id, codename are not unique 
+[2013-10-16 11:22:57,036][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] columns content_type_id, codename are not unique 
+[2013-10-16 11:22:59,210][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] columns content_type_id, codename are not unique 
+[2013-10-16 11:23:04,661][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] columns content_type_id, codename are not unique 
+[2013-10-16 11:23:20,571][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] columns content_type_id, codename are not unique 
+[2013-10-16 11:23:22,128][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] columns content_type_id, codename are not unique 
+[2013-10-16 11:23:25,171][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] columns content_type_id, codename are not unique 
+[2013-10-16 11:25:19,496][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] Recurso <b>/xap/xcontrol/xaccion2/</b> ya existe. 
+[2013-10-16 11:25:23,069][ERROR] [sistema] [/sad/resource/add/][admin][127.0.0.1] Recurso <b>/xap/xcontrol/xaccion2/</b> ya existe. 
+[2013-10-16 11:25:48,453][ERROR] [sistema] [/sad/resource/edit/136.955484f9498446fae941e7da82d3be14/][admin][127.0.0.1] Recurso <b>/xap/xcontrol/xaccion2/</b> ya existe. 
+[2013-10-16 11:34:01,069][ERROR] [sistema] [/sad/resource/delete/136.fa6c90b1dd3dd4b723bd837862e0abcf/][admin][127.0.0.1] 'Permission' object has no attribute 'recurso' 
+[2013-10-16 11:38:00,842][INFO] [sistema] [/sad/resource/delete/135.22e38749acb6d24b899c73fa1a11ac90/][admin][127.0.0.1] Recurso <b>/xap/xcontrol/xaccion2/</b> ha sido eliminado correctamente. 
+[2013-10-16 11:38:32,280][ERROR] [sistema] [/sad/resource/delete/135.22e38749acb6d24b899c73fa1a11ac90/][admin][127.0.0.1] Recurso no se encuentra en la base de datos. 
+[2013-10-16 16:35:48,059][ERROR] [sistema] [/sad/group/add/][admin][127.0.0.1] Perfil <b>xx gp</b> ya existe. 
+[2013-10-16 16:36:01,641][ERROR] [sistema] [/sad/group/add/][admin][127.0.0.1] Perfil <b>xx gp</b> ya existe. 
+[2013-10-16 16:36:03,213][ERROR] [sistema] [/sad/group/add/][admin][127.0.0.1] Perfil <b>xx gp</b> ya existe. 
+[2013-10-16 16:36:04,513][ERROR] [sistema] [/sad/group/add/][admin][127.0.0.1] Perfil <b>xx gp</b> ya existe. 
+[2013-10-16 16:36:24,108][ERROR] [sistema] [/sad/group/add/][admin][127.0.0.1] Perfil <b>xx gp</b> ya existe. 
+[2013-10-16 16:36:36,344][ERROR] [sistema] [/sad/group/add/][admin][127.0.0.1] Perfil <b>xx gp</b> ya existe. 
+[2013-10-16 16:36:45,918][ERROR] [sistema] [/sad/group/edit/6.06ddd2e929f68920a1c9234fb72f6ec0/][admin][127.0.0.1] Perfil <b>xx gp</b> ya existe. 
+[2013-10-16 16:37:37,062][INFO] [sistema] [/sad/group/delete/6.7bf9dcfe5fb48bafc9a9717fc5f727eb/][admin][127.0.0.1] Perfil <b>xx gpp</b> ha sido eliminado correctamente. 
+[2013-10-16 16:37:51,680][ERROR] [sistema] [/sad/group/delete/6.7bf9dcfe5fb48bafc9a9717fc5f727eb/][admin][127.0.0.1] Perfil no se encuentra en la base de datos. 
+[2013-10-16 16:38:33,006][ERROR] [sistema] [/sad/group/delete/6.7bf9dcfe5fb48bafc9a9717fc5f727eb/][admin][127.0.0.1] Perfil no se encuentra en la base de datos. 
+[2013-10-16 16:39:06,410][ERROR] [sistema] [/sad/group/delete/6.7bf9dcfe5fb48bafc9a9717fc5f727eb/][admin][127.0.0.1] Perfil no se encuentra en la base de datos. 
+[2013-10-16 16:39:12,802][ERROR] [sistema] [/sad/group/delete/6.7bf9dcfe5fb48bafc9a9717fc5f727eb/][admin][127.0.0.1] Perfil no se encuentra en la base de datos. 
+[2013-10-16 16:43:53,562][ERROR] [sistema] [/sad/group/delete/6.7bf9dcfe5fb48bafc9a9717fc5f727eb/][admin][127.0.0.1] Perfil no se encuentra en la base de datos. 
+[2013-10-16 16:44:05,845][INFO] [sistema] [/params/locality/delete/4.ddd306f7b933f4920d2f314f40214b51/][admin][127.0.0.1] Localidad <b>2000y2 eeew</b> ha sido eliminado correctamente. 
+[2013-10-16 16:44:18,987][ERROR] [sistema] [/params/locality/delete/4.ddd306f7b933f4920d2f314f40214b51/][admin][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-16 16:51:48,063][ERROR] [sistema] [/sad/menu/index/][admin][127.0.0.1] global name 'Paginator' is not defined 
+[2013-10-16 16:51:51,648][ERROR] [sistema] [/sad/menu/index/][admin][127.0.0.1] global name 'Paginator' is not defined 
+[2013-10-16 16:51:52,736][ERROR] [sistema] [/sad/menu/index/][admin][127.0.0.1] global name 'Paginator' is not defined 
+[2013-10-16 17:20:14,568][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] 'tuple' object is not callable 
+[2013-10-16 17:20:48,523][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] tuple indices must be integers, not str 
+[2013-10-16 17:25:18,191][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] tuple indices must be integers, not str 
+[2013-10-16 19:19:26,453][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] <b>ee</b> 
+[2013-10-16 19:19:30,713][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] <b>ee</b> 
+[2013-10-16 19:19:55,517][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] <b>ee</b> 
+[2013-10-16 19:19:56,507][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] <b>ee</b> 
+[2013-10-16 19:21:21,867][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] <b>ee</b> 
+[2013-10-16 19:21:49,638][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] <b>ee</b> 
+[2013-10-16 19:21:50,601][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] <b>ee</b> 
+[2013-10-16 19:23:43,055][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] ee 
+[2013-10-16 19:25:27,056][ERROR] [sistema] [/sad/module/index/][admin][127.0.0.1] thev 'ee' is manu 

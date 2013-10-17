@@ -1,0 +1,3 @@
+[2013-10-12 22:13:49,072][INFO] [sistema] [/params/locality/edit/4.bb51804d6e88b0e2ffe6acffa6aef62c/][asullom][127.0.0.1] Localidad <b>2000y2 eeew</b> ha sido actualizado correctamente. 
+[2013-10-12 22:22:52,384][ERROR] [sistema] [/params/locality/add/][asullom][127.0.0.1] invalid literal for float(): 0er 
+[2013-10-12 22:22:56,602][INFO] [sistema] [/params/locality/add/][asullom][127.0.0.1] Localidad <b>ewr</b> ha sido registrado correctamente. 

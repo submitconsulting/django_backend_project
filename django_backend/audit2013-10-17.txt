@@ -1,0 +1,80 @@
+[2013-10-17 08:26:58,243][INFO] [sistema] [/sad/module/delete/3.3ba3a8e92cb28f90132cbbb4ff0f08ef/][admin][127.0.0.1] Módulo Django Backend Manager ha sido eliminado correctamente. 
+[2013-10-17 09:01:39,061][ERROR] [sistema] [/space/solution/add/][admin][127.0.0.1] Solución Sol2 ya existe. 
+[2013-10-17 09:02:17,861][ERROR] [sistema] [/space/solution/edit/3.387b0f7ba720d8287ce9249fd3734df6/][admin][127.0.0.1] Solución Sol 2c ya existe. 
+[2013-10-17 09:02:35,838][INFO] [sistema] [/space/solution/delete/3.ad426a59bf926fa49f273a1cc49bd05a/][admin][127.0.0.1] Solución Sol-2c ha sido eliminado correctamente. 
+[2013-10-17 09:45:50,555][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu xxx ha sido registrado correctamente. 
+[2013-10-17 09:56:38,348][ERROR] [sistema] [/sad/menu/edit/7.21a09c83e78f6a7623c5ec97460b55a9/][admin][127.0.0.1] 'Menu' object has no attribute 'name' 
+[2013-10-17 10:05:18,694][INFO] [sistema] [/sad/menu/delete/8.968bb7dd4d62eeb613bd8c02325f3864/][admin][127.0.0.1] Menu xxx ha sido eliminado correctamente. 
+[2013-10-17 10:16:55,868][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:17:11,201][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-10-17 10:17:13,285][WARNING] [sistema] [/sad/resource/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/resource/index/ 
+[2013-10-17 10:17:14,664][WARNING] [sistema] [/sad/group/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/index/ 
+[2013-10-17 10:17:53,848][WARNING] [sistema] [/sad/module/plans_edit/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/plans_edit/ 
+[2013-10-17 10:17:55,546][WARNING] [sistema] [/space/solution/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /space/solution/index/ 
+[2013-10-17 10:17:56,407][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:18:24,157][WARNING] [sistema] [/sad/group/permissions_edit/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/permissions_edit/ 
+[2013-10-17 10:18:27,463][WARNING] [sistema] [/sad/group/permissions_edit/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/permissions_edit/ 
+[2013-10-17 10:18:34,723][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:18:35,913][WARNING] [sistema] [/space/solution/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /space/solution/index/ 
+[2013-10-17 10:18:36,440][WARNING] [sistema] [/sad/module/plans_edit/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/plans_edit/ 
+[2013-10-17 10:18:36,992][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-10-17 10:19:19,743][WARNING] [sistema] [/space/solution/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /space/solution/index/ 
+[2013-10-17 10:19:20,750][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:19:21,405][WARNING] [sistema] [/sad/group/permissions_edit/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/permissions_edit/ 
+[2013-10-17 10:19:21,793][WARNING] [sistema] [/sad/group/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/index/ 
+[2013-10-17 10:28:09,178][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:11,658][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:18,290][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:24,174][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:25,474][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:26,118][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:26,404][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:26,848][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:27,747][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:28,598][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:29,322][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:29,762][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:30,265][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:30,483][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:30,875][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:31,088][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:31,280][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:31,450][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:31,641][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:41,026][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:44,236][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:45,644][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:46,776][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:28:58,318][INFO] [sistema] [/params/locality/edit/5.3ab898e9b669529a3b9eafb36e8145ec/][asullom][127.0.0.1] Localidad Mazamari ha sido actualizado correctamente. 
+[2013-10-17 10:40:14,539][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:41:02,855][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:41:11,276][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-10-17 10:41:16,338][WARNING] [sistema] [/space/solution/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /space/solution/index/ 
+[2013-10-17 10:41:17,260][WARNING] [sistema] [/sad/group/permissions_edit/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/permissions_edit/ 
+[2013-10-17 10:41:18,233][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 10:41:19,128][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-10-17 11:40:12,990][WARNING] [sistema] [/sad/module/plans_edit/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/plans_edit/ 
+[2013-10-17 11:40:14,792][WARNING] [sistema] [/sad/resource/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/resource/index/ 
+[2013-10-17 12:02:32,105][WARNING] [sistema] [/sad/group/index/][AnonymousUser][127.0.0.1] Tu no posees permisos para acceder a /sad/group/index/ 
+[2013-10-17 12:03:25,687][WARNING] [sistema] [/sad/module/index/][AnonymousUser][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-17 12:03:57,210][WARNING] [sistema] [/space/solution/index/][AnonymousUser][127.0.0.1] Tu no posees permisos para acceder a /space/solution/index/ 
+[2013-10-17 12:08:36,947][ERROR] [sistema] [/account/login/][AnonymousUser][127.0.0.1] Contasena para asullom no valido  
+[2013-10-17 12:09:53,413][ERROR] [sistema] [/account/login/][AnonymousUser][127.0.0.1] Contasena para asullom no valido, o el usuario no existe o no está activo.  
+[2013-10-17 12:10:12,401][ERROR] [sistema] [/account/login/][AnonymousUser][127.0.0.1] Contasena para asullom no valido, o el usuario no existe o no está activo.  
+[2013-10-17 12:17:37,153][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-10-17 12:17:39,025][WARNING] [sistema] [/sad/resource/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/resource/index/ 
+[2013-10-17 12:17:41,188][WARNING] [sistema] [/sad/resource/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/resource/index/ 
+[2013-10-17 12:17:41,818][WARNING] [sistema] [/sad/resource/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/resource/index/ 
+[2013-10-17 12:17:43,226][WARNING] [sistema] [/sad/resource/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/resource/index/ 
+[2013-10-17 12:51:28,625][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-10-17 12:52:43,588][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu DASHBOARD ha sido registrado correctamente. 
+[2013-10-17 12:53:14,555][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu DASHBOARD ha sido registrado correctamente. 
+[2013-10-17 12:54:26,082][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu FACTURACION ha sido registrado correctamente. 
+[2013-10-17 13:01:28,305][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Dashboard ha sido registrado correctamente. 
+[2013-10-17 13:02:21,815][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Dashboard ha sido registrado correctamente. 
+[2013-10-17 13:11:29,750][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Localidades ha sido registrado correctamente. 
+[2013-10-17 13:13:43,476][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Menu ha sido registrado correctamente. 
+[2013-10-17 13:13:58,513][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-10-17 13:15:40,230][WARNING] [sistema] [/sad/menu/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/add/ 
+[2013-10-17 13:18:15,105][WARNING] [sistema] [/sad/menu/edit/3.39de0100e44a58619126cf062f1e5035/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/edit/ 
+[2013-10-17 13:18:18,355][WARNING] [sistema] [/sad/menu/edit/2.55ecc4ee9779266f30a26cbd83904ce6/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/edit/ 

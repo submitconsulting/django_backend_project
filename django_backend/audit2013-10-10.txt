@@ -1,0 +1,102 @@
+[2013-10-10 00:12:54,979][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 00:12:54,979][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 00:13:13,601][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 00:13:13,601][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 00:13:53,377][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 00:13:53,377][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 00:14:19,770][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 00:14:19,770][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 00:15:11,470][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[jue, 10 oct 13 00:15:11][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-09 00:15:43,760][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 09:29:46,750][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:30:16,309][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:30:33,926][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:31:51,792][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:34:42,867][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:38:45,726][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:43:44,062][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:45:40,144][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:46:09,835][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:46:14,526][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:46:18,931][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:46:45,384][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:46:48,157][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:46:56,775][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:46:58,670][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:46:59,627][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:47:00,233][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:47:00,594][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:47:01,118][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:47:01,361][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:50:27,049][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:51:14,607][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:57:22,013][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:57:44,105][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:58:24,270][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:58:26,342][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:58:42,444][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:58:45,299][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:59:04,344][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:59:06,352][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 09:59:59,934][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 10:00:01,265][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 10:00:08,292][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 10:00:10,556][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 10:00:14,069][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 10:00:25,565][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 10:00:27,489][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 10:11:55,338][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder áa <b>/params/locality/add/</b> 
+[2013-10-10 10:12:53,009][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 10:13:21,125][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 10:13:23,184][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 10:13:26,598][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 10:13:53,321][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 10:14:06,387][WARNING] [sistema] [/params/locality/edit/1/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/edit/</b> 
+[2013-10-10 10:14:32,322][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 10:14:36,558][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 10:14:49,911][INFO] [sistema] [/params/locality/edit/1/][asullom][127.0.0.1] Locality Macusaniy e have beén updated. 
+[2013-10-10 10:15:06,263][WARNING] [sistema] [/params/locality/delete/1/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/delete/</b> 
+[2013-10-10 10:15:29,707][WARNING] [sistema] [/params/locality/delete/1/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/delete/</b> 
+[2013-10-10 10:15:36,726][WARNING] [sistema] [/params/locality/delete/1/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/delete/</b> 
+[2013-10-10 10:18:34,005][INFO] [sistema] [/params/locality/edit/1/][asullom][127.0.0.1] Locality Macusaniy e have beén updated. 
+[2013-10-10 10:29:06,605][WARNING] [sistema] [/params/locality/add/][asullom][127.0.0.1] Tu no posees permisos para acceder a <b>/params/locality/add/</b> 
+[2013-10-10 10:29:28,862][ERROR] [sistema] [/params/locality/add/][asullom][127.0.0.1] unsupported operand type(s) for %: 'tuple' and 'dict' 
+[2013-10-10 10:32:51,823][INFO] [sistema] [/params/locality/add/][asullom][127.0.0.1] Localidad <b>2000</b> ha sido registrado correctamente. 
+[2013-10-10 10:32:57,775][INFO] [sistema] [/params/locality/edit/3/][asullom][127.0.0.1] Localidad <b>2000</b> ha sido actualizado correctamente. 
+[2013-10-10 10:33:02,996][INFO] [sistema] [/params/locality/edit/3/][asullom][127.0.0.1] Localidad <b>2000y</b> ha sido actualizado correctamente. 
+[2013-10-10 10:33:25,592][INFO] [sistema] [/params/locality/delete/2/][asullom][127.0.0.1] Localidad <b>dg</b> ha sido eliminado correctamente. 
+[2013-10-10 10:33:52,109][ERROR] [sistema] [/params/locality/delete/21/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 10:34:17,306][INFO] [sistema] [/params/locality/add/][asullom][127.0.0.1] Localidad <b>2000y</b> ha sido registrado correctamente. 
+[2013-10-10 10:35:35,105][ERROR] [sistema] [/params/locality/edit/4/][asullom][127.0.0.1] El nombre 2000y para localidad ya existe. 
+[2013-10-10 10:35:39,686][INFO] [sistema] [/params/locality/edit/4/][asullom][127.0.0.1] Localidad <b>2000y2</b> ha sido actualizado correctamente. 
+[2013-10-10 10:35:50,401][ERROR] [sistema] [/params/locality/add/][asullom][127.0.0.1] El nombre 2000y para localidad ya existe. 
+[2013-10-10 10:36:52,575][INFO] [sistema] [/params/locality/add/][asullom][127.0.0.1] Localidad <b>2000y4</b> ha sido registrado correctamente. 
+[2013-10-10 10:37:02,167][ERROR] [sistema] [/params/locality/edit/4/][asullom][127.0.0.1] Locality <b>2000y</b> name's already in use. 
+[2013-10-10 12:23:01,563][ERROR] [sistema] [/params/locality/edit/5.gggggg-locality_upd/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 12:23:06,368][ERROR] [sistema] [/params/locality/edit/5.gggggg-locality_upd/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 12:23:10,982][ERROR] [sistema] [/params/locality/edit/5.gggggg-locality_upd/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 12:56:49,450][ERROR] [sistema] [/params/locality/edit/5.3854594554/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 12:56:53,733][ERROR] [sistema] [/params/locality/edit/5.821969243/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 13:00:35,865][ERROR] [sistema] [/params/locality/edit/5.1018513172/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 13:00:40,927][ERROR] [sistema] [/params/locality/edit/5.2059406065/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 13:01:32,542][ERROR] [sistema] [/params/locality/edit/5.3245840271/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 13:01:51,163][ERROR] [sistema] [/params/locality/edit/5.3851472572/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 13:02:15,868][ERROR] [sistema] [/params/locality/edit/5.2678602204/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 13:02:27,892][ERROR] [sistema] [/params/locality/edit/5.1447080783/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 13:04:45,312][ERROR] [sistema] [/params/locality/edit/5.997323751/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 13:04:47,538][ERROR] [sistema] [/params/locality/edit/4.2583419267/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 13:04:49,526][ERROR] [sistema] [/params/locality/edit/5.3580636332/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 13:06:33,108][INFO] [sistema] [/params/locality/edit/4.481615652/][asullom][127.0.0.1] Localidad <b>2000y2 eeee</b> ha sido actualizado correctamente. 
+[2013-10-10 13:06:44,359][INFO] [sistema] [/params/locality/edit/4.483805690/][asullom][127.0.0.1] Localidad <b>2000y2 eeew</b> ha sido actualizado correctamente. 
+[2013-10-10 13:16:48,855][INFO] [sistema] [/params/locality/edit/5.1736300600/][asullom][127.0.0.1] Localidad <b>2000y4</b> ha sido actualizado correctamente. 
+[2013-10-10 13:23:35,884][INFO] [sistema] [/params/locality/edit/5.3825297826/][asullom][127.0.0.1] action_name <b>locality_upd</b> aqui. 
+[2013-10-10 14:07:57,042][ERROR] [sistema] [/params/locality/edit/5.674c5b4a40950a13c48f837816c20544u/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 15:21:03,546][INFO] [sistema] [/params/locality/delete/5.180a65206e6198deebfd9e24b8a213db/][asullom][127.0.0.1] Localidad <b>2000y4</b> ha sido eliminado correctamente. 
+[2013-10-10 15:21:17,931][ERROR] [sistema] [/params/locality/delete/5.180a65206e6198deebfd9e24b8a213db/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 15:21:43,548][ERROR] [sistema] [/params/locality/delete/5.180a65206e6198deebfd9e24b8a213db/][asullom][127.0.0.1] Localidad no se encuentra en la database. 
+[2013-10-10 15:22:13,377][INFO] [sistema] [/params/locality/edit/4.35f35645d7443f7243023ba2dcc24d5c/][asullom][127.0.0.1] Localidad <b>2000y2 eeew</b> ha sido actualizado correctamente. 
+[2013-10-10 15:32:13,861][INFO] [sistema] [/params/locality/edit/4.35f35645d7443f7243023ba2dcc24d5c/][asullom][127.0.0.1] Localidad <b>2000y2 eeew</b> ha sido actualizado correctamente. 
+[2013-10-10 15:32:17,213][INFO] [sistema] [/params/locality/edit/3.c637b702196a26832f036a87b00a18e6/][asullom][127.0.0.1] Localidad <b>2000y</b> ha sido actualizado correctamente. 
+[2013-10-10 15:37:40,857][INFO] [sistema] [/params/locality/edit/4.35f35645d7443f7243023ba2dcc24d5c/][asullom][127.0.0.1] Localidad <b>2000y2 eeew</b> ha sido actualizado correctamente. 
+[2013-10-10 16:17:40,746][INFO] [sistema] [/params/locality/edit/4.35f35645d7443f7243023ba2dcc24d5c/][asullom][127.0.0.1] Localidad <b>2000y2 eeew</b> ha sido actualizado correctamente. 

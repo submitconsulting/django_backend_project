@@ -1,0 +1,4 @@
+{% extends request.is_ajax|yesno:"base_ajax.html,base_authenticated.html" %}
+{% block content %}
+        <p>Name: wellcome!! </p>
+{% endblock %}

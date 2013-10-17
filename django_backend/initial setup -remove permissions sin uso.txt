@@ -1,0 +1,1 @@
+delete from auth_permission where codename like 'add_%'or  codename like 'change_%' or codename like 'delete_%'

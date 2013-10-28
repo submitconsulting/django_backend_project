@@ -138,7 +138,6 @@ class UserProfileHeadquart(models.Model):
 	def __unicode__(self):
 		return "%s %s - %s" % (self.user.username, self.group.name, self.headquart.name)
 
-#others
 class UserProfileAssociation(models.Model):
 	"""
 	Permisos a nivel de association

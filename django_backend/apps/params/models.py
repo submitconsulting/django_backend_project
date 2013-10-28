@@ -57,7 +57,7 @@ class Locality(models.Model):
 
 class Person(models.Model):
 
-	first_name = models.CharField(max_length=50)
+	first_name = models.CharField(max_length=50, null=True, blank=True)
 	last_name = models.CharField(max_length=50, null=True, blank=True)
 	birth_date = models.DateField(null=True, blank=True)
 	photo = models.ImageField(upload_to='personas', verbose_name='Foto',null=True, blank=True)
@@ -77,7 +77,7 @@ class Person(models.Model):
 			("person_add", "Puede agregar persona"),
 			("person_edit", "Puede actualizar personas"),
 			("person_delete", "Puede eliminar personas"),
-			("person_report", "Puede reportar personas"),
+			#("person_report", "Puede reportar personas"),
 			#("person_list", "xPuede listar personas"),
 		)
 

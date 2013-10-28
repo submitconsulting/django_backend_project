@@ -422,6 +422,137 @@ def user_delete(request, key):
 				return redirect('/sad/user/index')
 	except Exception, e:
 		Message.error(request, e)
+
+def user_view(request, key):
+	"""
+	Visualiza información del usuario
+	"""
+	id=Security.is_valid_key(request, key, 'user_viw')
+	if not id:
+		if request.is_ajax():
+			request.path="/sad/user/index/" #/app/controller_path/action/$params
+			return user_index(request)
+		else:
+			return redirect('/sad/user/index')
+	d = None
+	try:
+		d = get_object_or_404(User, id=id)
+		try:
+			person = Person.objects.get(user_id=d.id)
+			if person.id:
+				d.first_name = d.person.first_name
+				d.last_name = d.person.last_name
+		except:
+			pass
+		
+
+
+	except Exception, e:
+		Message.error(request, ("Usuario no se encuentra en la base de datos. %s" % e))
+		if request.is_ajax():
+			request.path="/sad/user/index/" #/app/controller_path/action/$params
+			return user_index(request)
+		else:
+			return redirect('/sad/user/index')
+
+	
+	try:
+		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
+		headquart_list_by_user_profile_headquart = Headquart.objects.filter(id__in= UserProfileHeadquart.objects.values("headquart_id").filter(user=d).distinct())
+
+		user_profile_headquart_list = UserProfileHeadquart.objects.filter(user=d).order_by("headquart")
+		user_profile_enterprise_list = UserProfileEnterprise.objects.filter(user=d).order_by("enterprise")
+		user_profile_association_list = UserProfileAssociation.objects.filter(user=d).order_by("association")
+
+		for user_profile_headquart in user_profile_headquart_list:
+			print user_profile_headquart.headquart
+			print user_profile_headquart.group
+
+
+		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
+		solution_association=Solution.objects.get(id=headquart.association.solution.id )
+		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
+		group_perm_list = Group.objects.filter(groups__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
+		#print group_perm_list
+		#print "=====================x"
+		#pero hay que adornarlo de la forma Module>Group/perfil
+		group_list_by_module=[]
+		group_list_by_module_unique_temp=[]#solo para verificar que el Group no se repita si este está en dos o más módulos
+		for module in module_list:
+			for group in Group.objects.filter(groups=module).distinct():
+				if len(group_list_by_module)==0:
+					group_list_by_module.append({
+					'group': group,
+					'module': module,
+					})
+					group_list_by_module_unique_temp.append(group)
+				else:
+					if group not in group_list_by_module_unique_temp:
+						group_list_by_module.append({
+						'group': group,
+						'module': module,
+						})
+						group_list_by_module_unique_temp.append(group)
+		#print group_list_by_module_unique_temp
+		
+		
+
+	except Exception, e:
+		Message.error(request, e)
+	c = {
+		'page_module':("Gestión de usuarios"),
+		'page_title':("Información del usuario."),
+		'd':d,
+		'user_profile_headquart_list':user_profile_headquart_list,
+		'user_profile_enterprise_list':user_profile_enterprise_list,
+		'user_profile_association_list':user_profile_association_list,
+		}
+	return render_to_response("sad/user/view.html", c, context_instance = RequestContext(request))
+
+@permission_resource_required
+@transaction.commit_on_success
+def user_state(request, state, key):
+	"""
+	Inactiva y reactiva el estado del usuario
+	"""
+	id=Security.is_valid_key(request, key, 'user_%s' % state )
+	if not id:
+		if request.is_ajax():
+			request.path="/sad/user/index/" #/app/controller_path/action/$params
+			return user_index(request)
+		else:
+			return redirect('/sad/user/index')
+	try:
+		d = get_object_or_404(User, id=id)
+	except:
+		Message.error(request, ("Usuario no se encuentra en la base de datos."))
+		if request.is_ajax():
+			request.path="/sad/user/index/" #/app/controller_path/action/$params
+			return user_index(request)
+		else:
+			return redirect('/sad/user/index')
+	try:
+		if state == "inactivar" and d.is_active == False:
+			Message.error(request, ("El usuario ya se encuentra inactivo."))
+		else:
+			if state == "reactivar" and d.is_active == True:
+				Message.error(request, ("El usuario ya se encuentra activo."))
+			else:
+				d.is_active = (True if state == "reactivar" else False)
+				d.save()
+				if d.id:
+					if d.is_active:
+						Message.info(request,("Usuario <b>%(username)s</b> ha sido reactivado correctamente.") % {'username':d.username}, True)
+					else:
+						Message.info(request,("Usuario <b>%(username)s</b> ha sido inactivado correctamente.") % {'username':d.username}, True)
+					if request.is_ajax():
+						request.path="/sad/user/index/" #/app/controller_path/action/$params
+						return user_index(request)
+					else:
+						return redirect('/sad/user/index')
+	except Exception, e:
+		Message.error(request, e)
+
 #endregion user
 
 

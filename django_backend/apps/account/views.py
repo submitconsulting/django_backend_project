@@ -309,7 +309,18 @@ def load_access(request, headquart_id, module_id):
 			DataAccessToken.set_association_id(request, headquart.association.id)
 			DataAccessToken.set_enterprise_id(request, headquart.enterprise.id)
 			DataAccessToken.set_headquart_id(request, headquart.id)
-			
+
+			try:
+				person = Person.objects.get(user_id=request.user.id)
+				if person.id:
+					person.last_headquart_id = headquart_id
+					person.last_module_id = module_id
+					person.save()
+			except:
+				person = Person(user=request.user, first_name=request.user.first_name, last_name=request.user.last_name, last_headquart_id = headquart_id, last_module_id = module_id)
+				person.save()
+				pass
+
 			if headquart:
 				module = Module.objects.get(id=module_id)
 				#Message.info(request, ("La sede %(name)s ha sido cargado correctamente.") % {'name':headquart_id} )
@@ -338,11 +349,21 @@ def login_sys(request):
 		d.username = request.POST.get('login')
 		password = request.POST.get('password')
 		account = authenticate(username=d.username, password=password)
-		if account is not None:
+		if account is not None and account.is_active is True:
 			login(request, account)
 			#cargando sesión para el usuario. no necesita
 			#request.session['id'] = "Hola"
-			Message.info(request, ("Bienvenido <b>%(name)s</b>.") % {'name':d.username} )
+			Message.info(request, ("Bienvenido <b>%(name)s</b>.") % {'name':account.username} )
+			try:#intentar cargar la última session
+				person = Person.objects.get(user_id=request.user.id)
+				if person.last_headquart_id and person.last_module_id:
+					if request.is_ajax():
+						request.path="/account/load_access/%s/%s/" % (person.last_headquart_id, person.last_module_id) #/app/controller_path/action/$params
+						return load_access(request, person.last_headquart_id, person.last_module_id)
+					else:						
+						return redirect('/account/load_access/%s/%s/' % (person.last_headquart_id, person.last_module_id))
+			except:
+				pass
 			return HttpResponseRedirect('/choice_headquart/')
 		else:
 			Message.error(request,("Contaseña para <b>%(name)s</b> no válido, o el usuario no existe o no está activo. ") % {'name':d.username} )

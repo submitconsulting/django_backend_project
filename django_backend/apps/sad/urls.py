@@ -17,6 +17,8 @@ urlpatterns = patterns('apps.sad.views',
 	url(r'^user/add/$', 'user_add', name="user_add"),
 	url(r'^user/edit/(?P<key>.*)/$', 'user_edit', name="user_edit"),
 	url(r'^user/delete/(?P<key>.*)/$', 'user_delete', name="user_delete"),
+	url(r'^user/view/(?P<key>.*)/$', 'user_view', name="user_view"),
+	url(r'^user/state/(?P<state>[\w\d\-]+)/(?P<key>.*)/$', 'user_state', name="user_state"),
 
 	url(r'^menu/index/(?P<field>[\w\d\-]+)/(?P<value>.*)/(?P<order>[\w\d\-]+)/$', 'menu_index', name="menu_index"),
 	url(r'^menu/index/(?P<field>[\w\d\-]+)/(?P<value>.*)/$', 'menu_index', name="menu_index"),

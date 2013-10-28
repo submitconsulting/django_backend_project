@@ -44,7 +44,7 @@
                     <th class="col-collapse" data-search="username">{% trans "LOGIN" %}</th>
                     <th class="col-collapse" data-search="person__first_name">{% trans "NOMBRE" %}</th>
                     <th class="col-collapse" data-search="person__last_name">{% trans "APELLIDO" %}</th>
-                    <th class="col-collapse" data-search="is_staff">{% trans "Email" %}</th>
+                    <th class="col-collapse" data-search="is_staff">{% trans "EMAIL" %}</th>
                     <th class="col-collapse" data-search="email">{% trans "STAFF" %}</th>
                     <th class="col-collapse" data-search="is_active">{% trans "ACTIVO" %}</th>
                     <th class="btn-actions no-responsive" style="width: 200px;">{% trans "ACTIONS" %}</th>
@@ -64,11 +64,15 @@
                     
                     <td>
                     	{% if user.is_authenticated %}
-							<a href="#" class="btn dw-spinner dw-ajax btn btn-small btn-info dw-text-bold" title="{% trans "ver user." %}" rel="tooltip"> <i class="btn-icon-only icon-eye-open"></i></a>
+							<a href="{% url 'user_view' d.id|key:'user_viw' %}" class="btn dw-spinner dw-ajax btn btn-small btn-info dw-text-bold" title="{% trans "Ver user." %}" rel="tooltip"> <i class="btn-icon-only icon-eye-open"></i></a>
 
                             <a href="{% url 'user_edit' d.id|key:'user_upd' %}" class="btn dw-spinner dw-ajax btn btn-small btn-info dw-text-bold" title="{% trans "Actualizar user." %}" rel="tooltip"> <i class="btn-icon-only icon-edit"></i></a>
 
-                            <a href="#" class="btn dw-spinner dw-ajax btn btn-small btn-success dw-text-bold" title="{% trans "Bloquear user." %}" rel="tooltip"> <i class="btn-icon-only icon-flag"></i></a>
+                            {% if d.is_active %}
+                                <a href="{% url 'user_state' 'inactivar' d.id|key:'user_inactivar' %}" class="btn dw-spinner dw-ajax btn btn-small btn-success dw-text-bold" title="{% trans "Inactivar user." %}" rel="tooltip"> <i class="btn-icon-only icon-flag"></i></a>
+                            {% else %}
+                                <a href="{% url 'user_state' 'reactivar' d.id|key:'user_reactivar' %}" class="btn dw-spinner dw-ajax btn btn-small btn-success dw-text-bold" title="{% trans "Reactivar user." %}" rel="tooltip"> <i class="btn-icon-only icon-flag"></i></a>
+                            {% endif %}
 
                             <a href="{% url 'user_delete' d.id|key:'user_del' %}" class="btn dw-spinner dw-ajax btn btn-small btn-danger js-confirm dw-text-bold" confirm-title="{% trans "Eliminar user?." %}" confirm-body="{% trans "It is safe to remove." %}<br/>{% trans "Remember that this operation can not be reversed." %}" title="{% trans "Eliminar user?." %}" rel="tooltip"> <i class="btn-icon-only icon-ban-circle"></i></a>
 

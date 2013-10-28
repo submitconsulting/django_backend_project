@@ -13,7 +13,7 @@ Documentación
 
 Instalación
 -------------------
-Para instalar el DjangoBackend simplemente lo descargas y usas inicialmente la base de datos del archivo sdbm.db ubicado en la carpeta "/django_backend_project/django_backend/", para mayor seguridad editas el settings.py con los parámetros de conexión y vuelves a hacer syncdb.
+Para instalar el DjangoBackend simplemente lo descargas y usas inicialmente la base de datos del archivo sdbm.db ubicado en la carpeta "/django_backend_project/django_backend/", para mayor seguridad editas el settings.py con los parámetros de conexión y vuelves a hacer `syncdb`.
 
 Usuario: admin
 Pass: 12345
@@ -28,7 +28,7 @@ To install Django in the new virtual environment, run the following command::
 
 Recursos del sistema
 -------------------
-Los recursos son las acciones o métodos que se pueden ejecutar en los controladores,  Esta data se almacena en `django.contrib.auth.models.Permission` y luego se convierte en un recurso por el decorador @permission_resource_required
+Los recursos son las acciones o métodos que se pueden ejecutar en los controladores,  Esta data se almacena en `django.contrib.auth.models.Permission` y luego se convierte en un recurso por el decorador `@permission_resource_required`
 
 
 Perfiles de usuario

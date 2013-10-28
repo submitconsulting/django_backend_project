@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
 
+Descripcion: Decorador para validar los permisos de los usuarios
+
+"""
 from functools import wraps
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
@@ -42,6 +49,8 @@ def permission_resource_required_decorator(template_denied_name="denied_mod_back
     def decorator(view_func):
         @wraps(view_func, assigned=available_attrs(view_func))
         def _wrapped_view(request, *args, **kwargs) :
+            if not request.user.id:
+                return render_to_response("404.html", {'': ''}, context_instance=RequestContext(request))
             permiso=""
             recurso="/"
             response = HttpResponse()
@@ -50,8 +59,8 @@ def permission_resource_required_decorator(template_denied_name="denied_mod_back
             response.write('</script>')
             try:
                 path = request.path.strip("/") #request.get_full_path().strip("/") #"/apps/controller/action/" to "apps/controller/action"
-                print "path=%s" % path
-                print "request path=%s" % request.path
+                #print "path=%s" % path
+                #print "request path=%s" % request.path
             except Exception, e:
                 raise Exception("%s. Asigne adecuadamente el parámetro template_denied_name " % e)
             
@@ -79,8 +88,8 @@ def permission_resource_required_decorator(template_denied_name="denied_mod_back
                     if len(path_list) > 2:
                         permiso = "%s.%s_%s" % (path_list[0], path_list[1], path_list[2])
                         recurso = "/%s/%s/%s/" % (path_list[0], path_list[1], path_list[2])
-            print "permiso=%s" % permiso
-            print "recurso=%s" % recurso
+            #print "permiso=%s" % permiso
+            #print "recurso=%s" % recurso
             if not isinstance(permiso, (list, tuple)):
 	            perms = (permiso, )
             else:

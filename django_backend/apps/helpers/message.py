@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     helpers
+
+Descripcion: Registra en archivos .txt, según el tipo de mensaje, las acciones de los usuarios
+"""
 import logging, logging.handlers
 import datetime
 from django.utils.html import escape
@@ -46,7 +53,7 @@ class Message:
 	content_msj = []
 
 	@staticmethod
-	def setx(request, name, msg, audit=False):
+	def set_msg(request, name, msg, audit=False):
 		try:
 			d = request.session['messages']
 			if d:
@@ -76,26 +83,26 @@ class Message:
 	@staticmethod
 	def debug(request, msg, audit=True):
 		#logger.debug("%s - %s"%(request.user, msg))
-		Message.setx(request, "debug", msg, audit)
+		Message.set_msg(request, "debug", msg, audit)
 
 	@staticmethod
 	def info(request, msg, audit=False):
 		#logger.info("%s - %s"%(request.user, msg))
-		Message.setx(request, "info", msg, audit)
+		Message.set_msg(request, "info", msg, audit)
 
 	@staticmethod
 	def warning(request, msg, audit=True):
 		#logger.warning("%s - %s"%(request.user, msg))
-		Message.setx(request, "warning", msg, audit)
+		Message.set_msg(request, "warning", msg, audit)
 
 	@staticmethod
 	def error(request, msg, audit=True):
 		#logger.error("%s - %s"%(request.user, msg))
-		Message.setx(request, "error", msg, audit)
+		Message.set_msg(request, "error", msg, audit)
 		
 
 	@staticmethod
 	def critical(request, msg, audit=True):
 		#logger.critical("%s - %s"%(request.user, msg))
-		Message.setx(request, "critical", msg, audit)
+		Message.set_msg(request, "critical", msg, audit)
 

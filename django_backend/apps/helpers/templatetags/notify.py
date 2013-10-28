@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     helpers
+
+Descripcion: Tag o interfáz para mostrar a los usuarios los mensajes generados por el sistema
+"""
 from django import template
 from django.template import resolve_variable, Context
 import datetime

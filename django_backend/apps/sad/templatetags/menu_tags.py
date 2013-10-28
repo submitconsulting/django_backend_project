@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
-# método para mostrar en los template
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Tags para mostrar los menús dinámicos
+"""
 from django import template
 from django.template import resolve_variable, Context
 import datetime

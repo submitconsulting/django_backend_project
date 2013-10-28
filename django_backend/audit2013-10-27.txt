@@ -1,0 +1,47 @@
+[2013-10-27 12:25:27,885][ERROR] [sistema] [/sad/user/edit/14.6a108184b350b98140bd3cf83fad9188/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-10-27 12:28:11,641][ERROR] [sistema] [/sad/user/edit/13.212ff312556a06c48561d9508318d9a3/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-10-27 12:28:14,549][ERROR] [sistema] [/sad/user/edit/13.212ff312556a06c48561d9508318d9a3/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-10-27 12:29:36,982][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario jaro ha sido registrado correctamente. 
+[2013-10-27 12:48:33,875][ERROR] [sistema] [/sad/user/edit/15.eede06df7a9379e770a1a7500c73966c/][admin][127.0.0.1] global name 'group_user_list' is not defined 
+[2013-10-27 12:48:48,828][ERROR] [sistema] [/sad/user/edit/15.eede06df7a9379e770a1a7500c73966c/][admin][127.0.0.1] global name 'group_user_list' is not defined 
+[2013-10-27 15:34:06,778][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario jaro2 ha sido registrado correctamente. 
+[2013-10-27 15:34:09,388][ERROR] [sistema] [/sad/user/edit/16.82227eb82b0cfaf2c6644656e15a5f36/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-10-27 15:34:33,032][ERROR] [sistema] [/sad/user/edit/15.eede06df7a9379e770a1a7500c73966c/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-10-27 15:34:35,384][ERROR] [sistema] [/sad/user/edit/15.eede06df7a9379e770a1a7500c73966c/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-10-27 15:35:42,816][ERROR] [sistema] [/sad/user/edit/16.82227eb82b0cfaf2c6644656e15a5f36/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-10-27 15:54:40,605][ERROR] [sistema] [/sad/user/edit/15.eede06df7a9379e770a1a7500c73966c/][admin][127.0.0.1] column user_id is not unique 
+[2013-10-27 15:56:47,674][INFO] [sistema] [/sad/user/edit/15.eede06df7a9379e770a1a7500c73966c/][admin][127.0.0.1] Usuario jaro ha sido actualizado correctamente. 
+[2013-10-27 15:57:05,255][INFO] [sistema] [/sad/user/edit/16.82227eb82b0cfaf2c6644656e15a5f36/][admin][127.0.0.1] Usuario jaro2 ha sido actualizado correctamente. 
+[2013-10-27 15:57:33,687][INFO] [sistema] [/sad/user/edit/16.82227eb82b0cfaf2c6644656e15a5f36/][admin][127.0.0.1] Usuario jaro2 ha sido actualizado correctamente. 
+[2013-10-27 16:02:28,091][INFO] [sistema] [/sad/user/delete/16.210c1d32bd100dec5186d28ffab51781/][admin][127.0.0.1] Usuario jaro2 ha sido eliminado correctamente. 
+[2013-10-27 16:03:58,378][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-10-27 16:04:02,476][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-10-27 16:05:13,835][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-10-27 16:06:08,716][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] ('Usuario no se encuentra en la base de datos. %s', DoesNotExist()) 
+[2013-10-27 16:09:30,069][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] ('Usuario no se encuentra en la base de datos. %s', DoesNotExist()) 
+[2013-10-27 16:09:31,513][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] ('Usuario no se encuentra en la base de datos. %s', DoesNotExist()) 
+[2013-10-27 16:09:45,921][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] ('Usuario no se encuentra en la base de datos. %s', DoesNotExist()) 
+[2013-10-27 16:10:03,450][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-10-27 16:10:05,709][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-10-27 16:10:06,921][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-10-27 16:10:07,857][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-10-27 16:10:17,634][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] global name 'headquart' is not defined 
+[2013-10-27 16:11:02,631][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-10-27 16:11:08,444][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-10-27 16:11:16,167][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-10-27 16:11:17,484][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-10-27 16:11:18,444][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-10-27 16:11:19,473][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-10-27 16:11:53,680][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. Person matching query does not exist. Lookup parameters were {'user': <User: admin>} 
+[2013-10-27 16:12:16,092][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. Person matching query does not exist. Lookup parameters were {'user': <User: admin>} 
+[2013-10-27 16:12:27,743][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. Person matching query does not exist. Lookup parameters were {'user_id': 1} 
+[2013-10-27 16:12:29,224][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. Person matching query does not exist. Lookup parameters were {'user_id': 1} 
+[2013-10-27 16:12:30,305][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. Person matching query does not exist. Lookup parameters were {'user_id': 1} 
+[2013-10-27 16:12:31,137][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. Person matching query does not exist. Lookup parameters were {'user_id': 1} 
+[2013-10-27 16:12:43,947][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. Person matching query does not exist. Lookup parameters were {'user_id': 1} 
+[2013-10-27 16:13:10,621][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. get_object_or_404() takes at least 1 argument (0 given) 
+[2013-10-27 16:13:12,336][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. get_object_or_404() takes at least 1 argument (0 given) 
+[2013-10-27 16:13:32,436][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. No Person matches the given query. 
+[2013-10-27 16:13:36,075][ERROR] [sistema] [/sad/user/edit/1.06f19584a02c0732b844963702ccda26/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. No Person matches the given query. 
+[2013-10-27 16:14:51,604][INFO] [sistema] [/sad/user/edit/15.eede06df7a9379e770a1a7500c73966c/][admin][127.0.0.1] Usuario jaro ha sido actualizado correctamente. 
+[2013-10-27 16:32:00,767][INFO] [sistema] [/sad/user/edit/15.eede06df7a9379e770a1a7500c73966c/][admin][127.0.0.1] Usuario jaro ha sido actualizado correctamente. 

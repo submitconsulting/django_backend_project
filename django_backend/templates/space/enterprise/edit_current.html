@@ -1,4 +1,4 @@
-{% extends request.is_ajax|yesno:"base_ajax.html,base_authenticated.html" %}
+{% extends request.is_ajax|yesno:"base_ajax.html,base_mod_backend.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% block title %} {{ page_title }} {% endblock %}
@@ -10,53 +10,35 @@
     </style>
 
     <script type="text/javascript">
-    $(function () {
+    //$(function () {
 
-        $('#form').on("submit", f=function() {
-            if (confirm("¿Está seguro enviar esta información?")==true)
-            {
-                return true;
-            }
-            return false;
-        });
-
-    });
+    //});
     </script>
     <div class="account-container-signup">
         <div class="content clearfix">
         <div class="page-header">
             <h4>{{ page_module }} | <small>{{ page_title }}</small></h4>
-            Registro para agregar nueva asociación y nueva empresa.<br>
-            Para pertenecer a una asociación existente, pida al administrador de la asociación que le agregue.
         </div>
-        <form action="" method="post" id="form" class="js-confirm dw-validate js-remote dw-form form-vertical" data-to="dw-shell-content" name="form" confirm-title="ee" confirm-body="aaa">
-	       {% csrf_token %}
+        <form action="" method="post" id="form" class="dw-validate dw-form form-vertical" data-to="dw-shell-content" name="form">
+           {% csrf_token %}
 
            <ul class="nav nav-tabs">
                     <!--
             <li class="active"><a href="#tab1" data-toggle="tab">Información personal</a></li>
             -->
-                <li class="active"><a href="#tab2" data-toggle="tab">Información de la cuenta</a></li>
+                <li class="active"><a href="#tab2" data-toggle="tab">Información general</a></li>
                 <li><a href="#tab3" data-toggle="tab">Cargar imagen</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab2">
 
-                
-                
                 <div class="row-fluid">
-                    <div class="span6">
-                        <div class="control-group">
-                            <label class="control-label">{% trans "EMPRESA" %}<span class="req"> *</span></label>
-                            <input id="enterprise_name" name="enterprise_name" type="text" value="{{ d.enterprise_name }}" class="field text input-xlarge input-required mask-alphanum show-error" required="required">
-                            <p class="help-block"> <span class="help-error" id="err_enterprise_name"></span></p>
-                        </div>
-                    </div>
+                    
                     <div class="span6">
                         <div class="control-group">
                             <label class="control-label">{% trans "RUC" %}<span class="req"> *</span></label>
-                            <input id="enterprise_tax_id" name="enterprise_tax_id" type="text" value="{{ d.enterprise_tax_id }}" class="field text input-xlarge input-required mask-alphanum show-error" required="required">
-                            <p class="help-block"> <span class="help-error" id="err_enterprise_tax_id"></span></p>
+                            <input id="tax_id" name="tax_id" type="text" value="{{ d.tax_id }}" class="field text input-xlarge input-required mask-alphanum show-error" required="required">
+                            <p class="help-block"> <span class="help-error" id="err_tax_id"></span></p>
                         </div>
                     </div>
                 </div>
@@ -64,21 +46,22 @@
                 <div class="row-fluid">
                     <div class="span6">
                         <div class="control-group">
-                            <label class="control-label">{% trans "ASOCIACION" %}<span class="req"> *</span></label>
-                            <input id="association_name" name="association_name" type="text" value="{{ d.association_name }}" class="field text input-xlarge input-required mask-alphanum show-error" required="required">
-                            <p class="help-block"> <span class="help-error" id="err_association_name"></span></p>
+                            <label class="control-label">{% trans "NAME" %}<span class="req"> *</span></label>
+                            <input id="name" name="name" type="text" value="{{ d.name }}" class="field text input-xlarge input-required mask-alphanum show-error" required="required">
+                            <p class="help-block"> <span class="help-error" id="err_name"></span></p>
                         </div>
                     </div>
+                    
                     <div class="span6">
                         <div class="control-group">
                             <label class="control-label">{% trans "TIPO ORGANIZACION" %}<span class="req"> *</span></label>
-                            <select id="association_type_a" name="association_type_a"  class="field select input-xlarge input-required input-list show-errors" required="required">
+                            <select id="type_e" name="type_e"  class="field select input-xlarge input-required input-list show-errors" required="required">
                                     <option value=""></option>
-                                    {% for key,value in type_a_list %}
-                                        <option value="{{ key }}" {% if d.association_type_a == key %} selected {%endif%}>{{ value }}</option>
+                                    {% for key,value in TYPES %}
+                                        <option value="{{ key }}" {% if d.type_e == key %} selected {%endif%}>{{ value }}</option>
                                     {% endfor %}
                                 </select>
-                                <p class="help-block"> <span class="help-error" id="err_association_type_a"></span></p>
+                                <p class="help-block"> <span class="help-error" id="err_type_e"></span></p>
                         </div>
                     </div>
                 </div>
@@ -90,14 +73,14 @@
                                 <label class="control-label">{% trans "PLAN" %}<span class="req"> *</span></label>
                                 <select id="solution_id" name="solution_id"  class="field select input-xlarge input-required input-list show-errors" required="required">
                                     <option value=""></option>
-                                    {% for s in solution_list %}
-                                        <option value="{{ s.id }}" {% if d.solution == s %} selected {%endif%}>{{ s.name }}</option>
+                                    {% for solution in solution_list %}
+                                        <option value="{{ solution.id }}" {% if d.solution == solution %} selected {%endif%}>{{ solution.name }}</option>
                                     {% endfor %}
                                 </select>
                                 <p class="help-block"> <span class="help-error" id="err_solution_id"></span></p>
                             </div>
                         </div>
-                        
+                       
                  
                 </div>
 
@@ -152,12 +135,10 @@
                     
 
                     <button type="submit" class="btn btn-success dw-text-bold" title="Guardar registro">
-                    	<i class="btn-icon-only icon-save"></i> <span class="hidden-phone">{% trans "AGREGAR NUEVA EMPRESA" %}</span>
+                        <i class="btn-icon-only icon-save"></i> <span class="hidden-phone">{% trans "Guardar información" %}</span>
                     </button>
 
-                    <a href="{% url 'choice_headquart' %}"  class="btn dw-spinner dw-ajax btn-danger dw-text-bold" title="Cancelar operación">
-                        <i class="btn-icon-only icon-ban-circle"></i> <span class="hidden-phone">{% trans "CANCEL" %}</span>
-                    </a>
+
 
                  </div>
              </div>

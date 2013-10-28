@@ -3,6 +3,7 @@ import logging, logging.handlers
 from locale import setlocale, LC_ALL, LC_TIME
 #setlocale(LC_TIME, '')
 
+#no usado, eliminar
 class EncodingFormatter(logging.Formatter):
 
     def __init__(self, fmt, datefmt=None, encoding=None):

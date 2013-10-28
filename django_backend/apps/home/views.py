@@ -1,4 +1,11 @@
 # _*_ coding: utf-8 _*_
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Controladores para el inicio del sistema
+"""
 import datetime
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import Context
@@ -6,11 +13,10 @@ from django.shortcuts import render_to_response, get_object_or_404, render,redir
 from django.template.context import RequestContext
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
-from apps.space.models import Headquart
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from apps.space.models import Association, Enterprise, Headquart, Solution
 from apps.sad.security import DataAccessToken
-from apps.sad.models import *
+from apps.sad.models import Module
 from django.db.models import Q
 
 #@csrf_exempt
@@ -26,14 +32,14 @@ def index(request):
 def choice_headquart(request):
 	
 	headquart_list_by_user=[]
-	print "\n\n\n\n\n"
+	#print "\n\n\n\n\n"
 	headquart_list = []
 	if request.user.is_superuser:
-		headquart_list = Headquart.objects.filter().distinct() #Trae todo
+		headquart_list = Headquart.objects.filter().order_by("-association__name","-enterprise__name","-id").distinct() #Trae todo
 	else:
 		if request.user.id:
-			print "--%s" % request.user.id
-			headquart_list = Headquart.objects.filter(userprofileheadquart__user__id = request.user.id).distinct() #request.user.id
+			#print "--%s" % request.user.id
+			headquart_list = Headquart.objects.filter(userprofileheadquart__user__id = request.user.id).order_by("-association__name","-enterprise__name","-id").distinct() #request.user.id
 	
 	for headquart in headquart_list:
 		#print u"--%s" % (headquart)

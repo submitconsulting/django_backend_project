@@ -20,9 +20,9 @@
     
 	<div class="btn-toolbar btn-toolbar-top">
         <div class="btn-actions">
-            <a href="{% url 'add_enterprise' %}" class="btn dw-spinner btn-success dw-text-bold" title="{% trans "New locality." %}"><i class="btn-icon-only icon-check"></i> <span class="hidden-phone">{% trans "AGREGUE SU PROPIA EMPRESA" %}</span></a>
+            <a href="{% url 'add_enterprise' %}" class="btn dw-spinner btn-success dw-text-bold" title="{% trans "Agregar empresa." %}"><i class="btn-icon-only icon-check"></i> <span class="hidden-phone">{% trans "AGREGUE SU PROPIA EMPRESA" %}</span></a>
             {% if user.is_superuser %}
-                <a href="{% url 'mod_backend_dashboard' %}" class="btn dw-spinner dw-text-bold" title="{% trans "New locality." %}"><i class="btn-icon-only icon-key"></i> <span class="hidden-phone">{% trans "IR ADMIN" %}</span></a>
+                <a href="{% url 'mod_backend_dashboard' %}" class="btn dw-spinner dw-text-bold" title="{% trans "Ir al módulo backend manager." %}"><i class="btn-icon-only icon-key"></i> <span class="hidden-phone">{% trans "IR ADMIN" %}</span></a>
             {% endif %}
         </div>
     </div>

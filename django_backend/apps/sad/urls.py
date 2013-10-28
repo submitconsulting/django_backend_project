@@ -1,7 +1,22 @@
+# _*_ coding: utf-8 _*_
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Urls basado en la convención para la integración con SAD (Security App Dev)
+"""
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('apps.sad.views',
  	# micontroller/mi_action
+
+	url(r'^user/index/(?P<field>[\w\d\-]+)/(?P<value>.*)/(?P<order>[\w\d\-]+)/$', 'user_index', name="user_index"),
+	url(r'^user/index/(?P<field>[\w\d\-]+)/(?P<value>.*)/$', 'user_index', name="user_index"),
+	url(r'^user/index/$', 'user_index', name="user_index"),
+	url(r'^user/add/$', 'user_add', name="user_add"),
+	url(r'^user/edit/(?P<key>.*)/$', 'user_edit', name="user_edit"),
+	url(r'^user/delete/(?P<key>.*)/$', 'user_delete', name="user_delete"),
 
 	url(r'^menu/index/(?P<field>[\w\d\-]+)/(?P<value>.*)/(?P<order>[\w\d\-]+)/$', 'menu_index', name="menu_index"),
 	url(r'^menu/index/(?P<field>[\w\d\-]+)/(?P<value>.*)/$', 'menu_index', name="menu_index"),

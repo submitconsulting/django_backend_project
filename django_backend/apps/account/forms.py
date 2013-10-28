@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from apps.params.models import Person
 
-
+#no usado, eliminar
 class RegistrationForm(ModelForm):
     username = forms.CharField(label=(u'User Name'))
     email = forms.EmailField(label=(u'Email Address'))
@@ -29,7 +29,7 @@ class RegistrationForm(ModelForm):
                 raise forms.ValidationError("The passwords did not match.  Please try again.")
             return self.cleaned_data
 
-
+#no usado, eliminar
 class LoginForm(forms.Form):
     username = forms.CharField(label=(u'User Name'))
     password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))

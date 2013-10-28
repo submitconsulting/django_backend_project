@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
-# método para mostrar en los template
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Tags para mostrar los menús dinámicos en la cabecera principal del sistema
+"""
 from django import template
 from django.template import resolve_variable, Context
 import datetime
@@ -8,6 +14,7 @@ from django.contrib.sessions.models import Session
 from django.conf import settings
 from apps.sad.security import DataAccessToken
 from apps.space.models import Enterprise, Headquart
+from apps.helpers.message import Message
 
 register = template.Library()
 
@@ -18,13 +25,17 @@ def get_grupos(request, url):
 	"""
 	sede=None
 	if DataAccessToken.get_headquart_id(request.session):
-		sede = Headquart.objects.get(id=DataAccessToken.get_headquart_id(request.session))
+		try:
+			sede = Headquart.objects.get(id=DataAccessToken.get_headquart_id(request.session))
+		except:
+			Message.error(request, ("Sede no se encuentra en la base de datos."))
+		
 
 	value = '' 
 	w=""
 	d = DataAccessToken.get_grupo_id_list(request.session)
 	if sede:
-		w = (u'		<a href="#" class="dropdown-toggle" data-toggle="dropdown">%s > %s %s<b class="caret"></b></a>'%(sede.enterprise.name, sede.name, value))
+		w = (u'		<a href="#" class="dropdown-toggle" data-toggle="dropdown" title ="%s">%s > %s %s<b class="caret"></b></a>'%(sede.association.name, sede.enterprise.name, sede.name, value))
 	
 	o = ''
 	if d :
@@ -50,7 +61,11 @@ def get_enterprise(session):
 	"""
 	enterprise=None
 	if DataAccessToken.get_enterprise_id(session):
-		enterprise = Enterprise.objects.get(id=DataAccessToken.get_enterprise_id(session))
+		try:
+			enterprise = Enterprise.objects.get(id=DataAccessToken.get_enterprise_id(session))
+		except:
+			Message.error(request, ("Empresa no se encuentra en la base de datos."))
+		
 	return enterprise.name
 
 @register.simple_tag
@@ -60,5 +75,9 @@ def get_headquart(session):
 	"""
 	headquart=None
 	if DataAccessToken.get_headquart_id(session):
-		headquart = Headquart.objects.get(id=DataAccessToken.get_headquart_id(session))
+		try:
+			headquart = Headquart.objects.get(id=DataAccessToken.get_headquart_id(session))
+		except:
+			Message.error(request, ("Sede no se encuentra en la base de datos."))
+		
 	return headquart.name

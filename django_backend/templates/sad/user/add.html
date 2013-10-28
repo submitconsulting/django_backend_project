@@ -1,4 +1,4 @@
-{% extends request.is_ajax|yesno:"base_ajax.html,base_login.html" %}
+{% extends request.is_ajax|yesno:"base_ajax.html,base_mod_backend.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% block title %} {{ page_title }} {% endblock %}
@@ -28,21 +28,20 @@
         <div class="content clearfix">
         <div class="page-header">
             <h4>{{ page_module }} | <small>{{ page_title }}</small></h4>
-            Registro solo para nuevos usuarios, nueva asociación y nueva empresa.<br>
-            Para pertenecer a una asociación existente, pida al administrador de la asociación que le agregue.
+            Registro para agregar nuevos usuarios y dar permisos a la sede, empresa y/o asociación.<br>
         </div>
         <form action="" method="post" id="form" class="dw-validate js-remote dw-form dw-validate form-vertical" data-to="dw-shell-content" name="form">
-	       {% csrf_token %}
+           {% csrf_token %}
 
            <ul class="nav nav-tabs">
-                    <!--
-            <li class="active"><a href="#tab1" data-toggle="tab">Información personal</a></li>
-            -->
-                <li class="active"><a href="#tab2" data-toggle="tab">Información de la cuenta</a></li>
-                <li><a href="#tab3" data-toggle="tab">Cargar imagen</a></li>
+                    
+                <li class="active"><a href="#tab1" data-toggle="tab">Información personal</a></li>
+                <li><a href="#tab2" data-toggle="tab">Información de la cuenta</a></li>
+                <li><a href="#tab3" data-toggle="tab">Permisos de la cuenta</a></li>
+                <li><a href="#tab4" data-toggle="tab">Cargar imagen</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="tab2">
+                <div class="tab-pane active" id="tab1">
 
                 <div class="row-fluid">
                     <div class="span6">
@@ -61,6 +60,13 @@
                     </div>
                 </div>
                 
+
+
+                </div>
+                <div class="tab-pane" id="tab2">
+
+
+                
                 <div class="row-fluid">
                     <div class="span6">
                         <div class="control-group">
@@ -70,11 +76,13 @@
                         </div>
                     </div>
                     <div class="span6">
-                        
+                        <div class="control-group">
+                            <label class="control-label">{% trans "EMAIL" %}<span class="req"> *</span></label>
+                            <input id="email" name="email" type="email" value="{{ d.email }}" class="field input-xxlarge mask-email show-error" required="required">
+                            <p class="help-block"> <span class="help-error" id="err_email"></span></p>
+                        </div>
                     </div>
                 </div>
-
-
                 <div class="row-fluid">
                     <div class="span6">
                         <div class="control-group">
@@ -91,73 +99,62 @@
                         </div>
                     </div>
                 </div>
+
+                </div>
+                <div class="tab-pane" id="tab3">
+
                 
-                <div class="row-fluid">
-                    <div class="span6">
-                        <div class="control-group">
-                            <label class="control-label">{% trans "EMPRESA" %}<span class="req"> *</span></label>
-                            <input id="enterprise_name" name="enterprise_name" type="text" value="{{ d.enterprise_name }}" class="field text input-xlarge input-required mask-alphanum show-error" required="required">
-                            <p class="help-block"> <span class="help-error" id="err_enterprise_name"></span></p>
-                        </div>
-                    </div>
-                    <div class="span6">
-                        <div class="control-group">
-                            <label class="control-label">{% trans "RUC" %}<span class="req"> *</span></label>
-                            <input id="enterprise_tax_id" name="enterprise_tax_id" type="text" value="{{ d.enterprise_tax_id }}" class="field text input-xlarge input-required mask-alphanum show-error" required="required">
-                            <p class="help-block"> <span class="help-error" id="err_enterprise_tax_id"></span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row-fluid">
-                    <div class="span6">
-                        <div class="control-group">
-                            <label class="control-label">{% trans "ASOCIACION" %}<span class="req"> *</span></label>
-                            <input id="association_name" name="association_name" type="text" value="{{ d.association_name }}" class="field text input-xlarge input-required mask-alphanum show-error" required="required">
-                            <p class="help-block"> <span class="help-error" id="err_association_name"></span></p>
-                        </div>
-                    </div>
-                    <div class="span6">
-                        <div class="control-group">
-                            <label class="control-label">{% trans "TIPO ORGANIZACION" %}<span class="req"> *</span></label>
-                            <select id="association_type_a" name="association_type_a"  class="field select input-xlarge input-required input-list show-errors" required="required">
-                                    <option value=""></option>
-                                    {% for key,value in type_a_list %}
-                                        <option value="{{ key }}" {% if d.association_type_a == key %} selected {%endif%}>{{ value }}</option>
-                                    {% endfor %}
-                                </select>
-                                <p class="help-block"> <span class="help-error" id="err_association_type_a"></span></p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row-fluid">
-                        <div class="span6">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <fieldset ><legend>PERMISOS PARA LA SEDE </legend>
                             <div class="control-group">
-                                <label class="control-label">{% trans "PLAN" %}<span class="req"> *</span></label>
-                                <select id="solution_id" name="solution_id"  class="field select input-xlarge input-required input-list show-errors" required="required">
-                                    <option value=""></option>
-                                    {% for solution in solution_list %}
-                                        <option value="{{ solution.id }}" {% if d.solution == solution %} selected {%endif%}>{{ solution.name }}</option>
+                                
+                                <select id="groups_sede" name="groups_sede"  class="field select input-xlarge input-required input-list show-errors" multiple="multiple">
+                                    {% for perm in group_perm_list %}
+                                        <option value="{{ perm.group.id }}">{{ perm.module.name }}>{{ perm.group.name }}</option>
                                     {% endfor %}
                                 </select>
-                                <p class="help-block"> <span class="help-error" id="err_solution_id"></span></p>
+                                <p class="help-block"> <span class="help-error" id="err_groups_sede"></span></p>
                             </div>
-                        </div>
-                        <div class="span6">
-                        <div class="control-group">
-                            <label class="control-label">{% trans "EMAIL" %}<span class="req"> *</span></label>
-                            <input id="email" name="email" type="email" value="{{ d.email }}" class="field text input-xlarge input-required mask-email show-error" required="required">
-                            <p class="help-block"> <span class="help-error" id="err_email"></span></p>
+                            </fieldset>
                         </div>
                     </div>
-                 
-                </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <fieldset ><legend>PERMISOS PARA LA EMPRESA </legend>
+                            <div class="control-group">
+                                
+                                <select id="groups_enterprise" name="groups_enterprise"  class="field select input-xlarge input-list show-errors" multiple="multiple">
+                                    {% for perm in group_perm_list %}
+                                        <option value="{{ perm.group.id }}">{{ perm.module.name }}>{{ perm.group.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <p class="help-block"> <span class="help-error" id="err_groups_enterprise"></span></p>
+                            </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <fieldset ><legend>PERMISOS PARA LA ASOCIACION </legend>
+                            <div class="control-group">
+                                
+                                <select id="groups_association" name="groups_association"  class="field select input-xlarge input-list show-errors" multiple="multiple">
+                                    {% for perm in group_perm_list %}
+                                        <option value="{{ perm.group.id }}">{{ perm.module.name }}>{{ perm.group.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <p class="help-block"> <span class="help-error" id="err_groups_association"></span></p>
+                            </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                
 
             </div>
 
-            <div class="tab-pane" id="tab3">
+            <div class="tab-pane" id="tab4">
 
                 <div class="row fileupload-buttonbar">
 
@@ -186,30 +183,21 @@
 
             </div>
 
-            <div class="row-fluid">
-
-                        <div class="span6">
-                            <div class="control-group">
-                                
-                                <input id="acept_term" name="acept_term" type="checkbox" value="ok" class="field checkbox input-xlarge input-required show-error" required="required"/>
-
-                                {% trans "Acepto los términos de uso y plíticas de privacidad" %}
-                                <p class="help-block"> <span class="help-error" id="err_acept_term"></span></p>
-                            </div>
-                        </div>
-
-                </div>
 
             <div class="row-fluid">
-
                 <div class="form-actions">
-                    
 
                     <button type="submit" class="btn btn-success dw-text-bold" title="Guardar registro">
-                    	<i class="btn-icon-only icon-save"></i> <span class="hidden-phone">{% trans "CREAR CUENTA" %}</span>
+                        <i class="btn-icon-only icon-save"></i> <span class="hidden-phone">{% trans "SAVE" %}</span>
                     </button>
 
+                    <button type="button"  class="btn btn-info dw-text-bold" title="Limpiar formulario" onclick="document.getElementById('form').reset();">
+                        <i class="btn-icon-only icon-undo"></i> <span class="hidden-phone">{% trans "RESET" %}</span>
+                    </button>
 
+                    <a href="{% url 'user_index' %}"  class="btn dw-spinner dw-ajax btn-danger dw-text-bold" title="Cancelar operación">
+                        <i class="btn-icon-only icon-ban-circle"></i> <span class="hidden-phone">{% trans "CANCEL" %}</span>
+                    </a>
 
                  </div>
              </div>
@@ -217,4 +205,25 @@
         </form>
         </div>
     </div>
+
+    <script type="text/javascript" >
+        $(function(){
+            
+            jQuery.each($("#groups_sede"), function () {
+                // "Locations" can be any label you want
+                SelectFilter.init("groups_sede", "Perfiles", 0, "/static/admin/");
+            });
+
+            jQuery.each($("#groups_enterprise"), function () {
+                // "Locations" can be any label you want
+                SelectFilter.init("groups_enterprise", "Perfiles", 0, "/static/admin/");
+            });
+
+            jQuery.each($("#groups_association"), function () {
+                // "Locations" can be any label you want
+                SelectFilter.init("groups_association", "Perfiles", 0, "/static/admin/");
+            });
+
+        });
+    </script>
 {% endblock content %}

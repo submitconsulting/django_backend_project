@@ -20,7 +20,7 @@ from django.contrib.sessions.backends.db import SessionStore
 
 from django.conf import settings
 
-from apps.params.models import *
+from apps.params.models import Locality, LocalityType
 from apps.sad.views import resource_index
 
 
@@ -32,6 +32,7 @@ from apps.sad.decorators import is_admin, permission_resource_required
 
 from django.template import Context, Template, loader 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db import transaction
 
 from apps.sad.security import Security
 
@@ -189,7 +190,8 @@ def locality_add(request):
 		}
 	return render_to_response("params/locality/add.html", c, context_instance = RequestContext(request))
 
-#@permission_resource_required
+@transaction.commit_on_success #para que funcione basta poner en el except o donde sea conveniente transaction.rollback()
+@permission_resource_required
 def locality_edit(request, key):
 	id=Security.is_valid_key(request, key, 'locality_upd')
 	if not id:
@@ -211,6 +213,14 @@ def locality_edit(request, key):
 
 	if request.method == "POST":
 		try:
+			#para probar transaction 
+			#locality_type=LocalityType()
+			#locality_type.name="Rural4"
+			#if LocalityType.objects.filter(name = locality_type.name).count() > 0:
+			#	raise Exception(_("LocalityType <b>%(name)s</b> name's already in use.") % {'name':locality_type.name}) #trhow new Exception('msg')
+			#locality_type.save()
+			#d.locality_type=locality_type
+
 			#Aquí asignar los datos
 			d.name = request.POST.get('name')
 			d.is_active=True
@@ -220,7 +230,9 @@ def locality_edit(request, key):
 
 			#salvar registro
 			d.save()
+			
 			if d.id:
+				#transaction.commit() se colocaría solo al final, pero no amerita pk ya está decorado con @transaction.commit_on_success
 				#Message.info(request,_("Locality %(name)s have beén updated.") % {'name':d.name}, True)
 				Message.info(request,("Localidad <b>%(name)s</b> ha sido actualizado correctamente.") % {'name':d.name}, True)
 				if request.is_ajax():
@@ -229,6 +241,7 @@ def locality_edit(request, key):
 				else:
 					return redirect('/params/locality/index/')
 		except Exception, e:
+			transaction.rollback() #para reversar en caso de error en alguna de las tablas
 			Message.error(request, e)
 	c = {
 		'page_module':_("Locality"),
@@ -257,7 +270,6 @@ def locality_delete(request, key):
 			return redirect('/params/locality/index/')
 	try:
 		d.delete()
-		#print "id= %s " % d.id
 		if not d.id:
 			Message.info(request,("Localidad <b>%(name)s</b> ha sido eliminado correctamente.") % {'name':d.name}, True)
 			if request.is_ajax():

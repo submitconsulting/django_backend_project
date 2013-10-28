@@ -56,7 +56,7 @@
 			{% for d in menu_page %}
 				<tr>
 					<td>{{ menu_page.start_index|add:forloop.counter0 }}</td>
-                    <td><span class="label label-success">{{ MODULES|get_dict_value:d.module }}</span></td>
+                    <td><span class="label label-success">{{ d.get_module_display }}</span></td>
                 	<td>{{ d.pos }}</td>
                 	<td>{{ d.parent.title }}</td>
                     <td>{{ d.title }}</td>

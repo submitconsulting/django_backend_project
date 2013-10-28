@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
-# método para mostrar en los template
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Filtros se seguridad de la información
+
+"""
 from django import template
 from django.template import resolve_variable, Context
 import datetime
@@ -21,6 +28,15 @@ register = template.Library()
 def key(id, action_name):
 	"""
 	Muestra la llave de seguridad generada por la clase Security del componente SAD
+
+	Usage::
+
+		{% url 'controller_name' id_value|key:'action_name' %}
+
+	Example::
+
+		{% url 'locality_edit' d.id|key:'locality_upd' %}
+
 	"""
 	
 	return Security.get_key(id, action_name)
@@ -29,6 +45,16 @@ def key(id, action_name):
 def get_dict_value(dictionary, key):
 	"""
 	devuelve el valor del key de un dict
+
+	Usage::
+
+		{{ DICT_LIST|get_dict_value:key_dict }}
+		mejor use {{ d.get_<colum>_display }}
+
+	Example::
+
+		{{ MODULES|get_dict_value:d.module }}
+		mejor use {{ d.get_module_display }}
 	"""
 	try:
 		return dictionary[key]

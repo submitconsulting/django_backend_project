@@ -1,4 +1,11 @@
 # _*_ coding: utf-8 _*_
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Controladores para la gestión de la cuenta según el plan asignado
+"""
 #import datetime
 #import re
 #import json
@@ -17,18 +24,408 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
 from apps.sad.decorators import is_admin, permission_resource_required
-from apps.sad.security import Security
+from apps.sad.security import Security, DataAccessToken
 from apps.helpers.message import Message
 
-#from django.contrib.auth.models import User, Group, Permission 
-from django.contrib.auth.models import *
+from apps.params.models import Person
+from django.contrib.auth.models import User, Group, Permission 
 from django.contrib.contenttypes.models import ContentType
 from apps.space.models import Headquart
-from apps.sad.models import *
+from apps.sad.models import Module, Menu, UserProfileAssociation, UserProfileEnterprise, UserProfileHeadquart
+from apps.space.models import Solution
+from apps.home.views import choice_headquart
+from django.db.models import Q
+#from heapq import merge
+
+#region user OK
+@csrf_exempt
+@login_required(login_url='/account/login/')
+@permission_resource_required
+def user_index(request, field='username', value='None', order='-id'):
+	"""
+	Página principal para trabajar con usuarios
+	"""
+	try:
+		d = get_object_or_404(Headquart, id=DataAccessToken.get_headquart_id(request.session))
+	except:
+		Message.error(request, ("Usuario no seleccionado o no se encuentra en la base de datos."))
+		if request.is_ajax():
+			request.path="/choice_headquart/" #/app/controller_path/action/$params
+			return choice_headquart(request)
+		else:
+			return redirect('/choice_headquart/')
+
+	field = (field if not request.REQUEST.get('field') else request.REQUEST.get('field')).strip()
+	value = (value if not request.REQUEST.get('value') else request.REQUEST.get('value')).strip()
+	order = (order if not request.REQUEST.get('order') else request.REQUEST.get('order')).strip()
+
+	menu_page=None
+	try:
+		value_f = '' if value == 'None' else value
+		column_contains = u"%s__%s" % (field,'contains')
+		user_list = User.objects.filter(**{ column_contains: value_f }).order_by("pos").order_by(order)
+		paginator = Paginator(user_list, 125)
+		try:
+			user_page = paginator.page(request.GET.get('page'))
+		except PageNotAnInteger:
+			user_page = paginator.page(1)
+		except EmptyPage:
+			user_page = paginator.page(paginator.num_pages)
+	except Exception, e:
+		Message.error(request, e)
+	c = {
+		'page_module':("Gestión de usuarios"),
+		'page_title':("Listado de usuarios del sistema."),
+		
+		'user_page':user_page,
+		#'MODULES':dict((x, y) for x, y in Module.MODULES),
+		'field':field,
+		'value':value.replace("/", "-"),
+		'order':order,
+		}
+	return render_to_response("sad/user/index.html", c, context_instance = RequestContext(request))
+
+@permission_resource_required
+@transaction.commit_on_success
+def user_add(request):
+	"""
+	Agrega usuario
+	"""
+	d = User()
+	if request.method == "POST":
+		try:
+			headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
+
+			d.username = request.POST.get('login')
+			d.email = request.POST.get('email')
+			if User.objects.filter(username = d.username).count()>0:
+				raise Exception( "El usuario <b>%s</b> ya existe " % d.username )
+			if User.objects.filter(email = d.email).count()>0:
+				raise Exception( "El email <b>%s</b> ya existe " % d.email )
+			d = User.objects.create_user(username=d.username, email = d.email, password = request.POST.get('password'))
+			d.save()
+
+			d.first_name = request.POST.get('first_name')
+			d.last_name = request.POST.get('last_name')
+
+			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).count()>0:
+				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
+			person = Person(user=d, first_name=d.first_name, last_name=d.last_name)
+			person.save()
+			
+
+			#agregando en UserProfileHeadquart
+			groups_sede = request.POST.getlist('groups_sede')
+			groups_sede = list(set(groups_sede))
+			for value in groups_sede:
+				group = Group.objects.get(id=value)
+				#d.groups.add(group)
+				user_profile_headquart=UserProfileHeadquart()
+				user_profile_headquart.user=d
+				user_profile_headquart.headquart=headquart
+				user_profile_headquart.group=group
+				user_profile_headquart.save()
+
+			#agregando en UserProfileEnterprise
+			groups_enterprise = request.POST.getlist('groups_enterprise')
+			groups_enterprise = list(set(groups_enterprise))
+			for value in groups_enterprise:
+				group = Group.objects.get(id=value)
+				#d.groups.add(group)
+				user_profile_enterprise=UserProfileEnterprise()
+				user_profile_enterprise.user=d
+				user_profile_enterprise.enterprise=headquart.enterprise
+				user_profile_enterprise.group=group
+				user_profile_enterprise.save()
+
+			#agregando en UserProfileAssociation
+			groups_association = request.POST.getlist('groups_association')
+			groups_association = list(set(groups_association))
+			for value in groups_association:
+				group = Group.objects.get(id=value)
+				#d.groups.add(group)
+				user_profile_association=UserProfileAssociation()
+				user_profile_association.user=d
+				user_profile_association.association=headquart.association
+				user_profile_association.group=group
+				user_profile_association.save()
+
+			#agregando en user_groups
+			group_dist_list=list(set(groups_sede+groups_enterprise+groups_association))
+			for value in group_dist_list:
+				group = Group.objects.get(id=value)
+				d.groups.add(group)
+
+			if d.id:
+				Message.info(request,("Usuario <b>%(name)s</b> ha sido registrado correctamente.") % {'name':d.username}, True)
+				if request.is_ajax():
+					request.path="/sad/user/index/" #/app/controller_path/action/$params
+					return user_index(request)
+				else:
+					return redirect('/sad/user/index')
+		except Exception, e:
+			transaction.rollback()
+			Message.error(request, e)
+	try:
+		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
+
+		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
+		solution_association=Solution.objects.get(id=headquart.association.solution.id )
+		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
+		group_perm_list = Group.objects.filter(groups__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
+		print group_perm_list
+		print "====================="
+		#pero hay que adornarlo de la forma Module>Group/perfil
+		group_list_by_module=[]
+		group_list_by_module_unique_temp=[]#solo para verificar que el Group no se repita si este está en dos o más módulos
+		for module in module_list:
+			for group in Group.objects.filter(groups=module).distinct():
+				if len(group_list_by_module)==0:
+					group_list_by_module.append({
+					'group': group,
+					'module': module,
+					})
+					group_list_by_module_unique_temp.append(group)
+				else:
+					if group not in group_list_by_module_unique_temp:
+						group_list_by_module.append({
+						'group': group,
+						'module': module,
+						})
+						group_list_by_module_unique_temp.append(group)
+		print group_list_by_module_unique_temp
+
+	except Exception, e:
+		Message.error(request, e)
+	c = {
+		'page_module':("Gestión de usuarios"),
+		'page_title':("Agregar usuario."),
+		'd':d,
+		'group_perm_list':group_list_by_module,
+		}
+	return render_to_response("sad/user/add.html", c, context_instance = RequestContext(request))
+
+@permission_resource_required
+@transaction.commit_on_success
+def user_edit(request, key):
+	"""
+	Actualiza user
+	"""
+	id=Security.is_valid_key(request, key, 'user_upd')
+	if not id:
+		if request.is_ajax():
+			request.path="/sad/user/index/" #/app/controller_path/action/$params
+			return user_index(request)
+		else:
+			return redirect('/sad/user/index')
+	d = None
+	try:
+		d = get_object_or_404(User, id=id)
+		try:
+			person = Person.objects.get(user_id=d.id)
+			if person.id:
+				d.first_name = d.person.first_name
+				d.last_name = d.person.last_name
+		except:
+			pass
+		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
+
+		#los permisos del usuario según su espacio		
+		group_id_list_by_user_and_headquart = list( col['id'] for col in Group.objects.values("id").filter(userprofileheadquart__headquart__id = headquart.id, userprofileheadquart__user__id = d.id).distinct())
+		group_id_list_by_user_and_enterprise = list( col['id'] for col in Group.objects.values("id").filter(userprofileenterprise__enterprise__id = headquart.enterprise.id, userprofileenterprise__user__id = d.id).distinct())
+		group_id_list_by_user_and_association = list( col['id'] for col in Group.objects.values("id").filter(userprofileassociation__association__id = headquart.association.id, userprofileassociation__user__id = d.id).distinct())
+
+		
+	except Exception, e:
+		Message.error(request, ("Usuario no se encuentra en la base de datos. %s" % e))
+		if request.is_ajax():
+			request.path="/sad/user/index/" #/app/controller_path/action/$params
+			return user_index(request)
+		else:
+			return redirect('/sad/user/index')
+
+	if request.method == "POST":
+		try:
+			d.username = request.POST.get('login')
+			
+			if User.objects.filter(username = d.username).exclude(id = d.id).count()>0:
+				raise Exception( "El usuario <b>%s</b> ya existe " % d.username )
+
+			if request.POST.get('email'):
+				d.email = request.POST.get('email')
+				if User.objects.filter(email = d.email).exclude(id = d.id).count()>0:
+					raise Exception( "El email <b>%s</b> ya existe " % d.email )
+			if request.POST.get('password'):
+				d.set_password(request.POST.get('password'))
+			d.save()
+
+			d.first_name = request.POST.get('first_name')
+			d.last_name = request.POST.get('last_name')
+
+			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).exclude(id = d.person.id).count()>0:
+				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
+			person = Person.objects.get(user=d)
+			person.first_name=d.first_name
+			person.last_name=d.last_name
+			person.save()
+			
+
+			#Elimino los antiguos privilegios
+			group_id_list_by_user_and_hea=list(set(group_id_list_by_user_and_headquart+group_id_list_by_user_and_enterprise+group_id_list_by_user_and_association))
+			
+			for group_id in group_id_list_by_user_and_headquart:
+				group = Group.objects.get(id=group_id)
+				user_profile_headquart=UserProfileHeadquart.objects.get(user_id=d.id, group_id=group_id,headquart_id=headquart.id)
+				user_profile_headquart.delete()
+
+			for group_id in group_id_list_by_user_and_enterprise:
+				group = Group.objects.get(id=group_id)
+				user_profile_enterprise=UserProfileEnterprise.objects.get(user_id=d.id, group_id=group_id,enterprise_id=headquart.enterprise.id)
+				user_profile_enterprise.delete()
+
+			for group_id in group_id_list_by_user_and_association:
+				group = Group.objects.get(id=group_id)
+				user_profile_association=UserProfileAssociation.objects.get(user_id=d.id, group_id=group_id,association_id=headquart.association.id)
+				user_profile_association.delete()
+
+			for group_id in  group_id_list_by_user_and_hea:
+				group = Group.objects.get(id=group_id)
+				d.groups.remove(group)
+
+			#agregando en UserProfileHeadquart
+			groups_sede = request.POST.getlist('groups_sede')
+			groups_sede = list(set(groups_sede))
+			for value in groups_sede:
+				group = Group.objects.get(id=value)
+				#d.groups.add(group)
+				user_profile_headquart=UserProfileHeadquart()
+				user_profile_headquart.user=d
+				user_profile_headquart.headquart=headquart
+				user_profile_headquart.group=group
+				user_profile_headquart.save()
+
+			#agregando en UserProfileEnterprise
+			groups_enterprise = request.POST.getlist('groups_enterprise')
+			groups_enterprise = list(set(groups_enterprise))
+			for value in groups_enterprise:
+				group = Group.objects.get(id=value)
+				#d.groups.add(group)
+				user_profile_enterprise=UserProfileEnterprise()
+				user_profile_enterprise.user=d
+				user_profile_enterprise.enterprise=headquart.enterprise
+				user_profile_enterprise.group=group
+				user_profile_enterprise.save()
+
+			#agregando en UserProfileAssociation
+			groups_association = request.POST.getlist('groups_association')
+			groups_association = list(set(groups_association))
+			for value in groups_association:
+				group = Group.objects.get(id=value)
+				#d.groups.add(group)
+				user_profile_association=UserProfileAssociation()
+				user_profile_association.user=d
+				user_profile_association.association=headquart.association
+				user_profile_association.group=group
+				user_profile_association.save()
+
+			#agregando en user_groups
+			group_dist_list=list(set(groups_sede+groups_enterprise+groups_association))
+			for value in group_dist_list:
+				group = Group.objects.get(id=value)
+				d.groups.add(group)
+
+			if d.id:
+				Message.info(request,("Usuario <b>%(name)s</b> ha sido actualizado correctamente.") % {'name':d.username}, True)
+				if request.is_ajax():
+					request.path="/sad/user/index/" #/app/controller_path/action/$params
+					return user_index(request)
+				else:
+					return redirect('/sad/user/index')
+
+		except Exception, e:
+			transaction.rollback()
+			Message.error(request, e)
+	try:
+		
+
+		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
+		solution_association=Solution.objects.get(id=headquart.association.solution.id )
+		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
+		group_perm_list = Group.objects.filter(groups__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
+		print group_perm_list
+		print "=====================x"
+		#pero hay que adornarlo de la forma Module>Group/perfil
+		group_list_by_module=[]
+		group_list_by_module_unique_temp=[]#solo para verificar que el Group no se repita si este está en dos o más módulos
+		for module in module_list:
+			for group in Group.objects.filter(groups=module).distinct():
+				if len(group_list_by_module)==0:
+					group_list_by_module.append({
+					'group': group,
+					'module': module,
+					})
+					group_list_by_module_unique_temp.append(group)
+				else:
+					if group not in group_list_by_module_unique_temp:
+						group_list_by_module.append({
+						'group': group,
+						'module': module,
+						})
+						group_list_by_module_unique_temp.append(group)
+		print group_list_by_module_unique_temp
+		
+		
+
+	except Exception, e:
+		Message.error(request, e)
+	c = {
+		'page_module':("Gestión de usuarios"),
+		'page_title':("Agregar usuario."),
+		'd':d,
+		'group_perm_list':group_list_by_module,
+		'group_id_list_by_user_and_headquart':group_id_list_by_user_and_headquart,
+		'group_id_list_by_user_and_enterprise':group_id_list_by_user_and_enterprise,
+		'group_id_list_by_user_and_association':group_id_list_by_user_and_association,
+		}
+	return render_to_response("sad/user/edit.html", c, context_instance = RequestContext(request))
+
+@permission_resource_required
+@transaction.commit_on_success
+def user_delete(request, key):
+	"""
+	Elimina usuario
+	"""
+	id=Security.is_valid_key(request, key, 'user_del')
+	if not id:
+		if request.is_ajax():
+			request.path="/sad/user/index/" #/app/controller_path/action/$params
+			return user_index(request)
+		else:
+			return redirect('/sad/user/index')
+	try:
+		d = get_object_or_404(User, id=id)
+	except:
+		Message.error(request, ("Usuario no se encuentra en la base de datos."))
+		if request.is_ajax():
+			request.path="/sad/user/index/" #/app/controller_path/action/$params
+			return user_index(request)
+		else:
+			return redirect('/sad/user/index')
+	try:
+		d.delete()
+		if not d.id:
+			Message.info(request,("Usuario <b>%(username)s</b> ha sido eliminado correctamente.") % {'username':d.username}, True)
+			if request.is_ajax():
+				request.path="/sad/user/index/" #/app/controller_path/action/$params
+				return user_index(request)
+			else:
+				return redirect('/sad/user/index')
+	except Exception, e:
+		Message.error(request, e)
+#endregion user
 
 
-
-#region menu
+#region menu OK
 @csrf_exempt
 @login_required(login_url='/account/login/')
 @permission_resource_required
@@ -59,7 +456,7 @@ def menu_index(request, field='title', value='None', order='-module'):
 		'page_title':("Listado de menús del sistema."),
 		
 		'menu_page':menu_page,
-		'MODULES':dict((x, y) for x, y in Module.MODULES),
+		#'MODULES':dict((x, y) for x, y in Module.MODULES),
 		'field':field,
 		'value':value.replace("/", "-"),
 		'order':order,
@@ -219,12 +616,12 @@ def menu_delete(request, key):
 	except Exception, e:
 		Message.error(request, e)
 	#endregion Menu
+#endregion menu
 
 
 
 
-
-#region Module OK
+#region module OK
 @login_required(login_url='/account/login/')
 @permission_resource_required
 @transaction.commit_on_success
@@ -292,7 +689,7 @@ def module_index(request):
 		'page_module':("Gestión de módulos"),
 		'page_title':("Listado de módulos del sistema."),
 		'module_list':module_list,
-		'MODULES':dict((x, y) for x, y in Module.MODULES),
+		#'MODULES':dict((x, y) for x, y in Module.MODULES),
 		'html':'<b>paragraph</b>',
 		}
 	return render_to_response("sad/module/index.html", c, context_instance = RequestContext(request))
@@ -472,7 +869,6 @@ def module_delete(request, key):
 				return redirect('/sad/module/index/')
 	except Exception, e:
 		Message.error(request, e)
-
 #endregion module
 
 
@@ -522,7 +918,7 @@ def group_add(request):
 			Message.error(request, e)
 	c = {
 		'page_module':("Gestión de perfiles"),
-		'page_title':("Agregar perfil (en django.contrib.contenttypes.models.ContentType y django.contrib.auth.models.Permission)."),
+		'page_title':("Agregar perfil (en django.contrib.auth.models.Group)."),
 		'd':d,
 		}
 	return render_to_response("sad/group/add.html", c, context_instance = RequestContext(request))

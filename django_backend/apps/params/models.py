@@ -30,7 +30,7 @@ class Locality(models.Model):
 	name = models.CharField(max_length=50)
 	location = models.TextField(blank=True)
 	utm = models.CharField(max_length=50, null=True, blank=True)
-	msnm = models.FloatField()
+	msnm = models.FloatField(max_length=50, null=True, blank=True)
 	is_active  = models.BooleanField(default=True)
 	registered_at = models.DateTimeField(auto_now_add=True)
 	modified_in = models.DateTimeField(auto_now=True)

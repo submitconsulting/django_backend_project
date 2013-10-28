@@ -9,7 +9,7 @@ urlpatterns = patterns('apps.params.views',
 	url(r'^locality/index/$', 'locality_index', name="locality_index"),
 	#url(r'^locality/$', 'locality_index', name="locality_index"),
 	#url(r'^locality_add/$', 'locality_add', name="locality_add"),
-	
+	 
 	url(r'^locality/add/$', 'locality_add', name="locality_add"),
 
 	url(r'^locality/edit/(?P<key>.*)/$', 'locality_edit', name="locality_edit"),

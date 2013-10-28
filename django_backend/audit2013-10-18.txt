@@ -1,0 +1,84 @@
+[2013-10-18 05:00:13,091][WARNING] [sistema] [/space/solution/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /space/solution/index/ 
+[2013-10-18 05:00:14,835][WARNING] [sistema] [/space/solution/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /space/solution/index/ 
+[2013-10-18 05:00:32,943][WARNING] [sistema] [/sad/module/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/module/index/ 
+[2013-10-18 05:02:20,233][INFO] [sistema] [/params/locality/add/][admin][127.0.0.1] Localidad Puno ha sido registrado correctamente. 
+[2013-10-18 06:00:28,767][INFO] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] Localidad Punox ha sido actualizado correctamente. 
+[2013-10-18 06:02:52,121][INFO] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] Localidad Puno ha sido actualizado correctamente. 
+[2013-10-18 06:02:58,019][INFO] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] Localidad Puno ha sido actualizado correctamente. 
+[2013-10-18 06:03:30,638][INFO] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] Localidad Puno ha sido actualizado correctamente. 
+[2013-10-18 06:05:31,885][INFO] [sistema] [/params/locality/add/][admin][127.0.0.1] Localidad Puno2 ha sido registrado correctamente. 
+[2013-10-18 06:05:46,460][ERROR] [sistema] [/params/locality/edit/2.e6c40d45a0d80c3d68a531e950276e9a/][admin][127.0.0.1] Locality Puno name's already in use. 
+[2013-10-18 06:06:06,121][INFO] [sistema] [/params/locality/edit/2.e6c40d45a0d80c3d68a531e950276e9a/][admin][127.0.0.1] Localidad Puno2 ha sido actualizado correctamente. 
+[2013-10-18 06:06:38,637][ERROR] [sistema] [/params/locality/edit/2.e6c40d45a0d80c3d68a531e950276e9a/][admin][127.0.0.1] Locality Puno name's already in use. 
+[2013-10-18 06:07:09,993][ERROR] [sistema] [/params/locality/edit/2.e6c40d45a0d80c3d68a531e950276e9a/][admin][127.0.0.1] Locality Puno name's already in use. 
+[2013-10-18 06:07:51,095][ERROR] [sistema] [/params/locality/edit/2.e6c40d45a0d80c3d68a531e950276e9a/][admin][127.0.0.1] Locality Puno name's already in use. 
+[2013-10-18 06:09:51,184][INFO] [sistema] [/params/locality/edit/2.e6c40d45a0d80c3d68a531e950276e9a/][admin][127.0.0.1] Localidad Puno2 ha sido actualizado correctamente. 
+[2013-10-18 06:09:55,670][INFO] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] Localidad Puno ha sido actualizado correctamente. 
+[2013-10-18 06:10:54,434][INFO] [sistema] [/params/locality/edit/2.e6c40d45a0d80c3d68a531e950276e9a/][admin][127.0.0.1] Localidad Puno2 ha sido actualizado correctamente. 
+[2013-10-18 06:10:59,180][INFO] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] Localidad Puno ha sido actualizado correctamente. 
+[2013-10-18 06:12:06,859][INFO] [sistema] [/params/locality/edit/2.e6c40d45a0d80c3d68a531e950276e9a/][admin][127.0.0.1] Localidad Puno2 ha sido actualizado correctamente. 
+[2013-10-18 06:12:09,601][ERROR] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] LocalityType Rural2 name's already in use. 
+[2013-10-18 06:12:20,719][ERROR] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] LocalityType Rural2 name's already in use. 
+[2013-10-18 06:16:00,878][ERROR] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] global name 'locality_type' is not defined 
+[2013-10-18 06:16:11,953][INFO] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] Localidad Puno ha sido actualizado correctamente. 
+[2013-10-18 06:16:17,894][INFO] [sistema] [/params/locality/edit/2.e6c40d45a0d80c3d68a531e950276e9a/][admin][127.0.0.1] Localidad Puno2 ha sido actualizado correctamente. 
+[2013-10-18 06:16:53,888][ERROR] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] LocalityType Rural2 name's already in use. 
+[2013-10-18 06:17:29,858][ERROR] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] LocalityType Rural2 name's already in use. 
+[2013-10-18 06:17:48,055][INFO] [sistema] [/params/locality/edit/1.388fa9b109b0b34f085aa3adec9ba4b4/][admin][127.0.0.1] Localidad Puno ha sido actualizado correctamente. 
+[2013-10-18 06:18:20,812][ERROR] [sistema] [/params/locality/edit/2.e6c40d45a0d80c3d68a531e950276e9a/][admin][127.0.0.1] Locality Puno name's already in use. 
+[2013-10-18 06:28:52,959][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El email asullom@gmail.com ya existe  
+[2013-10-18 06:34:00,496][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La persona ANGEL SULLÓN ya existe  
+[2013-10-18 06:35:33,888][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 06:41:48,394][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 06:43:56,226][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 06:47:09,092][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 06:49:48,098][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 06:50:23,834][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 06:52:00,645][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 06:53:17,941][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 06:54:15,101][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 06:59:05,210][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 06:59:29,267][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 07:00:35,946][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 07:00:52,121][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom ya existe  
+[2013-10-18 08:08:11,967][WARNING] [sistema] [/sad/group/delete/6.7bf9dcfe5fb48bafc9a9717fc5f727eb/][AnonymousUser][127.0.0.1] Tu no posees permisos para acceder a /sad/group/delete/ 
+[2013-10-18 08:08:25,684][WARNING] [sistema] [/space/solution/index/][AnonymousUser][127.0.0.1] Tu no posees permisos para acceder a /space/solution/index/ 
+[2013-10-18 08:08:39,141][WARNING] [sistema] [/sad/group/delete/6.7bf9dcfe5fb48bafc9a9717fc5f727eb/][AnonymousUser][127.0.0.1] Tu no posees permisos para acceder a /sad/group/delete/ 
+[2013-10-18 08:11:15,588][WARNING] [sistema] [/sad/group/delete/6.7bf9dcfe5fb48bafc9a9717fc5f727eb/][AnonymousUser][127.0.0.1] Tu no posees permisos para acceder a /sad/group/delete/ 
+[2013-10-18 08:11:19,276][WARNING] [sistema] [/sad/group/delete/6.7bf9dcfe5fb48bafc9a9717fc5f727eb/][AnonymousUser][127.0.0.1] Tu no posees permisos para acceder a /sad/group/delete/ 
+[2013-10-18 09:03:55,052][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La asociación ASOCIACIÓN CONSULTORIA PERU ya existe  
+[2013-10-18 09:04:33,677][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa Distribuidora ROPA ya existe  
+[2013-10-18 09:13:15,049][ERROR] [sistema] [/account/add_enterprise/][asullom][127.0.0.1] La asociación GAMARRA ya existe  
+[2013-10-18 09:14:00,289][ERROR] [sistema] [/account/add_enterprise/][asullom][127.0.0.1] La asociación GAMARRA ya existe  
+[2013-10-18 09:14:13,551][ERROR] [sistema] [/account/add_enterprise/][asullom][127.0.0.1] 'Person' object has no attribute 'tax_id' 
+[2013-10-18 09:18:44,426][ERROR] [sistema] [/account/add_enterprise/][asullom][127.0.0.1] 'Person' object has no attribute 'tax_id' 
+[2013-10-18 09:19:06,451][ERROR] [sistema] [/account/add_enterprise/][asullom][127.0.0.1] La empresa con RUC  ya existe  
+[2013-10-18 09:20:24,187][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] 'Person' object has no attribute 'tax_id' 
+[2013-10-18 09:20:57,911][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La persona ANGEL2 SULLÓN2 ya existe  
+[2013-10-18 09:21:15,017][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] El usuario asullom2 ya existe  
+[2013-10-18 09:21:33,821][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa con RUC  ya existe  
+[2013-10-18 09:23:01,342][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa con RUC 10068121182 ya existe  
+[2013-10-18 09:23:42,352][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa con RUC 10068121183 ya existe  
+[2013-10-18 09:32:19,625][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación ASOCIACIÓN CONSULTORIA PERU2 ya existe  
+[2013-10-18 09:35:18,806][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación GAMARRA ya existe  
+[2013-10-18 09:37:17,423][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación GAMARRA ya existe  
+[2013-10-18 09:40:52,703][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación ASOCIACIÓN CONSULTORIA PERU2 ya existe  
+[2013-10-18 09:44:35,035][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación GAMARRA ya existe  
+[2013-10-18 10:04:21,989][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación GAMARRA ya existe  
+[2013-10-18 10:11:21,602][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación ASOCIACION CONSULTORIA PERU ya existe  
+[2013-10-18 10:14:07,871][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación ASOCIACIÓN CONSULTORIA PERU2 ya existe  
+[2013-10-18 11:07:07,223][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La empresa Distribuidora ROPA2 ya existe  
+[2013-10-18 11:07:20,473][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La empresa con RUC 10068121183 ya existe  
+[2013-10-18 11:09:59,812][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación GAMARRAz ya existe  
+[2013-10-18 11:10:16,714][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación GAMARRÁz ya existe  
+[2013-10-18 11:39:26,644][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación ASOCIACION CONSULTORIA PERU2ax ya existe  
+[2013-10-18 11:44:29,664][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación ASOCIACIoN CONSULTORIA PERU2ax ya existe  
+[2013-10-18 11:45:33,901][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación ASOCIACIon CONSULTORIA PERU2ax ya existe  
+[2013-10-18 11:46:21,619][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación ASOCIACIon CONSULTORIA PERU2ax ya existe  
+[2013-10-18 11:54:40,260][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La asociación GAMARRA ya existe  
+[2013-10-18 11:54:48,344][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La empresa canción ya existe  
+[2013-10-18 11:54:58,500][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La empresa cancion ya existe  
+[2013-10-18 12:08:26,210][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La empresa cancion ya existe  
+[2013-10-18 12:09:17,915][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La empresa cancion ya existe  
+[2013-10-18 12:10:23,878][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La empresa cancion ya existe  
+[2013-10-18 12:11:40,395][ERROR] [sistema] [/account/add_enterprise/][asullom2a][127.0.0.1] La empresa cancion ya existe  

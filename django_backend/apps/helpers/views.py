@@ -20,11 +20,11 @@ import datetime
 #import re
 
 from apps.helpers.message import Message
-from apps.params.business import *
+
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 
-
+#no usado, eliminar
 def error(request):
     account = ''
     context = {'account': account}

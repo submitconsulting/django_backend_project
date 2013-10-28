@@ -1,0 +1,72 @@
+[2013-10-24 10:20:10,072][ERROR] [sistema] [/sad/menu/index/][admin][127.0.0.1] global name 'Menu' is not defined 
+[2013-10-24 10:22:32,720][INFO] [sistema] [/params/locality/edit/6.b0fa0917c9c4f38e37b68d7eb6836755/][admin][127.0.0.1] Localidad Ñaña2 ha sido actualizado correctamente. 
+[2013-10-24 10:22:35,730][INFO] [sistema] [/params/locality/edit/6.b0fa0917c9c4f38e37b68d7eb6836755/][admin][127.0.0.1] Localidad Ñaña2 ha sido actualizado correctamente. 
+[2013-10-24 10:25:14,576][ERROR] [sistema] [/params/locality/add/][admin][127.0.0.1] global name 'LocalityType' is not defined 
+[2013-10-24 10:26:14,588][INFO] [sistema] [/params/locality/delete/3.a42454d7994af3d71d291965face182c/][admin][127.0.0.1] Localidad  ha sido eliminado correctamente. 
+[2013-10-24 10:26:16,907][INFO] [sistema] [/params/locality/delete/4.1b57748e629c7b6b5df64d775692b2b2/][admin][127.0.0.1] Localidad  ha sido eliminado correctamente. 
+[2013-10-24 10:44:11,243][ERROR] [sistema] [/account/load_access/20/2/][jarib][127.0.0.1] err 
+[2013-10-24 10:44:33,368][ERROR] [sistema] [/account/load_access/20/2/][jarib][127.0.0.1] err 
+[2013-10-24 10:47:26,938][ERROR] [sistema] [/account/load_access/20/1/][jarib][127.0.0.1] err 
+[2013-10-24 10:48:04,683][ERROR] [sistema] [/account/load_access/20/1/][jarib][127.0.0.1] err 
+[2013-10-24 10:52:13,828][ERROR] [sistema] [/account/load_access/20/1/][jarib][127.0.0.1] err 
+[2013-10-24 10:52:14,796][ERROR] [sistema] [/account/load_access/20/1/][jarib][127.0.0.1] err 
+[2013-10-24 10:52:47,565][ERROR] [sistema] [/account/load_access/20/1/][jarib][127.0.0.1] err 
+[2013-10-24 10:53:49,387][ERROR] [sistema] [/account/load_access/1/1/][admin][127.0.0.1] err 
+[2013-10-24 10:53:54,302][ERROR] [sistema] [/account/load_access/5/1/][admin][127.0.0.1] err 
+[2013-10-24 10:54:20,828][ERROR] [sistema] [/account/load_access/4/1/][admin][127.0.0.1] err 
+[2013-10-24 10:55:15,424][ERROR] [sistema] [/account/load_access/20/1/][jarib][127.0.0.1] global name 'Module' is not defined 
+[2013-10-24 10:55:23,854][ERROR] [sistema] [/account/load_access/4/1/][admin][127.0.0.1] global name 'Module' is not defined 
+[2013-10-24 10:55:28,345][ERROR] [sistema] [/account/load_access/1/1/][admin][127.0.0.1] global name 'Module' is not defined 
+[2013-10-24 10:55:45,602][ERROR] [sistema] [/account/load_access/1/1/][admin][127.0.0.1] global name 'Module' is not defined 
+[2013-10-24 10:56:14,647][ERROR] [sistema] [/account/load_access/8/1/][admin][127.0.0.1] global name 'Module' is not defined 
+[2013-10-24 10:56:54,073][ERROR] [sistema] [/account/load_access/8/1/][admin][127.0.0.1] global name 'Module' is not defined 
+[2013-10-24 10:57:30,055][WARNING] [sistema] [/sad/menu/index/][jarib][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-10-24 10:59:20,645][ERROR] [sistema] [/account/add_enterprise/][jarib][127.0.0.1] La asociación asociación 1 ya existe  
+[2013-10-24 10:59:37,855][ERROR] [sistema] [/account/add_enterprise/][jarib][127.0.0.1] La asociación asociacion 1 ya existe  
+[2013-10-24 11:00:47,530][WARNING] [sistema] [/space/enterprise/index/][jarib][127.0.0.1] Tu no posees permisos para acceder a /space/enterprise/index/ 
+[2013-10-24 11:00:48,588][WARNING] [sistema] [/space/association/edit_current/][jarib][127.0.0.1] Tu no posees permisos para acceder a /space/association/edit_current/ 
+[2013-10-24 11:00:49,315][WARNING] [sistema] [/space/enterprise/index/][jarib][127.0.0.1] Tu no posees permisos para acceder a /space/enterprise/index/ 
+[2013-10-24 11:00:49,832][WARNING] [sistema] [/space/enterprise/edit_current/][jarib][127.0.0.1] Tu no posees permisos para acceder a /space/enterprise/edit_current/ 
+[2013-10-24 11:27:43,006][ERROR] [sistema] [/space/headquart/add/][admin][127.0.0.1] La sede Sucursal Puno ya existe  
+[2013-10-24 11:28:32,786][ERROR] [sistema] [/space/headquart/add/][admin][127.0.0.1] La sede Principal ya existe  
+[2013-10-24 15:02:20,436][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario None ha sido registrado correctamente. 
+[2013-10-24 15:04:54,858][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] column username is not unique 
+[2013-10-24 15:05:28,848][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] column username is not unique 
+[2013-10-24 15:08:39,091][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] column username is not unique 
+[2013-10-24 15:09:23,864][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] column username is not unique 
+[2013-10-24 15:11:42,622][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] column username is not unique 
+[2013-10-24 15:12:59,263][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] column username is not unique 
+[2013-10-24 15:13:15,046][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] column username is not unique 
+[2013-10-24 15:14:00,530][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] column username is not unique 
+[2013-10-24 15:17:08,483][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:18:34,224][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:18:45,194][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:18:58,368][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:19:39,520][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:19:46,026][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:19:55,226][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:20:03,676][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:20:51,565][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:22:12,368][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:22:18,706][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:23:18,121][ERROR] [sistema] [/account/signup/][AnonymousUser][127.0.0.1] La empresa qwe ya existe  
+[2013-10-24 15:23:46,687][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:25:20,779][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:25:34,716][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:25:37,013][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:25:40,809][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:25:43,299][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:25:46,269][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:25:47,459][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:26:16,203][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:26:37,434][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:26:38,581][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:26:39,631][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:26:47,253][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:26:48,269][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:27:12,250][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:27:14,957][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:27:16,171][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:27:34,947][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:28:37,186][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 
+[2013-10-24 15:29:14,397][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionada o no se encuentra en la base de datos. 

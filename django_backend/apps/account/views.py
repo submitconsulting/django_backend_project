@@ -1,27 +1,56 @@
 # -*- coding: utf-8 -*-
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     account
+
+Descripcion: Controladores para la apertura de la cuenta e inicia de sesión
+"""
 from django.http import HttpResponse,HttpResponseRedirect
-from django.contrib.auth.models import User
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, get_object_or_404, render,redirect, Http404
 from django.template import RequestContext
-from apps.account.forms import RegistrationForm, LoginForm
-from apps.params.models import Person
+#from apps.account.forms import RegistrationForm, LoginForm
+
 from django.contrib.auth import authenticate, login, logout
 
-from apps.space.models import Association, Enterprise, Headquart, Solution
 from apps.sad.security import DataAccessToken
 
 from apps.helpers.message import Message
 from django.db import transaction
-from apps.sad.models import *
+from django.contrib.auth.models import User
+#from apps.sad.models import *
+from apps.params.models import Person
+from apps.space.models import Association, Enterprise, Headquart, Solution
+from apps.sad.models import  Module, UserProfileAssociation, UserProfileEnterprise, UserProfileHeadquart
 from apps.home.views import choice_headquart
+from unicodedata import normalize
+#from django.template.defaultfilters import slugify
+
+@login_required
+def profile(request): #TODO sin uso, borrar o terminar
+    if not request.user.is_authenticated():
+        return HrttpResponseRedirect('/login/')
+    account = request.user.get_profile
+    context = {'account': account}
+    return render_to_response('home/dashboard.html', context, context_instance=RequestContext(request))
+
 
 @transaction.commit_on_success
 def add_enterprise(request):
-	
-	d = Person()
-	d.last_name=""
-	solution_list = None
+
+	#data = "cáñété'´píñána+bâ'x"
+	#https://github.com/django/django/blob/master/django/contrib/auth/management/__init__.py
+	#print unicodedata.normalize('NFKD', u"%s"%data).encode('ascii', 'ignore')
+	#names = list(unicodedata.normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Association.objects.values('name','type_a').filter(name__contains="AS"))
+	#print names
+	#print slugify(u"%s"%data)
+	#print data.encode('ascii', 'ignore')
+	#print normalize('NFKD', u"%s"%data).encode('ascii', 'ignore')
+	d = Enterprise()
+
+	#solution_list = None
 	if request.method == "POST":
 		#with transaction.commit_manually():
 		#transaction.set_autocommit(False)
@@ -37,10 +66,23 @@ def add_enterprise(request):
 			user = request.user
 			
 			association = Association(name=d.association_name, type_a=d.association_type_a, solution=solution)
+			#if Association.objects.filter(name=normalize('NFKD', u"%s" % d.association_name).encode('ascii', 'ignore')).count()>0:
+			if normalize('NFKD', u"%s" % d.association_name).encode('ascii', 'ignore').lower() in list(
+				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Association.objects.values('name')
+				):
+				raise Exception( "La asociación <b>%s</b> ya existe " % (d.association_name) )
 			association.save()
 
 			enterprise = Enterprise(name=d.enterprise_name, tax_id=d.enterprise_tax_id, type_e=d.association_type_a, solution=solution )
+			#if Enterprise.objects.filter(name=normalize('NFKD', u"%s" % d.enterprise_name).encode('ascii', 'ignore')).count()>0:
+			if normalize('NFKD', u"%s" % d.enterprise_name).encode('ascii', 'ignore').lower() in list(
+				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Enterprise.objects.values('name')
+				):
+				raise Exception( "La empresa <b>%s</b> ya existe " % (d.enterprise_name) )
+			if Enterprise.objects.filter(tax_id=d.enterprise_tax_id).count()>0:
+				raise Exception( "La empresa con RUC <b>%s</b> ya existe " % (d.enterprise_tax_id) )
 			enterprise.save()
+
 			headquart = Headquart(name="Principal", association=association, enterprise=enterprise)
 			headquart.save()
             
@@ -71,6 +113,7 @@ def add_enterprise(request):
 						user_profile_headquart.save()
 					else :
 						if group.id not in group_dist_list:
+							group_dist_list.append(group.id)
 							user.groups.add(group)
 
 							user_profile_association=UserProfileAssociation()
@@ -98,7 +141,7 @@ def add_enterprise(request):
 			else:
 				return redirect('/home/choice_headquart/')
 		except Exception, e:
-			#transaction.rollback()
+			transaction.rollback()
 			Message.error(request, e)
 		#else:
 		#	transaction.commit()
@@ -127,10 +170,7 @@ def signup_sys(request):
 		return HttpResponseRedirect('/choice_headquart/')
 	d = Person()
 	d.last_name=""
-	solution_list = None
 	if request.method == "POST":
-		#with transaction.commit_manually():
-		#transaction.set_autocommit(False)
 		try:
 			d.first_name = request.POST.get('first_name')
 			d.last_name = request.POST.get('last_name')
@@ -144,27 +184,39 @@ def signup_sys(request):
 			#password = request.POST.get('password')
 			#acept_term = request.POST.get('acept_term')
 			solution=Solution.objects.get(id=d.solution_id)
-
+			d.solution=solution
 			if User.objects.filter(username = d.username).count()>0:
-				raise Exception( "El usuario %s ya existe " % d.username )
+				raise Exception( "El usuario <b>%s</b> ya existe " % d.username )
 
 			if User.objects.filter(email = d.email).count()>0:
-				raise Exception( "El email %s ya existe " % d.email )
+				raise Exception( "El email <b>%s</b> ya existe " % d.email )
 
 			user = User.objects.create_user(username=d.username, email = d.email, password = request.POST.get('password'))
 			user.save()
 			
 			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).count()>0:
-				raise Exception( "La persona %s %s ya existe " % (d.first_name, d.last_name) )
+				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
 			
 			person = Person(user=user, first_name=d.first_name, last_name=d.last_name)
 			person.save()
 			association = Association(name=d.association_name, type_a=d.association_type_a, solution=solution)
+			if normalize('NFKD', u"%s" % d.association_name).encode('ascii', 'ignore').lower() in list(
+				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Association.objects.values('name')
+				):
+				raise Exception( "La asociación <b>%s</b> ya existe " % (d.association_name) )
 			association.save()
 
 			enterprise = Enterprise(name=d.enterprise_name, tax_id=d.enterprise_tax_id, type_e=d.association_type_a, solution=solution )
+			if normalize('NFKD', u"%s" % d.enterprise_name).encode('ascii', 'ignore').lower() in list(
+				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Enterprise.objects.values('name')
+				):
+				raise Exception( "La empresa <b>%s</b> ya existe " % (d.enterprise_name) )
+			if Enterprise.objects.filter(tax_id=d.enterprise_tax_id).count()>0:
+				raise Exception( "La empresa con RUC <b>%s</b> ya existe " % (d.enterprise_tax_id) )
 			enterprise.save()
+			
 			headquart = Headquart(name="Principal", association=association, enterprise=enterprise)
+			
 			headquart.save()
             
             #asigna permisos al usuario para manipular datos de cierta sede, empresa o asociación
@@ -194,6 +246,7 @@ def signup_sys(request):
 						user_profile_headquart.save()
 					else :
 						if group.id not in group_dist_list:
+							group_dist_list.append(group.id)
 							user.groups.add(group)
 
 							user_profile_association=UserProfileAssociation()
@@ -214,14 +267,16 @@ def signup_sys(request):
 							user_profile_headquart.group=group
 							user_profile_headquart.save()
 			#transaction.commit()
-			Message.info(request,("Cuenta %(name)s ha sido registrado correctamente!.") % {'name':d.username})
+			Message.info(request,("Cuenta <b>%(name)s</b> ha sido registrado correctamente!.") % {'name':d.username})
 			if request.is_ajax():
+				print "AJAX"
 				request.path="/account/login/" #/app/controller_path/action/$params
 				return login_sys(request)
 			else:
+				print "NO AJAX"
 				return redirect('/account/login/')
 		except Exception, e:
-			#transaction.rollback()
+			transaction.rollback()
 			Message.error(request, e)
 		#else:
 		#	transaction.commit()
@@ -244,14 +299,6 @@ def signup_sys(request):
 	return render_to_response("account/signup.html", t, context_instance = RequestContext(request))
 
 @login_required
-def profile(request): #TODO sin uso, borrar o terminar
-    if not request.user.is_authenticated():
-        return HrttpResponseRedirect('/login/')
-    account = request.user.get_profile
-    context = {'account': account}
-    return render_to_response('home/dashboard.html', context, context_instance=RequestContext(request))
-
-@login_required
 def load_access(request, headquart_id, module_id):
 	if request.is_ajax():
 		return HttpResponse('ESTA OPERACION NO DEBE SER CARGADO CON AJAX, Presione F5')
@@ -270,8 +317,11 @@ def load_access(request, headquart_id, module_id):
 					return HttpResponseRedirect('/mod_backend/mod_backend_dashboard/')
 				else:
 					return HttpResponseRedirect('/mod_ventas/mod_ventas_dashboard/')
+			else:
+				return HttpResponse('Sede no se encuentra')
 		except Exception, e:
-			Message.error(request, 'err')
+			Message.error(request, e)
+		return HttpResponse('Ocurrió un grave error, comunique al administrador del sistema')
 
 def login_sys(request):
 	d = User()
@@ -292,10 +342,10 @@ def login_sys(request):
 			login(request, account)
 			#cargando sesión para el usuario. no necesita
 			#request.session['id'] = "Hola"
-			Message.info(request, ("Bienvenido %(name)s.") % {'name':d.username} )
+			Message.info(request, ("Bienvenido <b>%(name)s</b>.") % {'name':d.username} )
 			return HttpResponseRedirect('/choice_headquart/')
 		else:
-			Message.error(request,("Contasena para <b>%(name)s</b> no valido, o el usuario no existe o no está activo. ") % {'name':d.username} )
+			Message.error(request,("Contaseña para <b>%(name)s</b> no válido, o el usuario no existe o no está activo. ") % {'name':d.username} )
 			return render_to_response('account/login.html', t, context_instance=RequestContext(request))
 	else:
 		''' user is not submitting the form, show the login form '''

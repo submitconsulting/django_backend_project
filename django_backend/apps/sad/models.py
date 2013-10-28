@@ -1,4 +1,11 @@
 # _*_ coding: utf-8 _*_
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Base de datos para asegurar la información en aplicaciones django para la nube
+"""
 from django.db import models
 from django.contrib.auth.models import User, Group, Permission 
 from apps.space.models import Solution, Enterprise, Headquart

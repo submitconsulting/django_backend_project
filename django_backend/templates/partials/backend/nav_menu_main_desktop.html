@@ -31,8 +31,17 @@
 
     <div id="sub-menu-cuenta" class="subnav hidden">
         <ul class="nav nav-pills">
-            <li class=""><a href="/backend_manager/config/empresa/"  class="dw-ajax dw-spinner" ><i class="icon-briefcase icon-expand"></i> Empresa</a></li>
-            <li class=""><a href="/backend_manager/config/sucursal/listar/"  class="dw-ajax dw-spinner" ><i class="icon-sitemap icon-expand"></i> Sucursales</a></li>
+            <li class=""><a href="{% url 'association_edit_current' %}"  class="dw-ajax dw-spinner" ><i class="icon-lock icon-expand"></i> Asociación</a></li>
+
+
+            <li class=""><a href="/space/enterprise/index/"  class="dw-ajax dw-spinner" ><i class="icon-sitemap icon-expand"></i> Empresas</a></li>
+
+
+            <li class=""><a href="/space/enterprise/edit_current/"  class="dw-ajax dw-spinner" ><i class="icon-briefcase icon-expand"></i> Empresa</a></li>
+
+            <li class=""><a href="/space/headquart/index/"  class="dw-ajax dw-spinner" ><i class="icon-sitemap icon-expand"></i> Sedes</a></li>
+
+            <li class=""><a href="/sad/user/index/"  class="dw-ajax dw-spinner" ><i class="icon-users icon-expand"></i> Usuarios</a></li>
         </ul>
     </div>
 
@@ -55,7 +64,7 @@
             <li class=""><a href="/backend_manager/sistema/auditoria/"  class="dw-ajax dw-spinner" ><i class="icon-eye-open icon-expand"></i> Auditorías</a></li>
             <li class=""><a href="/backend_manager/sistema/backup/listar/"  class="dw-ajax dw-spinner" ><i class="icon-hdd icon-expand"></i> Backups</a></li>
             <li class=""><a href="/backend_manager/sistema/mantenimiento/"  class="dw-ajax dw-spinner" ><i class="icon-bolt icon-expand"></i> Mantenimiento</a></li>
-            <li class=""><a href="/backend_manager/sistema/menu/listar/"  class="dw-ajax dw-spinner" ><i class="icon-list icon-expand"></i> Menús</a></li>
+
             
             
            

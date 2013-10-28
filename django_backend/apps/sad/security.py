@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Clases para controlar la seguridad de la información en la nube
+
+"""
 from apps.helpers.message import Message
 import datetime
 import random

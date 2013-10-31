@@ -1,0 +1,36 @@
+[2013-10-31 00:16:07,026][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:17:03,569][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Asociación ha sido registrado correctamente. 
+[2013-10-31 00:18:07,000][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Empresas ha sido registrado correctamente. 
+[2013-10-31 00:18:46,944][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Empresa ha sido registrado correctamente. 
+[2013-10-31 00:19:25,308][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Sedes ha sido registrado correctamente. 
+[2013-10-31 00:21:51,904][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Usuarios ha sido registrado correctamente. 
+[2013-10-31 00:24:35,217][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Dashboard ha sido registrado correctamente. 
+[2013-10-31 00:29:35,746][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Dashboard ha sido registrado correctamente. 
+[2013-10-31 00:36:30,698][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:36:34,066][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:36:34,618][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:38:05,105][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Dashboard ha sido registrado correctamente. 
+[2013-10-31 00:38:44,809][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Dashboard ha sido registrado correctamente. 
+[2013-10-31 00:39:42,315][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:39:43,256][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:39:44,530][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 00:39:45,279][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:39:46,194][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:39:46,648][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:39:47,095][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:47:19,538][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:47:20,601][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:47:21,144][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:47:21,559][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:47:22,023][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 00:47:30,073][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:49:17,430][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Ciudades ha sido registrado correctamente. 
+[2013-10-31 00:51:47,665][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 00:52:35,967][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:52:36,992][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:54:50,078][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:54:50,732][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:58:30,901][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:58:32,355][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:58:32,868][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 00:58:33,395][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 

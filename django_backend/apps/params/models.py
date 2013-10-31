@@ -10,11 +10,11 @@ class LocalityType(models.Model):
 	class Meta:
 		permissions = (
 			
-			("localitytype", "Puede hacer TODAS las operaciones de tipos de localidades"),
-			("localitytype_index", "Puede ver el index de tipos de localidades"),
-			("localitytype_add", "Puede agregar tipo de localidad"),
-			("localitytype_edit", "Puede actualizar tipos de localidades"),
-			("localitytype_delete", "Puede eliminar tipos de localidades"),
+			("localitytype", "Puede hacer TODAS las oper. de tipos d localidades"),
+			#("localitytype_index", "Puede ver el index de tipos de localidades"),
+			#("localitytype_add", "Puede agregar tipo de localidad"),
+			#("localitytype_edit", "Puede actualizar tipos de localidades"),
+			#("localitytype_delete", "Puede eliminar tipos de localidades"),
 			#("localitytype_report", "Puede reportar tipos de localidades"),
 		)
 
@@ -44,6 +44,7 @@ class Locality(models.Model):
 			("locality_edit", "Puede actualizar localidades"),
 			("locality_delete", "Puede eliminar localidades"),
 			("locality_report", "Puede reportar localidades"),
+			("locality_state", "Puede inactivar y reactivar localidades"),
 			#("locality_change_status", "xPuede cambiar el estado de las localidades"),
 			#("locality_close", "xPuede inactivar el estado de las localidades"),
 		)
@@ -73,10 +74,10 @@ class Person(models.Model):
 	class Meta:
 		permissions = (
 			("person", "Puede hacer TODAS las operaciones de personas"),
-			("person_index", "Puede ver el index de personas"),
-			("person_add", "Puede agregar persona"),
-			("person_edit", "Puede actualizar personas"),
-			("person_delete", "Puede eliminar personas"),
+			#("person_index", "Puede ver el index de personas"),
+			#("person_add", "Puede agregar persona"),
+			#("person_edit", "Puede actualizar personas"),
+			#("person_delete", "Puede eliminar personas"),
 			#("person_report", "Puede reportar personas"),
 			#("person_list", "xPuede listar personas"),
 		)
@@ -88,7 +89,7 @@ class Person(models.Model):
 		if created :
 			Person.objects.create(user=instance)
 		post_save.connect(create_user_profile, sender=User)
-
+'''
 #mis params tables
 class Categoria(models.Model):
 	nombre = models.CharField(max_length=50)
@@ -96,12 +97,13 @@ class Categoria(models.Model):
 	class Meta:
 		permissions = (
 			("categoria", "Puede hacer TODAS las operaciones de categorias"),
-			("categoria_index", "Puede ver el index de categorias"),
-			("categoria_add", "Puede agregar categoria"),
-			("categoria_edit", "Puede actualizar categorias"),
-			("categoria_delete", "Puede eliminar categorias"),
+			#("categoria_index", "Puede ver el index de categorias"),
+			#("categoria_add", "Puede agregar categoria"),
+			#("categoria_edit", "Puede actualizar categorias"),
+			#("categoria_delete", "Puede eliminar categorias"),
 			#("categoria_report", "Puede reportar categorias"),
 		)
 
 	def __unicode__(self):
 		return self.nombre
+'''

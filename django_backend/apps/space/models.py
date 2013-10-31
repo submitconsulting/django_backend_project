@@ -25,10 +25,11 @@ class Solution(models.Model):
 	class Meta:
 		permissions = (
 			("solution", "Puede hacer TODAS las operaciones de soluciones"),
-			("solution_index", "Puede ver el index de soluciones"),
-			("solution_add", "Puede agregar solucion"),
-			("solution_edit", "Puede actualizar soluciones"),
-			("solution_delete", "Puede eliminar soluciones"),
+			#("solution_index", "Puede ver el index de soluciones"),
+			#("solution_add", "Puede agregar solucion"),
+			#("solution_edit", "Puede actualizar soluciones"),
+			#("solution_delete", "Puede eliminar soluciones"),
+			#("solution_state", "Puede inactivar y reactivar soluciones"),
 			#("solution_report", "Puede reportar soluciones"),
 		)
 
@@ -62,10 +63,11 @@ class Association(models.Model):
 	class Meta:
 		permissions = (
 			("association", "Puede hacer TODAS las operaciones de asociaciones"),
-			("association_index", "Puede ver el index de asociaciones"),
-			("association_add", "Puede agregar asociacion"),
-			("association_edit", "Puede actualizar asociaciones"),
-			("association_delete", "Puede eliminar asociaciones"),
+			#("association_index", "Puede ver el index de asociaciones"),
+			#("association_add", "Puede agregar asociacion"),
+			#("association_edit", "Puede actualizar asociaciones"),
+			#("association_delete", "Puede eliminar asociaciones"),
+			#("association_state", "Puede inactivar y reactivar asociaciones"),
 			#("association_report", "Puede reportar asociaciones"),
 		)
 
@@ -99,10 +101,11 @@ class Enterprise(models.Model):
 	class Meta:
 		permissions = (
 			("enterprise", "Puede hacer TODAS las operaciones de empresas"),
-			("enterprise_index", "Puede ver el index de empresas"),
-			("enterprise_add", "Puede agregar empresa"),
-			("enterprise_edit", "Puede actualizar empresas"),
-			("enterprise_delete", "Puede eliminar empresas"),
+			#("enterprise_index", "Puede ver el index de empresas"),
+			#("enterprise_add", "Puede agregar empresa"),
+			#("enterprise_edit", "Puede actualizar empresas"),
+			#("enterprise_delete", "Puede eliminar empresas"),
+			#("enterprise_state", "Puede inactivar y reactivar empresas"),
 			#("enterprise_report", "Puede reportar empresas"),
 		)
 
@@ -132,20 +135,22 @@ class Headquart(models.Model):
 	class Meta:
 		permissions = (
 			("headquart", "Puede hacer TODAS las operaciones de sedes"),
-			("headquart_index", "Puede ver el index de sedes"),
-			("headquart_add", "Puede agregar sede"),
-			("headquart_edit", "Puede actualizar sedes"),
-			("headquart_delete", "Puede eliminar sedes"),
+			#("headquart_index", "Puede ver el index de sedes"),
+			#("headquart_add", "Puede agregar sede"),
+			#("headquart_edit", "Puede actualizar sedes"),
+			#("headquart_delete", "Puede eliminar sedes"),
+			#("headquart_state", "Puede inactivar y reactivar sedes"),
 			#("headquart_report", "Puede reportar sedes"),
 		)
 
 	def __unicode__(self):
 		return "%s %s-%s (%s-%s)" % (self.name, self.enterprise.name, self.enterprise.solution.name,  self.association.name, self.association.solution.name)
 
+"""
 class Empleado(models.Model):
-	"""
+	'''
 	Una
-	"""
+	'''
 	codigo = models.CharField(max_length=50)
 	contrato_vigente  = models.BooleanField(default=False)
 	
@@ -163,9 +168,10 @@ class Empleado(models.Model):
 			("empleado_add", "Puede agregar empleado"),
 			("empleado_edit", "Puede actualizar empleados"),
 			("empleado_delete", "Puede eliminar empleados"),
+			("empleado_state", "Puede inactivar y reactivar contrato"),
 			#("empleado_report", "Puede reportar empleados"),
 		)
 
 	def __unicode__(self):
 		return "%s %s" % (self.codigo, self.contrato_vigente)
-
+"""

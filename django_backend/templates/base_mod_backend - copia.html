@@ -1,6 +1,6 @@
 {% load staticfiles %}
 {% load i18n %}
-{% load menu_tags %}
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -34,11 +34,16 @@
 
   <body data-spy="scroll" data-target=".bs-docs-sidebar">
  
-
-    {% load_menu 'DBM' %}
-
-    {% include "partials/backend/header.html" %}
-    {% include "partials/backend/main.html" %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        {% include "partials/backend/nav_head.html" %}
+        {% include "partials/backend/nav_menu_main_mobile.html" %}
+      </div>
+    </div>
+    
+    <div class="main-nav-wrapper hidden-phone hidden-tablet">
+      {% include "partials/backend/nav_menu_main_desktop.html" %}
+    </div>
 
     <div id="dw-shell-load">
       <div id="dw-console" class="container"></div>

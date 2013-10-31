@@ -9,7 +9,7 @@ Descripcion: Base de datos para asegurar la información en aplicaciones django 
 from django.db import models
 from django.contrib.auth.models import User, Group, Permission 
 from apps.space.models import Solution, Enterprise, Headquart
-from apps.space.models import Association, Empleado
+from apps.space.models import Association
 # Create your models here.
 class Module(models.Model):
 	"""
@@ -39,12 +39,13 @@ class Module(models.Model):
 	class Meta:
 		permissions = (
 			("module", "Puede hacer TODAS las operaciones de modulos"),
-			("module_index", "Puede ver el index de modulos"),
-			("module_add", "Puede agregar modulo"),
-			("module_edit", "Puede actualizar modulos"),
-			("module_delete", "Puede eliminar modulos"),
+			#("module_index", "Puede ver el index de modulos"),
+			#("module_add", "Puede agregar modulo"),
+			#("module_edit", "Puede actualizar modulos"),
+			#("module_delete", "Puede eliminar modulos"),
+			#("module_state", "Puede inactivar y reactivar modulos"),
 			#("module_report", "Puede reportar modulos"),
-			("module_plans_edit", "Puede configurar planes basado en modulos"),
+			#("module_plans_edit", "Puede configurar planes basado en modulos"),
 		)
 
 	def __unicode__(self):
@@ -67,8 +68,8 @@ class Menu(models.Model):
 	module = models.CharField(max_length=50, choices=MODULES, default=DBM)
 	title = models.CharField(max_length=50)
 	url = models.CharField(max_length=150,default='#')
-	pos = models.IntegerField(max_length=50,default=0)
-	icon = models.TextField(max_length=50, null=True, blank=True)
+	pos = models.IntegerField(max_length=50,default=1)
+	icon = models.TextField(max_length=50, null=True, blank=True, default="")
 	is_active  = models.BooleanField(default=True)
 	description = models.TextField(max_length=50, null=True, blank=True)
 
@@ -80,10 +81,11 @@ class Menu(models.Model):
 	class Meta:
 		permissions = (
 			("menu", "Puede hacer TODAS las operaciones de menús"),
-			("menu_index", "Puede ver el index de menús"),
-			("menu_add", "Puede agregar menú"),
-			("menu_edit", "Puede actualizar menús"),
-			("menu_delete", "Puede eliminar menús"),
+			#("menu_index", "Puede ver el index de menús"),
+			#("menu_add", "Puede agregar menú"),
+			#("menu_edit", "Puede actualizar menús"),
+			#("menu_delete", "Puede eliminar menús"),
+			#("menu_state", "Puede inactivar y reactivar menús"),
 			#("menu_report", "Puede reportar menús"),
 		)
 
@@ -105,7 +107,7 @@ class UserProfileEnterprise(models.Model):
 
 	class Meta:
 		permissions = (
-			("userprofileenterprise", "Puede hacer TODAS las operaciones de userprofileenterprise"),
+			#("userprofileenterprise", "Puede hacer TODAS las operaciones de userprofileenterprise"),
 			#("userprofileenterprise_view", "Puede ver userprofileenterprise"),
 			#("userprofileenterprise_add", "Puede agregar userprofileenterprise"),
 			#("userprofileenterprise_edit", "Puede actualizar userprofileenterprise"),
@@ -128,7 +130,7 @@ class UserProfileHeadquart(models.Model):
 
 	class Meta:
 		permissions = (
-			("userprofileheadquart", "Puede hacer TODAS las operaciones de userprofileheadquart"),
+			#("userprofileheadquart", "Puede hacer TODAS las operaciones de userprofileheadquart"),
 			#("userprofileheadquart_view", "Puede ver userprofileheadquart"),
 			#("userprofileheadquart_add", "Puede agregar userprofileheadquart"),
 			#("userprofileheadquart_edit", "Puede actualizar userprofileheadquart"),
@@ -151,7 +153,7 @@ class UserProfileAssociation(models.Model):
 
 	class Meta:
 		permissions = (
-			("userprofileassociation", "Puede hacer TODAS las operaciones de userprofileassociation"),
+			#("userprofileassociation", "Puede hacer TODAS las operaciones de userprofileassociation"),
 			#("userprofileassociation_view", "Puede ver userprofileassociation"),
 			#("userprofileassociation_add", "Puede agregar userprofileassociation"),
 			#("userprofileassociation_edit", "Puede actualizar userprofileassociation"),

@@ -23,7 +23,7 @@ from apps.sad.security import Security, Menus
 register = template.Library()
 
 @register.simple_tag
-def load(module):
+def load_menu(module):
 	"""
 	Interfáz del Método para cargar en variables los menús
 	"""

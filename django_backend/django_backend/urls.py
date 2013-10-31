@@ -17,9 +17,9 @@ urlpatterns = patterns('',
 
     #Atajos
     url(r'^$', 'apps.home.views.index', name='index'),
-    url(r'^choice_headquart/$', 'apps.home.views.choice_headquart', name='choice_headquart'),
-    url(r'^mod_backend_dashboard/$', 'apps.mod_backend.views.mod_backend_dashboard', name='mod_backend_dashboard'),
-    url(r'^mod_ventas_dashboard/$', 'apps.mod_ventas.views.mod_ventas_dashboard', name='mod_ventas_dashboard'),
+    #url(r'^choice_headquart/$', 'apps.home.views.choice_headquart', name='choice_headquart'),
+    #url(r'^mod_backend_dashboard/$', 'apps.mod_backend.views.mod_backend_dashboard', name='mod_backend_dashboard'),
+    #url(r'^mod_ventas_dashboard/$', 'apps.mod_ventas.views.mod_ventas_dashboard', name='mod_ventas_dashboard'),
 
     #Modules
     url(r'^home/', include('apps.home.urls')),

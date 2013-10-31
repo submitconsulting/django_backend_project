@@ -109,11 +109,11 @@ class Menus:
 		print "\n\n\n"
 		menu = Menu()
 		#if not Menus.menu_list:
-		Menus.menu_list = Menu.objects.filter(parent_id=None, module=menu_module)
+		Menus.menu_list = Menu.objects.filter(parent_id=None, module=menu_module).order_by("pos")
 		print Menus.menu_list
 		if Menus.menu_list: #not Menus.menu_item_list and 
 			for menu in Menus.menu_list:
-				Menus.menu_item_list[menu.title] = Menu.objects.filter(parent_id=menu.id).exclude(parent_id=None) #.lower().replace(" ","_")
+				Menus.menu_item_list[menu.title] = Menu.objects.filter(parent_id=menu.id).exclude(parent_id=None).order_by("pos") #.lower().replace(" ","_")
 		print Menus.menu_item_list
 
 
@@ -137,6 +137,7 @@ class Menus:
 	@staticmethod
 	def linkdf(action, text, icon):#, attrs = None, icon='', loadAjax=True
 		action = ('/%s' % action if action != '#' else '#')
+		texti=""
 		if icon:
 			texti='<i class="%s icon-expand"></i>' % icon
 		html = '<a href="%s"  class="dw-spinner dw-ajax main-menu-link" data-filter="sub-menu-%s" >%s %s</a>\n'%(action, text.lower().replace(" ","_"), texti, text )
@@ -145,6 +146,7 @@ class Menus:
 	@staticmethod
 	def link(action, text, icon):#, attrs = None, icon='', loadAjax=True
 		action = ('/%s' % action if action != '#' else '#')
+		texti=""
 		if icon:
 			texti='<i class="%s icon-expand"></i>' % icon
 		html = '<a href="%s"  class="dw-spinner dw-ajax" >%s %s</a>\n'%(action, texti, text )
@@ -153,6 +155,7 @@ class Menus:
 	@staticmethod
 	def linknoajax(action, text, icon):#, attrs = None, icon='', loadAjax=True
 		action = ('/%s' % action if action != '#' else '#')
+		texti=""
 		if icon:
 			texti='<i class="%s icon-expand"></i>' % icon
 		html = '<a href="%s"  class="dw-spinner" >%s %s</a>\n'%(action, texti, text )

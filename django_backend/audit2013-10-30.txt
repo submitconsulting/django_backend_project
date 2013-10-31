@@ -1,0 +1,91 @@
+[2013-10-30 05:12:11,084][INFO] [sistema] [/sad/resource/delete/140.439fcc43ca7d75d99801fb2f936051e7/][admin][127.0.0.1] Recurso /home/home/inicio/ ha sido eliminado correctamente. 
+[2013-10-30 05:12:16,279][INFO] [sistema] [/sad/resource/delete/139.9614dd6f5e9e16e54f08f5dde8277878/][admin][127.0.0.1] Recurso /home/home/ ha sido eliminado correctamente. 
+[2013-10-30 05:12:20,578][INFO] [sistema] [/sad/resource/delete/138.d1f3889532443c70a0fe941e2cb63125/][admin][127.0.0.1] Recurso /home/ ha sido eliminado correctamente. 
+[2013-10-30 05:12:39,532][INFO] [sistema] [/sad/resource/delete/135.bfa3fe590c4d25b349998efd5cb2f0dd/][admin][127.0.0.1] Recurso /miapp/*/ ha sido eliminado correctamente. 
+[2013-10-30 05:12:44,220][INFO] [sistema] [/sad/resource/delete/137.45332cad5bc07ece1db18e7fa9cf8f2f/][admin][127.0.0.1] Recurso /miapp3/*/ ha sido eliminado correctamente. 
+[2013-10-30 05:12:48,466][INFO] [sistema] [/sad/resource/delete/136.70e92fb7aa9c5c5b34b9e037f3a7f919/][admin][127.0.0.1] Recurso /miapp2/*/ ha sido eliminado correctamente. 
+[2013-10-30 05:47:20,457][INFO] [sistema] [/sad/group/delete/4.e9da3ce52fe068d8a65683071d83adac/][admin][127.0.0.1] Perfil VENDEDOR ha sido eliminado correctamente. 
+[2013-10-30 05:58:17,394][ERROR] [sistema] [/sad/group/delete/4.e9da3ce52fe068d8a65683071d83adac/][admin][127.0.0.1] Perfil VENDEDOR tiene permisos asignados. 
+[2013-10-30 05:59:21,400][ERROR] [sistema] [/sad/group/delete/4.e9da3ce52fe068d8a65683071d83adac/][admin][127.0.0.1] Perfil VENDEDOR tiene permisos asignados. 
+[2013-10-30 06:04:09,246][ERROR] [sistema] [/sad/group/delete/3.ee6c2afe742253d89f58b62c69039604/][admin][127.0.0.1] Perfil CATASTRO tiene módulos asignados. 
+[2013-10-30 06:04:22,598][ERROR] [sistema] [/sad/group/delete/1.10fe3b26cd73a1850cc9fcd57810d84d/][admin][127.0.0.1] Perfil MASTER tiene módulos iniciales asignados. 
+[2013-10-30 06:07:32,183][ERROR] [sistema] [/sad/group/delete/1.10fe3b26cd73a1850cc9fcd57810d84d/][admin][127.0.0.1] Perfil MASTER tiene userprofileassociation asignados. 
+[2013-10-30 06:12:35,697][ERROR] [sistema] [/sad/resource/delete/33.b9b31451f847f60fdbe44dc998bb2a7b/][admin][127.0.0.1] Recurso /params/locality/ tiene perfiles asignados. 
+[2013-10-30 06:14:26,700][ERROR] [sistema] [/sad/resource/delete/134.0366003464bed1a3196afdd52cde40a4/][admin][127.0.0.1] Recurso /empadre/servicio/addd/ tiene perfiles asignados. 
+[2013-10-30 06:17:16,506][ERROR] [sistema] [/sad/resource/delete/134.0366003464bed1a3196afdd52cde40a4/][admin][127.0.0.1] Recurso /empadre/servicio/addd/ está asignado en perfiles. 
+[2013-10-30 06:21:17,928][INFO] [sistema] [/sad/resource/delete/135.bfa3fe590c4d25b349998efd5cb2f0dd/][admin][127.0.0.1] Recurso /asdas/ ha sido eliminado correctamente. 
+[2013-10-30 06:21:22,677][ERROR] [sistema] [/sad/resource/delete/134.0366003464bed1a3196afdd52cde40a4/][admin][127.0.0.1] Recurso /empadre/servicio/addd/ está asignado en perfiles. 
+[2013-10-30 06:22:22,338][ERROR] [sistema] [/sad/group/delete/4.e9da3ce52fe068d8a65683071d83adac/][admin][127.0.0.1] Perfil VENDEDOR tiene permisos asignados. 
+[2013-10-30 06:23:06,181][ERROR] [sistema] [/sad/group/delete/4.e9da3ce52fe068d8a65683071d83adac/][admin][127.0.0.1] Perfil VENDEDOR está asignado en permisos. 
+[2013-10-30 06:32:22,801][INFO] [sistema] [/sad/group/delete/5.08aaa59db259c722b4f5058e8336f40d/][admin][127.0.0.1] Perfil asf ha sido eliminado correctamente. 
+[2013-10-30 06:32:27,065][ERROR] [sistema] [/sad/group/delete/4.e9da3ce52fe068d8a65683071d83adac/][admin][127.0.0.1] Perfil VENDEDOR tiene permisos asignados. 
+[2013-10-30 06:56:04,384][ERROR] [sistema] [/sad/module/delete/1.720962e645259c2e9381511cb4fc2e90/][admin][127.0.0.1] Perfil Backend Manager está asignado en planes o soluciones. 
+[2013-10-30 07:07:37,464][ERROR] [sistema] [/sad/module/delete/1.720962e645259c2e9381511cb4fc2e90/][admin][127.0.0.1] Perfil Backend Manager está asignado en planes. 
+[2013-10-30 07:08:03,756][ERROR] [sistema] [/sad/module/delete/1.720962e645259c2e9381511cb4fc2e90/][admin][127.0.0.1] Módulo Backend Manager está asignado en planes. 
+[2013-10-30 07:08:30,140][INFO] [sistema] [/sad/module/delete/3.4f8df6a74a9d5930d4f29365c466ec75/][admin][127.0.0.1] Módulo Web informativa ha sido eliminado correctamente. 
+[2013-10-30 07:13:05,723][ERROR] [sistema] [/space/solution/delete/2.c9cdcd257c5bb45ceb7bb5bdccf45267/][admin][127.0.0.1] Solución Shonomi Ultimate tiene módulos asignados. 
+[2013-10-30 07:26:03,756][ERROR] [sistema] [/space/solution/delete/2.c9cdcd257c5bb45ceb7bb5bdccf45267/][admin][127.0.0.1] Solución Shonomi Ultimate tiene módulos asignados. 
+[2013-10-30 07:26:16,635][INFO] [sistema] [/space/solution/delete/3.ba9dedd5760cb345ed1a24cf8cce8ed1/][admin][127.0.0.1] Solución asd ha sido eliminado correctamente. 
+[2013-10-30 07:30:52,848][INFO] [sistema] [/sad/user/state/inactivar/15.380a5983187a86efcb62800c6be139fc/][admin][127.0.0.1] Usuario jaro ha sido inactivado correctamente. 
+[2013-10-30 09:37:59,075][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu ttt ha sido registrado correctamente. 
+[2013-10-30 10:03:39,803][INFO] [sistema] [/sad/menu/delete/8.8e6383d465458a4e9de75f865cc93329/][admin][127.0.0.1] Menu ttt2 ha sido eliminado correctamente. 
+[2013-10-30 10:24:37,391][INFO] [sistema] [/sad/user/edit/2.b4db148a5264173727971988fab6ac18/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-10-30 17:22:59,088][INFO] [sistema] [/params/locality/edit/6.3f0b5f1d517c12277267b9e9aecf04a1/][admin][127.0.0.1] Localidad Ñaña2 ha sido actualizado correctamente. 
+[2013-10-30 17:38:02,528][INFO] [sistema] [/space/headquart/delete/25.6a36374f183912c45fd79cd1d2cf31f2/][admin][127.0.0.1] Sede Principal ha sido eliminado correctamente. 
+[2013-10-30 17:39:00,451][INFO] [sistema] [/space/headquart/delete/27.a9a615914f374906a40cf3e9a0aaf7e7/][admin][127.0.0.1] Empresa qwe no puede quedar sin ninguna sede. 
+[2013-10-30 17:39:00,456][INFO] [sistema] [/space/headquart/delete/27.a9a615914f374906a40cf3e9a0aaf7e7/][admin][127.0.0.1] Sede Principal ha sido eliminado correctamente. 
+[2013-10-30 17:40:19,311][INFO] [sistema] [/space/headquart/delete/28.d5afcbfcfd81135214be86d383013fb4/][admin][127.0.0.1] Empresa qwe no puede quedar sin ninguna sede. 
+[2013-10-30 17:40:25,476][INFO] [sistema] [/space/headquart/delete/28.d5afcbfcfd81135214be86d383013fb4/][admin][127.0.0.1] Empresa qwe no puede quedar sin ninguna sede. 
+[2013-10-30 17:41:51,352][INFO] [sistema] [/space/headquart/delete/28.d5afcbfcfd81135214be86d383013fb4/][admin][127.0.0.1] Empresa qwe no puede quedar sin ninguna sede. 
+[2013-10-30 17:41:55,470][INFO] [sistema] [/space/headquart/delete/28.d5afcbfcfd81135214be86d383013fb4/][admin][127.0.0.1] Empresa qwe no puede quedar sin ninguna sede. 
+[2013-10-30 17:43:39,032][ERROR] [sistema] [/space/headquart/delete/28.d5afcbfcfd81135214be86d383013fb4/][admin][127.0.0.1] Empresa qwe no puede quedar sin ninguna sede. 
+[2013-10-30 17:43:42,881][ERROR] [sistema] [/space/headquart/delete/28.d5afcbfcfd81135214be86d383013fb4/][admin][127.0.0.1] Empresa qwe no puede quedar sin ninguna sede. 
+[2013-10-30 17:43:51,670][INFO] [sistema] [/space/headquart/delete/29.e507c6ad82f5bbcf156dc6f5b62ffa8a/][admin][127.0.0.1] Sede sad ha sido eliminado correctamente. 
+[2013-10-30 17:43:56,661][ERROR] [sistema] [/space/headquart/delete/28.d5afcbfcfd81135214be86d383013fb4/][admin][127.0.0.1] Empresa qwe no puede quedar sin ninguna sede. 
+[2013-10-30 18:44:18,395][ERROR] [sistema] [/space/enterprise/edit/19.26bd84c4d4a91b7a0beb288195db81c8/][admin][127.0.0.1] Empresa no se encuentra en la base de datos. 
+[2013-10-30 18:44:46,368][ERROR] [sistema] [/space/enterprise/edit/19.26bd84c4d4a91b7a0beb288195db81c8/][admin][127.0.0.1] Empresa no se encuentra en la base de datos. 
+[2013-10-30 18:45:30,019][ERROR] [sistema] [/space/enterprise/edit/19.26bd84c4d4a91b7a0beb288195db81c8/][admin][127.0.0.1] Empresa no se encuentra en la base de datos. 
+[2013-10-30 18:45:31,700][ERROR] [sistema] [/space/enterprise/edit/18.d2d8a14b1a8b38b1f6e900e452e0aa64/][admin][127.0.0.1] Empresa no se encuentra en la base de datos. 
+[2013-10-30 18:46:31,834][ERROR] [sistema] [/space/enterprise/edit/19.26bd84c4d4a91b7a0beb288195db81c8/][admin][127.0.0.1] Empresa no se encuentra en la base de datos. 
+[2013-10-30 18:46:33,516][ERROR] [sistema] [/space/enterprise/edit/18.d2d8a14b1a8b38b1f6e900e452e0aa64/][admin][127.0.0.1] Empresa no se encuentra en la base de datos. 
+[2013-10-30 18:47:58,098][ERROR] [sistema] [/space/enterprise/edit/19.26bd84c4d4a91b7a0beb288195db81c8/][admin][127.0.0.1] Empresa no se encuentra en la base de datos. 
+[2013-10-30 18:47:59,601][ERROR] [sistema] [/space/enterprise/edit/18.d2d8a14b1a8b38b1f6e900e452e0aa64/][admin][127.0.0.1] Empresa no se encuentra en la base de datos. 
+[2013-10-30 18:56:41,167][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Usuario no seleccionado o no se encuentra en la base de datos. 
+[2013-10-30 18:56:45,101][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Usuario no seleccionado o no se encuentra en la base de datos. 
+[2013-10-30 18:56:46,259][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Usuario no seleccionado o no se encuentra en la base de datos. 
+[2013-10-30 18:56:48,147][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Usuario no seleccionado o no se encuentra en la base de datos. 
+[2013-10-30 18:56:55,740][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Usuario no seleccionado o no se encuentra en la base de datos. 
+[2013-10-30 18:56:56,859][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Usuario no seleccionado o no se encuentra en la base de datos. 
+[2013-10-30 18:57:52,424][INFO] [sistema] [/space/enterprise/delete/18.d4587675f9ba30211f1b2f6d5dce37d0/][admin][127.0.0.1] Empresa qwe ha sido eliminado correctamente. 
+[2013-10-30 18:58:05,061][ERROR] [sistema] [/space/enterprise/delete/19.82def643e55729746a43b9fe041cbc9f/][admin][127.0.0.1] Asociación qew no puede quedar sin ninguna sede asociada. 
+[2013-10-30 18:58:11,319][ERROR] [sistema] [/space/enterprise/delete/19.82def643e55729746a43b9fe041cbc9f/][admin][127.0.0.1] Asociación qew no puede quedar sin ninguna sede asociada. 
+[2013-10-30 22:49:26,586][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 22:49:27,384][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 22:49:29,767][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 22:49:30,371][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 22:49:31,039][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 22:49:31,520][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 22:49:32,690][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-30 22:49:33,928][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-30 22:49:35,272][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 22:49:36,315][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 22:49:36,842][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 23:54:57,661][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 23:54:59,138][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 23:54:59,815][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 23:55:00,486][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 23:55:01,069][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-30 23:55:03,904][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 23:55:06,127][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 23:55:07,414][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 23:55:09,869][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-30 23:55:11,726][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-30 23:59:29,473][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Sistema ha sido registrado correctamente. 
+[2013-10-31 00:02:06,499][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Recursos ha sido registrado correctamente. 
+[2013-10-31 00:03:15,135][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Perfiles ha sido registrado correctamente. 
+[2013-10-31 00:04:35,612][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Permisos ha sido registrado correctamente. 
+[2013-10-31 00:08:29,903][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Módulos ha sido registrado correctamente. 
+[2013-10-31 00:09:23,394][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Soluciones ha sido registrado correctamente. 
+[2013-10-31 00:10:15,601][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Planes ha sido registrado correctamente. 
+[2013-10-31 00:10:49,486][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Menús ha sido registrado correctamente. 
+[2013-10-31 00:12:15,032][INFO] [sistema] [/sad/menu/add/][admin][127.0.0.1] Menu Cuenta ha sido registrado correctamente. 

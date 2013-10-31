@@ -279,5 +279,10 @@ def locality_delete(request, key):
 				return redirect('/params/locality/index/')
 	except Exception, e:
 		Message.error(request, e)
+		if request.is_ajax():
+			request.path="/params/locality/index/" #/app/controller_path/action/$params
+			return locality_index(request)
+		else:
+			return redirect('/params/locality/index/')
 
 #Fin Locality

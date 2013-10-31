@@ -28,8 +28,8 @@
                 
                 <tr>
                     <th rowspan="2" class="no-responsive dw-text-middle">#</th>
-                    <th rowspan="2" class="no-responsive dw-text-middle">RECURSO</th>
-                    <th rowspan="2" class="no-responsive col-collapse dw-text-middle">DESCRIPCION</th>
+                    <th rowspan="2" class="no-responsive dw-text-middle">PERMISO</th>
+                    <th rowspan="2" class="no-responsive col-collapse dw-text-middle">CODIGO</th>
                     <th colspan="{{ group_list_len }}" class="no-responsive dw-text-center">PERFILES</th>
                 </tr>
                 <tr>
@@ -43,7 +43,7 @@
 				<tr>
 					<td>{{ forloop.counter }}</td>
                     <td>{{ d  }}</td>
-                	<td>{{ d.name }}</td>
+                	<td>{{ d.content_type.app_label }}.{{ d.codename }}</td>
                     {% for perfil in group_list %}
                         {% with perfil.id|stringformat:"s" as perfil_id_to_str %}
                         {% with d.id|stringformat:"s"|add:'-'|add:perfil_id_to_str as compa %}

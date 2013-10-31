@@ -48,12 +48,12 @@ def user_index(request, field='username', value='None', order='-id'):
 	try:
 		d = get_object_or_404(Headquart, id=DataAccessToken.get_headquart_id(request.session))
 	except:
-		Message.error(request, ("Usuario no seleccionado o no se encuentra en la base de datos."))
+		Message.error(request, ("Sede no seleccionado o no se encuentra en la base de datos."))
 		if request.is_ajax():
-			request.path="/choice_headquart/" #/app/controller_path/action/$params
+			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
 			return choice_headquart(request)
 		else:
-			return redirect('/choice_headquart/')
+			return redirect('/home/choice_headquart/')
 
 	field = (field if not request.REQUEST.get('field') else request.REQUEST.get('field')).strip()
 	value = (value if not request.REQUEST.get('value') else request.REQUEST.get('value')).strip()
@@ -173,8 +173,8 @@ def user_add(request):
 		solution_association=Solution.objects.get(id=headquart.association.solution.id )
 		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
 		group_perm_list = Group.objects.filter(groups__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
-		print group_perm_list
-		print "====================="
+		#print group_perm_list
+		#print "====================="
 		#pero hay que adornarlo de la forma Module>Group/perfil
 		group_list_by_module=[]
 		group_list_by_module_unique_temp=[]#solo para verificar que el Group no se repita si este está en dos o más módulos
@@ -193,7 +193,7 @@ def user_add(request):
 						'module': module,
 						})
 						group_list_by_module_unique_temp.append(group)
-		print group_list_by_module_unique_temp
+		#print group_list_by_module_unique_temp
 
 	except Exception, e:
 		Message.error(request, e)
@@ -351,10 +351,10 @@ def user_edit(request, key):
 		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
 		solution_association=Solution.objects.get(id=headquart.association.solution.id )
 		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
-		group_perm_list = Group.objects.filter(groups__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
-		print group_perm_list
-		print "=====================x"
-		#pero hay que adornarlo de la forma Module>Group/perfil
+		group_perm_list = Group.objects.filter(groups__in=module_list).order_by("-id").distinct() #trae los objetos relacionados a sad.Module
+		#print group_perm_list
+		#print "=====================x"
+		#pero hay que adornarlo de la forma Module>Group
 		group_list_by_module=[]
 		group_list_by_module_unique_temp=[]#solo para verificar que el Group no se repita si este está en dos o más módulos
 		for module in module_list:
@@ -372,7 +372,7 @@ def user_edit(request, key):
 						'module': module,
 						})
 						group_list_by_module_unique_temp.append(group)
-		print group_list_by_module_unique_temp
+		#print group_list_by_module_unique_temp
 		
 		
 
@@ -464,9 +464,9 @@ def user_view(request, key):
 		user_profile_enterprise_list = UserProfileEnterprise.objects.filter(user=d).order_by("enterprise")
 		user_profile_association_list = UserProfileAssociation.objects.filter(user=d).order_by("association")
 
-		for user_profile_headquart in user_profile_headquart_list:
-			print user_profile_headquart.headquart
-			print user_profile_headquart.group
+		#for user_profile_headquart in user_profile_headquart_list:
+		#	print user_profile_headquart.headquart
+		#	print user_profile_headquart.group
 
 
 		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
@@ -560,7 +560,7 @@ def user_state(request, state, key):
 @csrf_exempt
 @login_required(login_url='/account/login/')
 @permission_resource_required
-def menu_index(request, field='title', value='None', order='-module'):
+def menu_index(request, field='title', value='None', order='pos'):
 	"""
 	Página principal para trabajar con menús dinámicos
 	"""
@@ -572,7 +572,7 @@ def menu_index(request, field='title', value='None', order='-module'):
 	try:
 		value_f = '' if value == 'None' else value
 		column_contains = u"%s__%s" % (field,'contains')
-		menu_list = Menu.objects.filter(**{ column_contains: value_f }).order_by("pos").order_by(order)
+		menu_list = Menu.objects.filter(**{ column_contains: value_f }).order_by("module",order)
 		paginator = Paginator(menu_list, 125)
 		try:
 			menu_page = paginator.page(request.GET.get('page'))
@@ -601,7 +601,7 @@ def menu_add(request):
 		try:
 			#Aquí asignar los datos
 			d.title = request.POST.get('title')
-			d.url = request.POST.get('url')
+			d.url = ("#" if not request.REQUEST.get('url') else request.REQUEST.get('url')).strip()
 			d.icon = request.POST.get('icon')
 			d.pos = request.POST.get('pos')
 			d.module = request.POST.get('module')
@@ -668,7 +668,7 @@ def menu_edit(request, key):
 	if request.method == "POST":
 		try:
 			d.title = request.POST.get('title')
-			d.url = request.POST.get('url')
+			d.url = ("#" if not request.REQUEST.get('url') else request.REQUEST.get('url')).strip()
 			d.icon = request.POST.get('icon')
 			d.pos = request.POST.get('pos')
 			d.module = request.POST.get('module')
@@ -778,11 +778,12 @@ def module_plans_edit(request):
 				solution = Solution.objects.get(id=data[0])
 				module.solutions.add(solution)
 
-			Message.info(request, ("Las soluciones se han actualizados correctamente!") )
+			Message.info(request, ("Los planes se han actualizados correctamente!") )
 		except Exception, e:
+			transaction.rollback()
 			Message.error(request, e)
 	try:
-		module_list = Module.objects.all().order_by("-id")
+		module_list = Module.objects.all().order_by("module")
 		solution_list = Solution.objects.all().order_by("-id")
 
 		#listar los privilegios y compararlos con los module y solution
@@ -811,9 +812,8 @@ def module_index(request):
 	"""
 	Página principal para trabajar con módulos del sistema (CRUD a la tabla sad_module)
 	"""
-	#Message.error(request, "thev '<b>ee</b>' is manu")
 	try:
-		module_list = Module.objects.all().order_by("module")
+		module_list = Module.objects.all().order_by("module", "-id")
 	except Exception, e:
 		Message.error(request, e)
 	c = {
@@ -826,6 +826,7 @@ def module_index(request):
 	return render_to_response("sad/module/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.commit_on_success
 def module_add(request):
 	"""
 	Agrega módulo
@@ -851,8 +852,6 @@ def module_add(request):
 				group = Group.objects.get(id=value)
 				d.initial_groups.add(group)
 
-			
-			
 			if d.id:
 				Message.info(request,("Modulo <b>%(name)s</b> ha sido registrado correctamente.") % {'name':d.name})
 				if request.is_ajax():
@@ -861,9 +860,10 @@ def module_add(request):
 				else:
 					return redirect('/sad/module/index/')
 		except Exception, e:
+			transaction.rollback()
 			Message.error(request, e)
 	try:
-		group_list = Group.objects.all().order_by("-id")
+		group_list = Group.objects.all().order_by("name")
 	except Exception, e:
 		Message.error(request, e)
 	c = {
@@ -876,6 +876,7 @@ def module_add(request):
 	return render_to_response("sad/module/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.commit_on_success
 def module_edit(request, key):
 	"""
 	Actualiza módulo
@@ -944,17 +945,12 @@ def module_edit(request, key):
 					return redirect('/sad/module/index/')
 
 		except Exception, e:
+			transaction.rollback()
 			Message.error(request, e)
 	try:
 		group_list = Group.objects.all().order_by("-id")
 		old_grupos_id_list = list({i.id: i for i in d.groups.all()})
 		old_initial_groups_id_list = list({i.id: i for i in d.initial_groups.all()})
-		#listar los privilegios y compararlos con los recursos(permisos) y perfiles(grupos)
-		#privilegios=[]
-		#for g in group_list:
-		#	for p in g.permissions.all() :
-		#		privilegios.append( "%s-%s" % (p.id, g.id) )
-
 	except Exception, e:
 		Message.error(request, e)
 	c = {
@@ -990,6 +986,10 @@ def module_delete(request, key):
 		else:
 			return redirect('/sad/module/index/')
 	try:
+		#rastreando dependencias
+		if d.solutions.count() > 0:
+			raise Exception( ("Módulo <b>%(name)s</b> está asignado en planes.") % {'name':d.name} )
+
 		d.delete() # las dependencias grupos e initial_groups se eliminan automáticamente
 		if not d.id:
 			Message.info(request,("Módulo <b>%(name)s</b> ha sido eliminado correctamente.") % {'name':d.name}, True)
@@ -1000,6 +1000,11 @@ def module_delete(request, key):
 				return redirect('/sad/module/index/')
 	except Exception, e:
 		Message.error(request, e)
+		if request.is_ajax():
+			request.path="/sad/module/index/" #/app/controller_path/action/$params
+			return module_index(request)
+		else:
+			return redirect('/sad/module/index/')
 #endregion module
 
 
@@ -1082,8 +1087,6 @@ def group_edit(request, key):
 			d.name = request.POST.get('name')
 			if Group.objects.filter(name = d.name).exclude(id = d.id).count() > 0:
 				raise Exception( ("Perfil <b>%(name)s</b> ya existe.") % {'name':d.name} )
-
-			#salvar registro
 			d.save()
 			if d.id:
 				Message.info(request,("Perfil <b>%(name)s</b> ha sido actualizado correctamente.") % {'name':d.name})
@@ -1092,7 +1095,6 @@ def group_edit(request, key):
 					return group_index(request)
 				else:
 					return redirect('/sad/group/index/')
-
 		except Exception, e:
 			Message.error(request, e)
 	c = {
@@ -1124,6 +1126,22 @@ def group_delete(request, key):
 		else:
 			return redirect('/sad/group/index/')
 	try:
+		#rastreando dependencias
+		if d.permissions.count() > 0:
+			raise Exception( ("Perfil <b>%(name)s</b> tiene permisos asignados.") % {'name':d.name} )
+		if d.groups.count() > 0:
+			raise Exception( ("Perfil <b>%(name)s</b> está asignado en módulos.") % {'name':d.name} )
+		if d.initial_groups.count() > 0:
+			raise Exception( ("Perfil <b>%(name)s</b> está asignado en módulos iniciales.") % {'name':d.name} )
+		if d.user_set.count() > 0:
+			raise Exception( ("Perfil <b>%(name)s</b> está asignado en usuarios.") % {'name':d.name} )
+		if d.userprofileassociation_set.count() > 0:
+			raise Exception( ("Perfil <b>%(name)s</b> está asignado en userprofileassociation.") % {'name':d.name} )
+		if d.userprofileenterprise_set.count() > 0:
+			raise Exception( ("Perfil <b>%(name)s</b> está asignado en userprofileenterprise.") % {'name':d.name} )
+		if d.userprofileheadquart_set.count() > 0:
+			raise Exception( ("Perfil <b>%(name)s</b> está asignado en userprofileheadquart.") % {'name':d.name} )
+
 		d.delete()
 		if not d.id:
 			Message.info(request,("Perfil <b>%(name)s</b> ha sido eliminado correctamente.") % {'name':d.name}, True)
@@ -1134,13 +1152,18 @@ def group_delete(request, key):
 				return redirect('/sad/group/index/')
 	except Exception, e:
 		Message.error(request, e)
+		if request.is_ajax():
+			request.path="/sad/group/index/" #/app/controller_path/action/$params
+			return group_index(request)
+		else:
+			return redirect('/sad/group/index/')
 
 @login_required(login_url='/account/login/')
 @permission_resource_required
-@transaction.commit_on_success #https://docs.djangoproject.com/en/1.5/topics/db/transactions/
+@transaction.commit_on_success
 def group_permissions_edit(request):
 	"""
-	Actualiza permisos por perfil de usuario en django.contrib.auth.models.Group.permissions.add(recurso)
+	Actualiza permisos(recursos) por grupo(perfil) de usuario en django.contrib.auth.models.Group.permissions.add(recurso)
 	"""
 	if request.method == "POST":
 		try:
@@ -1164,9 +1187,10 @@ def group_permissions_edit(request):
 				group.permissions.add(recur)
 			Message.info(request, ("Los privilegios se han actualizados correctamente!") )
 		except Exception, e:
+			transaction.rollback()
 			Message.error(request, e)
 	try:
-		resource_list = Permission.objects.all().order_by("content_type__model").order_by("content_type__app_label")
+		resource_list = Permission.objects.all().order_by("content_type__app_label","content_type__model")
 		group_list = Group.objects.all().order_by("-id")
 
 		#listar los privilegios y compararlos con los recursos(permisos) y perfiles(grupos)
@@ -1186,7 +1210,6 @@ def group_permissions_edit(request):
 		'privilegios':privilegios,
 		}
 	return render_to_response("sad/permissions/group_permissions_edit.html", c, context_instance = RequestContext(request))
-
 #endregion group
 
 
@@ -1203,7 +1226,7 @@ def resource_index(request):
 	Página principal para trabajar con recursos (CRUD a la tabla Permission de django.contrib.auth.models)
 	"""
 	try:
-		resource_list = Permission.objects.all().order_by("content_type__model").order_by("content_type__app_label")
+		resource_list = Permission.objects.all().order_by("content_type__app_label","content_type__model")
 	except Exception, e:
 		Message.error(request, e)
 	c = {
@@ -1214,6 +1237,7 @@ def resource_index(request):
 	return render_to_response("sad/resource/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.commit_on_success
 def resource_add(request):
 	"""
 	Agrega recurso en django.contrib.auth.models.Permission y obtiene o agrega un django.contrib.contenttypes.models.ContentType (ContentType.objects.get_or_create)
@@ -1232,21 +1256,20 @@ def resource_add(request):
 				app_label=d.app_label.lower(),
 				)
 
-			if d.action_view:
+			codename=""
+			recurso="/%s/" % d.app_label.lower()
+			if d.controller_view and d.action_view:
 				codename="%s_%s" % (d.controller_view.lower(), d.action_view.lower())
 				recurso="/%s/%s/%s/" % (d.app_label.lower(), d.controller_view.lower(), d.action_view.lower())
-			else:
+			if d.controller_view and not d.action_view:
 				codename="%s" % (d.controller_view.lower())
 				recurso="/%s/%s/" % (d.app_label.lower(), d.controller_view.lower())
+			if not d.controller_view and d.action_view:
+				raise Exception( ("Complete controlador para la acción <b>%(action)s</b>.") % {'action':d.action_view})
 			d.codename = codename
 			d.name = request.POST.get('description')
 			d.content_type = content_type
-			#d = Permission.objects.create(
-			#	codename=codename,
-			#	name=request.POST.get('description'),
-			#	content_type=content_type,
-			#	)
-			if Permission.objects.filter(codename = d.codename).exclude(id = d.id).count() > 0:
+			if Permission.objects.filter(codename = d.codename, content_type=content_type).exclude(id = d.id).count() > 0:
 				raise Exception( ("Recurso <b>%(recurso)s</b> ya existe.") % {'recurso':recurso})
 
 			d.save()
@@ -1258,6 +1281,7 @@ def resource_add(request):
 				else:
 					return redirect('/sad/resource/index/')
 		except Exception, e:
+			transaction.rollback()
 			Message.error(request, e)
 	c = {
 		'page_module':("Gestión de recursos"),
@@ -1267,6 +1291,7 @@ def resource_add(request):
 	return render_to_response("sad/resource/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.commit_on_success
 def resource_edit(request, key):
 	"""
 	Actualiza recurso en django.contrib.auth.models.Permission y obtiene o agrega un django.contrib.contenttypes.models.ContentType (ContentType.objects.get_or_create)
@@ -1306,17 +1331,21 @@ def resource_edit(request, key):
 				app_label=d.app_label.lower(),
 				)
 
-			if d.action_view:
+			codename=""
+			recurso="/%s/" % d.app_label.lower()
+			if d.controller_view and d.action_view:
 				codename="%s_%s" % (d.controller_view.lower(), d.action_view.lower())
 				recurso="/%s/%s/%s/" % (d.app_label.lower(), d.controller_view.lower(), d.action_view.lower())
-			else:
+			if d.controller_view and not d.action_view:
 				codename="%s" % (d.controller_view.lower())
 				recurso="/%s/%s/" % (d.app_label.lower(), d.controller_view.lower())
+			if not d.controller_view and d.action_view:
+				raise Exception( ("Complete controlador para la acción <b>%(action)s</b>.") % {'action':d.action_view})
 			d.codename = codename
 			d.name = request.POST.get('description')
 			d.content_type = content_type
 
-			if Permission.objects.filter(codename = d.codename).exclude(id = d.id).count() > 0:
+			if Permission.objects.filter(codename = d.codename, content_type=content_type).exclude(id = d.id).count() > 0:
 				raise Exception( ("Recurso <b>%(recurso)s</b> ya existe.") % {'recurso':recurso})
 
 			#salvar registro
@@ -1330,6 +1359,7 @@ def resource_edit(request, key):
 					return redirect('/sad/resource/index/')
 
 		except Exception, e:
+			transaction.rollback()
 			Message.error(request, e)
 	c = {
 		'page_module':("Gestión de recursos"),
@@ -1352,10 +1382,12 @@ def resource_delete(request, key):
 			return redirect('/sad/resource/index/')
 	try:
 		d = get_object_or_404(Permission, id=id)
-		recurso="/%s/%s/" % (d.content_type.app_label, d.content_type.name)
-		codename_list=d.codename.split('_',1)
-		if len(codename_list) > 1:
-			recurso="/%s/%s/%s/" % (d.content_type.app_label, d.content_type.name, codename_list[1])
+		recurso="/%s/" % d.content_type.app_label
+		if d.codename:
+			recurso="/%s/%s/" % (d.content_type.app_label, d.content_type.name)
+			codename_list=d.codename.split('_',1)
+			if len(codename_list) > 1:
+				recurso="/%s/%s/%s/" % (d.content_type.app_label, d.content_type.name, codename_list[1])
 	except:
 		Message.error(request, ("Recurso no se encuentra en la base de datos."))
 		if request.is_ajax():
@@ -1364,6 +1396,14 @@ def resource_delete(request, key):
 		else:
 			return redirect('/sad/resource/index/')
 	try:
+		#rastreando dependencias
+		if d.group_set.count() > 0:
+			raise Exception( ("Recurso <b>%(recurso)s</b> está asignado en perfiles.") % {'recurso':recurso} )
+		if d.menu_set.count() > 0:
+			raise Exception( ("Recurso <b>%(recurso)s</b> está asignado en menús.") % {'recurso':recurso} )
+		if d.user_set.count() > 0:
+			raise Exception( ("Recurso <b>%(recurso)s</b> está asignado en usuarios.") % {'recurso':recurso} )
+
 		d.delete()
 		if not d.id:
 			Message.info(request,("Recurso <b>%(recurso)s</b> ha sido eliminado correctamente.") % {'recurso':recurso}, True)
@@ -1374,4 +1414,9 @@ def resource_delete(request, key):
 				return redirect('/sad/resource/index/')
 	except Exception, e:
 		Message.error(request, e)
+		if request.is_ajax():
+			request.path="/sad/resource/index/" #/app/controller_path/action/$params
+			return resource_index(request)
+		else:
+			return redirect('/sad/resource/index/')
 #endregion resource

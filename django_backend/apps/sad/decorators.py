@@ -71,23 +71,28 @@ def permission_resource_required_decorator(template_denied_name="denied_mod_back
             #print "path=%s" % path
             #permiso=path.replace('/','.') #permiso='params.locality_listx'
             #print "permiso=%s" % permiso
-            if "/" in path:
-                path_list = path.split('/')
-        	    #print ".".join(path_list)
-                permiso="%s" % (path_list[0])
-                recurso="/%s/" % (path_list[0])
-                if len(path_list) > 1:
-                    permiso = "%s.%s" % (path_list[0], path_list[1])
-                    recurso = "/%s/%s/" % (path_list[0], path_list[1])
+
+            #if "/" in path:
+            path_list = path.split('/')
+        	#print ".".join(path_list)
+            permiso="%s." % (path_list[0])
+            recurso="/%s/" % (path_list[0])
+            if not isinstance(permiso, (list, tuple)):
+                perms = (permiso, )
+            else:
+                perms = permiso
+
+            if not request.user.has_perms(perms) and len(path_list) > 1:
+                permiso = "%s.%s" % (path_list[0], path_list[1])
+                recurso = "/%s/%s/" % (path_list[0], path_list[1])
                 
-                if not isinstance(permiso, (list, tuple)):
-                    perms = (permiso, )
-                else:
-                    perms = permiso
-                if not request.user.has_perms(perms):
-                    if len(path_list) > 2:
-                        permiso = "%s.%s_%s" % (path_list[0], path_list[1], path_list[2])
-                        recurso = "/%s/%s/%s/" % (path_list[0], path_list[1], path_list[2])
+            if not isinstance(permiso, (list, tuple)):
+                perms = (permiso, )
+            else:
+                perms = permiso
+            if not request.user.has_perms(perms) and len(path_list) > 2:
+                permiso = "%s.%s_%s" % (path_list[0], path_list[1], path_list[2])
+                recurso = "/%s/%s/%s/" % (path_list[0], path_list[1], path_list[2])
             #print "permiso=%s" % permiso
             #print "recurso=%s" % recurso
             if not isinstance(permiso, (list, tuple)):

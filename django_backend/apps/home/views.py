@@ -18,10 +18,13 @@ from apps.space.models import Association, Enterprise, Headquart, Solution
 from apps.sad.security import DataAccessToken
 from apps.sad.models import Module
 from django.db.models import Q
+from apps.sad.decorators import is_admin, permission_resource_required
 
 #@csrf_exempt
+#@permission_resource_required # no asignar permiso es la página de inicio
 def index(request):
-	
+	request.path="/home/"
+	#return redirect('/home/index')
 	t = {
 		'page_module':("Home"),
 		'page_title':("Django backend Manager."),
@@ -29,6 +32,7 @@ def index(request):
 	return render_to_response("home/index.html", t, context_instance = RequestContext(request))
 
 #@csrf_exempt
+#@permission_resource_required
 def choice_headquart(request):
 	
 	headquart_list_by_user=[]

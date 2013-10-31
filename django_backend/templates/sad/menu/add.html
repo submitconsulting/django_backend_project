@@ -56,15 +56,15 @@
                 </div>
                 <div class="span4">
                     <div class="control-group">
-                        <label class="control-label">{% trans "ICONO A MOSTRAR" %}<span class="req"> *</span></label>
-                        <input id="icon" name="icon" type="text" value="{{ d.icon }}" class="field text input-xlarge input-required mask-alphanum show-error" required="required">
+                        <label class="control-label">{% trans "ICONO A MOSTRAR" %}</label>
+                        <input id="icon" name="icon" type="text" value="{{ d.icon }}" class="field text input-xlarge mask-alphanum show-error">
                         <p class="help-block"> <span class="help-error" id="err_icon"></span></p>
                     </div>
                 </div>
                 <div class="span4">
                     <div class="control-group">
-                        <label class="control-label">{% trans "URL" %}<span class="req"> *</span></label>
-                        <input id="url" name="url" type="text" value="{{ d.url }}" class="field text input-xlarge input-required mask-alphanum show-error" required="required">
+                        <label class="control-label">{% trans "URL" %}</label>
+                        <input id="url" name="url" type="text" value="{{ d.url }}" class="field text input-xlarge mask-url show-error">
                         <p class="help-block"> <span class="help-error" id="err_url"></span></p>
                     </div>
                 </div>

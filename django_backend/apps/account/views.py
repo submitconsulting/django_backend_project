@@ -167,7 +167,7 @@ def add_enterprise(request):
 @transaction.commit_on_success
 def signup_sys(request):
 	if request.user.is_authenticated():
-		return HttpResponseRedirect('/choice_headquart/')
+		return HttpResponseRedirect('/home/choice_headquart/')
 	d = Person()
 	d.last_name=""
 	if request.method == "POST":
@@ -269,11 +269,11 @@ def signup_sys(request):
 			#transaction.commit()
 			Message.info(request,("Cuenta <b>%(name)s</b> ha sido registrado correctamente!.") % {'name':d.username})
 			if request.is_ajax():
-				print "AJAX"
+				#print "AJAX"
 				request.path="/account/login/" #/app/controller_path/action/$params
 				return login_sys(request)
 			else:
-				print "NO AJAX"
+				#print "NO AJAX"
 				return redirect('/account/login/')
 		except Exception, e:
 			transaction.rollback()
@@ -325,9 +325,9 @@ def load_access(request, headquart_id, module_id):
 				module = Module.objects.get(id=module_id)
 				#Message.info(request, ("La sede %(name)s ha sido cargado correctamente.") % {'name':headquart_id} )
 				if module.DBM == module.module:
-					return HttpResponseRedirect('/mod_backend/mod_backend_dashboard/')
+					return HttpResponseRedirect('/mod_backend/dashboard/')
 				else:
-					return HttpResponseRedirect('/mod_ventas/mod_ventas_dashboard/')
+					return HttpResponseRedirect('/mod_ventas/dashboard/')
 			else:
 				return HttpResponse('Sede no se encuentra')
 		except Exception, e:
@@ -343,7 +343,7 @@ def login_sys(request):
 		}
 
 	if request.user.is_authenticated():
-		return HttpResponseRedirect('/choice_headquart/')
+		return HttpResponseRedirect('/home/choice_headquart/')
 	if request.method == 'POST':
 		
 		d.username = request.POST.get('login')
@@ -364,7 +364,7 @@ def login_sys(request):
 						return redirect('/account/load_access/%s/%s/' % (person.last_headquart_id, person.last_module_id))
 			except:
 				pass
-			return HttpResponseRedirect('/choice_headquart/')
+			return HttpResponseRedirect('/home/choice_headquart/')
 		else:
 			Message.error(request,("Contaseña para <b>%(name)s</b> no válido, o el usuario no existe o no está activo. ") % {'name':d.username} )
 			return render_to_response('account/login.html', t, context_instance=RequestContext(request))

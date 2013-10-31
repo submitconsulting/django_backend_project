@@ -36,14 +36,14 @@ def headquart_index(request):
 	Página principal para trabajar con sedes
 	"""
 	try:
-		d = get_object_or_404(Enterprise, id=DataAccessToken.get_enterprise_id(request.session))
+		enterprise = get_object_or_404(Enterprise, id=DataAccessToken.get_enterprise_id(request.session))
 	except:
 		Message.error(request, ("Empresa no seleccionada o no se encuentra en la base de datos."))
 		if request.is_ajax():
-			request.path="/choice_headquart/" #/app/controller_path/action/$params
+			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
 			return choice_headquart(request)
 		else:
-			return redirect('/choice_headquart/')
+			return redirect('/home/choice_headquart/')
 
 	try:
 		headquart_list = Headquart.objects.filter(enterprise_id=DataAccessToken.get_enterprise_id(request.session)).order_by("-id")
@@ -196,6 +196,8 @@ def headquart_delete(request, key):
 		else:
 			return redirect('/space/headquart/index/')
 	try:
+		if d.enterprise.headquart_set.count() == 1:
+			raise Exception( ("Empresa <b>%(name)s</b> no puede quedar sin ninguna sede.") % {'name':d.enterprise.name} )
 		d.delete()
 		if not d.id:
 			Message.info(request,("Sede <b>%(name)s</b> ha sido eliminado correctamente.") % {'name':d.name}, True)
@@ -206,6 +208,11 @@ def headquart_delete(request, key):
 				return redirect('/space/headquart/index/')
 	except Exception, e:
 		Message.error(request, e)
+		if request.is_ajax():
+			request.path="/space/headquart/index/" #/app/controller_path/action/$params
+			return headquart_index(request)
+		else:
+			return redirect('/space/headquart/index/')
 #endregion headquart
 
 #region enterprise OK
@@ -219,10 +226,10 @@ def enterprise_index(request):
 	except:
 		Message.error(request, ("Asociación no seleccionada o no se encuentra en la base de datos."))
 		if request.is_ajax():
-			request.path="/choice_headquart/" #/app/controller_path/action/$params
+			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
 			return choice_headquart(request)
 		else:
-			return redirect('/choice_headquart/')
+			return redirect('/home/choice_headquart/')
 	enterprise_list=None
 	try:
 		subq = 'SELECT COUNT(*) as count_sedes FROM space_headquart WHERE space_headquart.enterprise_id = space_enterprise.id' #mejor usar {{ d.headquart_set.all.count }} y listo, trate de no usar {{ d.num_sedes_all }}
@@ -323,7 +330,6 @@ def enterprise_edit(request, key):
 
 	try:
 		d = get_object_or_404(Enterprise, id=id)
-		
 	except:
 		Message.error(request, ("Empresa no se encuentra en la base de datos."))
 		if request.is_ajax():
@@ -397,6 +403,9 @@ def enterprise_delete(request, key):
 		else:
 			return redirect('/space/enterprise/index/')
 	try:
+		association=Association.objects.get(id=DataAccessToken.get_association_id(request.session))
+		if Enterprise.objects.filter(headquart__association_id=DataAccessToken.get_association_id(request.session)).count() == 1:
+			raise Exception( ("Asociación <b>%(name)s</b> no puede quedar sin ninguna sede asociada.") % {'name':association.name} )		
 		d.delete()
 		if not d.id:
 			Message.info(request,("Empresa <b>%(name)s</b> ha sido eliminado correctamente.") % {'name':d.name}, True)
@@ -408,6 +417,11 @@ def enterprise_delete(request, key):
 	except Exception, e:
 		transaction.rollback()
 		Message.error(request, e)
+		if request.is_ajax():
+			request.path="/space/enterprise/index/" #/app/controller_path/action/$params
+			return enterprise_index(request)
+		else:
+			return redirect('/space/enterprise/index/')
 
 @permission_resource_required
 @transaction.commit_on_success
@@ -421,10 +435,10 @@ def enterprise_edit_current(request):
 	except:
 		Message.error(request, ("Empresa no seleccionada o no se encuentra en la base de datos."))
 		if request.is_ajax():
-			request.path="/choice_headquart/" #/app/controller_path/action/$params
+			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
 			return choice_headquart(request)
 		else:
-			return redirect('/choice_headquart/')
+			return redirect('/home/choice_headquart/')
 
 	if request.method == "POST":
 		try:
@@ -477,10 +491,10 @@ def association_edit_current(request):
 	except:
 		Message.error(request, ("Asociación no seleccionada o no se encuentra en la base de datos."))
 		if request.is_ajax():
-			request.path="/choice_headquart/" #/app/controller_path/action/$params
+			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
 			return choice_headquart(request)
 		else:
-			return redirect('/choice_headquart/')
+			return redirect('/home/choice_headquart/')
 
 	if request.method == "POST":
 		try:
@@ -635,6 +649,13 @@ def solution_delete(request, key):
 		else:
 			return redirect('/space/solution/index/')
 	try:
+		#rastreando dependencias
+		if d.module_set.count() > 0:
+			raise Exception( ("Solución <b>%(name)s</b> tiene módulos asignados.") % {'name':d.name} )
+		if d.association_set.count() > 0:
+			raise Exception( ("Solución <b>%(name)s</b> está asignado en asociaciones.") % {'name':d.name} )
+		if d.enterprise_set.count() > 0:
+			raise Exception( ("Solución <b>%(name)s</b> está asignado en empresas.") % {'name':d.name} )
 		d.delete()
 		if not d.id:
 			Message.info(request,("Solución <b>%(name)s</b> ha sido eliminado correctamente.") % {'name':d.name}, True)
@@ -645,4 +666,9 @@ def solution_delete(request, key):
 				return redirect('/space/solution/index/')
 	except Exception, e:
 		Message.error(request, e)
+		if request.is_ajax():
+			request.path="/space/solution/index/" #/app/controller_path/action/$params
+			return solution_index(request)
+		else:
+			return redirect('/space/solution/index/')
 #endregion solution

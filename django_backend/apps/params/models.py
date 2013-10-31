@@ -89,7 +89,7 @@ class Person(models.Model):
 		if created :
 			Person.objects.create(user=instance)
 		post_save.connect(create_user_profile, sender=User)
-'''
+
 #mis params tables
 class Categoria(models.Model):
 	nombre = models.CharField(max_length=50)
@@ -106,4 +106,27 @@ class Categoria(models.Model):
 
 	def __unicode__(self):
 		return self.nombre
-'''
+"""
+G:\dev\apps\django_backend_project\django_backend>python manage.py syncdb
+Creating tables ...
+Creating table params_categoria
+Creating table maestros_producto
+The following content types are stale and need to be deleted:
+
+    sad | resource
+    sad | user
+    sad | group
+
+Any objects related to these content types by a foreign key will also
+be deleted. Are you sure you want to delete these content types?
+If you're unsure, answer 'no'.
+
+    Type 'yes' to continue, or 'no' to cancel: no
+Installing custom SQL ...
+Installing indexes ...
+Installed 0 object(s) from 0 fixture(s)
+
+G:\dev\apps\django_backend_project\django_backend>
+
+y se agregarán las nuevas tablas con sus permissions previamente definidos
+"""

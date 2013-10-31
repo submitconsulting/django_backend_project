@@ -664,7 +664,13 @@ def menu_edit(request, key):
 			return menu_index(request)
 		else:
 			return redirect('/sad/menu/index')
-
+	if d.id <= 16:
+		Message.warning(request, ("Lo sentimos, pero este menú no se puede editar."))
+		if request.is_ajax():
+			request.path="/sad/menu/index/" #/app/controller_path/action/$params
+			return menu_index(request)
+		else:
+			return redirect('/sad/menu/index')
 	if request.method == "POST":
 		try:
 			d.title = request.POST.get('title')
@@ -730,6 +736,13 @@ def menu_delete(request, key):
 		d = get_object_or_404(Menu, id=id)
 	except:
 		Message.error(request, ("Menu no se encuentra en la base de datos."))
+		if request.is_ajax():
+			request.path="/sad/menu/index/" #/app/controller_path/action/$params
+			return menu_index(request)
+		else:
+			return redirect('/sad/menu/index')
+	if d.id <= 16:
+		Message.warning(request, ("Lo sentimos, pero este menú no se puede eliminar."))
 		if request.is_ajax():
 			request.path="/sad/menu/index/" #/app/controller_path/action/$params
 			return menu_index(request)
@@ -1320,6 +1333,14 @@ def resource_edit(request, key):
 		else:
 			return redirect('/sad/resource/index/')
 
+	if d.id <= 19:
+		Message.warning(request, ("Lo sentimos, pero este recurso no se puede editar."))
+		if request.is_ajax():
+			request.path="/sad/resource/index/" #/app/controller_path/action/$params
+			return resource_index(request)
+		else:
+			return redirect('/sad/resource/index/')
+
 	if request.method == "POST":
 		try:
 			d.controller_view=request.POST.get('controller_view')
@@ -1390,6 +1411,14 @@ def resource_delete(request, key):
 				recurso="/%s/%s/%s/" % (d.content_type.app_label, d.content_type.name, codename_list[1])
 	except:
 		Message.error(request, ("Recurso no se encuentra en la base de datos."))
+		if request.is_ajax():
+			request.path="/sad/resource/index/" #/app/controller_path/action/$params
+			return resource_index(request)
+		else:
+			return redirect('/sad/resource/index/')
+
+	if d.id <= 19:
+		Message.warning(request, ("Lo sentimos, pero este recurso no se puede eliminar."))
 		if request.is_ajax():
 			request.path="/sad/resource/index/" #/app/controller_path/action/$params
 			return resource_index(request)

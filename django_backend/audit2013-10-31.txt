@@ -34,3 +34,40 @@
 [2013-10-31 00:58:32,355][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
 [2013-10-31 00:58:32,868][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
 [2013-10-31 00:58:33,395][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 01:10:06,062][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:10:06,553][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:10:07,315][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:10:07,818][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:10:08,345][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 01:10:15,720][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 01:19:49,515][WARNING] [sistema] [/sad/resource/edit/10.fd3acb2b17dd7998f8552b2b6d6c4d11/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:19:53,476][WARNING] [sistema] [/sad/resource/edit/12.8ad9b7549ada07dcd2734587d0f1d856/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:20:03,871][WARNING] [sistema] [/sad/resource/edit/19.9ddbf17aa447183e1a77590c3bff1467/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:20:08,197][WARNING] [sistema] [/sad/resource/edit/19.9ddbf17aa447183e1a77590c3bff1467/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:20:11,006][WARNING] [sistema] [/sad/resource/edit/17.60fa8b027e6a6766e2d6c499b630f4ce/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:20:12,894][WARNING] [sistema] [/sad/resource/edit/8.b4bace19b32a1b82f635f13a4dd780ec/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:20:13,859][WARNING] [sistema] [/sad/resource/edit/1.245b44bc83d1d093618864f52d92a646/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:20:15,073][WARNING] [sistema] [/sad/resource/edit/15.1a967b0a85e0c451b52b989a2b442675/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:20:16,256][WARNING] [sistema] [/sad/resource/edit/14.2cb11a4834b363b6dd5ee4926303a634/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:20:18,773][WARNING] [sistema] [/sad/resource/edit/10.fd3acb2b17dd7998f8552b2b6d6c4d11/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:22:19,871][WARNING] [sistema] [/sad/resource/delete/18.5ff08d46326fe08b141cfac59aa09030/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede eliminar. 
+[2013-10-31 01:27:19,767][WARNING] [sistema] [/sad/menu/edit/8.b2fcc6e2ce3260c6394cb624262bbdcf/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:27:23,190][WARNING] [sistema] [/sad/menu/edit/7.b37fd82c79361286da6cf06bf29763eb/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:27:30,507][WARNING] [sistema] [/sad/menu/edit/15.b4e957058d479ae3428ad5df6806a6cd/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:27:33,372][WARNING] [sistema] [/sad/menu/edit/9.7b204b0dfdc6c966c30ed2691587bf47/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:27:34,654][WARNING] [sistema] [/sad/menu/edit/1.9ad870a91ddc165b05518b1d2c4fe022/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:27:35,882][WARNING] [sistema] [/sad/menu/edit/16.4b4e420f67179f5f4f68adaf65e06dbf/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:27:37,971][WARNING] [sistema] [/sad/menu/edit/16.4b4e420f67179f5f4f68adaf65e06dbf/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:27:38,996][WARNING] [sistema] [/sad/menu/edit/10.276c69b6405506df3e1e1d4a3e22261b/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:27:40,164][WARNING] [sistema] [/sad/menu/edit/11.ed1143058a7a60655b487642397eb8a5/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:27:47,240][WARNING] [sistema] [/sad/menu/edit/7.b37fd82c79361286da6cf06bf29763eb/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:27:50,219][WARNING] [sistema] [/sad/menu/edit/13.afb11d1275cc3010c46b27350a0d3719/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:28:28,872][WARNING] [sistema] [/sad/menu/edit/16.4b4e420f67179f5f4f68adaf65e06dbf/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:28:32,490][WARNING] [sistema] [/sad/menu/delete/16.96d083dbeb8fe3cf0cf7faedfc56aad1/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede eliminar. 
+[2013-10-31 01:28:37,710][WARNING] [sistema] [/sad/menu/edit/16.4b4e420f67179f5f4f68adaf65e06dbf/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-10-31 01:28:41,844][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:28:42,355][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:28:42,885][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 01:28:53,059][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:29:18,946][WARNING] [sistema] [/sad/resource/edit/12.8ad9b7549ada07dcd2734587d0f1d856/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:29:19,953][WARNING] [sistema] [/sad/resource/edit/13.97c53803081e33f04820450cd3812e40/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 

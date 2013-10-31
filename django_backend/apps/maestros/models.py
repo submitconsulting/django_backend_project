@@ -1,9 +1,9 @@
 # _*_ coding: utf-8 _*_
 from django.db import models
 from django.contrib.auth.models import User
-#from apps.params.models import Categoria
+from apps.params.models import Categoria
 from apps.space.models import Association, Enterprise, Headquart
-'''
+
 class Producto(models.Model):
 	"""
 	
@@ -36,4 +36,3 @@ class Producto(models.Model):
 
 	def __unicode__(self):
 		return self.descripcion
-'''

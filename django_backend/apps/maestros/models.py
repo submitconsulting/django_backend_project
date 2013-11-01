@@ -11,7 +11,7 @@ class Producto(models.Model):
 	
 	codigo = models.CharField(max_length=50)
 	descripcion = models.TextField(null=True, blank=True)
-	precio_venta = models.FloatField (null=True, blank=True)
+	precio_venta = models.FloatField (default=0)
 	esta_activo  = models.BooleanField(default=True)
 
 	registered_at = models.DateTimeField(auto_now_add=True)

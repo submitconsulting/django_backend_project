@@ -32,5 +32,7 @@ urlpatterns = patterns('',
     url(r'^sad/', include('apps.sad.urls')),
     url(r'^space/', include('apps.space.urls')),
 
+    url(r'^maestros/', include('apps.maestros.urls')),
+
     
 )

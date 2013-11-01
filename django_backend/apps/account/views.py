@@ -134,7 +134,7 @@ def add_enterprise(request):
 							user_profile_headquart.group=group
 							user_profile_headquart.save()
 			#transaction.commit()
-			Message.info(request,("Empresa %(name)s ha sido registrado correctamente!.") % {'name':d.enterprise_name})
+			Message.info(request,("Empresa <b>%(name)s</b> ha sido registrado correctamente!.") % {'name':d.enterprise_name})
 			if request.is_ajax():
 				request.path="/home/choice_headquart/" #/app/controller_path/action/$params
 				return choice_headquart(request)
@@ -155,7 +155,7 @@ def add_enterprise(request):
 		Message.error(request, e)
 	t = {
 		'page_module':("Registro de empresa"),
-		'page_title':("Agregar empresa de la cuenta %(login)s.") % {'login':request.user},
+		'page_title':("Agregar empresa de la cuenta <b>%(login)s</b>.") % {'login':request.user},
 		'd':d,
 		'solution_list':solution_list,
 		'type_a_list':type_a_list,
@@ -169,6 +169,7 @@ def signup_sys(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect('/home/choice_headquart/')
 	d = Person()
+	d.first_name=""
 	d.last_name=""
 	if request.method == "POST":
 		try:

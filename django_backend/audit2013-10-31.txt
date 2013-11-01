@@ -71,3 +71,42 @@
 [2013-10-31 01:28:53,059][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
 [2013-10-31 01:29:18,946][WARNING] [sistema] [/sad/resource/edit/12.8ad9b7549ada07dcd2734587d0f1d856/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
 [2013-10-31 01:29:19,953][WARNING] [sistema] [/sad/resource/edit/13.97c53803081e33f04820450cd3812e40/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-10-31 01:32:29,065][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:32:29,578][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:32:30,259][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 01:32:32,635][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:32:33,355][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:32:33,832][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:32:36,259][ERROR] [sistema] [/space/enterprise/index/][admin][127.0.0.1] Asociación no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:32:36,851][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:32:37,377][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 01:32:37,892][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 12:11:09,042][ERROR] [sistema] [/space/enterprise/edit_current/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 12:11:10,104][ERROR] [sistema] [/space/headquart/index/][admin][127.0.0.1] Empresa no seleccionada o no se encuentra en la base de datos. 
+[2013-10-31 12:11:10,546][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 12:11:11,663][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 12:15:47,532][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 22:07:34,403][ERROR] [sistema] [/sad/user/index/][admin][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-10-31 22:12:13,115][INFO] [sistema] [/sad/user/delete/2.1349fd044d39dea2c2c042098502c623/][admin][127.0.0.1] Usuario sss ha sido eliminado correctamente. 
+[2013-10-31 22:47:25,055][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:47:37,145][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:47:41,298][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:47:53,927][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:47:58,509][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:48:04,490][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:48:05,309][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:48:05,993][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:48:06,651][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:48:14,825][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:49:16,099][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:49:23,532][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'WSGIRequest' object has no attribute 'userx' 
+[2013-10-31 22:51:28,836][INFO] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-10-31 22:52:16,081][INFO] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-10-31 22:52:22,723][ERROR] [sistema] [/account/login/][AnonymousUser][127.0.0.1] Contaseña para admin no válido, o el usuario no existe o no está activo.  
+[2013-10-31 22:52:48,256][INFO] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-10-31 23:07:30,460][WARNING] [sistema] [/sad/user/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 
+[2013-10-31 23:07:31,926][WARNING] [sistema] [/sad/user/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 
+[2013-10-31 23:08:09,476][WARNING] [sistema] [/sad/user/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 
+[2013-10-31 23:08:12,852][WARNING] [sistema] [/sad/user/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 
+[2013-10-31 23:09:20,657][WARNING] [sistema] [/home/choice_headquart/][asullom][127.0.0.1] Tu no posees permisos para acceder a /home/choice_headquart/ 
+[2013-10-31 23:10:56,641][WARNING] [sistema] [/home/choice_headquart/][asullom][127.0.0.1] Tu no posees permisos para acceder a /home/choice_headquart/ 

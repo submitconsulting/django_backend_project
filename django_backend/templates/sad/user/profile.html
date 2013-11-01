@@ -1,4 +1,4 @@
-{% extends request.is_ajax|yesno:"base_ajax.html,base_mod_backend.html" %}
+{% extends request.is_ajax|yesno:"base_ajax.html,base_authenticated.html" %}
 {% load staticfiles %}
 {% load i18n %}
 {% block title %} {{ page_title }} {% endblock %}
@@ -28,7 +28,6 @@
         <div class="content clearfix">
         <div class="page-header">
             <h4>{{ page_module }} | <small>{{ page_title }}</small></h4>
-            Formulario para actualizar información de usuarios y dar permisos a la sede, empresa y/o asociación.<br>
         </div>
         <form action="" method="post" id="form" class="dw-validate js-remote dw-form dw-validate form-vertical" data-to="dw-shell-content" name="form">
            {% csrf_token %}
@@ -71,7 +70,7 @@
                     <div class="span6">
                         <div class="control-group">
                             <label class="control-label">{% trans "USUARIO" %}<span class="req"> *</span></label>
-                            <input id="login" name="login" type="text" value="{{ d.username }}" class="field text input-xlarge input-required input-user show-error mask-alphanum" required="required"/>
+                            <input id="login" name="login" type="text" value="{{ d.username }}" class="field text input-xlarge input-required input-user show-error mask-alphanum" readonly="readonly"/>
                             <p class="help-block"> <span class="help-error" id="err_login"></span></p>
                         </div>
                     </div>
@@ -106,51 +105,42 @@
                 
                     <div class="row-fluid">
                         <div class="span12">
-                            <fieldset ><legend>PERMISOS PARA LA SEDE </legend>
+                            <fieldset ><legend>PERMISOS A LAS SEDES </legend>
                             <div class="control-group">
                                 
-                                <select id="groups_sede" name="groups_sede"  class="field select input-xlarge input-required input-list show-errors" multiple="multiple">
-                                    {% for perm in group_perm_list %}
-                                        <option value="{{ perm.group.id }}"
-                                        {% if perm.group.id in group_id_list_by_user_and_headquart %} selected {%endif%}
-                                        >{{ perm.module.name }}>{{ perm.group.name }}</option>
+                                    {% for x in user_profile_headquart_list %}
+                                        
+                                        {{ x.headquart.enterprise.name }}-{{ x.headquart.name }}>{{ x.group.name }}<br>
+
                                     {% endfor %}
-                                </select>
-                                <p class="help-block"> <span class="help-error" id="err_groups_sede"></span></p>
+                                
                             </div>
                             </fieldset>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="span12">
-                            <fieldset ><legend>PERMISOS PARA LA EMPRESA </legend>
+                            <fieldset ><legend>PERMISOS A LAS EMPRESAS </legend>
                             <div class="control-group">
-                                
-                                <select id="groups_enterprise" name="groups_enterprise"  class="field select input-xlarge input-list show-errors" multiple="multiple">
-                                    {% for perm in group_perm_list %}
-                                        <option value="{{ perm.group.id }}"
-                                        {% if perm.group.id in group_id_list_by_user_and_enterprise %} selected {%endif%}
-                                        >{{ perm.module.name }}>{{ perm.group.name }}</option>
+                                {% for x in user_profile_enterprise_list %}
+                                        
+                                        {{ x.enterprise.name }}>{{ x.group.name }}<br>
+
                                     {% endfor %}
-                                </select>
-                                <p class="help-block"> <span class="help-error" id="err_groups_enterprise"></span></p>
+                                
                             </div>
                             </fieldset>
                         </div>
                     </div>
                     <div class="row-fluid">
                         <div class="span12">
-                            <fieldset ><legend>PERMISOS PARA LA ASOCIACION </legend>
+                            <fieldset ><legend>PERMISOS A LA ASOCIACIONES </legend>
                             <div class="control-group">
-                                
-                                <select id="groups_association" name="groups_association"  class="field select input-xlarge input-list show-errors" multiple="multiple">
-                                    {% for perm in group_perm_list %}
-                                        <option value="{{ perm.group.id }}"
-                                        {% if perm.group.id in group_id_list_by_user_and_association %} selected {%endif%}
-                                        >{{ perm.module.name }}>{{ perm.group.name }}</option>
+                                {% for x in user_profile_association_list %}
+                                        
+                                        {{ x.association.name }}>{{ x.group.name }}<br>
+
                                     {% endfor %}
-                                </select>
-                                <p class="help-block"> <span class="help-error" id="err_groups_association"></span></p>
                             </div>
                             </fieldset>
                         </div>
@@ -201,7 +191,7 @@
                         <i class="btn-icon-only icon-undo"></i> <span class="hidden-phone">{% trans "RESET" %}</span>
                     </button>
 
-                    <a href="{% url 'user_index' %}"  class="btn dw-spinner dw-ajax btn-danger dw-text-bold" title="Cancelar operación">
+                    <a href="/home/choice_headquart/"  class="btn dw-spinner dw-ajax btn-danger dw-text-bold" title="Cancelar operación">
                         <i class="btn-icon-only icon-ban-circle"></i> <span class="hidden-phone">{% trans "CANCEL" %}</span>
                     </a>
 

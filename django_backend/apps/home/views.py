@@ -32,7 +32,7 @@ def index(request):
 	return render_to_response("home/index.html", t, context_instance = RequestContext(request))
 
 #@csrf_exempt
-#@permission_resource_required
+@permission_resource_required
 def choice_headquart(request):
 	
 	headquart_list_by_user=[]

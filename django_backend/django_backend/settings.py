@@ -95,6 +95,7 @@ MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = '/media/'
+#ADMIN_MEDIA_PREFIX="/media/admin/"
 ########## END MEDIA CONFIGURATION
 
 # Absolute path to the directory static files should be collected to.
@@ -113,6 +114,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     normpath(join(SITE_ROOT, 'static')), # para {% load staticfiles %}
+    #normpath(join(SITE_ROOT, 'media')),
 )
 
 # List of finder classes that know how to find static files in

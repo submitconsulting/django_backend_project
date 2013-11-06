@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+"""
+@copyright   Copyright (c) 2013 Submit Consulting
+@author      Angel Sullon (@asullom)
+@package     sad
+
+Descripcion: Clases para controlar la seguridad de la información en la nube
+
+"""
+from apps.helpers.message import Message
+import datetime
+import random
+import sys
+import hashlib
+import uuid
+import time
+
+from apps.sad.models import *
+from array import *
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
+from django.conf import settings
+
+class Upload:
+	"""
+		Clase que permite subir un archivo.
+	"""
+	@staticmethod
+	def save_file(filex, path=''):
+		""" 
+			Little helper to save a file
+	    """
+		filename = filex._get_name()
+		file_list = filename.rsplit('.',1)
+		file_name = "%s.%s" % (hashlib.md5("%s%s" % (uuid.uuid1(), time.time()) ).hexdigest(),file_list[1])
+		#file_ext = file_list[1]
+
+		fd = open('%s/%s' % (settings.MEDIA_ROOT, str(path) + str(file_name)), 'wb+')
+		for chunk in filex.chunks():
+			fd.write(chunk)
+		#fd.write(filex['content'])
+		fd.close()
+		return str(path) + str(file_name)
+
+

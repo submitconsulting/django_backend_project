@@ -61,7 +61,7 @@ class Person(models.Model):
 	first_name = models.CharField(max_length=50, null=True, blank=True)
 	last_name = models.CharField(max_length=50, null=True, blank=True)
 	birth_date = models.DateField(null=True, blank=True)
-	photo = models.ImageField(upload_to='personas', verbose_name='Foto',null=True, blank=True)
+	photo = models.ImageField(upload_to='personas', verbose_name='Foto',default="personas/default.png")
 	
 	last_headquart_id= models.CharField(max_length=50, null=True, blank=True)
 	last_module_id= models.CharField(max_length=50, null=True, blank=True)

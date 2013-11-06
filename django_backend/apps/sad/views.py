@@ -8,10 +8,10 @@ Descripcion: Controladores para la gestión de la cuenta según el plan asignado
 """
 #import datetime
 #import re
-#import json
+import json
 #from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-#from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse
 #from django.utils.encoding import force_text, smart_text
 #from django.utils.html import conditional_escape, format_html
 #from django.utils.translation import ugettext as _, ungettext 
@@ -36,6 +36,10 @@ from apps.space.models import Solution
 from apps.home.views import choice_headquart
 from django.db.models import Q
 #from heapq import merge
+# Imaginary function to handle an uploaded file.
+#from somewhere import handle_uploaded_file
+from apps.sad.upload import Upload
+
 
 #region user OK
 @csrf_exempt
@@ -85,6 +89,22 @@ def user_index(request, field='username', value='None', order='-id'):
 		}
 	return render_to_response("sad/user/index.html", c, context_instance = RequestContext(request))
 
+
+
+@csrf_exempt
+def user_upload(request):
+	"""
+	Página principal para trabajar con usuarios
+	"""
+	data = {}
+	try:
+		filename = Upload.save_file(request.FILES['fotografia'],'personas/')
+		data ['name'] = "%s"%filename
+	except Exception, e:
+		Message.error(request, e)
+	return HttpResponse(json.dumps(data))
+	
+
 @permission_resource_required
 @transaction.commit_on_success
 def user_add(request):
@@ -92,27 +112,34 @@ def user_add(request):
 	Agrega usuario
 	"""
 	d = User()
+
+	d.photo="personas/default.png"
+
 	if request.method == "POST":
 		try:
 			headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
 
 			d.username = request.POST.get('login')
 			d.email = request.POST.get('email')
+			
+			d.first_name = request.POST.get('first_name')
+			d.last_name = request.POST.get('last_name')
+			d.photo = request.POST.get('persona_fotografia')
+
+			print d.photo
 			if User.objects.filter(username = d.username).count()>0:
 				raise Exception( "El usuario <b>%s</b> ya existe " % d.username )
 			if User.objects.filter(email = d.email).count()>0:
 				raise Exception( "El email <b>%s</b> ya existe " % d.email )
-			d = User.objects.create_user(username=d.username, email = d.email, password = request.POST.get('password'))
-			d.save()
+			user = User.objects.create_user(username=d.username, email = d.email, password = request.POST.get('password'))
+			user.save()
 
-			d.first_name = request.POST.get('first_name')
-			d.last_name = request.POST.get('last_name')
-
+			
 			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).count()>0:
 				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
-			person = Person(user=d, first_name=d.first_name, last_name=d.last_name)
+			person = Person(user=user, first_name=d.first_name, last_name=d.last_name, photo=d.photo)
 			person.save()
-			
+			d=user
 
 			#agregando en UserProfileHeadquart
 			groups_sede = request.POST.getlist('groups_sede')
@@ -211,6 +238,8 @@ def user_edit(request, key):
 	"""
 	Actualiza user
 	"""
+	#print settings.MEDIA_ROOT
+
 	id=Security.is_valid_key(request, key, 'user_upd')
 	if not id:
 		if request.is_ajax():
@@ -226,6 +255,7 @@ def user_edit(request, key):
 			if person.id:
 				d.first_name = d.person.first_name
 				d.last_name = d.person.last_name
+				d.photo = d.person.photo
 		except:
 			pass
 		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
@@ -259,6 +289,10 @@ def user_edit(request, key):
 				d.set_password(request.POST.get('password'))
 			d.save()
 
+			#form = ImageUploadForm(request.POST, request.FILES)
+
+			#d.photo = request.FILES['imagen2']
+			#print form
 			d.first_name = request.POST.get('first_name')
 			d.last_name = request.POST.get('last_name')
 
@@ -267,6 +301,15 @@ def user_edit(request, key):
 			person = Person.objects.get(user=d)
 			person.first_name=d.first_name
 			person.last_name=d.last_name
+			#if form.is_valid():
+			#person.photo=form.cleaned_data['image']
+			#path = '/media/'
+			#f = request.FILES.get('image')
+			#destination = open(path, 'wb+')
+			#for chunk in f.chunks():
+			#	destination.write(chunk)
+			#destination.close()
+			person.photo = request.POST.get('persona_fotografia')
 			person.save()
 			
 

@@ -1,0 +1,59 @@
+[2013-11-05 09:27:06,980][ERROR] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] "Key 'imagen2' not found in <MultiValueDict: {}>" 
+[2013-11-05 09:28:01,240][ERROR] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] "Key 'imagen2' not found in <MultiValueDict: {}>" 
+[2013-11-05 10:20:52,635][ERROR] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] 'ImageUploadForm' object has no attribute 'cleaned_data' 
+[2013-11-05 10:22:05,026][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:22:55,213][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:23:18,071][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:23:45,733][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:25:09,644][ERROR] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] 'image' 
+[2013-11-05 10:27:18,877][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:30:46,901][ERROR] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] 'image' 
+[2013-11-05 10:31:22,559][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:31:46,447][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:33:00,772][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:33:38,565][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:34:09,967][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:34:53,436][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:37:45,700][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:53:19,096][ERROR] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] "Key 'image' not found in <MultiValueDict: {}>" 
+[2013-11-05 10:53:53,328][ERROR] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] [Errno 22] invalid mode ('wb+') or filename: '/media/' 
+[2013-11-05 10:55:10,395][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 10:55:27,535][INFO] [sistema] [/sad/user/edit/3.6e0b45abe781d44b4e7303da1fbb7bb0/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
+[2013-11-05 15:13:27,710][INFO] [sistema] [/sad/user/add/][asullom][127.0.0.1] Usuario aaaa2 ha sido registrado correctamente. 
+[2013-11-05 16:07:46,099][ERROR] [sistema] [/sad/user/photo_json/][asullom][127.0.0.1] <ImageFieldFile: personas/milva_3.jpg> is not JSON serializable 
+[2013-11-05 16:08:35,249][ERROR] [sistema] [/sad/user/photo_json/][asullom][127.0.0.1] <ImageFieldFile: personas/milva_4.jpg> is not JSON serializable 
+[2013-11-05 16:09:30,184][ERROR] [sistema] [/sad/user/photo_json/][asullom][127.0.0.1] <ImageFieldFile: personas/08052013_2.jpg> is not JSON serializable 
+[2013-11-05 16:12:02,378][ERROR] [sistema] [/sad/user/photo_json/][asullom][127.0.0.1] <ImageFieldFile: personas/milva_1.jpg> is not JSON serializable 
+[2013-11-05 16:12:55,565][ERROR] [sistema] [/sad/user/photo_json/][asullom][127.0.0.1] <ImageFieldFile: personas/milva_2.jpg> is not JSON serializable 
+[2013-11-05 16:15:36,253][ERROR] [sistema] [/sad/user/photo_json/][asullom][127.0.0.1] <ImageFieldFile: personas/milva.jpg> is not JSON serializable 
+[2013-11-05 16:18:02,921][ERROR] [sistema] [/sad/user/photo_json/][asullom][127.0.0.1] <ImageFieldFile: personas/milva_1.jpg> is not JSON serializable 
+[2013-11-05 16:19:03,385][ERROR] [sistema] [/sad/user/photo_json/][asullom][127.0.0.1] <ImageFieldFile: personas/milva_2.jpg> is not JSON serializable 
+[2013-11-05 16:27:02,153][INFO] [sistema] [/sad/user/edit/4.28c025a5b10768fe1aee1f59f42ee555/][asullom][127.0.0.1] Usuario aaaa2 ha sido actualizado correctamente. 
+[2013-11-05 16:28:36,434][INFO] [sistema] [/sad/user/edit/4.28c025a5b10768fe1aee1f59f42ee555/][asullom][127.0.0.1] Usuario aaaa2 ha sido actualizado correctamente. 
+[2013-11-05 16:50:33,418][INFO] [sistema] [/sad/user/edit/4.28c025a5b10768fe1aee1f59f42ee555/][asullom][127.0.0.1] Usuario aaaa2 ha sido actualizado correctamente. 
+[2013-11-05 17:03:39,180][INFO] [sistema] [/sad/user/edit/4.28c025a5b10768fe1aee1f59f42ee555/][asullom][127.0.0.1] Usuario aaaa2 ha sido actualizado correctamente. 
+[2013-11-05 19:21:30,631][ERROR] [sistema] [/sad/user/photo_json/][asullom][127.0.0.1] global name 'settings' is not defined 
+[2013-11-05 20:38:47,391][ERROR] [sistema] [/sad/user/photo_json/][asullom][127.0.0.1] [Errno 22] invalid mode ('wb+') or filename: 'G:\\dev\\apps\\django_backend_project\\django_backend\\media/personas/<md5 HASH object @ 03A2BA20>.jpg' 
+[2013-11-05 20:51:05,319][INFO] [sistema] [/sad/user/edit/4.28c025a5b10768fe1aee1f59f42ee555/][asullom][127.0.0.1] Usuario aaaa2 ha sido actualizado correctamente. 
+[2013-11-05 21:05:56,132][ERROR] [sistema] [/sad/user/add/][asullom][127.0.0.1] El email aa2@gmail.com ya existe  
+[2013-11-05 21:08:08,262][ERROR] [sistema] [/sad/user/add/][asullom][127.0.0.1] El email aa2@gmail.com ya existe  
+[2013-11-05 21:10:21,578][ERROR] [sistema] [/sad/user/add/][asullom][127.0.0.1] El email aa2@gmail.com ya existe  
+[2013-11-05 21:10:47,506][ERROR] [sistema] [/sad/user/add/][asullom][127.0.0.1] 'User' object has no attribute 'photo' 
+[2013-11-05 21:24:25,865][ERROR] [sistema] [/sad/user/add/][asullom][127.0.0.1]  
+[2013-11-05 21:28:40,457][ERROR] [sistema] [/sad/user/add/][asullom][127.0.0.1] El email aa2@gmail.com ya existe  
+[2013-11-05 21:29:09,851][INFO] [sistema] [/sad/user/add/][asullom][127.0.0.1] Usuario aaaa3 ha sido registrado correctamente. 
+[2013-11-05 21:32:09,844][ERROR] [sistema] [/sad/user/add/][asullom][127.0.0.1] El email aa2@gmail.com ya existe  
+[2013-11-05 21:32:31,292][INFO] [sistema] [/sad/user/add/][asullom][127.0.0.1] Usuario aaaa31 ha sido registrado correctamente. 
+[2013-11-05 21:34:44,371][ERROR] [sistema] [/sad/user/edit/6.99388445834c1c3ae862e70ad22feccf/][asullom][127.0.0.1] El email aa3@gmail.com ya existe  
+[2013-11-05 21:34:55,608][INFO] [sistema] [/sad/user/edit/6.99388445834c1c3ae862e70ad22feccf/][asullom][127.0.0.1] Usuario aaaa31 ha sido actualizado correctamente. 
+[2013-11-05 21:35:12,575][ERROR] [sistema] [/sad/user/edit/6.99388445834c1c3ae862e70ad22feccf/][asullom][127.0.0.1] El email aa3@gmail.com ya existe  
+[2013-11-05 21:36:32,118][INFO] [sistema] [/sad/user/edit/6.99388445834c1c3ae862e70ad22feccf/][asullom][127.0.0.1] Usuario aaaa31 ha sido actualizado correctamente. 
+[2013-11-05 21:37:11,996][INFO] [sistema] [/sad/user/edit/2.5545d4cbf2159794a0cf8635b892f771/][asullom][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-05 21:37:28,427][INFO] [sistema] [/sad/user/edit/1.257a495fc423758fc79ff2fc474a3dc9/][asullom][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-05 21:39:07,400][INFO] [sistema] [/sad/user/add/][asullom][127.0.0.1] Usuario default ha sido registrado correctamente. 
+[2013-11-05 21:41:09,375][INFO] [sistema] [/sad/user/delete/7.bafb062628a4a8556bad96b69da5afb5/][asullom][127.0.0.1] Usuario default ha sido eliminado correctamente. 
+[2013-11-05 21:41:13,431][INFO] [sistema] [/sad/user/delete/6.ae883c30151f3a1d81143f975743d07b/][asullom][127.0.0.1] Usuario aaaa31 ha sido eliminado correctamente. 
+[2013-11-05 21:41:16,229][INFO] [sistema] [/sad/user/delete/5.9b4d244821f2fde8ab7fdda47deb312f/][asullom][127.0.0.1] Usuario aaaa3 ha sido eliminado correctamente. 
+[2013-11-05 21:41:19,733][INFO] [sistema] [/sad/user/delete/4.64e69c82a5f99e48e092327738b5e8f1/][asullom][127.0.0.1] Usuario aaaa2 ha sido eliminado correctamente. 
+[2013-11-05 21:41:22,608][INFO] [sistema] [/sad/user/delete/3.71b5356315a8bfd6ec26d7daebff08bd/][asullom][127.0.0.1] Usuario aaaa ha sido eliminado correctamente. 
+[2013-11-05 21:42:50,576][INFO] [sistema] [/sad/user/edit/2.5545d4cbf2159794a0cf8635b892f771/][asullom][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 

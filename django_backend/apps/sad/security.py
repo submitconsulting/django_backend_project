@@ -104,17 +104,17 @@ class Menus:
 
 	#Método para cargar en variables los menús
 	@staticmethod
-	def load(menu_module):
+	def load(menu_module): #TODO filtar por usuarios
 		Menus.menu_module=menu_module
 		print "\n\n\n"
 		menu = Menu()
 		#if not Menus.menu_list:
 		Menus.menu_list = Menu.objects.filter(parent_id=None, module=menu_module).order_by("pos")
-		print Menus.menu_list
+		#print Menus.menu_list
 		if Menus.menu_list: #not Menus.menu_item_list and 
 			for menu in Menus.menu_list:
 				Menus.menu_item_list[menu.title] = Menu.objects.filter(parent_id=menu.id).exclude(parent_id=None).order_by("pos") #.lower().replace(" ","_")
-		print Menus.menu_item_list
+		#print Menus.menu_item_list
 
 
 		return ""

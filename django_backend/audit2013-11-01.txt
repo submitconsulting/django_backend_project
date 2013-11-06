@@ -46,3 +46,10 @@
 [2013-11-01 11:47:27,757][INFO] [sistema] [/maestros/producto/add/][admin][127.0.0.1] Producto 6757 ha sido registrado correctamente. 
 [2013-11-01 11:48:53,721][ERROR] [sistema] [/maestros/producto/index/codigo/otro/][admin][127.0.0.1] Cannot resolve keyword u'is_active' into field. Choices are: categoria, codigo, descripcion, esta_activo, headquart, id, modified_in, precio_venta, registered_at 
 [2013-11-01 11:49:03,299][ERROR] [sistema] [/maestros/producto/index/descripcion/None/][admin][127.0.0.1] Cannot resolve keyword u'is_active' into field. Choices are: categoria, codigo, descripcion, esta_activo, headquart, id, modified_in, precio_venta, registered_at 
+[2013-11-01 11:53:35,020][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-01 11:54:22,072][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-01 11:55:51,845][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-01 11:57:17,167][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-01 11:57:24,506][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-01 11:58:39,744][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-01 12:01:24,982][ERROR] [sistema] [/account/add_enterprise/][AnonymousUser][127.0.0.1] 'EmptyManager' object has no attribute 'add' 

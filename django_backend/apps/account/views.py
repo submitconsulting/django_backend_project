@@ -63,9 +63,10 @@ def add_enterprise(request):
 			d.solution_id = request.POST.get('solution_id')
 			
 			solution=Solution.objects.get(id=d.solution_id)
+			d.logo = request.POST.get('empresa_logo')
 			user = request.user
 			
-			association = Association(name=d.association_name, type_a=d.association_type_a, solution=solution)
+			association = Association(name=d.association_name, type_a=d.association_type_a, solution=solution, logo=d.logo)
 			#if Association.objects.filter(name=normalize('NFKD', u"%s" % d.association_name).encode('ascii', 'ignore')).count()>0:
 			if normalize('NFKD', u"%s" % d.association_name).encode('ascii', 'ignore').lower() in list(
 				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Association.objects.values('name')
@@ -73,7 +74,7 @@ def add_enterprise(request):
 				raise Exception( "La asociación <b>%s</b> ya existe " % (d.association_name) )
 			association.save()
 
-			enterprise = Enterprise(name=d.enterprise_name, tax_id=d.enterprise_tax_id, type_e=d.association_type_a, solution=solution )
+			enterprise = Enterprise(name=d.enterprise_name, tax_id=d.enterprise_tax_id, type_e=d.association_type_a, solution=solution, logo=d.logo)
 			#if Enterprise.objects.filter(name=normalize('NFKD', u"%s" % d.enterprise_name).encode('ascii', 'ignore')).count()>0:
 			if normalize('NFKD', u"%s" % d.enterprise_name).encode('ascii', 'ignore').lower() in list(
 				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Enterprise.objects.values('name')
@@ -182,6 +183,7 @@ def signup_sys(request):
 			d.association_type_a = request.POST.get('association_type_a')
 			d.solution_id = request.POST.get('solution_id')
 			d.email = request.POST.get('email')
+			d.photo = request.POST.get('persona_fotografia')
 			#password = request.POST.get('password')
 			#acept_term = request.POST.get('acept_term')
 			solution=Solution.objects.get(id=d.solution_id)
@@ -198,7 +200,7 @@ def signup_sys(request):
 			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).count()>0:
 				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
 			
-			person = Person(user=user, first_name=d.first_name, last_name=d.last_name)
+			person = Person(user=user, first_name=d.first_name, last_name=d.last_name, photo=d.photo)
 			person.save()
 			association = Association(name=d.association_name, type_a=d.association_type_a, solution=solution)
 			if normalize('NFKD', u"%s" % d.association_name).encode('ascii', 'ignore').lower() in list(
@@ -272,7 +274,8 @@ def signup_sys(request):
 			if request.is_ajax():
 				#print "AJAX"
 				request.path="/account/login/" #/app/controller_path/action/$params
-				return login_sys(request)
+				return redirect('/account/login/')
+				#return login_sys(request)
 			else:
 				#print "NO AJAX"
 				return redirect('/account/login/')
@@ -344,6 +347,16 @@ def login_sys(request):
 		}
 
 	if request.user.is_authenticated():
+		try:#intentar cargar la última session
+			person = Person.objects.get(user_id=request.user.id)
+			if person.last_headquart_id and person.last_module_id:
+				if request.is_ajax():
+					request.path="/account/load_access/%s/%s/" % (person.last_headquart_id, person.last_module_id) #/app/controller_path/action/$params
+					return load_access(request, person.last_headquart_id, person.last_module_id)
+				else:						
+					return redirect('/account/load_access/%s/%s/' % (person.last_headquart_id, person.last_module_id))
+		except:
+			pass
 		return HttpResponseRedirect('/home/choice_headquart/')
 	if request.method == 'POST':
 		

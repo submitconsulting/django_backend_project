@@ -1,0 +1,13 @@
+[2013-11-06 09:18:20,519][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 09:18:22,426][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 09:24:17,680][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 09:24:19,144][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 09:24:22,951][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 09:24:25,204][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 09:25:42,989][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 09:26:22,608][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 09:27:41,460][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 09:28:00,724][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 10:29:27,835][WARNING] [sistema] [/maestros/producto/index/][abel][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-06 11:38:40,664][INFO] [sistema] [/sad/user/profile/][abel][127.0.0.1] Usuario abel ha sido actualizado correctamente. 
+[2013-11-06 11:41:40,644][WARNING] [sistema] [/maestros/producto/index/][abel][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 

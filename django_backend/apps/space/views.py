@@ -4,7 +4,7 @@
 import json
 #from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-#from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse
 #from django.utils.encoding import force_text, smart_text
 #from django.utils.html import conditional_escape, format_html
 #from django.utils.translation import ugettext as _, ungettext 
@@ -28,7 +28,9 @@ from apps.home.views import choice_headquart
 from django.contrib.contenttypes.models import ContentType
 from apps.space.models import Solution, Association, Enterprise, Headquart
 from apps.params.models import Locality
-from itertools import chain
+#from itertools import chain
+from apps.sad.upload import Upload
+
 #region headquart OK
 @permission_resource_required
 def headquart_index(request):
@@ -446,6 +448,7 @@ def enterprise_edit_current(request):
 			d.tax_id = request.POST.get('tax_id')
 			d.type_e = request.POST.get('type_e')
 			d.solution_id = request.POST.get('solution_id')
+			d.logo = request.POST.get('empresa_logo')
 			#solution=Solution.objects.get(id=d.solution_id) #no es necesario
 
 			if normalize('NFKD', u"%s" % d.name).encode('ascii', 'ignore').lower() in list(
@@ -476,6 +479,19 @@ def enterprise_edit_current(request):
 		'solution_list':solution_list,
 		}
 	return render_to_response("space/enterprise/edit_current.html", c, context_instance = RequestContext(request))
+
+@csrf_exempt
+def enterprise_upload(request):
+	"""
+	Sube logo
+	"""
+	data = {}
+	try:
+		filename = Upload.save_file(request.FILES['logo'],'empresas/')
+		data ['name'] = "%s"%filename
+	except Exception, e:
+		Message.error(request, e)
+	return HttpResponse(json.dumps(data))
 #endregion enterprise
 
 #region association OK
@@ -502,7 +518,7 @@ def association_edit_current(request):
 			d.type_a = request.POST.get('type_a')
 			d.solution_id = request.POST.get('solution_id')
 			#solution=Solution.objects.get(id=d.solution_id) #no es necesario
-
+			d.logo = request.POST.get('asociacion_logo')
 			if normalize('NFKD', u"%s" % d.name).encode('ascii', 'ignore').lower() in list(
 				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Association.objects.values('name').exclude(id = d.id)
 				):
@@ -528,6 +544,19 @@ def association_edit_current(request):
 		'solution_list':solution_list,
 		}
 	return render_to_response("space/association/edit_current.html", c, context_instance = RequestContext(request))
+
+@csrf_exempt
+def association_upload(request):
+	"""
+	Sube logo
+	"""
+	data = {}
+	try:
+		filename = Upload.save_file(request.FILES['logo'],'asociaciones/')
+		data ['name'] = "%s"%filename
+	except Exception, e:
+		Message.error(request, e)
+	return HttpResponse(json.dumps(data))
 #endregion association
 
 #region solution OK

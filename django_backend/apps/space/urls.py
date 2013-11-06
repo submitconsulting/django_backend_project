@@ -14,10 +14,12 @@ urlpatterns = patterns('apps.space.views',
 	url(r'^enterprise/edit/(?P<key>.*)/$', 'enterprise_edit', name="enterprise_edit"),
 	url(r'^enterprise/delete/(?P<key>.*)/$', 'enterprise_delete', name="enterprise_delete"),
 	url(r'^enterprise/edit_current/$', 'enterprise_edit_current', name="enterprise_edit_current"),
-
+	url(r'^enterprise/upload/$', 'enterprise_upload', name="enterprise_upload"),
+	
 	#association controllers
 	url(r'^association/edit_current/$', 'association_edit_current', name="association_edit_current"),
-
+	url(r'^association/upload/$', 'association_upload', name="association_upload"),
+	
 	#solution controllers
 	url(r'^solution/index/$', 'solution_index', name="solution_index"),
 	url(r'^solution/add/$', 'solution_add', name="solution_add"),

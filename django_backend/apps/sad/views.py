@@ -94,7 +94,7 @@ def user_index(request, field='username', value='None', order='-id'):
 @csrf_exempt
 def user_upload(request):
 	"""
-	Página principal para trabajar con usuarios
+	Sube fotografia
 	"""
 	data = {}
 	try:
@@ -290,9 +290,7 @@ def user_edit(request, key):
 			d.save()
 
 			#form = ImageUploadForm(request.POST, request.FILES)
-
 			#d.photo = request.FILES['imagen2']
-			#print form
 			d.first_name = request.POST.get('first_name')
 			d.last_name = request.POST.get('last_name')
 
@@ -301,14 +299,8 @@ def user_edit(request, key):
 			person = Person.objects.get(user=d)
 			person.first_name=d.first_name
 			person.last_name=d.last_name
-			#if form.is_valid():
-			#person.photo=form.cleaned_data['image']
-			#path = '/media/'
+			
 			#f = request.FILES.get('image')
-			#destination = open(path, 'wb+')
-			#for chunk in f.chunks():
-			#	destination.write(chunk)
-			#destination.close()
 			person.photo = request.POST.get('persona_fotografia')
 			person.save()
 			
@@ -446,6 +438,7 @@ def user_profile(request):
 			if person.id:
 				d.first_name = d.person.first_name
 				d.last_name = d.person.last_name
+				d.photo = d.person.photo
 		except:
 			pass
 		
@@ -470,12 +463,14 @@ def user_profile(request):
 
 			d.first_name = request.POST.get('first_name')
 			d.last_name = request.POST.get('last_name')
+			d.photo = request.POST.get('persona_fotografia')
 
 			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).exclude(id = d.person.id).count()>0:
 				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
 			person = Person.objects.get(user=d)
 			person.first_name=d.first_name
 			person.last_name=d.last_name
+			person.photo = d.photo
 			person.save()
 			
 

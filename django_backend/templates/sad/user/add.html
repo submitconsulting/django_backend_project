@@ -232,13 +232,6 @@
     </script>
 
 
-    <script src="{% static 'js/jquery/ui/jquery.ui.widget.js' %}"></script>
-    <script src="{% static 'js/jquery/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
-    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload.js' %}"></script>
-    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload-fp.js' %}"></script>
-    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload-ui.js' %}"></script>
-    <!--[if gte IE 8]><script src="{% static 'js/jquery/jquery-file-upload/cors/jquery.xdr-transport.js' %}"></script> <![endif]-->
-
     <script type="text/javascript">
     $('#fotografia').fileupload({
         url: '/sad/user/upload/',
@@ -284,5 +277,15 @@
             });
         }
     });
-</script>
+    </script>
 {% endblock content %}
+{% block extra_head_js %}
+    <!--upload cuando carga sin ajax se debe cargar al inicio, no es necesaria la condicion pk esto no se carga cuando se usa ajax-->
+    <script src="{% static 'js/jquery/ui/jquery.ui.widget.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload-fp.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload-ui.js' %}"></script>
+    <!--[if gte IE 8]><script src="{% static 'js/jquery/jquery-file-upload/cors/jquery.xdr-transport.js' %}"></script> <![endif]-->
+    <!--end upload -->
+{% endblock extra_head_js %}

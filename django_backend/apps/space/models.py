@@ -51,7 +51,7 @@ class Association(models.Model):
         (OTHERS, 'Otros')
     )
 	name = models.CharField(max_length=50)
-	logo = models.ImageField(upload_to='empresas', verbose_name='Logo', null=True, blank=True)
+	logo = models.ImageField(upload_to='asociaciones', verbose_name='Logo', default="asociaciones/default.png")
 	type_a = models.CharField(max_length=10, choices=TYPES, default=PRIVATE)
 	is_active  = models.BooleanField(default=True)
 
@@ -89,7 +89,7 @@ class Enterprise(models.Model):
         (OTHERS, 'Otros')
     )
 	name = models.CharField(max_length=50)
-	logo = models.ImageField(upload_to='empresas', verbose_name='Logo',null=True, blank=True)
+	logo = models.ImageField(upload_to='empresas', verbose_name='Logo', default="empresas/default.png")
 	tax_id = models.CharField(max_length=50)
 	type_e = models.CharField(max_length=10, choices=TYPES, default=PRIVATE)
 	is_active  = models.BooleanField(default=True)

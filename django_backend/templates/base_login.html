@@ -21,8 +21,10 @@
     <link rel="stylesheet" href="{% static 'css/backend/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/backend/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/backend/themes/default/default.css' %}">
+    <link rel="stylesheet" href="{% static 'css/file-upload.css' %}">
 
     <script src="{% static 'js/tb/jquery.js' %}"></script>
+    {% block extra_head_js %}{% endblock extra_head_js %}
   </head>
 
   <body>
@@ -99,6 +101,17 @@
     <![endif]-->
     <script src="{% static 'js/utils/var.js' %}"></script>
     <script src="{% static 'js/utils/validador.js' %}"></script>
+
+    {% block extra_js %}
+    <!--upload cuando carga con ajax de debe cargar al final-->
+    <script src="{% static 'js/jquery/ui/jquery.ui.widget.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload-fp.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload-ui.js' %}"></script>
+    <!--[if gte IE 8]><script src="{% static 'js/jquery/jquery-file-upload/cors/jquery.xdr-transport.js' %}"></script> <![endif]-->
+    <!--end upload -->
+    {% endblock extra_js %}
 
   </body>
 </html>

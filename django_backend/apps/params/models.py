@@ -3,13 +3,14 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-#Se crea el modelo tipos de localidades
 class LocalityType(models.Model):
+	"""
+	Tabla para tipos de localidades. P.e: Departamento, Provincia, Distrito, etc.
+	"""
 	name = models.CharField(max_length=50)
 
 	class Meta:
 		permissions = (
-			
 			("localitytype", "Puede hacer TODAS las oper. de tipos d localidades"),
 			#("localitytype_index", "Puede ver el index de tipos de localidades"),
 			#("localitytype_add", "Puede agregar tipo de localidad"),
@@ -21,11 +22,9 @@ class LocalityType(models.Model):
 	def __unicode__(self):
 		return self.name
 
-#Se crea el modelo para las localidades
 class Locality(models.Model):
 	"""
-	comentario de varias
-	líneas
+	Tabla que contiene localidades o ciudades
 	"""
 	name = models.CharField(max_length=50)
 	location = models.TextField(blank=True)
@@ -45,8 +44,6 @@ class Locality(models.Model):
 			("locality_delete", "Puede eliminar localidades"),
 			("locality_report", "Puede reportar localidades"),
 			("locality_state", "Puede inactivar y reactivar localidades"),
-			#("locality_change_status", "xPuede cambiar el estado de las localidades"),
-			#("locality_close", "xPuede inactivar el estado de las localidades"),
 		)
 
 	def __unicode__(self):
@@ -57,11 +54,13 @@ class Locality(models.Model):
 		return a
 
 class Person(models.Model):
-
+	"""
+	Tabla que amplía la información de los usuarios del sistema
+	"""
 	first_name = models.CharField(max_length=50, null=True, blank=True)
 	last_name = models.CharField(max_length=50, null=True, blank=True)
 	birth_date = models.DateField(null=True, blank=True)
-	photo = models.ImageField(upload_to='personas', verbose_name='Foto',default="personas/default.png")
+	photo = models.ImageField(upload_to="personas", verbose_name="Foto",default="personas/default.png")
 	
 	last_headquart_id= models.CharField(max_length=50, null=True, blank=True)
 	last_module_id= models.CharField(max_length=50, null=True, blank=True)
@@ -90,8 +89,11 @@ class Person(models.Model):
 			Person.objects.create(user=instance)
 		post_save.connect(create_user_profile, sender=User)
 
-#mis params tables
+#mis params tables SHOMWARE
 class Categoria(models.Model):
+	"""
+	Tabla para las categorías de los productos del proyecto SHOMWARE
+	"""
 	nombre = models.CharField(max_length=50)
 
 	class Meta:
@@ -119,9 +121,9 @@ The following content types are stale and need to be deleted:
 
 Any objects related to these content types by a foreign key will also
 be deleted. Are you sure you want to delete these content types?
-If you're unsure, answer 'no'.
+If you"re unsure, answer "no".
 
-    Type 'yes' to continue, or 'no' to cancel: no
+    Type "yes" to continue, or "no" to cancel: no
 Installing custom SQL ...
 Installing indexes ...
 Installed 0 object(s) from 0 fixture(s)

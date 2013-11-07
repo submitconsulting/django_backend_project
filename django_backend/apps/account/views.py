@@ -29,25 +29,25 @@ from unicodedata import normalize
 #from django.template.defaultfilters import slugify
 
 @login_required
-def profile(request): #TODO sin uso, borrar o terminar
+def profile(request): #TODO sin uso, borrar este método
     if not request.user.is_authenticated():
-        return HrttpResponseRedirect('/login/')
+        return HrttpResponseRedirect("/login/")
     account = request.user.get_profile
-    context = {'account': account}
-    return render_to_response('home/dashboard.html', context, context_instance=RequestContext(request))
+    context = {"account": account}
+    return render_to_response("home/dashboard.html", context, context_instance=RequestContext(request))
 
 
 @transaction.commit_on_success
 def add_enterprise(request):
 
-	#data = "cáñété'´píñána+bâ'x"
+	#data = "cáñété"´píñána+bâ"x"
 	#https://github.com/django/django/blob/master/django/contrib/auth/management/__init__.py
-	#print unicodedata.normalize('NFKD', u"%s"%data).encode('ascii', 'ignore')
-	#names = list(unicodedata.normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Association.objects.values('name','type_a').filter(name__contains="AS"))
+	#print unicodedata.normalize("NFKD", u"%s"%data).encode("ascii", "ignore")
+	#names = list(unicodedata.normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Association.objects.values("name","type_a").filter(name__contains="AS"))
 	#print names
 	#print slugify(u"%s"%data)
-	#print data.encode('ascii', 'ignore')
-	#print normalize('NFKD', u"%s"%data).encode('ascii', 'ignore')
+	#print data.encode("ascii", "ignore")
+	#print normalize("NFKD", u"%s"%data).encode("ascii", "ignore")
 	d = Enterprise()
 
 	#solution_list = None
@@ -56,28 +56,28 @@ def add_enterprise(request):
 		#transaction.set_autocommit(False)
 		try:
 			
-			d.enterprise_name = request.POST.get('enterprise_name')
-			d.enterprise_tax_id = request.POST.get('enterprise_tax_id')
-			d.association_name = request.POST.get('association_name')
-			d.association_type_a = request.POST.get('association_type_a')
-			d.solution_id = request.POST.get('solution_id')
+			d.enterprise_name = request.POST.get("enterprise_name")
+			d.enterprise_tax_id = request.POST.get("enterprise_tax_id")
+			d.association_name = request.POST.get("association_name")
+			d.association_type_a = request.POST.get("association_type_a")
+			d.solution_id = request.POST.get("solution_id")
 			
 			solution=Solution.objects.get(id=d.solution_id)
-			d.logo = request.POST.get('empresa_logo')
+			d.logo = request.POST.get("empresa_logo")
 			user = request.user
 			
 			association = Association(name=d.association_name, type_a=d.association_type_a, solution=solution, logo=d.logo)
-			#if Association.objects.filter(name=normalize('NFKD', u"%s" % d.association_name).encode('ascii', 'ignore')).count()>0:
-			if normalize('NFKD', u"%s" % d.association_name).encode('ascii', 'ignore').lower() in list(
-				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Association.objects.values('name')
+			#if Association.objects.filter(name=normalize("NFKD", u"%s" % d.association_name).encode("ascii", "ignore")).count()>0:
+			if normalize("NFKD", u"%s" % d.association_name).encode("ascii", "ignore").lower() in list(
+				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Association.objects.values("name")
 				):
 				raise Exception( "La asociación <b>%s</b> ya existe " % (d.association_name) )
 			association.save()
 
 			enterprise = Enterprise(name=d.enterprise_name, tax_id=d.enterprise_tax_id, type_e=d.association_type_a, solution=solution, logo=d.logo)
-			#if Enterprise.objects.filter(name=normalize('NFKD', u"%s" % d.enterprise_name).encode('ascii', 'ignore')).count()>0:
-			if normalize('NFKD', u"%s" % d.enterprise_name).encode('ascii', 'ignore').lower() in list(
-				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Enterprise.objects.values('name')
+			#if Enterprise.objects.filter(name=normalize("NFKD", u"%s" % d.enterprise_name).encode("ascii", "ignore")).count()>0:
+			if normalize("NFKD", u"%s" % d.enterprise_name).encode("ascii", "ignore").lower() in list(
+				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Enterprise.objects.values("name")
 				):
 				raise Exception( "La empresa <b>%s</b> ya existe " % (d.enterprise_name) )
 			if Enterprise.objects.filter(tax_id=d.enterprise_tax_id).count()>0:
@@ -135,12 +135,12 @@ def add_enterprise(request):
 							user_profile_headquart.group=group
 							user_profile_headquart.save()
 			#transaction.commit()
-			Message.info(request,("Empresa <b>%(name)s</b> ha sido registrado correctamente!.") % {'name':d.enterprise_name})
+			Message.info(request,("Empresa <b>%(name)s</b> ha sido registrado correctamente!.") % {"name":d.enterprise_name})
 			if request.is_ajax():
 				request.path="/home/choice_headquart/" #/app/controller_path/action/$params
 				return choice_headquart(request)
 			else:
-				return redirect('/home/choice_headquart/')
+				return redirect("/home/choice_headquart/")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
@@ -155,11 +155,11 @@ def add_enterprise(request):
 	except Exception, e:
 		Message.error(request, e)
 	t = {
-		'page_module':("Registro de empresa"),
-		'page_title':("Agregar empresa de la cuenta <b>%(login)s</b>.") % {'login':request.user},
-		'd':d,
-		'solution_list':solution_list,
-		'type_a_list':type_a_list,
+		"page_module":("Registro de empresa"),
+		"page_title":("Agregar empresa de la cuenta <b>%(login)s</b>.") % {"login":request.user},
+		"d":d,
+		"solution_list":solution_list,
+		"type_a_list":type_a_list,
 		
 		}
 	return render_to_response("account/add_enterprise.html", t, context_instance = RequestContext(request))
@@ -168,24 +168,24 @@ def add_enterprise(request):
 @transaction.commit_on_success
 def signup_sys(request):
 	if request.user.is_authenticated():
-		return HttpResponseRedirect('/home/choice_headquart/')
+		return HttpResponseRedirect("/home/choice_headquart/")
 	d = Person()
 	d.first_name=""
 	d.last_name=""
 	if request.method == "POST":
 		try:
-			d.first_name = request.POST.get('first_name')
-			d.last_name = request.POST.get('last_name')
-			d.username = request.POST.get('login')
-			d.enterprise_name = request.POST.get('enterprise_name')
-			d.enterprise_tax_id = request.POST.get('enterprise_tax_id')
-			d.association_name = request.POST.get('association_name')
-			d.association_type_a = request.POST.get('association_type_a')
-			d.solution_id = request.POST.get('solution_id')
-			d.email = request.POST.get('email')
-			d.photo = request.POST.get('persona_fotografia')
-			#password = request.POST.get('password')
-			#acept_term = request.POST.get('acept_term')
+			d.first_name = request.POST.get("first_name")
+			d.last_name = request.POST.get("last_name")
+			d.username = request.POST.get("login")
+			d.enterprise_name = request.POST.get("enterprise_name")
+			d.enterprise_tax_id = request.POST.get("enterprise_tax_id")
+			d.association_name = request.POST.get("association_name")
+			d.association_type_a = request.POST.get("association_type_a")
+			d.solution_id = request.POST.get("solution_id")
+			d.email = request.POST.get("email")
+			d.photo = request.POST.get("persona_fotografia")
+			#password = request.POST.get("password")
+			#acept_term = request.POST.get("acept_term")
 			solution=Solution.objects.get(id=d.solution_id)
 			d.solution=solution
 			if User.objects.filter(username = d.username).count()>0:
@@ -194,7 +194,7 @@ def signup_sys(request):
 			if User.objects.filter(email = d.email).count()>0:
 				raise Exception( "El email <b>%s</b> ya existe " % d.email )
 
-			user = User.objects.create_user(username=d.username, email = d.email, password = request.POST.get('password'))
+			user = User.objects.create_user(username=d.username, email = d.email, password = request.POST.get("password"))
 			user.save()
 			
 			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).count()>0:
@@ -203,15 +203,15 @@ def signup_sys(request):
 			person = Person(user=user, first_name=d.first_name, last_name=d.last_name, photo=d.photo)
 			person.save()
 			association = Association(name=d.association_name, type_a=d.association_type_a, solution=solution)
-			if normalize('NFKD', u"%s" % d.association_name).encode('ascii', 'ignore').lower() in list(
-				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Association.objects.values('name')
+			if normalize("NFKD", u"%s" % d.association_name).encode("ascii", "ignore").lower() in list(
+				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Association.objects.values("name")
 				):
 				raise Exception( "La asociación <b>%s</b> ya existe " % (d.association_name) )
 			association.save()
 
 			enterprise = Enterprise(name=d.enterprise_name, tax_id=d.enterprise_tax_id, type_e=d.association_type_a, solution=solution )
-			if normalize('NFKD', u"%s" % d.enterprise_name).encode('ascii', 'ignore').lower() in list(
-				normalize('NFKD', u"%s" % col['name']).encode('ascii', 'ignore').lower() for col in Enterprise.objects.values('name')
+			if normalize("NFKD", u"%s" % d.enterprise_name).encode("ascii", "ignore").lower() in list(
+				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Enterprise.objects.values("name")
 				):
 				raise Exception( "La empresa <b>%s</b> ya existe " % (d.enterprise_name) )
 			if Enterprise.objects.filter(tax_id=d.enterprise_tax_id).count()>0:
@@ -270,15 +270,15 @@ def signup_sys(request):
 							user_profile_headquart.group=group
 							user_profile_headquart.save()
 			#transaction.commit()
-			Message.info(request,("Cuenta <b>%(name)s</b> ha sido registrado correctamente!.") % {'name':d.username})
+			Message.info(request,("Cuenta <b>%(name)s</b> ha sido registrado correctamente!.") % {"name":d.username})
 			if request.is_ajax():
 				#print "AJAX"
 				request.path="/account/login/" #/app/controller_path/action/$params
-				return redirect('/account/login/')
+				return redirect("/account/login/")
 				#return login_sys(request)
 			else:
 				#print "NO AJAX"
-				return redirect('/account/login/')
+				return redirect("/account/login/")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
@@ -293,11 +293,11 @@ def signup_sys(request):
 	except Exception, e:
 		Message.error(request, e)
 	t = {
-		'page_module':("Crear cuenta"),
-		'page_title':("Registro de la cuenta."),
-		'd':d,
-		'solution_list':solution_list,
-		'type_a_list':type_a_list,
+		"page_module":("Crear cuenta"),
+		"page_title":("Registro de la cuenta."),
+		"d":d,
+		"solution_list":solution_list,
+		"type_a_list":type_a_list,
 		
 		}
 	return render_to_response("account/signup.html", t, context_instance = RequestContext(request))
@@ -305,7 +305,7 @@ def signup_sys(request):
 @login_required
 def load_access(request, headquart_id, module_id):
 	if request.is_ajax():
-		return HttpResponse('ESTA OPERACION NO DEBE SER CARGADO CON AJAX, Presione F5')
+		return HttpResponse("ESTA OPERACION NO DEBE SER CARGADO CON AJAX, Presione F5")
 	else:
 		try:
 			headquart = Headquart.objects.get(id=headquart_id)
@@ -327,23 +327,23 @@ def load_access(request, headquart_id, module_id):
 
 			if headquart:
 				module = Module.objects.get(id=module_id)
-				#Message.info(request, ("La sede %(name)s ha sido cargado correctamente.") % {'name':headquart_id} )
+				#Message.info(request, ("La sede %(name)s ha sido cargado correctamente.") % {"name":headquart_id} )
 				if module.DBM == module.module:
-					return HttpResponseRedirect('/mod_backend/dashboard/')
+					return HttpResponseRedirect("/mod_backend/dashboard/")
 				else:
-					return HttpResponseRedirect('/mod_ventas/dashboard/')
+					return HttpResponseRedirect("/mod_ventas/dashboard/")
 			else:
-				return HttpResponse('Sede no se encuentra')
+				return HttpResponse("Sede no se encuentra")
 		except Exception, e:
 			Message.error(request, e)
-		return HttpResponse('Ocurrió un grave error, comunique al administrador del sistema')
+		return HttpResponse("Ocurrió un grave error, comunique al administrador del sistema")
 
 def login_sys(request):
 	d = User()
 	t = {
-		'page_module':("Login"),
-		'page_title':("Login."),
-		'd':d,
+		"page_module":("Login"),
+		"page_title":("Login."),
+		"d":d,
 		}
 
 	if request.user.is_authenticated():
@@ -354,20 +354,20 @@ def login_sys(request):
 					request.path="/account/load_access/%s/%s/" % (person.last_headquart_id, person.last_module_id) #/app/controller_path/action/$params
 					return load_access(request, person.last_headquart_id, person.last_module_id)
 				else:						
-					return redirect('/account/load_access/%s/%s/' % (person.last_headquart_id, person.last_module_id))
+					return redirect("/account/load_access/%s/%s/" % (person.last_headquart_id, person.last_module_id))
 		except:
 			pass
-		return HttpResponseRedirect('/home/choice_headquart/')
-	if request.method == 'POST':
+		return HttpResponseRedirect("/home/choice_headquart/")
+	if request.method == "POST":
 		
-		d.username = request.POST.get('login')
-		password = request.POST.get('password')
+		d.username = request.POST.get("login")
+		password = request.POST.get("password")
 		account = authenticate(username=d.username, password=password)
 		if account is not None and account.is_active is True:
 			login(request, account)
 			#cargando sesión para el usuario. no necesita
-			#request.session['id'] = "Hola"
-			Message.info(request, ("Bienvenido <b>%(name)s</b>.") % {'name':account.username} )
+			#request.session["id"] = "Hola"
+			Message.info(request, ("Bienvenido <b>%(name)s</b>.") % {"name":account.username} )
 			try:#intentar cargar la última session
 				person = Person.objects.get(user_id=request.user.id)
 				if person.last_headquart_id and person.last_module_id:
@@ -375,18 +375,18 @@ def login_sys(request):
 						request.path="/account/load_access/%s/%s/" % (person.last_headquart_id, person.last_module_id) #/app/controller_path/action/$params
 						return load_access(request, person.last_headquart_id, person.last_module_id)
 					else:						
-						return redirect('/account/load_access/%s/%s/' % (person.last_headquart_id, person.last_module_id))
+						return redirect("/account/load_access/%s/%s/" % (person.last_headquart_id, person.last_module_id))
 			except:
 				pass
-			return HttpResponseRedirect('/home/choice_headquart/')
+			return HttpResponseRedirect("/home/choice_headquart/")
 		else:
-			Message.error(request,("Contaseña para <b>%(name)s</b> no válido, o el usuario no existe o no está activo. ") % {'name':d.username} )
-			return render_to_response('account/login.html', t, context_instance=RequestContext(request))
+			Message.error(request,("Contaseña para <b>%(name)s</b> no válido, o el usuario no existe o no está activo. ") % {"name":d.username} )
+			return render_to_response("account/login.html", t, context_instance=RequestContext(request))
 	else:
-		''' user is not submitting the form, show the login form '''
+		""" user is not submitting the form, show the login form """
 
 		return render_to_response("account/login.html", t, context_instance = RequestContext(request))
 
 def logout_sys(request):
 	logout(request)
-	return HttpResponseRedirect('/')
+	return HttpResponseRedirect("/")

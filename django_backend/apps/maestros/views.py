@@ -32,16 +32,16 @@ from apps.space.models import Headquart
 def mod_ventas_dashboard(request):
 	
 	c = {
-		'page_module':("mod_ventas_dashboard"),
-		'page_title':("mod_ventas_dashboard page."),
+		"page_module":("mod_ventas_dashboard"),
+		"page_title":("mod_ventas_dashboard page."),
 		}
 	return render_to_response("mod_ventas/dashboard.html", c, context_instance = RequestContext(request))
 
 #region user OK
 @csrf_exempt
-@login_required(login_url='/account/login/')
+@login_required(login_url="/account/login/")
 @permission_resource_required
-def producto_index(request, field='descripcion', value='None', order='-id'):
+def producto_index(request, field="descripcion", value="None", order="-id"):
 	"""
 	Página principal para trabajar con productos
 	"""
@@ -53,20 +53,20 @@ def producto_index(request, field='descripcion', value='None', order='-id'):
 			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
 			return choice_headquart(request)
 		else:
-			return redirect('/home/choice_headquart/')
+			return redirect("/home/choice_headquart/")
 
-	field = (field if not request.REQUEST.get('field') else request.REQUEST.get('field')).strip()
-	value = (value if not request.REQUEST.get('value') else request.REQUEST.get('value')).strip()
-	order = (order if not request.REQUEST.get('order') else request.REQUEST.get('order')).strip()
+	field = (field if not request.REQUEST.get("field") else request.REQUEST.get("field")).strip()
+	value = (value if not request.REQUEST.get("value") else request.REQUEST.get("value")).strip()
+	order = (order if not request.REQUEST.get("order") else request.REQUEST.get("order")).strip()
 
 	menu_page=None
 	try:
-		value_f = '' if value == 'None' else value
-		column_contains = u"%s__%s" % (field,'contains')
+		value_f = "" if value == "None" else value
+		column_contains = u"%s__%s" % (field,"contains")
 		producto_list = Producto.objects.filter(**{ column_contains: value_f }).order_by("pos").order_by(order)
 		paginator = Paginator(producto_list, 125)
 		try:
-			producto_page = paginator.page(request.GET.get('page'))
+			producto_page = paginator.page(request.GET.get("page"))
 		except PageNotAnInteger:
 			producto_page = paginator.page(1)
 		except EmptyPage:
@@ -74,14 +74,14 @@ def producto_index(request, field='descripcion', value='None', order='-id'):
 	except Exception, e:
 		Message.error(request, e)
 	c = {
-		'page_module':("Gestión de productos"),
-		'page_title':("Listado de productos."),
+		"page_module":("Gestión de productos"),
+		"page_title":("Listado de productos."),
 		
-		'producto_page':producto_page,
-		#'MODULES':dict((x, y) for x, y in Module.MODULES),
-		'field':field,
-		'value':value.replace("/", "-"),
-		'order':order,
+		"producto_page":producto_page,
+		#"MODULES":dict((x, y) for x, y in Module.MODULES),
+		"field":field,
+		"value":value.replace("/", "-"),
+		"order":order,
 		}
 	return render_to_response("maestros/producto/index.html", c, context_instance = RequestContext(request))
 
@@ -96,39 +96,39 @@ def producto_add(request):
 	if request.method == "POST":
 		try:
 			
-			d.codigo = request.POST.get('codigox')
-			d.descripcion = request.POST.get('descripcion')
-			d.precio_venta = request.POST.get('precio_venta')
+			d.codigo = request.POST.get("codigox")
+			d.descripcion = request.POST.get("descripcion")
+			d.precio_venta = request.POST.get("precio_venta")
 			d.headquart_id = DataAccessToken.get_headquart_id(request.session)
 			
-			if request.POST.get('categoria_nombre'):
+			if request.POST.get("categoria_nombre"):
 				d.categoria, is_created  = Categoria.objects.get_or_create(
-					nombre=request.POST.get('categoria_nombre'),
+					nombre=request.POST.get("categoria_nombre"),
 					)
 
 			if Producto.objects.filter(codigo = d.codigo).exclude(id = d.id).count()>0:
 				raise Exception( "El producto <b>%s</b> ya existe " % d.codigo )
 			d.save()
 			if d.id:
-				Message.info(request,("Producto <b>%(name)s</b> ha sido registrado correctamente.") % {'name':d.codigo}, True)
+				Message.info(request,("Producto <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.codigo}, True)
 				if request.is_ajax():
 					request.path="/maestros/producto/index/" #/app/controller_path/action/$params
 					return producto_index(request)
 				else:
-					return redirect('/maestros/producto/index')
+					return redirect("/maestros/producto/index")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
 	categoria_nombre_list=[]
 	try:
-		categoria_nombre_list = json.dumps(list(col['nombre']+""  for col in Categoria.objects.values('nombre').filter().order_by("nombre")))
+		categoria_nombre_list = json.dumps(list(col["nombre"]+""  for col in Categoria.objects.values("nombre").filter().order_by("nombre")))
 	except Exception, e:
 		Message.error(request, e)
 	c = {
-		'page_module':("Gestión de usuarios"),
-		'page_title':("Agregar usuario."),
-		'd':d,
-		'categoria_nombre_list':categoria_nombre_list,
+		"page_module":("Gestión de usuarios"),
+		"page_title":("Agregar usuario."),
+		"d":d,
+		"categoria_nombre_list":categoria_nombre_list,
 		}
 	return render_to_response("maestros/producto/add.html", c, context_instance = RequestContext(request))
 
@@ -138,13 +138,13 @@ def producto_edit(request, key):
 	"""
 	Actualiza Producto
 	"""
-	id=Security.is_valid_key(request, key, 'producto_upd')
+	id=Security.is_valid_key(request, key, "producto_upd")
 	if not id:
 		if request.is_ajax():
 			request.path="/maestros/producto/index/" #/app/controller_path/action/$params
 			return producto_index(request)
 		else:
-			return redirect('/maestros/producto/index')
+			return redirect("/maestros/producto/index")
 	d = None
 	try:
 		d = get_object_or_404(Producto, id=id)
@@ -162,44 +162,44 @@ def producto_edit(request, key):
 			request.path="/maestros/producto/index/" #/app/controller_path/action/$params
 			return producto_index(request)
 		else:
-			return redirect('/maestros/producto/index')
+			return redirect("/maestros/producto/index")
 
 	if request.method == "POST":
 		try:
-			d.codigo = request.POST.get('codigox')
-			d.descripcion = request.POST.get('descripcion')
-			d.precio_venta = request.POST.get('precio_venta')
+			d.codigo = request.POST.get("codigox")
+			d.descripcion = request.POST.get("descripcion")
+			d.precio_venta = request.POST.get("precio_venta")
 			d.headquart_id = DataAccessToken.get_headquart_id(request.session)
 			
-			if request.POST.get('categoria_nombre'):
+			if request.POST.get("categoria_nombre"):
 				d.categoria, is_created  = Categoria.objects.get_or_create(
-					nombre=request.POST.get('categoria_nombre'),
+					nombre=request.POST.get("categoria_nombre"),
 					)
 
 			if Producto.objects.filter(codigo = d.codigo).exclude(id = d.id).count()>0:
 				raise Exception( "El producto <b>%s</b> ya existe " % d.codigo )
 			d.save()
 			if d.id:
-				Message.info(request,("Producto <b>%(name)s</b> ha sido actualizado correctamente.") % {'name':d.codigo}, True)
+				Message.info(request,("Producto <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.codigo}, True)
 				if request.is_ajax():
 					request.path="/maestros/producto/index/" #/app/controller_path/action/$params
 					return producto_index(request)
 				else:
-					return redirect('/maestros/producto/index')
+					return redirect("/maestros/producto/index/")
 
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
 	categoria_nombre_list=[]
 	try:
-		categoria_nombre_list = json.dumps(list(col['nombre']+""  for col in Categoria.objects.values('nombre').filter().order_by("nombre")))
+		categoria_nombre_list = json.dumps(list(col["nombre"]+""  for col in Categoria.objects.values("nombre").filter().order_by("nombre")))
 	except Exception, e:
 		Message.error(request, e)
 	c = {
-		'page_module':("Gestión de productos"),
-		'page_title':("Actualizar producto."),
-		'd':d,
-		'categoria_nombre_list':categoria_nombre_list,
+		"page_module":("Gestión de productos"),
+		"page_title":("Actualizar producto."),
+		"d":d,
+		"categoria_nombre_list":categoria_nombre_list,
 		}
 	return render_to_response("maestros/producto/edit.html", c, context_instance = RequestContext(request))
 
@@ -209,13 +209,13 @@ def producto_delete(request, key):
 	"""
 	Elimina producto
 	"""
-	id=Security.is_valid_key(request, key, 'producto_del')
+	id=Security.is_valid_key(request, key, "producto_del")
 	if not id:
 		if request.is_ajax():
 			request.path="/maestros/producto/index/" #/app/controller_path/action/$params
 			return producto_index(request)
 		else:
-			return redirect('/maestros/producto/index')
+			return redirect("/maestros/producto/index")
 	try:
 		d = get_object_or_404(Producto, id=id)
 	except:
@@ -224,21 +224,21 @@ def producto_delete(request, key):
 			request.path="/sad/user/index/" #/app/controller_path/action/$params
 			return user_index(request)
 		else:
-			return redirect('/sad/user/index')
+			return redirect("/sad/user/index/")
 	try:
 		d.delete()
 		if not d.id:
-			Message.info(request,("Producto <b>%(username)s</b> ha sido eliminado correctamente.") % {'username':d.codigo}, True)
+			Message.info(request,("Producto <b>%(username)s</b> ha sido eliminado correctamente.") % {"username":d.codigo}, True)
 			if request.is_ajax():
 				request.path="/maestros/producto/index/" #/app/controller_path/action/$params
 				return producto_index(request)
 			else:
-				return redirect('/maestros/producto/index')
+				return redirect("/maestros/producto/index")
 	except Exception, e:
 		Message.error(request, e)
 		if request.is_ajax():
 			request.path="/maestros/producto/index/" #/app/controller_path/action/$params
 			return producto_index(request)
 		else:
-			return redirect('/maestros/producto/index')
+			return redirect("/maestros/producto/index")
 #endregion user

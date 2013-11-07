@@ -15,26 +15,26 @@ class Module(models.Model):
 	"""
 	Módulos del sistema
 	"""
-	WEB ='WEB'
-	VENTAS ='VENTAS'
-	DBM ='DBM'
+	WEB ="WEB"
+	VENTAS ="VENTAS"
+	DBM ="DBM"
 	MODULES = (
-        (WEB, 'Web informativa'),
-        (VENTAS, 'Ventas'),
-        (DBM, 'Backend Manager'),
+        (WEB, "Web informativa"),
+        (VENTAS, "Ventas"),
+        (DBM, "Backend Manager"),
     )
 	module = models.CharField(max_length=50, choices=MODULES, default=DBM)
 	name = models.CharField(max_length=50)
 	is_active  = models.BooleanField(default=True)
 	icon = models.TextField(max_length=50, null=True, blank=True)
 	description = models.TextField(max_length=50, null=True, blank=True)
+
 	registered_at = models.DateTimeField(auto_now_add=True)
 	modified_in = models.DateTimeField(auto_now=True)
 
-	solutions = models.ManyToManyField(Solution,verbose_name='solutions',null=True,  blank=True)
-	groups = models.ManyToManyField(Group,related_name='groups',verbose_name='groups',null=True,  blank=True)
-	initial_groups = models.ManyToManyField(Group,related_name='initial_groups',verbose_name='initial_groups',null=True,  blank=True)
-	#user = models.ForeignKey(User) #para saber quien registró
+	solutions = models.ManyToManyField(Solution,verbose_name="solutions",null=True,  blank=True)
+	groups = models.ManyToManyField(Group,related_name="groups",verbose_name="groups",null=True,  blank=True)
+	initial_groups = models.ManyToManyField(Group,related_name="initial_groups",verbose_name="initial_groups",null=True,  blank=True)
 
 	class Meta:
 		permissions = (
@@ -51,23 +51,21 @@ class Module(models.Model):
 	def __unicode__(self):
 		return "%s %s" % (self.module, self.name)
 
-
-
 class Menu(models.Model):
 	"""
 	Menús del sistema. 
 	"""
-	WEB ='WEB'
-	VENTAS ='VENTAS'
-	DBM ='DBM'
+	WEB ="WEB"
+	VENTAS ="VENTAS"
+	DBM ="DBM"
 	MODULES = (
-        (WEB, 'Web informativa'),
-        (VENTAS, 'Ventas'),
-        (DBM, 'Backend Manager'),
+        (WEB, "Web informativa"),
+        (VENTAS, "Ventas"),
+        (DBM, "Backend Manager"),
     )
 	module = models.CharField(max_length=50, choices=MODULES, default=DBM)
 	title = models.CharField(max_length=50)
-	url = models.CharField(max_length=150,default='#')
+	url = models.CharField(max_length=150,default="#")
 	pos = models.IntegerField(max_length=50,default=1)
 	icon = models.TextField(max_length=50, null=True, blank=True, default="")
 	is_active  = models.BooleanField(default=True)
@@ -75,9 +73,10 @@ class Menu(models.Model):
 
 	registered_at = models.DateTimeField(auto_now_add=True)
 	modified_in = models.DateTimeField(auto_now=True)
+
 	permission = models.ForeignKey(Permission,null=True,  blank=True)
-	parent = models.ForeignKey('Menu',verbose_name='parent',null=True,  blank=True) #related_name='parent',
-	#user = models.ForeignKey(User) #para saber quien registró
+	parent = models.ForeignKey("Menu",verbose_name="parent",null=True,  blank=True) #related_name="parent",
+
 	class Meta:
 		permissions = (
 			("menu", "Puede hacer TODAS las operaciones de menús"),
@@ -91,8 +90,6 @@ class Menu(models.Model):
 
 	def __unicode__(self):
 		return "%s %s" % (self.module, self.title)
-
-
 
 class UserProfileEnterprise(models.Model):
 	"""
@@ -162,7 +159,3 @@ class UserProfileAssociation(models.Model):
 
 	def __unicode__(self):
 		return "%s %s - %s" % (self.user.username, self.group.name, self.association.name)
-
-
-
-

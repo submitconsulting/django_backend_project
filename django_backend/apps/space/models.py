@@ -13,15 +13,12 @@ from apps.params.models import *
 
 class Solution(models.Model):
 	"""
-	Nombre para los planes o servicios del sistema 
+	Tabla que contiene las soluciones o planes o servicios del sistema
 	"""
 	name = models.CharField(max_length=50)
 	description = models.TextField(null=True, blank=True)
 	is_active  = models.BooleanField(default=True)
 
-	registered_at = models.DateTimeField(auto_now_add=True)
-	modified_in = models.DateTimeField(auto_now=True)
-	#user = models.OneToOneField(User)
 	class Meta:
 		permissions = (
 			("solution", "Puede hacer TODAS las operaciones de soluciones"),
@@ -38,20 +35,20 @@ class Solution(models.Model):
 
 class Association(models.Model):
 	"""
-	Agrupa Headquarts (sedes) 
+	Tabla que contiene las asociaciones suscritas a un plan
 	"""
-	GOVERMENT='GOVERMENT'
-	PRIVATE='PRIVATE'
-	MIXED='MIXED'
-	OTHERS='OTHERS'
+	GOVERMENT="GOVERMENT"
+	PRIVATE="PRIVATE"
+	MIXED="MIXED"
+	OTHERS="OTHERS"
 	TYPES = (
-        (GOVERMENT, 'Gobierno'),
-        (PRIVATE, 'Privada'),
-        (MIXED, 'Mixto'),
-        (OTHERS, 'Otros')
+        (GOVERMENT, "Gobierno"),
+        (PRIVATE, "Privada"),
+        (MIXED, "Mixto"),
+        (OTHERS, "Otros")
     )
 	name = models.CharField(max_length=50)
-	logo = models.ImageField(upload_to='asociaciones', verbose_name='Logo', default="asociaciones/default.png")
+	logo = models.ImageField(upload_to="asociaciones", verbose_name="Logo", default="asociaciones/default.png")
 	type_a = models.CharField(max_length=10, choices=TYPES, default=PRIVATE)
 	is_active  = models.BooleanField(default=True)
 
@@ -76,26 +73,27 @@ class Association(models.Model):
 
 class Enterprise(models.Model):
 	"""
-	Agrupa Headquarts (sedes) 
+	Tabla que contiene las empresas suscritas a un plan
 	"""
-	GOVERMENT='GOVERMENT'
-	PRIVATE='PRIVATE'
-	MIXED='MIXED'
-	OTHERS='OTHERS'
+	GOVERMENT="GOVERMENT"
+	PRIVATE="PRIVATE"
+	MIXED="MIXED"
+	OTHERS="OTHERS"
 	TYPES = (
-        (GOVERMENT, 'Gobierno'),
-        (PRIVATE, 'Privada'),
-        (MIXED, 'Mixto'),
-        (OTHERS, 'Otros')
+        (GOVERMENT, "Gobierno"),
+        (PRIVATE, "Privada"),
+        (MIXED, "Mixto"),
+        (OTHERS, "Otros")
     )
 	name = models.CharField(max_length=50)
-	logo = models.ImageField(upload_to='empresas', verbose_name='Logo', default="empresas/default.png")
+	logo = models.ImageField(upload_to="empresas", verbose_name="Logo", default="empresas/default.png")
 	tax_id = models.CharField(max_length=50)
 	type_e = models.CharField(max_length=10, choices=TYPES, default=PRIVATE)
 	is_active  = models.BooleanField(default=True)
 
 	registered_at = models.DateTimeField(auto_now_add=True)
 	modified_in = models.DateTimeField(auto_now=True)
+
 	solution = models.ForeignKey(Solution, null=True, blank=True)
 
 	class Meta:
@@ -114,8 +112,9 @@ class Enterprise(models.Model):
 
 class Headquart(models.Model):
 	"""
-	Un Headquart o sede o rebaño, es la unidad principal del sistema
-	Los accesos del sistema serán entregados a un Headquart con una cuenta de usuario Master
+	Tabla que contiene las sedes de las empresas, asociadas a una Asociación
+	Un Headquart o sede o sucursal, es la unidad principal del sistema
+	Los accesos del sistema serán entregados a un Headquart
 	"""
 	name = models.CharField(max_length=50)
 
@@ -146,11 +145,11 @@ class Headquart(models.Model):
 	def __unicode__(self):
 		return "%s %s-%s (%s-%s)" % (self.name, self.enterprise.name, self.enterprise.solution.name,  self.association.name, self.association.solution.name)
 
-"""
+'''
 class Empleado(models.Model):
-	'''
-	Una
-	'''
+	"""
+	Tabla que contiene los empleados de la empresa
+	"""
 	codigo = models.CharField(max_length=50)
 	contrato_vigente  = models.BooleanField(default=False)
 	
@@ -174,4 +173,4 @@ class Empleado(models.Model):
 
 	def __unicode__(self):
 		return "%s %s" % (self.codigo, self.contrato_vigente)
-"""
+'''

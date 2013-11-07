@@ -26,6 +26,6 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 #no usado, eliminar
 def error(request):
-    account = ''
-    context = {'account': account}
-    return render_to_response('500.html', context, context_instance=RequestContext(request))
+    account = ""
+    context = {"account": account}
+    return render_to_response("500.html", context, context_instance=RequestContext(request))

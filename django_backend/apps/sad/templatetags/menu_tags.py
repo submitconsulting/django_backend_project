@@ -23,12 +23,12 @@ from apps.sad.security import Security, Menus
 register = template.Library()
 
 @register.simple_tag
-def load_menu(module):
+def load_menu(request, module):
 	"""
 	Interfáz del Método para cargar en variables los menús
 	"""
 	
-	return Menus.load(module)
+	return Menus.load(request, module)
 
 @register.simple_tag
 def desktop(request):

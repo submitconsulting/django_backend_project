@@ -38,7 +38,7 @@
   <![endif]-->
   <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
     {% with 'DBM' as module %}
-    {% load_menu 'VENTAS' %}
+    {% load_menu request 'VENTAS' %}
     {% endwith %}
     {% include "partials/ventas/header.html" %}
     {% include "partials/ventas/main.html" %}

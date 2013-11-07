@@ -104,9 +104,11 @@ class Menus:
 
 	#Método para cargar en variables los menús
 	@staticmethod
-	def load(menu_module): #TODO filtar por usuarios
+	def load(request, menu_module): #TODO filtar por usuarios
 		Menus.menu_module=menu_module
 		print "\n\n\n"
+		print "user=%s"%request.user
+
 		menu = Menu()
 		#if not Menus.menu_list:
 		Menus.menu_list = Menu.objects.filter(parent_id=None, module=menu_module).order_by("pos")

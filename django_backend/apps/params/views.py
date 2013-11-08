@@ -22,7 +22,8 @@ from apps.sad.decorators import is_admin, permission_resource_required
 from django.template import Context, Template, loader 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import transaction
-from apps.sad.security import Security
+from apps.sad.security import Security, SessionContext
+from unicodedata import normalize
 
 #TODO por definirse. https://docs.djangoproject.com/en/dev/topics/i18n/translation/
 def params_index(request): # solo si va tener un index para toda la app params
@@ -42,13 +43,15 @@ def params_index(request): # solo si va tener un index para toda la app params
 
 #Locality
 @csrf_exempt
-@login_required(login_url="/account/login/")
+#@login_required(login_url="/account/login/")
 #@is_admin #para verificar si es administrador
 @permission_resource_required
 def locality_index(request, field="name", value="None", order="-id"):
 	"""
 	Página principal para locality
 	"""
+	#if SessionContext.is_administrator(request):
+	#	print "USER ADMIN"
 	#del request.session["id"]
 	#s = SessionStore()
 	#s["last_login"] = "holaaa"
@@ -111,6 +114,7 @@ def locality_index(request, field="name", value="None", order="-id"):
 	#return HttpResponse(tx.render(c2),mimetype="application/xhtml+xml")
 	return render_to_response("params/locality/index.html", c, context_instance = RequestContext(request))
 
+@permission_resource_required
 def locality_report(request, field="name", value="None", order="-id"):
 	field = (field if not request.REQUEST.get("field") else request.REQUEST.get("field")).strip()
 	value = (value if not request.REQUEST.get("value") else request.REQUEST.get("value")).strip()
@@ -135,7 +139,7 @@ def locality_report(request, field="name", value="None", order="-id"):
 def locality_add(request):
 
 	d = Locality()
-	d.msnm=0
+	d.msnm = 0
 	if request.method == "POST":
 		try:
 			#Aquí asignar los datos
@@ -144,12 +148,13 @@ def locality_add(request):
 			if request.POST.get("locality_type_id"):
 				d.locality_type = LocalityType.objects.get(id=request.POST.get("locality_type_id"))
 
-			if Locality.objects.filter(name = d.name).exclude(id = d.id).count() > 0:
+			if normalize("NFKD", u"%s" % d.name).encode("ascii", "ignore").lower() in list(
+				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Locality.objects.values("name").exclude(id = d.id) #puede .filter()
+				):
 				raise Exception(_("Locality <b>%(name)s</b> name's already in use.") % {"name":d.name}) #El nombre x para localidad ya existe.
 			#salvar registro
 			d.save()
 			if d.id:
-				#Message.info(request, _("Your data have been added %(name)s") % {"name":d.name}, True)
 				Message.info(request,("Localidad <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.name}, True)
 				if request.is_ajax():
 					request.path="/params/locality/index/" #/app/controller_path/action/$params
@@ -159,7 +164,7 @@ def locality_add(request):
 		except Exception, e:
 			Message.error(request, e)
 	try:
-		locality_type_list = LocalityType.objects.all()
+		locality_type_list = LocalityType.objects.all().order_by("name")
 	except Exception, e:
 		Message.error(request, e)
 	c = {
@@ -205,7 +210,9 @@ def locality_edit(request, key):
 			d.name = request.POST.get("name")
 			d.is_active=True
 
-			if Locality.objects.filter(name = d.name).exclude(id = d.id).count() > 0:
+			if normalize("NFKD", u"%s" % d.name).encode("ascii", "ignore").lower() in list(
+				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Locality.objects.values("name").exclude(id = d.id) #puede .filter()
+				):
 				raise Exception(_("Locality <b>%(name)s</b> name's already in use.") % {"name":d.name}) #trhow new Exception("msg")
 			#salvar registro
 			d.save()
@@ -220,10 +227,15 @@ def locality_edit(request, key):
 		except Exception, e:
 			transaction.rollback() #para reversar en caso de error en alguna de las tablas
 			Message.error(request, e)
+	try:
+		locality_type_list = LocalityType.objects.all().order_by("name")
+	except Exception, e:
+		Message.error(request, e)
 	c = {
 		"page_module":_("Locality"),
 		"page_title":_("Update locality."),
 		"d":d,
+		"locality_type_list":locality_type_list,
 		}
 	return render_to_response("params/locality/edit.html", c, context_instance = RequestContext(request))
 
@@ -246,6 +258,10 @@ def locality_delete(request, key):
 		else:
 			return redirect("/params/locality/index/")
 	try:
+		#rastreando dependencias
+		if d.headquart_set.count() > 0:
+			raise Exception( ("Localidad <b>%(name)s</b> está asignado en headquart.") % {"name":d.name} )
+		
 		d.delete()
 		if not d.id:
 			Message.info(request,("Localidad <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)

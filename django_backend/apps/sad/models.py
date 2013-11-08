@@ -26,15 +26,15 @@ class Module(models.Model):
 	module = models.CharField(max_length=50, choices=MODULES, default=DBM)
 	name = models.CharField(max_length=50)
 	is_active  = models.BooleanField(default=True)
-	icon = models.TextField(max_length=50, null=True, blank=True)
+	icon = models.CharField(max_length=50, null=True, blank=True)
 	description = models.TextField(max_length=50, null=True, blank=True)
 
 	registered_at = models.DateTimeField(auto_now_add=True)
 	modified_in = models.DateTimeField(auto_now=True)
 
 	solutions = models.ManyToManyField(Solution,verbose_name="solutions",null=True,  blank=True)
-	groups = models.ManyToManyField(Group,related_name="groups",verbose_name="groups",null=True,  blank=True)
-	initial_groups = models.ManyToManyField(Group,related_name="initial_groups",verbose_name="initial_groups",null=True,  blank=True)
+	groups = models.ManyToManyField(Group,related_name="module_set",verbose_name="groups",null=True,  blank=True) #verbose_name es para Module
+	initial_groups = models.ManyToManyField(Group,related_name="initial_groups_module_set",verbose_name="initial_groups",null=True,  blank=True) #related_name cambia module_set x initial_groups_module_set
 
 	class Meta:
 		permissions = (
@@ -67,7 +67,7 @@ class Menu(models.Model):
 	title = models.CharField(max_length=50)
 	url = models.CharField(max_length=150,default="#")
 	pos = models.IntegerField(max_length=50,default=1)
-	icon = models.TextField(max_length=50, null=True, blank=True, default="")
+	icon = models.CharField(max_length=50, null=True, blank=True, default="")
 	is_active  = models.BooleanField(default=True)
 	description = models.TextField(max_length=50, null=True, blank=True)
 
@@ -95,6 +95,7 @@ class UserProfileEnterprise(models.Model):
 	"""
 	Permisos a nivel de empresa
 	"""
+	#is_admin  = models.BooleanField(default=False)
 	registered_at = models.DateTimeField(auto_now_add=True)
 	modified_in = models.DateTimeField(auto_now=True)
 
@@ -118,6 +119,7 @@ class UserProfileHeadquart(models.Model):
 	"""
 	Permisos a nivel de sede
 	"""
+	#is_admin  = models.BooleanField(default=False)
 	registered_at = models.DateTimeField(auto_now_add=True)
 	modified_in = models.DateTimeField(auto_now=True)
 
@@ -141,6 +143,7 @@ class UserProfileAssociation(models.Model):
 	"""
 	Permisos a nivel de association
 	"""
+	#is_admin  = models.BooleanField(default=False)
 	registered_at = models.DateTimeField(auto_now_add=True)
 	modified_in = models.DateTimeField(auto_now=True)
 

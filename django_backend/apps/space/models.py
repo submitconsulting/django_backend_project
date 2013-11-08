@@ -148,7 +148,7 @@ class Headquart(models.Model):
 '''
 class Empleado(models.Model):
 	"""
-	Tabla que contiene los empleados de la empresa
+	Tabla que contiene los empleados de la empresa, implementar la app empleado
 	"""
 	codigo = models.CharField(max_length=50)
 	contrato_vigente  = models.BooleanField(default=False)

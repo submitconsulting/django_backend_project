@@ -62,6 +62,7 @@ class Person(models.Model):
 	birth_date = models.DateField(null=True, blank=True)
 	photo = models.ImageField(upload_to="personas", verbose_name="Foto",default="personas/default.png")
 	
+	#is_admin  = models.BooleanField(default=False)
 	last_headquart_id= models.CharField(max_length=50, null=True, blank=True)
 	last_module_id= models.CharField(max_length=50, null=True, blank=True)
 

@@ -83,7 +83,7 @@ def headquart_add(request):
 			d.enterprise_id = DataAccessToken.get_enterprise_id(request.session)
 
 			if normalize("NFKD", u"%s" % d.name).encode("ascii", "ignore").lower() in list(
-				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Headquart.objects.values("name").filter(enterprise_id=d.enterprise_id).exclude(id = d.id)
+				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Headquart.objects.values("name").exclude(id = d.id).filter(enterprise_id=d.enterprise_id)
 				):
 				raise Exception( "La sede <b>%s</b> ya existe " % (d.name) )
 			d.save()
@@ -147,7 +147,7 @@ def headquart_edit(request, key):
 					name=request.POST.get("locality_name"), #name__iexact
 					)
 			if normalize("NFKD", u"%s" % d.name).encode("ascii", "ignore").lower() in list(
-				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Headquart.objects.values("name").filter(enterprise_id=d.enterprise_id).exclude(id = d.id)
+				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Headquart.objects.values("name").exclude(id = d.id).filter(enterprise_id=d.enterprise_id)
 				):
 				raise Exception( "La sede <b>%s</b> ya existe " % (d.name) )
 
@@ -273,7 +273,7 @@ def enterprise_add(request):
 				):
 				raise Exception( ("Empresa <b>%(name)s</b> ya existe.") % {"name":d.name} )
 
-			if Enterprise.objects.filter(tax_id=d.tax_id).exclude(id = d.id).count()>0:
+			if Enterprise.objects.exclude(id = d.id).filter(tax_id=d.tax_id).count()>0:
 				raise Exception( "La empresa con RUC <b>%s</b> ya existe " % (d.tax_id) )
 
 			
@@ -286,7 +286,7 @@ def enterprise_add(request):
 			headquart.enterprise=d
 
 			if normalize("NFKD", u"%s" % headquart.name).encode("ascii", "ignore").lower() in list(
-				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Headquart.objects.values("name").filter(enterprise_id=headquart.enterprise_id).exclude(id = headquart.id)
+				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Headquart.objects.values("name").exclude(id = headquart.id).filter(enterprise_id=headquart.enterprise_id)
 				):
 				raise Exception( "La sede <b>%s</b> ya existe " % (headquart.name) )
 
@@ -353,7 +353,7 @@ def enterprise_edit(request, key):
 				):
 				raise Exception( ("Empresa <b>%(name)s</b> ya existe.") % {"name":d.name} )
 
-			if Enterprise.objects.filter(tax_id=d.tax_id).exclude(id = d.id).count()>0:
+			if Enterprise.objects.exclude(id = d.id).filter(tax_id=d.tax_id).count()>0:
 				raise Exception( "La empresa con RUC <b>%s</b> ya existe " % (d.tax_id) )
 
 			#salvar registro
@@ -456,7 +456,7 @@ def enterprise_edit_current(request):
 				):
 				raise Exception( ("Empresa <b>%(name)s</b> ya existe.") % {"name":d.name} )
 
-			if Enterprise.objects.filter(tax_id=d.tax_id).exclude(id = d.id).count()>0:
+			if Enterprise.objects.exclude(id = d.id).filter(tax_id=d.tax_id).count()>0:
 				raise Exception( "La empresa con RUC <b>%s</b> ya existe " % (d.tax_id) )
 
 			#salvar registro
@@ -587,7 +587,7 @@ def solution_add(request):
 		try:
 			d.name = request.POST.get("name")
 			d.description = request.POST.get("description")
-			if Solution.objects.filter(name = d.name).exclude(id = d.id).count() > 0:
+			if Solution.objects.exclude(id = d.id).filter(name = d.name).count() > 0:
 				raise Exception( ("Solución <b>%(name)s</b> ya existe.") % {"name":d.name} )
 			d.save()
 			if d.id:
@@ -634,7 +634,7 @@ def solution_edit(request, key):
 		try:
 			d.name = request.POST.get("name")
 			d.description = request.POST.get("description")
-			if Solution.objects.filter(name = d.name).exclude(id = d.id).count() > 0:
+			if Solution.objects.exclude(id = d.id).filter(name = d.name).count() > 0:
 				raise Exception( ("Solución <b>%(name)s</b> ya existe.") % {"name":d.name} )
 
 			#salvar registro

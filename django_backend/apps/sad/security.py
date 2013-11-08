@@ -53,11 +53,13 @@ class DataAccessToken:
 	def get_grupo_id_list(session):
 		return session.get('grupo_id_list', False)
 
-# Create your models here.
 class SessionContext:
 	@staticmethod
-	def eeee(request, msg, audit=False):
-		request.session['flash_msg'] = msg
+	def is_administrator(request):
+		if request.user.is_superuser:
+			return True
+		else:
+			return False
 
 class Security:
 	"""
@@ -88,7 +90,8 @@ class Security:
 		valid_key=Security.get_key(id, action_name)
 		valid = (True if valid_key==key_value else False)
 		if not valid:
-			Message.info(request,('Acceso denegado. La llave de seguridad es incorrecta.'))
+			#raise Exception(("Acceso denegado. La llave de seguridad es incorrecta."))
+			Message.error(request,('Acceso denegado. La llave de seguridad es incorrecta.'))
 			return False
 		#print 'key_value(%s) = valid_key(%s)' % (key_value, valid_key)
 		#Message.info(request,('key_value(%s) = valid_key(%s)' % (key_value, valid_key)))

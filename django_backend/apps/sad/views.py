@@ -199,14 +199,14 @@ def user_add(request):
 		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
 		solution_association=Solution.objects.get(id=headquart.association.solution.id )
 		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
-		group_perm_list = Group.objects.filter(groups__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
+		group_perm_list = Group.objects.filter(module_set__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
 		#print group_perm_list
 		#print "====================="
 		#pero hay que adornarlo de la forma Module>Group/perfil
 		group_list_by_module=[]
 		group_list_by_module_unique_temp=[]#solo para verificar que el Group no se repita si este está en dos o más módulos
 		for module in module_list:
-			for group in Group.objects.filter(groups=module).distinct():
+			for group in Group.objects.filter(module_set=module).distinct():
 				if len(group_list_by_module)==0:
 					group_list_by_module.append({
 					"group": group,
@@ -278,12 +278,12 @@ def user_edit(request, key):
 		try:
 			d.username = request.POST.get("login")
 			
-			if User.objects.filter(username = d.username).exclude(id = d.id).count()>0:
+			if User.objects.exclude(id = d.id).filter(username = d.username).count()>0:
 				raise Exception( "El usuario <b>%s</b> ya existe " % d.username )
 
 			if request.POST.get("email"):
 				d.email = request.POST.get("email")
-				if User.objects.filter(email = d.email).exclude(id = d.id).count()>0:
+				if User.objects.exclude(id = d.id).filter(email = d.email).count()>0:
 					raise Exception( "El email <b>%s</b> ya existe " % d.email )
 			if request.POST.get("password"):
 				d.set_password(request.POST.get("password"))
@@ -294,7 +294,7 @@ def user_edit(request, key):
 			d.first_name = request.POST.get("first_name")
 			d.last_name = request.POST.get("last_name")
 
-			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).exclude(id = d.person.id).count()>0:
+			if Person.objects.exclude(id = d.person.id).filter(first_name=d.first_name, last_name=d.last_name).count()>0:
 				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
 			person = Person.objects.get(user=d)
 			person.first_name=d.first_name
@@ -386,14 +386,14 @@ def user_edit(request, key):
 		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
 		solution_association=Solution.objects.get(id=headquart.association.solution.id )
 		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
-		group_perm_list = Group.objects.filter(groups__in=module_list).order_by("-id").distinct() #trae los objetos relacionados a sad.Module
+		group_perm_list = Group.objects.filter(module_set__in=module_list).order_by("-id").distinct() #trae los objetos relacionados a sad.Module
 		#print group_perm_list
 		#print "=====================x"
 		#pero hay que adornarlo de la forma Module>Group
 		group_list_by_module=[]
 		group_list_by_module_unique_temp=[]#solo para verificar que el Group no se repita si este está en dos o más módulos
 		for module in module_list:
-			for group in Group.objects.filter(groups=module).distinct():
+			for group in Group.objects.filter(module_set=module).distinct():
 				if len(group_list_by_module)==0:
 					group_list_by_module.append({
 					"group": group,
@@ -450,12 +450,12 @@ def user_profile(request):
 		try:
 			#d.username = request.POST.get("login")
 			
-			#if User.objects.filter(username = d.username).exclude(id = d.id).count()>0:
+			#if User.objects.exclude(id = d.id).filter(username = d.username).count()>0:
 			#	raise Exception( "El usuario <b>%s</b> ya existe " % d.username )
 
 			if request.POST.get("email"):
 				d.email = request.POST.get("email")
-				if User.objects.filter(email = d.email).exclude(id = d.id).count()>0:
+				if User.objects.exclude(id = d.id).filter(email = d.email).count()>0:
 					raise Exception( "El email <b>%s</b> ya existe " % d.email )
 			if request.POST.get("password"):
 				d.set_password(request.POST.get("password"))
@@ -465,7 +465,7 @@ def user_profile(request):
 			d.last_name = request.POST.get("last_name")
 			d.photo = request.POST.get("persona_fotografia")
 
-			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).exclude(id = d.person.id).count()>0:
+			if Person.objects.exclude(id = d.person.id).filter(first_name=d.first_name, last_name=d.last_name).count()>0:
 				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
 			person = Person.objects.get(user=d)
 			person.first_name=d.first_name
@@ -503,14 +503,14 @@ def user_profile(request):
 		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
 		solution_association=Solution.objects.get(id=headquart.association.solution.id )
 		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
-		group_perm_list = Group.objects.filter(groups__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
+		group_perm_list = Group.objects.filter(module_set__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
 		#print group_perm_list
 		#print "=====================x"
 		#pero hay que adornarlo de la forma Module>Group/perfil
 		group_list_by_module=[]
 		group_list_by_module_unique_temp=[]#solo para verificar que el Group no se repita si este está en dos o más módulos
 		for module in module_list:
-			for group in Group.objects.filter(groups=module).distinct():
+			for group in Group.objects.filter(module_set=module).distinct():
 				if len(group_list_by_module)==0:
 					group_list_by_module.append({
 					"group": group,
@@ -628,14 +628,14 @@ def user_view(request, key):
 		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
 		solution_association=Solution.objects.get(id=headquart.association.solution.id )
 		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
-		group_perm_list = Group.objects.filter(groups__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
+		group_perm_list = Group.objects.filter(module_set__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
 		#print group_perm_list
 		#print "=====================x"
 		#pero hay que adornarlo de la forma Module>Group/perfil
 		group_list_by_module=[]
 		group_list_by_module_unique_temp=[]#solo para verificar que el Group no se repita si este está en dos o más módulos
 		for module in module_list:
-			for group in Group.objects.filter(groups=module).distinct():
+			for group in Group.objects.filter(module_set=module).distinct():
 				if len(group_list_by_module)==0:
 					group_list_by_module.append({
 					"group": group,
@@ -772,7 +772,7 @@ def menu_add(request):
 			if request.POST.get("parent_id"):
 				d.parent_id = Menu.objects.get(id=request.POST.get("parent_id")).id
 
-			#if Menu.objects.filter(title = d.title).exclude(id = d.id).count() > 0:
+			#if Menu.objects.exclude(id = d.id).filter(title = d.title).count() > 0:
 			#	raise Exception( ("Menu <b>%(name)s</b> ya existe.") % {"name":d.title} )
 
 			#salvar registro
@@ -849,7 +849,7 @@ def menu_edit(request, key):
 			if request.POST.get("parent_id"):
 				d.parent_id = Menu.objects.get(id=request.POST.get("parent_id")).id
 
-			#if Menu.objects.filter(title = d.title).exclude(id = d.id).count() > 0:
+			#if Menu.objects.exclude(id = d.id).filter(title = d.title).count() > 0:
 			#	raise Exception( ("Menu <b>%(name)s</b> ya existe.") % {"name":d.title} )
 
 			#salvar registro
@@ -1017,7 +1017,7 @@ def module_add(request):
 			d.module = request.POST.get("module")
 			d.name = request.POST.get("name")
 			d.description = request.POST.get("description")
-			if Module.objects.filter(name = d.name).exclude(id = d.id).count() > 0:
+			if Module.objects.exclude(id = d.id).filter(name = d.name).count() > 0:
 				raise Exception( ("Modulo <b>%(name)s</b> ya existe.") % {"name":d.name} )
 			d.save()
 
@@ -1083,7 +1083,7 @@ def module_edit(request, key):
 			d.module = request.POST.get("module")
 			d.name = request.POST.get("name")
 			d.description = request.POST.get("description")
-			if Module.objects.filter(name = d.name).exclude(id = d.id).count() > 0:
+			if Module.objects.exclude(id = d.id).filter(name = d.name).count() > 0:
 				raise Exception( ("Modulo <b>%(name)s</b> ya existe.") % {"name":d.name} )
 			d.save()
 
@@ -1219,7 +1219,7 @@ def group_add(request):
 	if request.method == "POST":
 		try:
 			d.name = request.POST.get("name")
-			if Group.objects.filter(name = d.name).exclude(id = d.id).count() > 0:
+			if Group.objects.exclude(id = d.id).filter(name = d.name).count() > 0:
 				raise Exception( ("Perfil <b>%(name)s</b> ya existe.") % {"name":d.name} )
 			d.save()
 			if d.id:
@@ -1264,7 +1264,7 @@ def group_edit(request, key):
 	if request.method == "POST":
 		try:
 			d.name = request.POST.get("name")
-			if Group.objects.filter(name = d.name).exclude(id = d.id).count() > 0:
+			if Group.objects.exclude(id = d.id).filter(name = d.name).count() > 0:
 				raise Exception( ("Perfil <b>%(name)s</b> ya existe.") % {"name":d.name} )
 			d.save()
 			if d.id:
@@ -1308,9 +1308,9 @@ def group_delete(request, key):
 		#rastreando dependencias
 		if d.permissions.count() > 0:
 			raise Exception( ("Perfil <b>%(name)s</b> tiene permisos asignados.") % {"name":d.name} )
-		if d.groups.count() > 0:
+		if d.module_set.count() > 0:
 			raise Exception( ("Perfil <b>%(name)s</b> está asignado en módulos.") % {"name":d.name} )
-		if d.initial_groups.count() > 0:
+		if d.initial_groups_module_set.count() > 0:
 			raise Exception( ("Perfil <b>%(name)s</b> está asignado en módulos iniciales.") % {"name":d.name} )
 		if d.user_set.count() > 0:
 			raise Exception( ("Perfil <b>%(name)s</b> está asignado en usuarios.") % {"name":d.name} )
@@ -1448,7 +1448,7 @@ def resource_add(request):
 			d.codename = codename
 			d.name = request.POST.get("description")
 			d.content_type = content_type
-			if Permission.objects.filter(codename = d.codename, content_type=content_type).exclude(id = d.id).count() > 0:
+			if Permission.objects.exclude(id = d.id).filter(codename = d.codename, content_type=content_type).count() > 0:
 				raise Exception( ("Recurso <b>%(recurso)s</b> ya existe.") % {"recurso":recurso})
 
 			d.save()
@@ -1532,7 +1532,7 @@ def resource_edit(request, key):
 			d.name = request.POST.get("description")
 			d.content_type = content_type
 
-			if Permission.objects.filter(codename = d.codename, content_type=content_type).exclude(id = d.id).count() > 0:
+			if Permission.objects.exclude(id = d.id).filter(codename = d.codename, content_type=content_type).count() > 0:
 				raise Exception( ("Recurso <b>%(recurso)s</b> ya existe.") % {"recurso":recurso})
 
 			#salvar registro

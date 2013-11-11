@@ -6,10 +6,10 @@
     {% load notify %}
     {% get_notify request %}
     <script type="text/javascript">
-        var ciudades = {{ locality_name_list|safe }};
+        var json_data = {{ association_name_list|safe }};
         $(function() {
-            $('#locality_name').typeahead({
-                    source: ciudades, items:5
+            $('#association_name').typeahead({
+                    source: json_data, items:5
             });
         });
     </script>
@@ -22,16 +22,14 @@
             <div class="row-fluid">
                 <div class="span6">
                     <div class="control-group">
-                        <label class="control-label">{% trans "NAME" %}<span class="req"> *</span></label>
-                        <input id="name" name="name" type="text" value="{{ d.name }}" class="field text input-xxlarge input-required mask-alphanum show-error" required="required">
-                        <p class="help-block"> <span class="help-error" id="err_name"></span></p>
+                        <label class="control-label">{% trans "NAME" %}<span class="req"> </span></label>
+                        {{ d.name }}
                     </div>
                 </div>
                 <div class="span6">
                     <div class="control-group">
                         <label class="control-label">{% trans "FONO" %}<span class="req"> </span></label>
-                        <input id="phone" name="phone" type="text" value="{{ d.phone }}" class="field tel input-numeric mask-pint show-error" >
-                        <p class="help-block"> <span class="help-error" id="err_phone"></span></p>
+                        {{ d.phone }}
                     </div>
                 </div>
 
@@ -40,15 +38,14 @@
                 <div class="span6">
                     <div class="control-group">
                         <label class="control-label">{% trans "DIRECCION" %}<span class="req"> </span></label>
-                        <input id="address" name="address" type="text" value="{{ d.address }}" class="ffield text input-xxlarge input-alphanum mask-alphanum show-error">
-                        <p class="help-block"> <span class="help-error" id="err_address"></span></p>
+                        {{ d.address }} - {{ d.association.name }}
                     </div>
                 </div>
                 <div class="span6">
                     <div class="control-group">
-                        <label class="control-label">{% trans "LOCALIDAD/CIUDAD" %}<span class="req"> </span></label>
-                        <input id="locality_name" name="locality_name" type="text" value="{{ d.locality_name }}" class="field text input-xlarge input-alphanum mask-alphanum show-error" autocomplete="off" >
-                        <p class="help-block"> <span class="help-error" id="err_locality_name"></span></p>
+                        <label class="control-label">{% trans "ASOCIACIÓN A PERTENECER" %}<span class="req"> </span></label>
+                        <input id="association_name" name="association_name" type="text" value="{{ d.association_name }}" class="field text input-xlarge input-alphanum mask-alphanum show-error" autocomplete="off" >
+                        <p class="help-block"> <span class="help-error" id="err_association_name"></span></p>
                     </div>
                 </div>
             </div>

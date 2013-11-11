@@ -19,6 +19,9 @@ class Solution(models.Model):
 	description = models.TextField(null=True, blank=True)
 	is_active  = models.BooleanField(default=True)
 
+	registered_at = models.DateTimeField(auto_now_add=True)
+	modified_in = models.DateTimeField(auto_now=True)
+	
 	class Meta:
 		permissions = (
 			("solution", "Puede hacer TODAS las operaciones de soluciones"),

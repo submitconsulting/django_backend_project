@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
 from apps.sad.decorators import is_admin, permission_resource_required
-from apps.sad.security import Security, DataAccessToken
+from apps.sad.security import Security, DataAccessToken, Redirect
 from apps.helpers.message import Message
 
 from apps.params.models import Person
@@ -18,7 +18,7 @@ from django.contrib.contenttypes.models import ContentType
 from apps.space.models import Headquart
 from apps.sad.models import Module, Menu, UserProfileAssociation, UserProfileEnterprise, UserProfileHeadquart
 from apps.space.models import Solution
-from apps.home.views import choice_headquart
+#from apps.home.views import choice_headquart
 from django.db.models import Q
 
 from apps.maestros.models import Producto
@@ -49,11 +49,7 @@ def producto_index(request, field="descripcion", value="None", order="-id"):
 		d = get_object_or_404(Headquart, id=DataAccessToken.get_headquart_id(request.session))
 	except:
 		Message.error(request, ("Sede no seleccionado o no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
-			return choice_headquart(request)
-		else:
-			return redirect("/home/choice_headquart/")
+		return Redirect.to(request, "/home/choice_headquart/")
 
 	field = (field if not request.REQUEST.get("field") else request.REQUEST.get("field")).strip()
 	value = (value if not request.REQUEST.get("value") else request.REQUEST.get("value")).strip()
@@ -111,11 +107,7 @@ def producto_add(request):
 			d.save()
 			if d.id:
 				Message.info(request,("Producto <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.codigo}, True)
-				if request.is_ajax():
-					request.path="/maestros/producto/index/" #/app/controller_path/action/$params
-					return producto_index(request)
-				else:
-					return redirect("/maestros/producto/index")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
@@ -140,11 +132,7 @@ def producto_edit(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "producto_upd")
 	if not id:
-		if request.is_ajax():
-			request.path="/maestros/producto/index/" #/app/controller_path/action/$params
-			return producto_index(request)
-		else:
-			return redirect("/maestros/producto/index")
+		return Redirect.to_action(request, "index")
 	d = None
 	try:
 		d = get_object_or_404(Producto, id=id)
@@ -158,11 +146,7 @@ def producto_edit(request, key):
 		
 	except Exception, e:
 		Message.error(request, ("Usuario no se encuentra en la base de datos. %s" % e))
-		if request.is_ajax():
-			request.path="/maestros/producto/index/" #/app/controller_path/action/$params
-			return producto_index(request)
-		else:
-			return redirect("/maestros/producto/index")
+		return Redirect.to_action(request, "index")
 
 	if request.method == "POST":
 		try:
@@ -181,11 +165,7 @@ def producto_edit(request, key):
 			d.save()
 			if d.id:
 				Message.info(request,("Producto <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.codigo}, True)
-				if request.is_ajax():
-					request.path="/maestros/producto/index/" #/app/controller_path/action/$params
-					return producto_index(request)
-				else:
-					return redirect("/maestros/producto/index/")
+				return Redirect.to_action(request, "index")
 
 		except Exception, e:
 			transaction.rollback()
@@ -211,34 +191,18 @@ def producto_delete(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "producto_del")
 	if not id:
-		if request.is_ajax():
-			request.path="/maestros/producto/index/" #/app/controller_path/action/$params
-			return producto_index(request)
-		else:
-			return redirect("/maestros/producto/index")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(Producto, id=id)
 	except:
 		Message.error(request, ("Producto no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		d.delete()
 		if not d.id:
 			Message.info(request,("Producto <b>%(username)s</b> ha sido eliminado correctamente.") % {"username":d.codigo}, True)
-			if request.is_ajax():
-				request.path="/maestros/producto/index/" #/app/controller_path/action/$params
-				return producto_index(request)
-			else:
-				return redirect("/maestros/producto/index")
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/maestros/producto/index/" #/app/controller_path/action/$params
-			return producto_index(request)
-		else:
-			return redirect("/maestros/producto/index")
+		return Redirect.to_action(request, "index")
 #endregion user

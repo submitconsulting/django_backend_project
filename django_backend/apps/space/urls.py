@@ -7,12 +7,15 @@ urlpatterns = patterns('apps.space.views',
 	url(r'^headquart/add/$', 'headquart_add', name='headquart_add'),
 	url(r'^headquart/edit/(?P<key>.*)/$', 'headquart_edit', name='headquart_edit'),
 	url(r'^headquart/delete/(?P<key>.*)/$', 'headquart_delete', name='headquart_delete'),
+	url(r'^headquart/state/(?P<state>[\w\d\-]+)/(?P<key>.*)/$', 'headquart_state', name='headquart_state'),
+	url(r'^headquart/change_association/(?P<key>.*)/$', 'headquart_change_association', name='headquart_change_association'),
 
 	#enterprise controllers
 	url(r'^enterprise/index/$', 'enterprise_index', name='enterprise_index'),
 	url(r'^enterprise/add/$', 'enterprise_add', name='enterprise_add'),
 	url(r'^enterprise/edit/(?P<key>.*)/$', 'enterprise_edit', name='enterprise_edit'),
 	url(r'^enterprise/delete/(?P<key>.*)/$', 'enterprise_delete', name='enterprise_delete'),
+	url(r'^enterprise/state/(?P<state>[\w\d\-]+)/(?P<key>.*)/$', 'enterprise_state', name='enterprise_state'),
 	url(r'^enterprise/edit_current/$', 'enterprise_edit_current', name='enterprise_edit_current'),
 	url(r'^enterprise/upload/$', 'enterprise_upload', name='enterprise_upload'),
 	
@@ -25,6 +28,6 @@ urlpatterns = patterns('apps.space.views',
 	url(r'^solution/add/$', 'solution_add', name='solution_add'),
 	url(r'^solution/edit/(?P<key>.*)/$', 'solution_edit', name='solution_edit'),
 	url(r'^solution/delete/(?P<key>.*)/$', 'solution_delete', name='solution_delete'),
-
+	url(r'^solution/state/(?P<state>[\w\d\-]+)/(?P<key>.*)/$', 'solution_state', name='solution_state'),
 
 ) 

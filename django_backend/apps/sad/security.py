@@ -14,7 +14,7 @@ import sys
 import hashlib
 from apps.sad.models import *
 from array import *
-
+from django.shortcuts import redirect
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -213,3 +213,130 @@ class Menus:
 				html = html + '</li>\n'
 			html= html + '</ul>\n'
 		return html
+
+
+class Redirect:
+	"""
+		Antes::
+
+		if request.is_ajax():
+			request.path="/params/locality/index/" #/app/controller_path/action/$params
+			return locality_index(request)
+		else:
+			return redirect("/params/locality/index/")
+		
+
+		Ahora solo use::
+
+			return Redirect.to(request, "/sad/user/index/")
+			return Redirect.to_action(request, "index")
+	"""
+
+	@staticmethod
+	def to(request, route, params=None):
+		"""
+		route_list[0] = app
+		route_list[1] = controller
+		route_list[2] = action
+		"""
+		route = route.strip("/")
+		route_list=route.split("/")
+
+		app_name = route_list[0]
+		controller_name=""
+		action_name=""
+		if len(route_list) > 1:
+			controller_name = route_list[1]
+		else:
+			raise Exception(("Route no tiene controller"))
+		if len(route_list) > 2:
+			action_name = route_list[2]
+
+		app=("apps.%s.views") % app_name
+
+		path="/%s/%s/" %(app_name, controller_name)
+		func="%s" %(controller_name)
+		if action_name:
+			path="/%s/%s/%s/" %(app_name, controller_name, action_name)
+			func="%s_%s" %(controller_name, action_name)
+
+		if request.is_ajax():
+			mod = __import__( app, fromlist = [func])
+			methodToCall = getattr(mod, func)
+			#Message.error(request, "ajax %s"%path)
+			request.path=path #/app/controller_path/action/$params
+			return methodToCall(request)
+		else:
+			#Message.error(request, "noajax %s"%path)
+			return redirect(path)
+
+	@staticmethod
+	def to_action(request, action_name, params=None):
+		"""
+		route_list[0] = app
+		route_list[1] = controller
+		route_list[2] = action
+		"""
+		route = request.path
+		route = route.strip("/")
+		route_list=route.split("/")
+
+		app_name = route_list[0]
+		controller_name=""
+		#action_name=""
+		if len(route_list) > 1:
+			controller_name = route_list[1]
+		else:
+			raise Exception(("Route no tiene controller"))
+		#if len(route_list) > 2:
+		#	action_name = route_list[2]
+
+		app=("apps.%s.views") % app_name
+
+		path="/%s/%s/" %(app_name, controller_name)
+		func="%s" %(controller_name)
+		if action_name:
+			path="/%s/%s/%s/" %(app_name, controller_name, action_name)
+			func="%s_%s" %(controller_name, action_name)
+		#Message.error(request, "path= %s"%path)
+		#Message.error(request, "func= %s"%func)
+		if request.is_ajax():
+			mod = __import__( app, fromlist = [func])
+			methodToCall = getattr(mod, func)
+			#Message.error(request, "ajax %s"%path)
+			request.path=path #/app/controller_path/action/$params
+			return methodToCall(request)
+		else:
+			#Message.error(request, "noajax %s"%path)
+			return redirect(path)
+
+
+	#no usado, eliminar
+	@staticmethod
+	def to_actionXX(request, app_name, controller_name, action_name=None, params=None):
+		#action_list=action_name.split("_",1)
+		#controller=action_list[0]
+		#action=""
+		#if len(action_list) > 1:
+		#	action=action_list[1]
+		if "." in app_name: #por si está en otra carpeta contenedora de apps, p.e: apps2.home
+			app=("%s.views") % app_name
+			app_name = app_name.split(".",1)[1]
+		else:
+			app=("apps.%s.views") % app_name
+
+		path="/%s/%s/" %(app_name, controller_name)
+		func="%s" %(controller_name)
+		if action_name:
+			path="/%s/%s/%s/" %(app_name, controller_name, action_name)
+			func="%s_%s" %(controller_name, action_name)
+
+		if request.is_ajax():
+			mod = __import__( app, fromlist = [func])
+			methodToCall = getattr(mod, func)
+			#Message.error(request, "ajax %s"%path)
+			request.path=path #/app/controller_path/action/$params
+			return methodToCall(request)
+		else:
+			#Message.error(request, "noajax %s"%path)
+			return redirect(path)

@@ -15,7 +15,7 @@ from django.template import RequestContext
 
 from django.contrib.auth import authenticate, login, logout
 
-from apps.sad.security import DataAccessToken
+from apps.sad.security import DataAccessToken, Redirect
 
 from apps.helpers.message import Message
 from django.db import transaction
@@ -136,19 +136,10 @@ def add_enterprise(request):
 							user_profile_headquart.save()
 			#transaction.commit()
 			Message.info(request,("Empresa <b>%(name)s</b> ha sido registrado correctamente!.") % {"name":d.enterprise_name})
-			if request.is_ajax():
-				request.path="/home/choice_headquart/" #/app/controller_path/action/$params
-				return choice_headquart(request)
-			else:
-				return redirect("/home/choice_headquart/")
+			return Redirect.to(request, "/home/choice_headquart/")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
-		#else:
-		#	transaction.commit()
-        #	Message.info(request, "Loa cuenta se ha registrado correctamente!" )
-		#finally:
-		#	transaction.set_autocommit(True)
 	try:
 		type_a_list = Association().TYPES
 		solution_list = Solution.objects.all().order_by("id")
@@ -269,24 +260,16 @@ def signup_sys(request):
 							user_profile_headquart.headquart=headquart
 							user_profile_headquart.group=group
 							user_profile_headquart.save()
-			#transaction.commit()
 			Message.info(request,("Cuenta <b>%(name)s</b> ha sido registrado correctamente!.") % {"name":d.username})
 			if request.is_ajax():
-				#print "AJAX"
 				request.path="/account/login/" #/app/controller_path/action/$params
 				return redirect("/account/login/")
 				#return login_sys(request)
 			else:
-				#print "NO AJAX"
 				return redirect("/account/login/")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
-		#else:
-		#	transaction.commit()
-        #	Message.info(request, "Loa cuenta se ha registrado correctamente!" )
-		#finally:
-		#	transaction.set_autocommit(True)
 	try:
 		type_a_list = Association().TYPES
 		solution_list = Solution.objects.all().order_by("id")
@@ -329,9 +312,11 @@ def load_access(request, headquart_id, module_id):
 				module = Module.objects.get(id=module_id)
 				#Message.info(request, ("La sede %(name)s ha sido cargado correctamente.") % {"name":headquart_id} )
 				if module.DBM == module.module:
-					return HttpResponseRedirect("/mod_backend/dashboard/")
+					#return HttpResponseRedirect("/mod_backend/dashboard/")
+					return Redirect.to(request, "/mod_backend/dashboard/")
 				else:
-					return HttpResponseRedirect("/mod_ventas/dashboard/")
+					#return HttpResponseRedirect("/mod_ventas/dashboard/")
+					return Redirect.to(request, "/mod_ventas/dashboard/")
 			else:
 				return HttpResponse("Sede no se encuentra")
 		except Exception, e:

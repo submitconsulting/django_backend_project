@@ -36,7 +36,7 @@
                         <th class="col-collapse">{% trans "TIPO" %}</th>
                         <th class="col-collapse">{% trans "SEDES/DE" %}</th>
                         <th class="col-collapse">{% trans "ACTIVO" %}</th>
-                        <th class="btn-actions no-responsive" style="width: 100px;">{% trans "ACTIONS" %}</th>
+                        <th class="btn-actions no-responsive" style="width: 150px;">{% trans "ACTIONS" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,6 +50,13 @@
                         <td><span class="label label-success">{{ d.is_active|yesno:'SI,NO' }}</span></td>
                         <td>
                             <a href="{% url 'enterprise_edit' d.id|key:'enterprise_upd' %}" class="btn dw-spinner dw-ajax btn btn-small btn-info dw-text-bold" title="{% trans "Actualizar empresa." %}" rel="tooltip"> <i class="btn-icon-only icon-edit"></i></a>
+
+                            {% if d.is_active %}
+                                <a href="{% url 'enterprise_state' 'inactivar' d.id|key:'enterprise_inactivar' %}" class="btn dw-spinner dw-ajax btn btn-small btn-success dw-text-bold" title="{% trans "Inactivar enterprise." %}" rel="tooltip"> <i class="btn-icon-only icon-flag"></i></a>
+                            {% else %}
+                                <a href="{% url 'enterprise_state' 'reactivar' d.id|key:'enterprise_reactivar' %}" class="btn dw-spinner dw-ajax btn btn-small btn-success dw-text-bold" title="{% trans "Reactivar enterprise." %}" rel="tooltip"> <i class="btn-icon-only icon-flag"></i></a>
+                            {% endif %}
+
                             <a href="{% url 'enterprise_delete' d.id|key:'enterprise_del' %}" class="btn dw-spinner dw-ajax btn btn-small btn-danger js-confirm dw-text-bold" confirm-title="{% trans "¿Eliminar empresa?." %}" confirm-body="{% trans "It is safe to remove." %}<br/>{% trans "Remember that this operation can not be reversed." %}" title="{% trans "¿Eliminar empresa?." %}" rel="tooltip"> <i class="btn-icon-only icon-ban-circle"></i></a>
                         </td>
                      </tr>

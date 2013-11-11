@@ -24,7 +24,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
 from apps.sad.decorators import is_admin, permission_resource_required
-from apps.sad.security import Security, DataAccessToken
+from apps.sad.security import Security, DataAccessToken, Redirect
 from apps.helpers.message import Message
 
 from apps.params.models import Person
@@ -33,7 +33,7 @@ from django.contrib.contenttypes.models import ContentType
 from apps.space.models import Headquart
 from apps.sad.models import Module, Menu, UserProfileAssociation, UserProfileEnterprise, UserProfileHeadquart
 from apps.space.models import Solution
-from apps.home.views import choice_headquart
+#from apps.home.views import choice_headquart
 from django.db.models import Q
 #from heapq import merge
 # Imaginary function to handle an uploaded file.
@@ -49,15 +49,12 @@ def user_index(request, field="username", value="None", order="-id"):
 	"""
 	Página principal para trabajar con usuarios
 	"""
+	#return Redirect.to(request, "/home/choice_headquart/")
 	try:
 		d = get_object_or_404(Headquart, id=DataAccessToken.get_headquart_id(request.session))
 	except:
 		Message.error(request, ("Sede no seleccionado o no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
-			return choice_headquart(request)
-		else:
-			return redirect("/home/choice_headquart/")
+		return Redirect.to(request, "/home/choice_headquart/")
 
 	field = (field if not request.REQUEST.get("field") else request.REQUEST.get("field")).strip()
 	value = (value if not request.REQUEST.get("value") else request.REQUEST.get("value")).strip()
@@ -185,11 +182,7 @@ def user_add(request):
 
 			if d.id:
 				Message.info(request,("Usuario <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.username}, True)
-				if request.is_ajax():
-					request.path="/sad/user/index/" #/app/controller_path/action/$params
-					return user_index(request)
-				else:
-					return redirect("/sad/user/index")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
@@ -242,11 +235,7 @@ def user_edit(request, key):
 
 	id=Security.is_valid_key(request, key, "user_upd")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index")
+		return Redirect.to_action(request, "index")
 	d = None
 	try:
 		d = get_object_or_404(User, id=id)
@@ -268,11 +257,7 @@ def user_edit(request, key):
 		
 	except Exception, e:
 		Message.error(request, ("Usuario no se encuentra en la base de datos. %s" % e))
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index")
+		return Redirect.to_action(request, "index")
 
 	if request.method == "POST":
 		try:
@@ -371,11 +356,7 @@ def user_edit(request, key):
 
 			if d.id:
 				Message.info(request,("Usuario <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.username}, True)
-				if request.is_ajax():
-					request.path="/sad/user/index/" #/app/controller_path/action/$params
-					return user_index(request)
-				else:
-					return redirect("/sad/user/index")
+				return Redirect.to_action(request, "index")
 
 		except Exception, e:
 			transaction.rollback()
@@ -478,11 +459,7 @@ def user_profile(request):
 
 			if d.id:
 				Message.info(request,("Usuario <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.username}, True)
-				if request.is_ajax():
-					request.path="/home/choice_headquart/" #/app/controller_path/action/$params
-					return choice_headquart(request)
-				else:
-					return redirect("/home/choice_headquart/")
+				return Redirect.to(request, "/home/choice_headquart/")
 
 		except Exception, e:
 			transaction.rollback()
@@ -548,36 +525,20 @@ def user_delete(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "user_del")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(User, id=id)
 	except:
 		Message.error(request, ("Usuario no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index")
+		return Redirect.to_action(request, "index")
 	try:
 		d.delete()
 		if not d.id:
 			Message.info(request,("Usuario <b>%(username)s</b> ha sido eliminado correctamente.") % {"username":d.username}, True)
-			if request.is_ajax():
-				request.path="/sad/user/index/" #/app/controller_path/action/$params
-				return user_index(request)
-			else:
-				return redirect("/sad/user/index")
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index")
+		return Redirect.to_action(request, "index")
 
 def user_view(request, key):
 	"""
@@ -585,11 +546,7 @@ def user_view(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "user_viw")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index")
+		return Redirect.to_action(request, "index")
 	d = None
 	try:
 		d = get_object_or_404(User, id=id)
@@ -598,20 +555,13 @@ def user_view(request, key):
 			if person.id:
 				d.first_name = d.person.first_name
 				d.last_name = d.person.last_name
+				d.photo = d.person.photo
 		except:
 			pass
-		
-
-
 	except Exception, e:
 		Message.error(request, ("Usuario no se encuentra en la base de datos. %s" % e))
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index")
+		return Redirect.to_action(request, "index")
 
-	
 	try:
 		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
 		headquart_list_by_user_profile_headquart = Headquart.objects.filter(id__in= UserProfileHeadquart.objects.values("headquart_id").filter(user=d).distinct())
@@ -619,11 +569,6 @@ def user_view(request, key):
 		user_profile_headquart_list = UserProfileHeadquart.objects.filter(user=d).order_by("headquart")
 		user_profile_enterprise_list = UserProfileEnterprise.objects.filter(user=d).order_by("enterprise")
 		user_profile_association_list = UserProfileAssociation.objects.filter(user=d).order_by("association")
-
-		#for user_profile_headquart in user_profile_headquart_list:
-		#	print user_profile_headquart.headquart
-		#	print user_profile_headquart.group
-
 
 		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
 		solution_association=Solution.objects.get(id=headquart.association.solution.id )
@@ -673,20 +618,12 @@ def user_state(request, state, key):
 	"""
 	id=Security.is_valid_key(request, key, "user_%s" % state )
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(User, id=id)
 	except:
 		Message.error(request, ("Usuario no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index")
+		return Redirect.to_action(request, "index")
 	try:
 		if state == "inactivar" and d.is_active == False:
 			Message.error(request, ("El usuario ya se encuentra inactivo."))
@@ -701,19 +638,10 @@ def user_state(request, state, key):
 						Message.info(request,("Usuario <b>%(username)s</b> ha sido reactivado correctamente.") % {"username":d.username}, True)
 					else:
 						Message.info(request,("Usuario <b>%(username)s</b> ha sido inactivado correctamente.") % {"username":d.username}, True)
-					if request.is_ajax():
-						request.path="/sad/user/index/" #/app/controller_path/action/$params
-						return user_index(request)
-					else:
-						return redirect("/sad/user/index")
+					return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/sad/user/index/" #/app/controller_path/action/$params
-			return user_index(request)
-		else:
-			return redirect("/sad/user/index")
-
+		return Redirect.to_action(request, "index")
 #endregion user
 
 
@@ -779,15 +707,11 @@ def menu_add(request):
 			d.save()
 			if d.id:
 				Message.info(request,("Menu <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.title}, True)
-				if request.is_ajax():
-					request.path="/sad/menu/index/" #/app/controller_path/action/$params
-					return menu_index(request)
-				else:
-					return redirect("/sad/menu/index")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			Message.error(request, e)
 	try:
-		parent_list = Menu.objects.filter(parent_id=None)
+		parent_list = Menu.objects.filter(parent_id=None, is_active=True)
 		permission_list = Permission.objects.all()
 
 	except Exception, e:
@@ -810,28 +734,16 @@ def menu_edit(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "menu_upd")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/menu/index/" #/app/controller_path/action/$params
-			return menu_index(request)
-		else:
-			return redirect("/sad/menu/index")
+		return Redirect.to_action(request, "index")
 	d = None
 	try:
 		d = get_object_or_404(Menu, id=id)
 	except:
 		Message.error(request, ("Menu no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/menu/index/" #/app/controller_path/action/$params
-			return menu_index(request)
-		else:
-			return redirect("/sad/menu/index")
+		return Redirect.to_action(request, "index")
 	if d.id <= 16:
 		Message.warning(request, ("Lo sentimos, pero este menú no se puede editar."))
-		if request.is_ajax():
-			request.path="/sad/menu/index/" #/app/controller_path/action/$params
-			return menu_index(request)
-		else:
-			return redirect("/sad/menu/index")
+		return Redirect.to_action(request, "index")
 	if request.method == "POST":
 		try:
 			d.title = request.POST.get("title")
@@ -856,16 +768,12 @@ def menu_edit(request, key):
 			d.save()
 			if d.id:
 				Message.info(request,("Menu <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.title})
-				if request.is_ajax():
-					request.path="/sad/menu/index/" #/app/controller_path/action/$params
-					return menu_index(request)
-				else:
-					return redirect("/sad/menu/index")
+				return Redirect.to_action(request, "index")
 
 		except Exception, e:
 			Message.error(request, e)
 	try:
-		parent_list = Menu.objects.filter(parent_id=None)
+		parent_list = Menu.objects.filter(parent_id=None, is_active=True)
 		permission_list = Permission.objects.all()
 
 	except Exception, e:
@@ -888,44 +796,56 @@ def menu_delete(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "menu_del")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/menu/index/" #/app/controller_path/action/$params
-			return menu_index(request)
-		else:
-			return redirect("/sad/menu/index")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(Menu, id=id)
 	except:
-		Message.error(request, ("Menu no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/menu/index/" #/app/controller_path/action/$params
-			return menu_index(request)
-		else:
-			return redirect("/sad/menu/index")
+		Message.error(request, ("Menú no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
 	if d.id <= 16:
 		Message.warning(request, ("Lo sentimos, pero este menú no se puede eliminar."))
-		if request.is_ajax():
-			request.path="/sad/menu/index/" #/app/controller_path/action/$params
-			return menu_index(request)
-		else:
-			return redirect("/sad/menu/index")
+		return Redirect.to_action(request, "index")
 	try:
 		d.delete()
 		if not d.id:
-			Message.info(request,("Menu <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.title}, True)
-			if request.is_ajax():
-				request.path="/sad/menu/index/" #/app/controller_path/action/$params
-				return menu_index(request)
-			else:
-				return redirect("/sad/menu/index")
+			Message.info(request,("Menú <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.title}, True)
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/sad/menu/index/" #/app/controller_path/action/$params
-			return menu_index(request)
-		else:
-			return redirect("/sad/menu/index")
+		return Redirect.to_action(request, "index")
 	#endregion Menu
+
+@permission_resource_required
+def menu_state(request, state, key):
+	"""
+	Inactiva y reactiva el estado del menú
+	"""
+	id=Security.is_valid_key(request, key, "menu_%s" % state )
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Menu, id=id)
+	except:
+		Message.error(request, ("Menú no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		if state == "inactivar" and d.is_active == False:
+			Message.error(request, ("El menú ya se encuentra inactivo."))
+		else:
+			if state == "reactivar" and d.is_active == True:
+				Message.error(request, ("El menú ya se encuentra activo."))
+			else:
+				d.is_active = (True if state == "reactivar" else False)
+				d.save()
+				if d.id:
+					if d.is_active:
+						Message.info(request,("Menú <b>%(name)s</b> ha sido reactivado correctamente.") % {"name":d.title}, True)
+					else:
+						Message.info(request,("Menú <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.title}, True)
+					return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
 #endregion menu
 
 
@@ -962,8 +882,8 @@ def module_plans_edit(request):
 			transaction.rollback()
 			Message.error(request, e)
 	try:
-		module_list = Module.objects.all().order_by("module")
-		solution_list = Solution.objects.all().order_by("-id")
+		module_list = Module.objects.filter(is_active=True).order_by("module")
+		solution_list = Solution.objects.filter(is_active=True).order_by("-id")
 
 		#listar los privilegios y compararlos con los module y solution
 		privilegios=[]
@@ -1033,11 +953,7 @@ def module_add(request):
 
 			if d.id:
 				Message.info(request,("Modulo <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.name})
-				if request.is_ajax():
-					request.path="/sad/module/index/" #/app/controller_path/action/$params
-					return module_index(request)
-				else:
-					return redirect("/sad/module/index/")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
@@ -1062,21 +978,13 @@ def module_edit(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "module_upd")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/module/index/" #/app/controller_path/action/$params
-			return module_index(request)
-		else:
-			return redirect("/sad/module/index/")
+		return Redirect.to_action(request, "index")
 	d = None
 	try:
 		d = get_object_or_404(Module, id=id)
 	except:
 		Message.error(request, ("Módulo no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/module/index/" #/app/controller_path/action/$params
-			return module_index(request)
-		else:
-			return redirect("/sad/module/index/")
+		return Redirect.to_action(request, "index")
 
 	if request.method == "POST":
 		try:
@@ -1117,11 +1025,7 @@ def module_edit(request, key):
 
 			if d.id:
 				Message.info(request,("Modulo <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.name})
-				if request.is_ajax():
-					request.path="/sad/module/index/" #/app/controller_path/action/$params
-					return module_index(request)
-				else:
-					return redirect("/sad/module/index/")
+				return Redirect.to_action(request, "index")
 
 		except Exception, e:
 			transaction.rollback()
@@ -1150,20 +1054,12 @@ def module_delete(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "module_del")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/module/index/" #/app/controller_path/action/$params
-			return module_index(request)
-		else:
-			return redirect("/sad/module/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(Module, id=id)
 	except:
 		Message.error(request, ("Módulo no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/module/index/" #/app/controller_path/action/$params
-			return module_index(request)
-		else:
-			return redirect("/sad/module/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		#rastreando dependencias
 		if d.solutions.count() > 0:
@@ -1172,18 +1068,42 @@ def module_delete(request, key):
 		d.delete() # las dependencias grupos e initial_groups se eliminan automáticamente
 		if not d.id:
 			Message.info(request,("Módulo <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
-			if request.is_ajax():
-				request.path="/sad/module/index/" #/app/controller_path/action/$params
-				return module_index(request)
-			else:
-				return redirect("/sad/module/index/")
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/sad/module/index/" #/app/controller_path/action/$params
-			return module_index(request)
+		return Redirect.to_action(request, "index")
+
+@permission_resource_required
+def module_state(request, state, key):
+	"""
+	Inactiva y reactiva el estado del módulo
+	"""
+	id=Security.is_valid_key(request, key, "module_%s" % state )
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Module, id=id)
+	except:
+		Message.error(request, ("Módulo no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		if state == "inactivar" and d.is_active == False:
+			Message.error(request, ("El módulo ya se encuentra inactivo."))
 		else:
-			return redirect("/sad/module/index/")
+			if state == "reactivar" and d.is_active == True:
+				Message.error(request, ("El módulo ya se encuentra activo."))
+			else:
+				d.is_active = (True if state == "reactivar" else False)
+				d.save()
+				if d.id:
+					if d.is_active:
+						Message.info(request,("Módulo <b>%(name)s</b> ha sido reactivado correctamente.") % {"name":d.name}, True)
+					else:
+						Message.info(request,("Módulo <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.name}, True)
+					return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
 #endregion module
 
 
@@ -1204,7 +1124,7 @@ def group_index(request):
 		Message.error(request, e)
 	c = {
 		"page_module":("Gestión de perfiles"),
-		"page_title":("Listado de perfiles de usuario."),
+		"page_title":("Listado de perfiles de usuario. (django.contrib.auth.models.Group)"),
 		"group_list":group_list,
 		}
 	return render_to_response("sad/group/index.html", c, context_instance = RequestContext(request))
@@ -1224,11 +1144,7 @@ def group_add(request):
 			d.save()
 			if d.id:
 				Message.info(request,("Perfil <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.name})
-				if request.is_ajax():
-					request.path="/sad/group/index/" #/app/controller_path/action/$params
-					return group_index(request)
-				else:
-					return redirect("/sad/group/index/")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			Message.error(request, e)
 	c = {
@@ -1245,21 +1161,13 @@ def group_edit(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "group_upd")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/group/index/" #/app/controller_path/action/$params
-			return group_index(request)
-		else:
-			return redirect("/sad/group/index/")
+		return Redirect.to_action(request, "index")
 	d = None
 	try:
 		d = get_object_or_404(Group, id=id)
 	except:
 		Message.error(request, ("Perfil no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/group/index/" #/app/controller_path/action/$params
-			return group_index(request)
-		else:
-			return redirect("/sad/group/index/")
+		return Redirect.to_action(request, "index")
 
 	if request.method == "POST":
 		try:
@@ -1269,11 +1177,7 @@ def group_edit(request, key):
 			d.save()
 			if d.id:
 				Message.info(request,("Perfil <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.name})
-				if request.is_ajax():
-					request.path="/sad/group/index/" #/app/controller_path/action/$params
-					return group_index(request)
-				else:
-					return redirect("/sad/group/index/")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			Message.error(request, e)
 	c = {
@@ -1290,20 +1194,12 @@ def group_delete(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "group_del")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/group/index/" #/app/controller_path/action/$params
-			return group_index(request)
-		else:
-			return redirect("/sad/group/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(Group, id=id)
 	except:
 		Message.error(request, ("Perfil no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/group/index/" #/app/controller_path/action/$params
-			return group_index(request)
-		else:
-			return redirect("/sad/group/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		#rastreando dependencias
 		if d.permissions.count() > 0:
@@ -1324,18 +1220,10 @@ def group_delete(request, key):
 		d.delete()
 		if not d.id:
 			Message.info(request,("Perfil <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
-			if request.is_ajax():
-				request.path="/sad/group/index/" #/app/controller_path/action/$params
-				return group_index(request)
-			else:
-				return redirect("/sad/group/index/")
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/sad/group/index/" #/app/controller_path/action/$params
-			return group_index(request)
-		else:
-			return redirect("/sad/group/index/")
+		return Redirect.to_action(request, "index")
 
 @login_required(login_url="/account/login/")
 @permission_resource_required
@@ -1381,7 +1269,7 @@ def group_permissions_edit(request):
 		Message.error(request, e)
 	c = {
 		"page_module":("Gestión de permisos"),
-		"page_title":("Permisos y privilegios de usuarios."),
+		"page_title":("Permisos y privilegios de usuarios. (auth_group_permissions)"),
 		"resource_list":resource_list,
 		"resource_list_len":len(resource_list),
 		"group_list":group_list,
@@ -1454,11 +1342,7 @@ def resource_add(request):
 			d.save()
 			if d.id:
 				Message.info(request,("Recurso %(recurso)s ha sido registrado correctamente.") % {"recurso":recurso})
-				if request.is_ajax():
-					request.path="/sad/resource/index/" #/app/controller_path/action/$params
-					return resource_index(request)
-				else:
-					return redirect("/sad/resource/index/")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
@@ -1477,11 +1361,7 @@ def resource_edit(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "resource_upd")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/resource/index/" #/app/controller_path/action/$params
-			return resource_index(request)
-		else:
-			return redirect("/sad/resource/index/")
+		return Redirect.to_action(request, "index")
 	d = None
 	try:
 		d = get_object_or_404(Permission, id=id)
@@ -1493,19 +1373,11 @@ def resource_edit(request, key):
 		d.description=d.name
 	except:
 		Message.error(request, ("Recurso no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/resource/index/" #/app/controller_path/action/$params
-			return resource_index(request)
-		else:
-			return redirect("/sad/resource/index/")
+		return Redirect.to_action(request, "index")
 
 	if d.id <= 19:
 		Message.warning(request, ("Lo sentimos, pero este recurso no se puede editar."))
-		if request.is_ajax():
-			request.path="/sad/resource/index/" #/app/controller_path/action/$params
-			return resource_index(request)
-		else:
-			return redirect("/sad/resource/index/")
+		return Redirect.to_action(request, "index")
 
 	if request.method == "POST":
 		try:
@@ -1539,11 +1411,7 @@ def resource_edit(request, key):
 			d.save()
 			if d.id:
 				Message.info(request,("Recurso <b>%(recurso)s</b> ha sido actualizado correctamente.") % {"recurso":recurso})
-				if request.is_ajax():
-					request.path="/sad/resource/index/" #/app/controller_path/action/$params
-					return resource_index(request)
-				else:
-					return redirect("/sad/resource/index/")
+				return Redirect.to_action(request, "index")
 
 		except Exception, e:
 			transaction.rollback()
@@ -1562,11 +1430,7 @@ def resource_delete(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "resource_del")
 	if not id:
-		if request.is_ajax():
-			request.path="/sad/resource/index/" #/app/controller_path/action/$params
-			return resource_index(request)
-		else:
-			return redirect("/sad/resource/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(Permission, id=id)
 		recurso="/%s/" % d.content_type.app_label
@@ -1577,19 +1441,11 @@ def resource_delete(request, key):
 				recurso="/%s/%s/%s/" % (d.content_type.app_label, d.content_type.name, codename_list[1])
 	except:
 		Message.error(request, ("Recurso no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/sad/resource/index/" #/app/controller_path/action/$params
-			return resource_index(request)
-		else:
-			return redirect("/sad/resource/index/")
+		return Redirect.to_action(request, "index")
 
 	if d.id <= 19:
 		Message.warning(request, ("Lo sentimos, pero este recurso no se puede eliminar."))
-		if request.is_ajax():
-			request.path="/sad/resource/index/" #/app/controller_path/action/$params
-			return resource_index(request)
-		else:
-			return redirect("/sad/resource/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		#rastreando dependencias
 		if d.group_set.count() > 0:
@@ -1602,16 +1458,8 @@ def resource_delete(request, key):
 		d.delete()
 		if not d.id:
 			Message.info(request,("Recurso <b>%(recurso)s</b> ha sido eliminado correctamente.") % {"recurso":recurso}, True)
-			if request.is_ajax():
-				request.path="/sad/resource/index/" #/app/controller_path/action/$params
-				return resource_index(request)
-			else:
-				return redirect("/sad/resource/index/")
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/sad/resource/index/" #/app/controller_path/action/$params
-			return resource_index(request)
-		else:
-			return redirect("/sad/resource/index/")
+		return Redirect.to_action(request, "index")
 #endregion resource

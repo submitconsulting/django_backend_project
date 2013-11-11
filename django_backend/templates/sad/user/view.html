@@ -137,24 +137,21 @@
             <div class="tab-pane" id="tab4">
 
                 <div class="row fileupload-buttonbar">
+                    <input id="persona_fotografia" name="persona_fotografia" type="hidden" value="{{ d.photo }}" />
 
-                    <div class="span2">
-                        <span class="btn btn-success fileinput-button">
-                            <i class="icon-plus icon-white"></i>
-                            <span>Seleccionar fotografía...</span>
-                            <input id="fotografia" type="file" name="fotografia" class="input-large">
-                        </span>
-                    </div>
+                    
 
                     <div id="upload-progress" class="span4 fileupload-progress fade">
                         <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                             <div class="bar" style="width:0%;"></div>
                         </div>
                     </div>
-
+                    <!-- 
+                    /media/personas/default.png
+                    -->
                     <div class="span5 dw-text-right">
                         <div class="span5 dw-picture-profile dw-text-center dw-text-middle dw-shadow-dark" style="margin-top: 5px">
-                            <img src="{% static 'img/upload/personas/default.png' %}" alt="Imágen de muestra"  id="img-persona" />                        </div>
+                            <img src="{{ MEDIA_URL }}{{ d.photo }}" alt="Imágen de muestra"  id="img-persona" />                        </div>
                     </div>
 
                 </div>
@@ -166,14 +163,6 @@
 
             <div class="row-fluid">
                 <div class="form-actions">
-
-                    <button type="submit" class="btn btn-success dw-text-bold" title="Guardar registro">
-                        <i class="btn-icon-only icon-save"></i> <span class="hidden-phone">{% trans "SAVE" %}</span>
-                    </button>
-
-                    <button type="button"  class="btn btn-info dw-text-bold" title="Limpiar formulario" onclick="document.getElementById('form').reset();">
-                        <i class="btn-icon-only icon-undo"></i> <span class="hidden-phone">{% trans "RESET" %}</span>
-                    </button>
 
                     <a href="{% url 'user_index' %}"  class="btn dw-spinner dw-ajax btn-danger dw-text-bold" title="Cancelar operación">
                         <i class="btn-icon-only icon-ban-circle"></i> <span class="hidden-phone">{% trans "CANCEL" %}</span>

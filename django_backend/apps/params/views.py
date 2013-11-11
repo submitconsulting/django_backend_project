@@ -22,7 +22,7 @@ from apps.sad.decorators import is_admin, permission_resource_required
 from django.template import Context, Template, loader 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import transaction
-from apps.sad.security import Security, SessionContext
+from apps.sad.security import Security, SessionContext, Redirect
 from unicodedata import normalize
 
 #TODO por definirse. https://docs.djangoproject.com/en/dev/topics/i18n/translation/
@@ -50,6 +50,8 @@ def locality_index(request, field="name", value="None", order="-id"):
 	"""
 	Página principal para locality
 	"""
+	#return Redirect.to_action(request,"add")
+
 	#if SessionContext.is_administrator(request):
 	#	print "USER ADMIN"
 	#del request.session["id"]
@@ -156,11 +158,8 @@ def locality_add(request):
 			d.save()
 			if d.id:
 				Message.info(request,("Localidad <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.name}, True)
-				if request.is_ajax():
-					request.path="/params/locality/index/" #/app/controller_path/action/$params
-					return locality_index(request)
-				else:
-					return redirect("/params/locality/index/")
+				#return Redirect.to(request, "/params/locality/index/")#usar to(...) cuando la acción está implementada en otra app, ver sad.views.user_index
+				return Redirect.to_action(request, "index")#usar to_action(...) cuando la acción está implementada en este archivo
 		except Exception, e:
 			Message.error(request, e)
 	try:
@@ -180,21 +179,13 @@ def locality_add(request):
 def locality_edit(request, key):
 	id=Security.is_valid_key(request, key, "locality_upd")
 	if not id:
-		if request.is_ajax():
-			request.path="/params/locality/index/" #/app/controller_path/action/$params
-			return locality_index(request)
-		else:
-			return redirect("/params/locality/index/")
+		return Redirect.to_action(request, "index")
 	d = None
 	try:
 		d = get_object_or_404(Locality, id=id) #Locality.objects.get(id=id)
 	except: #Locality.DoesNotExist
 		Message.error(request, _("Locality not found in the database."))
-		if request.is_ajax():
-			request.path="/params/locality/index/" #/app/controller_path/action/$params
-			return locality_index(request)
-		else:
-			return redirect("/params/locality/index/")
+		return Redirect.to_action(request, "index")
 
 	if request.method == "POST":
 		try:
@@ -219,11 +210,7 @@ def locality_edit(request, key):
 			if d.id:
 				#transaction.commit() se colocaría solo al final, pero no amerita pk ya está decorado con @transaction.commit_on_success
 				Message.info(request,("Localidad <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.name}, True)
-				if request.is_ajax():
-					request.path="/params/locality/index/" #/app/controller_path/action/$params
-					return locality_index(request)
-				else:
-					return redirect("/params/locality/index/")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			transaction.rollback() #para reversar en caso de error en alguna de las tablas
 			Message.error(request, e)
@@ -243,20 +230,12 @@ def locality_edit(request, key):
 def locality_delete(request, key):
 	id=Security.is_valid_key(request, key, "locality_del")
 	if not id:
-		if request.is_ajax():
-			request.path="/params/locality/index/" #/app/controller_path/action/$params
-			return locality_index(request)
-		else:
-			return redirect("/params/locality/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(Locality, id=id) #Locality.objects.get(id=id)
 	except: #Locality.DoesNotExist
 		Message.error(request, _("Locality not found in the database."))
-		if request.is_ajax():
-			request.path="/params/locality/index/" #/app/controller_path/action/$params
-			return locality_index(request)
-		else:
-			return redirect("/params/locality/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		#rastreando dependencias
 		if d.headquart_set.count() > 0:
@@ -265,17 +244,40 @@ def locality_delete(request, key):
 		d.delete()
 		if not d.id:
 			Message.info(request,("Localidad <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
-			if request.is_ajax():
-				request.path="/params/locality/index/" #/app/controller_path/action/$params
-				return locality_index(request)
-			else:
-				return redirect("/params/locality/index/")
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/params/locality/index/" #/app/controller_path/action/$params
-			return locality_index(request)
-		else:
-			return redirect("/params/locality/index/")
+		return Redirect.to_action(request, "index")
 
+@permission_resource_required
+def locality_state(request, state, key):
+	"""
+	Inactiva y reactiva el estado de la Localidad
+	"""
+	id=Security.is_valid_key(request, key, "locality_%s" % state )
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Locality, id=id)
+	except:
+		Message.error(request, ("Localidad no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		if state == "inactivar" and d.is_active == False:
+			Message.error(request, ("Localidad ya se encuentra inactivo."))
+		else:
+			if state == "reactivar" and d.is_active == True:
+				Message.error(request, ("Localidad ya se encuentra activo."))
+			else:
+				d.is_active = (True if state == "reactivar" else False)
+				d.save()
+				if d.id:
+					if d.is_active:
+						Message.info(request,("Localidad <b>%(name)s</b> ha sido reactivado correctamente.") % {"name":d.name}, True)
+					else:
+						Message.info(request,("Localidad <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.name}, True)
+					return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
 #Fin Locality

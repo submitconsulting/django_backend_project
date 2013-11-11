@@ -20,9 +20,10 @@ from django.db.models import Avg, Max, Min, Count
 from unicodedata import normalize
 
 from apps.sad.decorators import is_admin, permission_resource_required
-from apps.sad.security import Security, DataAccessToken
+from apps.sad.security import Security, DataAccessToken, Redirect
 from apps.helpers.message import Message
-from apps.home.views import choice_headquart
+#from apps.home.views import choice_headquart
+
 #from django.contrib.auth.models import User, Group, Permission 
 
 from django.contrib.contenttypes.models import ContentType
@@ -30,6 +31,7 @@ from apps.space.models import Solution, Association, Enterprise, Headquart
 from apps.params.models import Locality
 #from itertools import chain
 from apps.sad.upload import Upload
+#from apps.space.views import headquart_index
 
 #region headquart OK
 @permission_resource_required
@@ -41,12 +43,7 @@ def headquart_index(request):
 		enterprise = get_object_or_404(Enterprise, id=DataAccessToken.get_enterprise_id(request.session))
 	except:
 		Message.error(request, ("Empresa no seleccionada o no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
-			return choice_headquart(request)
-		else:
-			return redirect("/home/choice_headquart/")
-
+		return Redirect.to(request, "/home/choice_headquart/")
 	try:
 		headquart_list = Headquart.objects.filter(enterprise_id=DataAccessToken.get_enterprise_id(request.session)).order_by("-id")
 	except Exception, e:
@@ -89,11 +86,7 @@ def headquart_add(request):
 			d.save()
 			if d.id:
 				Message.info(request,("Sede <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.name})
-				if request.is_ajax():
-					request.path="/space/headquart/index/" #/app/controller_path/action/$params
-					return headquart_index(request)
-				else:
-					return redirect("/space/headquart/index/")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
@@ -117,24 +110,15 @@ def headquart_edit(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "headquart_upd")
 	if not id:
-		if request.is_ajax():
-			request.path="/space/headquart/index/" #/app/controller_path/action/$params
-			return headquart_index(request)
-		else:
-			return redirect("/space/headquart/index/")
+		return Redirect.to_action(request, "index")
 	d = None
-
 	try:
 		d = get_object_or_404(Headquart, id=id)
 		if d.locality:
 			d.locality_name = d.locality.name
 	except:
 		Message.error(request, ("Sede no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/space/headquart/index/" #/app/controller_path/action/$params
-			return headquart_index(request)
-		else:
-			return redirect("/space/headquart/index/")
+		return Redirect.to_action(request, "index")
 
 	if request.method == "POST":
 		try:
@@ -155,11 +139,7 @@ def headquart_edit(request, key):
 			d.save()
 			if d.id:
 				Message.info(request,("Sede <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.name})
-				if request.is_ajax():
-					request.path="/space/headquart/index/" #/app/controller_path/action/$params
-					return headquart_index(request)
-				else:
-					return redirect("/space/headquart/index/")
+				return Redirect.to_action(request, "index")
 
 		except Exception, e:
 			transaction.rollback()
@@ -177,44 +157,110 @@ def headquart_edit(request, key):
 	return render_to_response("space/headquart/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+#@transaction.commit_on_success
+def headquart_change_association(request, key):
+	"""
+	Cambia de asociación a la sede
+	"""
+	id=Security.is_valid_key(request, key, "headquart_cha")
+	if not id:
+		return Redirect.to_action(request, "index")
+	d = None
+
+	try:
+		d = get_object_or_404(Headquart, id=id)
+		if d.association:
+			d.association_name = d.association.name
+	except:
+		Message.error(request, ("Sede no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+
+	if request.method == "POST":
+		try:
+			#d.association_id = DataAccessToken.get_association_id(request.session)
+			d.association_name = request.POST.get("association_name")
+			try:
+				d.association  = Association.objects.get(name=d.association_name)
+			except:
+				raise Exception( "La asociación <b>%s</b> no existe " % (request.POST.get("association_name")) )
+			#salvar registro
+			d.save()
+			if d.id:
+				Message.info(request,("Sede <b>%(name)s</b> ha sido cambiado de asociación correctamente.") % {"name":d.name})
+				return Redirect.to_action(request, "index")
+
+		except Exception, e:
+			transaction.rollback()
+			Message.error(request, e)
+	try:
+		association_name_list = json.dumps(list(col["name"]+""  for col in Association.objects.values("name").filter(is_active=True).order_by("name")))
+
+	except Exception, e:
+		Message.error(request, e)
+	c = {
+		"page_module":("Cuenta"),
+		"page_title":("Cambiar de asociación a la sede."),
+		"d":d,
+		"association_name_list":association_name_list,
+		}
+	return render_to_response("space/headquart/change_association.html", c, context_instance = RequestContext(request))
+
+@permission_resource_required
 def headquart_delete(request, key):
 	"""
 	Elimina sede
 	"""
 	id=Security.is_valid_key(request, key, "headquart_del")
 	if not id:
-		if request.is_ajax():
-			request.path="/space/headquart/index/" #/app/controller_path/action/$params
-			return headquart_index(request)
-		else:
-			return redirect("/space/headquart/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(Headquart, id=id)
 	except:
 		Message.error(request, ("Sede no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/space/headquart/index/" #/app/controller_path/action/$params
-			return headquart_index(request)
-		else:
-			return redirect("/space/headquart/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		if d.enterprise.headquart_set.count() == 1:
 			raise Exception( ("Empresa <b>%(name)s</b> no puede quedar sin ninguna sede.") % {"name":d.enterprise.name} )
+		#agregue aquí sus otras relgas de negocio
 		d.delete()
 		if not d.id:
 			Message.info(request,("Sede <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
-			if request.is_ajax():
-				request.path="/space/headquart/index/" #/app/controller_path/action/$params
-				return headquart_index(request)
-			else:
-				return redirect("/space/headquart/index/")
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/space/headquart/index/" #/app/controller_path/action/$params
-			return headquart_index(request)
+		return Redirect.to_action(request, "index")
+
+@permission_resource_required
+def headquart_state(request, state, key):
+	"""
+	Inactiva y reactiva el estado de la sede
+	"""
+	id=Security.is_valid_key(request, key, "headquart_%s" % state )
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Headquart, id=id)
+	except:
+		Message.error(request, ("Sede no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		if state == "inactivar" and d.is_active == False:
+			Message.error(request, ("Sede ya se encuentra inactivo."))
 		else:
-			return redirect("/space/headquart/index/")
+			if state == "reactivar" and d.is_active == True:
+				Message.error(request, ("Sede ya se encuentra activo."))
+			else:
+				d.is_active = (True if state == "reactivar" else False)
+				d.save()
+				if d.id:
+					if d.is_active:
+						Message.info(request,("Sede <b>%(name)s</b> ha sido reactivado correctamente.") % {"name":d.name}, True)
+					else:
+						Message.info(request,("Sede <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.name}, True)
+					return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
 #endregion headquart
 
 #region enterprise OK
@@ -227,11 +273,7 @@ def enterprise_index(request):
 		d = get_object_or_404(Association, id=DataAccessToken.get_association_id(request.session))
 	except:
 		Message.error(request, ("Asociación no seleccionada o no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
-			return choice_headquart(request)
-		else:
-			return redirect("/home/choice_headquart/")
+		return Redirect.to(request, "/home/choice_headquart/")
 	enterprise_list=None
 	try:
 		subq = "SELECT COUNT(*) as count_sedes FROM space_headquart WHERE space_headquart.enterprise_id = space_enterprise.id" #mejor usar {{ d.headquart_set.all.count }} y listo, trate de no usar {{ d.num_sedes_all }}
@@ -294,16 +336,12 @@ def enterprise_add(request):
 
 			if d.id:
 				Message.info(request,("Empresa <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.name})
-				if request.is_ajax():
-					request.path="/space/enterprise/index/" #/app/controller_path/action/$params
-					return enterprise_index(request)
-				else:
-					return redirect("/space/enterprise/index/")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
 	try:
-		solution_list = Solution.objects.all().order_by("id")
+		solution_list = Solution.objects.filter(is_active=True).order_by("id")
 	except Exception, e:
 		Message.error(request, e)
 	c = {
@@ -323,22 +361,14 @@ def enterprise_edit(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "enterprise_upd")
 	if not id:
-		if request.is_ajax():
-			request.path="/space/enterprise/index/" #/app/controller_path/action/$params
-			return enterprise_index(request)
-		else:
-			return redirect("/space/enterprise/index/")
+		return Redirect.to_action(request, "index")
 	d = None
 
 	try:
 		d = get_object_or_404(Enterprise, id=id)
 	except:
 		Message.error(request, ("Empresa no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/space/enterprise/index/" #/app/controller_path/action/$params
-			return enterprise_index(request)
-		else:
-			return redirect("/space/enterprise/index/")
+		return Redirect.to_action(request, "index")
 
 	if request.method == "POST":
 		try:
@@ -360,17 +390,13 @@ def enterprise_edit(request, key):
 			d.save()
 			if d.id:
 				Message.info(request,("Empresa <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.name})
-				if request.is_ajax():
-					request.path="/space/enterprise/index/" #/app/controller_path/action/$params
-					return enterprise_index(request)
-				else:
-					return redirect("/space/enterprise/index/")
+				return Redirect.to_action(request, "index")
 
 		except Exception, e:
 			transaction.rollback()
 			Message.error(request, e)
 	try:
-		solution_list = Solution.objects.all().order_by("id")
+		solution_list = Solution.objects.filter(is_active=True).order_by("id")
 	except Exception, e:
 		Message.error(request, e)
 	c = {
@@ -390,40 +416,57 @@ def enterprise_delete(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "enterprise_del")
 	if not id:
-		if request.is_ajax():
-			request.path="/space/enterprise/index/" #/app/controller_path/action/$params
-			return enterprise_index(request)
-		else:
-			return redirect("/space/enterprise/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(Enterprise, id=id)
 	except:
 		Message.error(request, ("Empresa no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/space/enterprise/index/" #/app/controller_path/action/$params
-			return enterprise_index(request)
-		else:
-			return redirect("/space/enterprise/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		association=Association.objects.get(id=DataAccessToken.get_association_id(request.session))
 		if Enterprise.objects.filter(headquart__association_id=DataAccessToken.get_association_id(request.session)).count() == 1:
 			raise Exception( ("Asociación <b>%(name)s</b> no puede quedar sin ninguna sede asociada.") % {"name":association.name} )		
+		#agregue aquí sus otras relgas de negocio
 		d.delete()
 		if not d.id:
 			Message.info(request,("Empresa <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
-			if request.is_ajax():
-				request.path="/space/enterprise/index/" #/app/controller_path/action/$params
-				return enterprise_index(request)
-			else:
-				return redirect("/space/enterprise/index/")
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		transaction.rollback()
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/space/enterprise/index/" #/app/controller_path/action/$params
-			return enterprise_index(request)
+		return Redirect.to_action(request, "index")
+
+@permission_resource_required
+def enterprise_state(request, state, key):
+	"""
+	Inactiva y reactiva el estado de la sede
+	"""
+	id=Security.is_valid_key(request, key, "enterprise_%s" % state )
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Enterprise, id=id)
+	except:
+		Message.error(request, ("Empresa no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		if state == "inactivar" and d.is_active == False:
+			Message.error(request, ("Empresa ya se encuentra inactivo."))
 		else:
-			return redirect("/space/enterprise/index/")
+			if state == "reactivar" and d.is_active == True:
+				Message.error(request, ("Empresa ya se encuentra activo."))
+			else:
+				d.is_active = (True if state == "reactivar" else False)
+				d.save()
+				if d.id:
+					if d.is_active:
+						Message.info(request,("Empresa <b>%(name)s</b> ha sido reactivado correctamente.") % {"name":d.name}, True)
+					else:
+						Message.info(request,("Empresa <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.name}, True)
+					return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
 
 @permission_resource_required
 @transaction.commit_on_success
@@ -436,11 +479,7 @@ def enterprise_edit_current(request):
 		d = get_object_or_404(Enterprise, id=DataAccessToken.get_enterprise_id(request.session))
 	except:
 		Message.error(request, ("Empresa no seleccionada o no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
-			return choice_headquart(request)
-		else:
-			return redirect("/home/choice_headquart/")
+		return Redirect.to(request, "/home/choice_headquart/")
 
 	if request.method == "POST":
 		try:
@@ -468,7 +507,7 @@ def enterprise_edit_current(request):
 			transaction.rollback()
 			Message.error(request, e)
 	try:
-		solution_list = Solution.objects.all().order_by("id")
+		solution_list = Solution.objects.filter(is_active=True).order_by("id")
 	except Exception, e:
 		Message.error(request, e)
 	c = {
@@ -495,8 +534,8 @@ def enterprise_upload(request):
 #endregion enterprise
 
 #region association OK
-@permission_resource_required
 @transaction.commit_on_success
+@permission_resource_required
 def association_edit_current(request):
 	"""
 	Actualiza datos de la asociación a la que ingresó el usuario
@@ -506,11 +545,7 @@ def association_edit_current(request):
 		d = get_object_or_404(Association, id=DataAccessToken.get_association_id(request.session))
 	except:
 		Message.error(request, ("Asociación no seleccionada o no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/home/choice_headquart/" #/app/controller_path/action/$params
-			return choice_headquart(request)
-		else:
-			return redirect("/home/choice_headquart/")
+		return Redirect.to(request, "/home/choice_headquart/")
 
 	if request.method == "POST":
 		try:
@@ -533,7 +568,7 @@ def association_edit_current(request):
 			transaction.rollback()
 			Message.error(request, e)
 	try:
-		solution_list = Solution.objects.all().order_by("id")
+		solution_list = Solution.objects.filter(is_active=True).order_by("id")
 	except Exception, e:
 		Message.error(request, e)
 	c = {
@@ -592,11 +627,7 @@ def solution_add(request):
 			d.save()
 			if d.id:
 				Message.info(request,("Solución <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.name})
-				if request.is_ajax():
-					request.path="/space/solution/index/" #/app/controller_path/action/$params
-					return solution_index(request)
-				else:
-					return redirect("/space/solution/index/")
+				return Redirect.to_action(request, "index")
 		except Exception, e:
 			Message.error(request, e)
 	c = {
@@ -613,22 +644,14 @@ def solution_edit(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "solution_upd")
 	if not id:
-		if request.is_ajax():
-			request.path="/space/solution/index/" #/app/controller_path/action/$params
-			return solution_index(request)
-		else:
-			return redirect("/space/solution/index/")
+		return Redirect.to_action(request, "index")
 	d = None
 
 	try:
 		d = get_object_or_404(Solution, id=id)
 	except:
 		Message.error(request, ("Solución no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/space/solution/index/" #/app/controller_path/action/$params
-			return solution_index(request)
-		else:
-			return redirect("/space/solution/index/")
+		return Redirect.to_action(request, "index")
 
 	if request.method == "POST":
 		try:
@@ -641,11 +664,7 @@ def solution_edit(request, key):
 			d.save()
 			if d.id:
 				Message.info(request,("Solución <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.name})
-				if request.is_ajax():
-					request.path="/space/solution/index/" #/app/controller_path/action/$params
-					return solution_index(request)
-				else:
-					return redirect("/space/solution/index/")
+				return Redirect.to_action(request, "index")
 
 		except Exception, e:
 			Message.error(request, e)
@@ -663,20 +682,12 @@ def solution_delete(request, key):
 	"""
 	id=Security.is_valid_key(request, key, "solution_del")
 	if not id:
-		if request.is_ajax():
-			request.path="/space/solution/index/" #/app/controller_path/action/$params
-			return solution_index(request)
-		else:
-			return redirect("/space/solution/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		d = get_object_or_404(Solution, id=id)
 	except:
 		Message.error(request, ("Solución no se encuentra en la base de datos."))
-		if request.is_ajax():
-			request.path="/space/solution/index/" #/app/controller_path/action/$params
-			return solution_index(request)
-		else:
-			return redirect("/space/solution/index/")
+		return Redirect.to_action(request, "index")
 	try:
 		#rastreando dependencias
 		if d.module_set.count() > 0:
@@ -688,16 +699,41 @@ def solution_delete(request, key):
 		d.delete()
 		if not d.id:
 			Message.info(request,("Solución <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
-			if request.is_ajax():
-				request.path="/space/solution/index/" #/app/controller_path/action/$params
-				return solution_index(request)
-			else:
-				return redirect("/space/solution/index/")
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
-		if request.is_ajax():
-			request.path="/space/solution/index/" #/app/controller_path/action/$params
-			return solution_index(request)
+		return Redirect.to_action(request, "index")
+
+@permission_resource_required
+def solution_state(request, state, key):
+	"""
+	Inactiva y reactiva el estado del la solución/plan
+	"""
+	id=Security.is_valid_key(request, key, "solution_%s" % state )
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Solution, id=id)
+	except:
+		Message.error(request, ("Solución no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		if state == "inactivar" and d.is_active == False:
+			Message.error(request, ("La solución ya se encuentra inactivo."))
 		else:
-			return redirect("/space/solution/index/")
+			if state == "reactivar" and d.is_active == True:
+				Message.error(request, ("La solución ya se encuentra activo."))
+			else:
+				d.is_active = (True if state == "reactivar" else False)
+				d.save()
+				if d.id:
+					if d.is_active:
+						Message.info(request,("Solución <b>%(name)s</b> ha sido reactivado correctamente.") % {"name":d.name}, True)
+					else:
+						Message.info(request,("Solución <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.name}, True)
+					return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
+
 #endregion solution

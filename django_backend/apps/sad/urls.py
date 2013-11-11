@@ -28,7 +28,7 @@ urlpatterns = patterns('apps.sad.views',
 	url(r'^menu/add/$', 'menu_add', name='menu_add'),
 	url(r'^menu/edit/(?P<key>.*)/$', 'menu_edit', name='menu_edit'),
 	url(r'^menu/delete/(?P<key>.*)/$', 'menu_delete', name='menu_delete'),
-
+	url(r'^menu/state/(?P<state>[\w\d\-]+)/(?P<key>.*)/$', 'menu_state', name='menu_state'),
 
 
 
@@ -37,6 +37,7 @@ urlpatterns = patterns('apps.sad.views',
 	url(r'^module/edit/(?P<key>.*)/$', 'module_edit', name='module_edit'),
 	url(r'^module/delete/(?P<key>.*)/$', 'module_delete', name='module_delete'),
 	url(r'^module/plans_edit/$', 'module_plans_edit', name='module_plans_edit'),
+	url(r'^module/state/(?P<state>[\w\d\-]+)/(?P<key>.*)/$', 'module_state', name='module_state'),
 
 	url(r'^group/index/$', 'group_index', name='group_index'),
 	url(r'^group/add/$', 'group_add', name='group_add'),

@@ -139,7 +139,6 @@ def locality_report(request, field="name", value="None", order="-id"):
 #@permission_resource_required(template_denied_name="denied_mod_backend.html")
 @permission_resource_required
 def locality_add(request):
-
 	d = Locality()
 	d.msnm = 0
 	if request.method == "POST":

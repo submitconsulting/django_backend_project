@@ -13,6 +13,6 @@ def mod_backend_dashboard(request):
 	
 	c = {
 		"page_module":("mod_backend_dashboard"),
-		"page_title":("mod_backend_dashboard page."),
+		"page_title":("Backend module dashboard page."),
 		}
 	return render_to_response("mod_backend/dashboard.html", c, context_instance = RequestContext(request))

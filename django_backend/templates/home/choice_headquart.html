@@ -9,6 +9,9 @@
 <script type="text/javascript">
     $(function() {
         $('table').dwGrid({
+            form_search: true,
+            form_action: "{% url 'choice_headquart' field value %}",
+            form_load_data : 'dw-shell-content',
         });
     });
 </script>
@@ -32,20 +35,26 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th class="col-collapse">{% trans "ASOCIACIÓN" %}</th>
-                    <th class="col-collapse" data-search="name">{% trans "EMPRESA" %}</th>
-                    <th class="col-collapse" data-search="registered_at">{% trans "SEDE" %}</th>
-                    <th class="col-collapse" data-search="modified_in">{% trans "PERFILES" %}</th>
-                    <th class="col-collapse" data-search="modified_in">{% trans "ELEGIR MODULO" %}</th>
+                    <th class="col-collapse" data-search="association__name">{% trans "ASOCIACIÓN" %}</th>
+                    <th class="col-collapse" data-search="enterprise__name">{% trans "EMPRESA" %}</th>
+                    <th class="col-collapse">{% trans "SEDE" %}</th>
+                    <th class="col-collapse">{% trans "PERFILES" %}</th>
+                    <th class="col-collapse">{% trans "ELEGIR MODULO" %}</th>
                 </tr>
             </thead>
             <tbody>
 			{% for d in headquart_list %}
 				<tr>
 					<td>{{ forloop.counter }}</td>
-                	<td>{{ d.association.name }}</td>
-                	<td>{{ d.enterprise.name }}</td>
-                	<td>{{ d.headquart.name }}</td>
+                	<td>{{ d.association.name }} 
+                        <span class="label label-success">{{ d.association.is_active|yesno:',off' }}</span>
+                    </td>
+                	<td>{{ d.enterprise.name }} 
+                        <span class="label label-success">{{ d.enterprise.is_active|yesno:',off' }}</span>
+                    </td>
+                	<td>{{ d.headquart.name }} 
+                        <span class="label label-success">{{ d.headquart.is_active|yesno:',off' }}</span>
+                    </td>
                     <td>
                         {{ d.groups|join:', ' }} 
                     </td>

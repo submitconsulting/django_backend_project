@@ -23,8 +23,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
-from apps.sad.decorators import is_admin, permission_resource_required
-from apps.sad.security import Security, DataAccessToken, Redirect
+
 from apps.helpers.message import Message
 
 from apps.params.models import Person
@@ -33,13 +32,10 @@ from django.contrib.contenttypes.models import ContentType
 from apps.space.models import Headquart
 from apps.sad.models import Module, Menu, UserProfileAssociation, UserProfileEnterprise, UserProfileHeadquart
 from apps.space.models import Solution
-#from apps.home.views import choice_headquart
 from django.db.models import Q
-#from heapq import merge
-# Imaginary function to handle an uploaded file.
-#from somewhere import handle_uploaded_file
 from apps.sad.upload import Upload
-
+from apps.sad.decorators import is_admin, permission_resource_required
+from apps.sad.security import Security, DataAccessToken, Redirect
 
 #region user OK
 @csrf_exempt
@@ -49,18 +45,14 @@ def user_index(request, field="username", value="None", order="-id"):
 	"""
 	Página principal para trabajar con usuarios
 	"""
-	#return Redirect.to(request, "/home/choice_headquart/")
 	try:
 		d = get_object_or_404(Headquart, id=DataAccessToken.get_headquart_id(request.session))
 	except:
 		Message.error(request, ("Sede no seleccionado o no se encuentra en la base de datos."))
 		return Redirect.to(request, "/home/choice_headquart/")
-
 	field = (field if not request.REQUEST.get("field") else request.REQUEST.get("field")).strip()
 	value = (value if not request.REQUEST.get("value") else request.REQUEST.get("value")).strip()
 	order = (order if not request.REQUEST.get("order") else request.REQUEST.get("order")).strip()
-
-	menu_page=None
 	try:
 		value_f = "" if value == "None" else value
 		column_contains = u"%s__%s" % (field,"contains")
@@ -77,16 +69,12 @@ def user_index(request, field="username", value="None", order="-id"):
 	c = {
 		"page_module":("Gestión de usuarios"),
 		"page_title":("Listado de usuarios del sistema."),
-		
 		"user_page":user_page,
-		#"MODULES":dict((x, y) for x, y in Module.MODULES),
 		"field":field,
 		"value":value.replace("/", "-"),
 		"order":order,
 		}
 	return render_to_response("sad/user/index.html", c, context_instance = RequestContext(request))
-
-
 
 @csrf_exempt
 def user_upload(request):
@@ -101,7 +89,6 @@ def user_upload(request):
 		Message.error(request, e)
 	return HttpResponse(json.dumps(data))
 	
-
 @permission_resource_required
 @transaction.commit_on_success
 def user_add(request):
@@ -191,7 +178,7 @@ def user_add(request):
 
 		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
 		solution_association=Solution.objects.get(id=headquart.association.solution.id )
-		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
+		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association), is_active=True).distinct()
 		group_perm_list = Group.objects.filter(module_set__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
 		#print group_perm_list
 		#print "====================="
@@ -366,7 +353,7 @@ def user_edit(request, key):
 
 		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
 		solution_association=Solution.objects.get(id=headquart.association.solution.id )
-		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
+		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association), is_active=True).distinct()
 		group_perm_list = Group.objects.filter(module_set__in=module_list).order_by("-id").distinct() #trae los objetos relacionados a sad.Module
 		#print group_perm_list
 		#print "=====================x"

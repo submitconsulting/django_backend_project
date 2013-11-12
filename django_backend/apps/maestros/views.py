@@ -28,15 +28,6 @@ from apps.params.models import Categoria
 
 from apps.space.models import Headquart
 
-#@csrf_exempt
-def mod_ventas_dashboard(request):
-	
-	c = {
-		"page_module":("mod_ventas_dashboard"),
-		"page_title":("mod_ventas_dashboard page."),
-		}
-	return render_to_response("mod_ventas/dashboard.html", c, context_instance = RequestContext(request))
-
 #region user OK
 @csrf_exempt
 @login_required(login_url="/account/login/")

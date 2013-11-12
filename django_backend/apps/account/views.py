@@ -19,7 +19,7 @@ from apps.sad.security import DataAccessToken, Redirect
 
 from apps.helpers.message import Message
 from django.db import transaction
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 #from apps.sad.models import *
 from apps.params.models import Person
 from apps.space.models import Association, Enterprise, Headquart, Solution
@@ -142,7 +142,7 @@ def add_enterprise(request):
 			Message.error(request, e)
 	try:
 		type_a_list = Association().TYPES
-		solution_list = Solution.objects.all().order_by("id")
+		solution_list = Solution.objects.filter(is_active=True).order_by("id")
 	except Exception, e:
 		Message.error(request, e)
 	t = {
@@ -272,7 +272,7 @@ def signup_sys(request):
 			Message.error(request, e)
 	try:
 		type_a_list = Association().TYPES
-		solution_list = Solution.objects.all().order_by("id")
+		solution_list = Solution.objects.filter(is_active=True).order_by("id")
 	except Exception, e:
 		Message.error(request, e)
 	t = {
@@ -291,7 +291,29 @@ def load_access(request, headquart_id, module_id):
 		return HttpResponse("ESTA OPERACION NO DEBE SER CARGADO CON AJAX, Presione F5")
 	else:
 		try:
-			headquart = Headquart.objects.get(id=headquart_id)
+			try:
+				headquart = Headquart.objects.get(id=headquart_id)
+			except:
+				Message.error(request, ("Sede no seleccionado o no se encuentra en la base de datos."))
+				return Redirect.to(request, "/home/choice_headquart/")
+			try:
+				module = Module.objects.get(id=module_id)
+			except:
+				Message.error(request, ("Módulo no seleccionado o no se encuentra en la base de datos."))
+				return Redirect.to(request, "/home/choice_headquart/")
+
+			if not request.user.is_superuser: #vovler a verificar si tiene permisos
+				#obteniendo las sedes a la cual tiene acceso
+				headquart_list = Headquart.objects.filter(userprofileheadquart__user__id = request.user.id).distinct()
+				if headquart not in headquart_list:
+					raise Exception(("Acceso denegado. No tiene privilegio para ingresar a esta sede: %s %s." % (headquart.enterprise.name, headquart.name)))
+				#obteniendo los módulos a la cual tiene acceso
+				group_list = Group.objects.filter(userprofileheadquart__headquart__id = headquart.id, userprofileheadquart__user__id = request.user.id).distinct()
+				module_list = Module.objects.filter(groups__in = group_list).distinct()
+				
+				if module not in module_list:
+					raise Exception(("Acceso denegado. No tiene privilegio para ingresar a este módulo: %s de %s %s." % (module.name, headquart.enterprise.name, headquart.name) ))
+				
 			#cargando permisos de datos para el usuario
 			DataAccessToken.set_association_id(request, headquart.association.id)
 			DataAccessToken.set_enterprise_id(request, headquart.enterprise.id)
@@ -308,20 +330,17 @@ def load_access(request, headquart_id, module_id):
 				person.save()
 				pass
 
-			if headquart:
-				module = Module.objects.get(id=module_id)
-				#Message.info(request, ("La sede %(name)s ha sido cargado correctamente.") % {"name":headquart_id} )
-				if module.DBM == module.module:
-					#return HttpResponseRedirect("/mod_backend/dashboard/")
-					return Redirect.to(request, "/mod_backend/dashboard/")
-				else:
-					#return HttpResponseRedirect("/mod_ventas/dashboard/")
-					return Redirect.to(request, "/mod_ventas/dashboard/")
+			#Message.info(request, ("La sede %(name)s ha sido cargado correctamente.") % {"name":headquart_id} )
+			if module.DBM == module.module:
+				#return HttpResponseRedirect("/mod_backend/dashboard/")
+				return Redirect.to(request, "/mod_backend/dashboard/")
 			else:
-				return HttpResponse("Sede no se encuentra")
+				#return HttpResponseRedirect("/mod_ventas/dashboard/")
+				return Redirect.to(request, "/mod_ventas/dashboard/")
 		except Exception, e:
 			Message.error(request, e)
-		return HttpResponse("Ocurrió un grave error, comunique al administrador del sistema")
+		return HttpResponseRedirect("/home/choice_headquart/")
+		#return HttpResponse("Ocurrió un grave error, comunique al administrador del sistema")
 
 def login_sys(request):
 	d = User()

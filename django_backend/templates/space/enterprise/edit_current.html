@@ -71,12 +71,16 @@
                         <div class="span6">
                             <div class="control-group">
                                 <label class="control-label">{% trans "PLAN" %}<span class="req"> *</span></label>
+                                {% if d.solution not in solution_list %}
+                                        {{ d.solution.name }}<br>
+                                {% endif %}
                                 <select id="solution_id" name="solution_id"  class="field select input-xlarge input-required input-list show-errors" required="required">
                                     <option value=""></option>
                                     {% for solution in solution_list %}
                                         <option value="{{ solution.id }}" {% if d.solution == solution %} selected {%endif%}>{{ solution.name }}</option>
                                     {% endfor %}
                                 </select>
+                                
                                 <p class="help-block"> <span class="help-error" id="err_solution_id"></span></p>
                             </div>
                         </div>

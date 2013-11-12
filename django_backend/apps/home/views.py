@@ -34,20 +34,27 @@ def index(request):
 		}
 	return render_to_response("home/index.html", t, context_instance = RequestContext(request))
 
-#@csrf_exempt
+@csrf_exempt
 @permission_resource_required
-def choice_headquart(request):
+def choice_headquart(request, field="enterprise__name", value="None", order="-id"):
 	"""
 	Muestra el listado de sedes con sus respectivos módulos a las cuales el usuario tiene acceso 
 	"""
+	field = (field if not request.REQUEST.get("field") else request.REQUEST.get("field")).strip()
+	value = (value if not request.REQUEST.get("value") else request.REQUEST.get("value")).strip()
+	order = (order if not request.REQUEST.get("order") else request.REQUEST.get("order")).strip()
+
+	value_f = "" if value == "None" else value
+	column_contains = u"%s__%s" % (field,"contains")
+
 	headquart_list_by_user=[]
 	headquart_list = []
 	if request.user.is_superuser:
-		headquart_list = Headquart.objects.filter().order_by("-association__name","-enterprise__name","-id").distinct() #Trae todo
+		headquart_list = Headquart.objects.filter(**{ column_contains: value_f }).order_by("-association__name","-enterprise__name","-id").distinct() #Trae todo
 	else:
 		if request.user.id:
 			#print "--%s" % request.user.id
-			headquart_list = Headquart.objects.filter(userprofileheadquart__user__id = request.user.id).order_by("-association__name","-enterprise__name","-id").distinct() #request.user.id
+			headquart_list = Headquart.objects.filter(**{ column_contains: value_f }).filter(userprofileheadquart__user__id = request.user.id).order_by("-association__name","-enterprise__name","-id").distinct() #request.user.id
 	
 	for headquart in headquart_list:
 		group_list = Group.objects.filter(userprofileheadquart__headquart__id = headquart.id, userprofileheadquart__user__id = request.user.id).distinct()
@@ -74,6 +81,10 @@ def choice_headquart(request):
 		"page_module":("Elegir Módulo"),
 		"page_title":("Listado de empresas en los cuales colabora."),
 		"headquart_list": headquart_list_by_user,
+
+		"field":field,
+		"value":value.replace("/", "-"),
+		"order":order,
 		}
 	return render_to_response("home/choice_headquart.html", c, context_instance = RequestContext(request))
 

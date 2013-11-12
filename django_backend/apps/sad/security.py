@@ -114,11 +114,11 @@ class Menus:
 
 		menu = Menu()
 		#if not Menus.menu_list:
-		Menus.menu_list = Menu.objects.filter(parent_id=None, module=menu_module).order_by("pos")
+		Menus.menu_list = Menu.objects.filter(parent_id=None, module=menu_module, is_active=True).order_by("pos")
 		#print Menus.menu_list
 		if Menus.menu_list: #not Menus.menu_item_list and 
 			for menu in Menus.menu_list:
-				Menus.menu_item_list[menu.title] = Menu.objects.filter(parent_id=menu.id).exclude(parent_id=None).order_by("pos") #.lower().replace(" ","_")
+				Menus.menu_item_list[menu.title] = Menu.objects.filter(parent_id=menu.id, is_active=True).exclude(parent_id=None).order_by("pos") #.lower().replace(" ","_")
 		#print Menus.menu_item_list
 
 

@@ -125,3 +125,28 @@
 [2013-11-11 10:27:01,196][INFO] [sistema] [/maestros/producto/edit/8.b4990a34df2d607db1f7eb40b7d3cead/][admin][127.0.0.1] Producto 123333333 ha sido actualizado correctamente. 
 [2013-11-11 10:27:06,884][INFO] [sistema] [/maestros/producto/delete/8.d435e0be4ecc869f665f9c601492fc69/][admin][127.0.0.1] Producto 123333333 ha sido eliminado correctamente. 
 [2013-11-11 10:28:07,273][INFO] [sistema] [/params/locality/edit/4.8010d2487846ec35b8125cffe1e96e25/][admin][127.0.0.1] Localidad Puno ha sido actualizado correctamente. 
+[2013-11-11 14:36:29,410][INFO] [sistema] [/sad/module/state/inactivar/2.d71ab911d7ab47ba0eb6962014290323/][admin][127.0.0.1] Módulo Ventas ha sido inactivado correctamente. 
+[2013-11-11 14:36:38,855][INFO] [sistema] [/space/solution/state/inactivar/1.cbe7d7e099f2ddf53e3181e2a0941801/][admin][127.0.0.1] Solución Shomware Basic ha sido inactivado correctamente. 
+[2013-11-11 14:37:02,378][INFO] [sistema] [/sad/menu/state/inactivar/21.6ea98d6321a079d00a55f9607fbf4189/][admin][127.0.0.1] Menú Productos ha sido inactivado correctamente. 
+[2013-11-11 15:41:37,694][INFO] [sistema] [/space/headquart/state/inactivar/3.d1f9b46aacc1c68453c9791161d96b64/][admin][127.0.0.1] Sede sede2 ha sido inactivado correctamente. 
+[2013-11-11 16:01:30,263][INFO] [sistema] [/space/enterprise/state/inactivar/1.4db31ed468c9a4633f1118eb722400d4/][admin][127.0.0.1] Empresa Empresa Úno ha sido inactivado correctamente. 
+[2013-11-11 16:21:49,865][WARNING] [sistema] [/sad/menu/edit/15.1549fc830cfc4c3e627a359b2784de30/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-11-11 22:28:17,178][ERROR] [sistema] [/account/load_access/2/2/][asullom][127.0.0.1] global name 'Group' is not defined 
+[2013-11-11 22:29:00,516][ERROR] [sistema] [/account/load_access/3/2/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a esta sede. 
+[2013-11-11 22:30:10,161][ERROR] [sistema] [/account/load_access/3/2/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a esta sede. 
+[2013-11-11 22:31:05,578][ERROR] [sistema] [/account/load_access/3/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a esta sede. 
+[2013-11-11 22:32:54,322][ERROR] [sistema] [/account/load_access/3/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a esta sede. 
+[2013-11-11 22:34:11,230][ERROR] [sistema] [/account/load_access/3/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a esta sede. 
+[2013-11-11 22:34:26,355][ERROR] [sistema] [/account/load_access/3//][asullom][127.0.0.1] invalid literal for int() with base 10: '' 
+[2013-11-11 22:35:28,470][ERROR] [sistema] [/account/load_access/1/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a este módulo. 
+[2013-11-11 22:36:32,354][ERROR] [sistema] [/account/load_access/1/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a este módulo. 
+[2013-11-11 22:36:45,055][ERROR] [sistema] [/account/load_access/3/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a esta sede. 
+[2013-11-11 22:37:57,529][ERROR] [sistema] [/account/load_access/3/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a esta sede sede2. 
+[2013-11-11 22:39:11,516][ERROR] [sistema] [/account/load_access/3/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a esta sede Empresa Úno sede2. 
+[2013-11-11 22:39:38,934][ERROR] [sistema] [/account/load_access/1/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a este módulo Backend. 
+[2013-11-11 22:40:36,601][ERROR] [sistema] [/account/load_access/1/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a este módulo Backend de Empresa Úno Principal. 
+[2013-11-11 22:42:55,471][ERROR] [sistema] [/account/load_access/1/10/][asullom][127.0.0.1] Module matching query does not exist. Lookup parameters were {'id': u'10'} 
+[2013-11-11 22:45:13,875][ERROR] [sistema] [/account/load_access/10/1/][asullom][127.0.0.1] Sede no seleccionado o no se encuentra en la base de datos. 
+[2013-11-11 22:46:07,407][ERROR] [sistema] [/account/load_access/1/10/][asullom][127.0.0.1] Módulo no seleccionado o no se encuentra en la base de datos. 
+[2013-11-11 22:47:47,107][ERROR] [sistema] [/account/load_access/1/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a este módulo Backend de Empresa Úno Principal. 
+[2013-11-11 22:48:40,615][ERROR] [sistema] [/account/load_access/1/1/][asullom][127.0.0.1] Acceso denegado. No tiene privilegio para ingresar a este módulo: Backend de Empresa Úno Principal. 

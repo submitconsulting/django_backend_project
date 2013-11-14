@@ -44,8 +44,9 @@
                     <th class="col-collapse" data-search="username">{% trans "LOGIN" %}</th>
                     <th class="col-collapse" data-search="person__first_name">{% trans "NOMBRE" %}</th>
                     <th class="col-collapse" data-search="person__last_name">{% trans "APELLIDO" %}</th>
-                    <th class="col-collapse" data-search="is_staff">{% trans "EMAIL" %}</th>
-                    <th class="col-collapse" data-search="email">{% trans "STAFF" %}</th>
+                    <th class="col-collapse">{% trans "IDENTIFICACION" %}</th>
+                    <th class="col-collapse" data-search="email">{% trans "EMAIL" %}</th>
+                    
                     <th class="col-collapse" data-search="is_active">{% trans "ACTIVO" %}</th>
                     <th class="btn-actions no-responsive" style="width: 200px;">{% trans "ACTIONS" %}</th>
                 </tr>
@@ -58,8 +59,8 @@
                     <td><span class="label label-success">{{ d.username }}</span></td>
                 	<td>{{ d.person.first_name }}</td>
                 	<td>{{ d.person.last_name }}</td>
+                    <td>{{ d.person.get_identity_type_display }}{{ d.person.identity_num|add:'' }}</td>
                     <td>{{ d.email }}</td>
-                    <td><span class="label label-success">{{ d.is_staff|yesno:'SI,NO' }}</span></td>
                     <td><span class="label label-success">{{ d.is_active|yesno:'SI,NO' }}</span></td>
                     
                     <td>

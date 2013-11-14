@@ -26,7 +26,7 @@
                         <select id="parent_id" name="parent_id"  class="field select input-xlarge input-xrequired input-xlist show-errors" >
                             <option value=""></option>
                             {% for menu in parent_list %}
-                                <option value="{{ menu.id }}">{{ MODULES_DICT|get_dict_value:menu.module }}: {{ menu.title }}</option>
+                                <option value="{{ menu.id }}">{{ menu.get_module_display }}: {{ menu.title }}</option>
                             {% endfor %}
                         </select>
                         <p class="help-block"> <span class="help-error" id="err_parent_id"></span></p>

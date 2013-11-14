@@ -6,6 +6,6 @@ urlpatterns = patterns('apps.account.views',
 	url(r'^login/$', 'login_sys', name='login_sys'),
 	url(r'^load_access/(?P<headquart_id>.*)/(?P<module_id>.*)/$', 'load_access', name='load_access'),
 	url(r'^logout/$', 'logout_sys', name='logout_sys'),
-	url(r'^profile/$', 'profile', name='profile'),
+	#url(r'^profile/$', 'profile', name='profile'),
 	
 )

@@ -23,7 +23,7 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
-
+from unicodedata import normalize
 from apps.helpers.message import Message
 
 from apps.params.models import Person
@@ -37,7 +37,7 @@ from apps.sad.upload import Upload
 from apps.sad.decorators import is_admin, permission_resource_required
 from apps.sad.security import Security, DataAccessToken, Redirect
 
-#region user OK
+#region user OK.
 @csrf_exempt
 @login_required(login_url="/account/login/")
 @permission_resource_required
@@ -109,8 +109,11 @@ def user_add(request):
 			d.first_name = request.POST.get("first_name")
 			d.last_name = request.POST.get("last_name")
 			d.photo = request.POST.get("persona_fotografia")
+			d.identity_type = request.POST.get("identity_type")
+			d.identity_num = request.POST.get("identity_num")
+			identity_type_display = dict((x, y) for x, y in Person.IDENTITY_TYPES)[d.identity_type]
 
-			print d.photo
+			
 			if User.objects.filter(username = d.username).count()>0:
 				raise Exception( "El usuario <b>%s</b> ya existe " % d.username )
 			if User.objects.filter(email = d.email).count()>0:
@@ -118,10 +121,15 @@ def user_add(request):
 			user = User.objects.create_user(username=d.username, email = d.email, password = request.POST.get("password"))
 			user.save()
 
+			if Person.objects.filter(identity_type=d.identity_type, identity_num=d.identity_num).count()>0:
+				raise Exception( "La persona con %s:<b>%s</b> ya existe " % (identity_type_display, d.identity_num) )
 			
-			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).count()>0:
-				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
-			person = Person(user=user, first_name=d.first_name, last_name=d.last_name, photo=d.photo)
+			#if Person.objects.filter(first_name=d.first_name, last_name=d.last_name, identity_type=d.identity_type, identity_num=d.identity_num).count()>0:
+			if normalize("NFKD", u"%s %s" % (d.first_name, d.last_name)).encode("ascii", "ignore").lower() in list(
+				normalize("NFKD", u"%s %s" % (col["first_name"], col["last_name"])).encode("ascii", "ignore").lower() for col in Person.objects.values("first_name","last_name").exclude(id = d.id).filter(identity_type=d.identity_type, identity_num=d.identity_num)
+				):
+				raise Exception( "La persona <b>%s %s</b> con %s:<b>%s</b> ya existe " % (d.first_name, d.last_name, identity_type_display, d.identity_num) )
+			person = Person(user=user, first_name=d.first_name, last_name=d.last_name, identity_type=d.identity_type, identity_num=d.identity_num, photo=d.photo)
 			person.save()
 			d=user
 
@@ -209,6 +217,7 @@ def user_add(request):
 		"page_title":("Agregar usuario."),
 		"d":d,
 		"group_perm_list":group_list_by_module,
+		"IDENTITY_TYPES":Person.IDENTITY_TYPES,
 		}
 	return render_to_response("sad/user/add.html", c, context_instance = RequestContext(request))
 
@@ -232,6 +241,8 @@ def user_edit(request, key):
 				d.first_name = d.person.first_name
 				d.last_name = d.person.last_name
 				d.photo = d.person.photo
+				d.identity_type = d.person.identity_type
+				d.identity_num = d.person.identity_num
 		except:
 			pass
 		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
@@ -261,16 +272,34 @@ def user_edit(request, key):
 				d.set_password(request.POST.get("password"))
 			d.save()
 
+			try:
+				person = Person.objects.get(user=d)
+			except:
+				person = Person(user=d)
+				person.save()
+				pass
+
 			#form = ImageUploadForm(request.POST, request.FILES)
 			#d.photo = request.FILES["imagen2"]
 			d.first_name = request.POST.get("first_name")
 			d.last_name = request.POST.get("last_name")
-
-			if Person.objects.exclude(id = d.person.id).filter(first_name=d.first_name, last_name=d.last_name).count()>0:
-				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
-			person = Person.objects.get(user=d)
-			person.first_name=d.first_name
-			person.last_name=d.last_name
+			d.identity_type = request.POST.get("identity_type")
+			d.identity_num = request.POST.get("identity_num")
+			identity_type_display = dict((x, y) for x, y in Person.IDENTITY_TYPES)[d.identity_type]
+			
+			if Person.objects.exclude(id = person.id).filter(identity_type=d.identity_type, identity_num=d.identity_num).count()>0:
+				raise Exception( "La persona con %s:<b>%s</b> ya existe " % (identity_type_display, d.identity_num) )
+			
+			if normalize("NFKD", u"%s %s" % (d.first_name, d.last_name)).encode("ascii", "ignore").lower() in list(
+				normalize("NFKD", u"%s %s" % (col["first_name"], col["last_name"])).encode("ascii", "ignore").lower() for col in Person.objects.values("first_name","last_name").exclude(id = person.id).filter(identity_type=d.identity_type, identity_num=d.identity_num)
+				):
+				raise Exception( "La persona <b>%s %s</b> con %s:<b>%s</b> ya existe " % (d.first_name, d.last_name, identity_type_display, d.identity_num) )
+			
+			
+			person.first_name=request.POST.get("first_name")
+			person.last_name=request.POST.get("last_name")
+			person.identity_type = request.POST.get("identity_type")
+			person.identity_num = request.POST.get("identity_num")
 			
 			#f = request.FILES.get("image")
 			person.photo = request.POST.get("persona_fotografia")
@@ -389,6 +418,7 @@ def user_edit(request, key):
 		"group_id_list_by_user_and_headquart":group_id_list_by_user_and_headquart,
 		"group_id_list_by_user_and_enterprise":group_id_list_by_user_and_enterprise,
 		"group_id_list_by_user_and_association":group_id_list_by_user_and_association,
+		"IDENTITY_TYPES":Person.IDENTITY_TYPES,
 		}
 	return render_to_response("sad/user/edit.html", c, context_instance = RequestContext(request))
 
@@ -407,6 +437,8 @@ def user_profile(request):
 				d.first_name = d.person.first_name
 				d.last_name = d.person.last_name
 				d.photo = d.person.photo
+				d.identity_type = d.person.identity_type
+				d.identity_num = d.person.identity_num
 		except:
 			pass
 		
@@ -428,22 +460,36 @@ def user_profile(request):
 			if request.POST.get("password"):
 				d.set_password(request.POST.get("password"))
 			d.save()
+			try:
+				person = Person.objects.get(user=d)
+			except:
+				person = Person(user=d)
+				person.save()
+				pass
 
 			d.first_name = request.POST.get("first_name")
 			d.last_name = request.POST.get("last_name")
-			d.photo = request.POST.get("persona_fotografia")
+			d.identity_type = request.POST.get("identity_type")
+			d.identity_num = request.POST.get("identity_num")
 
-			if Person.objects.exclude(id = d.person.id).filter(first_name=d.first_name, last_name=d.last_name).count()>0:
-				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
-			person = Person.objects.get(user=d)
-			person.first_name=d.first_name
-			person.last_name=d.last_name
-			person.photo = d.photo
+			identity_type_display = dict((x, y) for x, y in Person.IDENTITY_TYPES)[d.identity_type]
+			if Person.objects.exclude(id = d.person.id).filter(identity_type=d.identity_type, identity_num=d.identity_num).count()>0:
+				raise Exception( "La persona con %s:<b>%s</b> ya existe " % (identity_type_display, d.identity_num) )
+			
+			if normalize("NFKD", u"%s %s" % (d.first_name, d.last_name)).encode("ascii", "ignore").lower() in list(
+				normalize("NFKD", u"%s %s" % (col["first_name"], col["last_name"])).encode("ascii", "ignore").lower() for col in Person.objects.values("first_name","last_name").exclude(id = d.person.id).filter(identity_type=d.identity_type, identity_num=d.identity_num)
+				):
+				raise Exception( "La persona <b>%s %s</b> y %s:<b>%s</b> ya existe " % (d.first_name, d.last_name, identity_type_display, d.identity_num) )
+			
+			
+			person.first_name=request.POST.get("first_name")
+			person.last_name=request.POST.get("last_name")
+			person.identity_type = request.POST.get("identity_type")
+			person.identity_num = request.POST.get("identity_num")
+			person.photo = request.POST.get("persona_fotografia")
+
 			person.save()
 			
-
-			
-
 			if d.id:
 				Message.info(request,("Usuario <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.username}, True)
 				return Redirect.to(request, "/home/choice_headquart/")
@@ -495,37 +541,15 @@ def user_profile(request):
 	except Exception, e:
 		Message.error(request, e)
 	c = {
-		"page_module":("Gestión de usuarios"),
+		"page_module":("Perfil del usuario"),
 		"page_title":("Actualizar información del usuario."),
 		"d":d,
 		"user_profile_headquart_list":user_profile_headquart_list,
 		"user_profile_enterprise_list":user_profile_enterprise_list,
 		"user_profile_association_list":user_profile_association_list,
+		"IDENTITY_TYPES":Person.IDENTITY_TYPES,
 		}
 	return render_to_response("sad/user/profile.html", c, context_instance = RequestContext(request))
-
-@permission_resource_required
-@transaction.commit_on_success
-def user_delete(request, key):
-	"""
-	Elimina usuario
-	"""
-	id=Security.is_valid_key(request, key, "user_del")
-	if not id:
-		return Redirect.to_action(request, "index")
-	try:
-		d = get_object_or_404(User, id=id)
-	except:
-		Message.error(request, ("Usuario no se encuentra en la base de datos."))
-		return Redirect.to_action(request, "index")
-	try:
-		d.delete()
-		if not d.id:
-			Message.info(request,("Usuario <b>%(username)s</b> ha sido eliminado correctamente.") % {"username":d.username}, True)
-			return Redirect.to_action(request, "index")
-	except Exception, e:
-		Message.error(request, e)
-		return Redirect.to_action(request, "index")
 
 def user_view(request, key):
 	"""
@@ -543,6 +567,8 @@ def user_view(request, key):
 				d.first_name = d.person.first_name
 				d.last_name = d.person.last_name
 				d.photo = d.person.photo
+				d.identity_type = d.person.identity_type
+				d.identity_num = d.person.identity_num
 		except:
 			pass
 	except Exception, e:
@@ -594,6 +620,7 @@ def user_view(request, key):
 		"user_profile_headquart_list":user_profile_headquart_list,
 		"user_profile_enterprise_list":user_profile_enterprise_list,
 		"user_profile_association_list":user_profile_association_list,
+		"IDENTITY_TYPES":Person.IDENTITY_TYPES,
 		}
 	return render_to_response("sad/user/view.html", c, context_instance = RequestContext(request))
 
@@ -611,6 +638,11 @@ def user_state(request, state, key):
 	except:
 		Message.error(request, ("Usuario no se encuentra en la base de datos."))
 		return Redirect.to_action(request, "index")
+
+	if d.username == "admin":
+		Message.warning(request, ("Lo sentimos, pero este usuario no se puede inactivar."))
+		return Redirect.to_action(request, "index")
+
 	try:
 		if state == "inactivar" and d.is_active == False:
 			Message.error(request, ("El usuario ya se encuentra inactivo."))
@@ -626,6 +658,43 @@ def user_state(request, state, key):
 					else:
 						Message.info(request,("Usuario <b>%(username)s</b> ha sido inactivado correctamente.") % {"username":d.username}, True)
 					return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
+
+@permission_resource_required
+@transaction.commit_on_success
+def user_delete(request, key):
+	"""
+	Elimina usuario
+	"""
+	id=Security.is_valid_key(request, key, "user_del")
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(User, id=id)
+	except:
+		Message.error(request, ("Usuario no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	if d.username == "admin":
+		Message.warning(request, ("Lo sentimos, pero este usuario no se puede eliminar."))
+		return Redirect.to_action(request, "index")
+	try:
+		#rastreando dependencias
+		if d.groups.count() > 0:
+			raise Exception( ("Usuario <b>%(name)s</b> tiene permisos asignados.") % {"name":d.username} )
+
+		if d.userprofileheadquart_set.count() > 0:
+			raise Exception( ("Usuario <b>%(name)s</b> tiene permisos asignados en userprofileheadquart.") % {"name":d.username} )
+		if d.userprofileenterprise_set.count() > 0:
+			raise Exception( ("Usuario <b>%(name)s</b> tiene permisos asignados en userprofileenterprise.") % {"name":d.username} )
+		if d.userprofileassociation_set.count() > 0:
+			raise Exception( ("Usuario <b>%(name)s</b> tiene permisos asignados en userprofileassociation.") % {"name":d.username} )
+		
+		d.delete()
+		if not d.id:
+			Message.info(request,("Usuario <b>%(username)s</b> ha sido eliminado correctamente.") % {"username":d.username}, True)
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
 		return Redirect.to_action(request, "index")
@@ -708,7 +777,7 @@ def menu_add(request):
 		"page_title":("Agregar menú."),
 		"d":d,
 		"MODULES":Menu.MODULES,
-		"MODULES_DICT":dict((x, y) for x, y in Module.MODULES),
+		#"MODULES_DICT":dict((x, y) for x, y in Module.MODULES),
 		"parent_list":parent_list,
 		"permission_list":permission_list,
 		}
@@ -770,37 +839,11 @@ def menu_edit(request, key):
 		"page_title":("Actualizar menú."),
 		"d":d,
 		"MODULES":Menu.MODULES,
-		"MODULES_DICT":dict((x, y) for x, y in Module.MODULES),
+		#"MODULES_DICT":dict((x, y) for x, y in Module.MODULES),
 		"parent_list":parent_list,
 		"permission_list":permission_list,
 		}
 	return render_to_response("sad/menu/edit.html", c, context_instance = RequestContext(request))
-
-@permission_resource_required
-def menu_delete(request, key):
-	"""
-	Elimina menú
-	"""
-	id=Security.is_valid_key(request, key, "menu_del")
-	if not id:
-		return Redirect.to_action(request, "index")
-	try:
-		d = get_object_or_404(Menu, id=id)
-	except:
-		Message.error(request, ("Menú no se encuentra en la base de datos."))
-		return Redirect.to_action(request, "index")
-	if d.id <= 16:
-		Message.warning(request, ("Lo sentimos, pero este menú no se puede eliminar."))
-		return Redirect.to_action(request, "index")
-	try:
-		d.delete()
-		if not d.id:
-			Message.info(request,("Menú <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.title}, True)
-			return Redirect.to_action(request, "index")
-	except Exception, e:
-		Message.error(request, e)
-		return Redirect.to_action(request, "index")
-	#endregion Menu
 
 @permission_resource_required
 def menu_state(request, state, key):
@@ -833,66 +876,39 @@ def menu_state(request, state, key):
 	except Exception, e:
 		Message.error(request, e)
 		return Redirect.to_action(request, "index")
+
+@permission_resource_required
+def menu_delete(request, key):
+	"""
+	Elimina menú
+	"""
+	id=Security.is_valid_key(request, key, "menu_del")
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Menu, id=id)
+	except:
+		Message.error(request, ("Menú no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	if d.id <= 16:
+		Message.warning(request, ("Lo sentimos, pero este menú no se puede eliminar."))
+		return Redirect.to_action(request, "index")
+	try:
+		d.delete()
+		if not d.id:
+			Message.info(request,("Menú <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.title}, True)
+			return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
+	#endregion Menu
 #endregion menu
 
 
 
 
+
 #region module OK
-@login_required(login_url="/account/login/")
-@permission_resource_required
-@transaction.commit_on_success
-def module_plans_edit(request):
-	if request.method == "POST":
-		try:
-			
-			privilegios_r = request.POST.getlist("privilegios")
-			old_privilegios_r = request.POST.get("old_privilegios")
-			if old_privilegios_r:
-				old_privilegios_r = old_privilegios_r.split(",")
-
-			#Elimino los antiguos privilegios
-			for value in  old_privilegios_r:
-				data = value.split("-") #el formato es 1-4 = solution_id-module_id
-				module = Module.objects.get(id=data[1])
-				solution = Solution.objects.get(id=data[0])
-				module.solutions.remove(solution)
-			
-			for value in  privilegios_r:
-				data = value.split("-") #el formato es 1-4 = solution_id-module_id
-				module = Module.objects.get(id=data[1])
-				solution = Solution.objects.get(id=data[0])
-				module.solutions.add(solution)
-
-			Message.info(request, ("Los planes se han actualizados correctamente!") )
-		except Exception, e:
-			transaction.rollback()
-			Message.error(request, e)
-	try:
-		module_list = Module.objects.filter(is_active=True).order_by("module")
-		solution_list = Solution.objects.filter(is_active=True).order_by("-id")
-
-		#listar los privilegios y compararlos con los module y solution
-		privilegios=[]
-		for m in module_list:
-			for s in m.solutions.all() :
-				privilegios.append( "%s-%s" % (s.id, m.id) ) #el formato es 1-4 = solution_id-module_id
-
-		#for i in privilegios:
-		#	print u"%s" % (i)
-	except Exception, e:
-		Message.error(request, e)
-	c = {
-		"page_module":("Gestión de planes"),
-		"page_title":("Listado de planes del sistema."),
-		"module_list":module_list,
-		"module_list_len":len(module_list),
-		"solution_list":solution_list,
-		"solution_list_len":len(solution_list),
-		"privilegios":privilegios,
-		}
-	return render_to_response("sad/module/module_plans_edit.html", c, context_instance = RequestContext(request))
-
 @permission_resource_required
 def module_index(request):
 	"""
@@ -1035,6 +1051,38 @@ def module_edit(request, key):
 	return render_to_response("sad/module/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+def module_state(request, state, key):
+	"""
+	Inactiva y reactiva el estado del módulo
+	"""
+	id=Security.is_valid_key(request, key, "module_%s" % state )
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Module, id=id)
+	except:
+		Message.error(request, ("Módulo no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		if state == "inactivar" and d.is_active == False:
+			Message.error(request, ("Módulo ya se encuentra inactivo."))
+		else:
+			if state == "reactivar" and d.is_active == True:
+				Message.error(request, ("Módulo ya se encuentra activo."))
+			else:
+				d.is_active = (True if state == "reactivar" else False)
+				d.save()
+				if d.id:
+					if d.is_active:
+						Message.info(request,("Módulo <b>%(name)s</b> ha sido reactivado correctamente.") % {"name":d.name}, True)
+					else:
+						Message.info(request,("Módulo <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.name}, True)
+					return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
+
+@permission_resource_required
 def module_delete(request, key):
 	"""
 	Elimina módulo y sus dependencias
@@ -1061,36 +1109,57 @@ def module_delete(request, key):
 		return Redirect.to_action(request, "index")
 
 @permission_resource_required
-def module_state(request, state, key):
-	"""
-	Inactiva y reactiva el estado del módulo
-	"""
-	id=Security.is_valid_key(request, key, "module_%s" % state )
-	if not id:
-		return Redirect.to_action(request, "index")
+@transaction.commit_on_success
+def module_plans_edit(request):
+	if request.method == "POST":
+		try:
+			
+			privilegios_r = request.POST.getlist("privilegios")
+			old_privilegios_r = request.POST.get("old_privilegios")
+			if old_privilegios_r:
+				old_privilegios_r = old_privilegios_r.split(",")
+
+			#Elimino los antiguos privilegios
+			for value in  old_privilegios_r:
+				data = value.split("-") #el formato es 1-4 = solution_id-module_id
+				module = Module.objects.get(id=data[1])
+				solution = Solution.objects.get(id=data[0])
+				module.solutions.remove(solution)
+			
+			for value in  privilegios_r:
+				data = value.split("-") #el formato es 1-4 = solution_id-module_id
+				module = Module.objects.get(id=data[1])
+				solution = Solution.objects.get(id=data[0])
+				module.solutions.add(solution)
+
+			Message.info(request, ("Los planes se han actualizados correctamente!") )
+		except Exception, e:
+			transaction.rollback()
+			Message.error(request, e)
 	try:
-		d = get_object_or_404(Module, id=id)
-	except:
-		Message.error(request, ("Módulo no se encuentra en la base de datos."))
-		return Redirect.to_action(request, "index")
-	try:
-		if state == "inactivar" and d.is_active == False:
-			Message.error(request, ("El módulo ya se encuentra inactivo."))
-		else:
-			if state == "reactivar" and d.is_active == True:
-				Message.error(request, ("El módulo ya se encuentra activo."))
-			else:
-				d.is_active = (True if state == "reactivar" else False)
-				d.save()
-				if d.id:
-					if d.is_active:
-						Message.info(request,("Módulo <b>%(name)s</b> ha sido reactivado correctamente.") % {"name":d.name}, True)
-					else:
-						Message.info(request,("Módulo <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.name}, True)
-					return Redirect.to_action(request, "index")
+		module_list = Module.objects.filter(is_active=True).order_by("module")
+		solution_list = Solution.objects.filter(is_active=True).order_by("-id")
+
+		#listar los privilegios y compararlos con los module y solution
+		privilegios=[]
+		for m in module_list:
+			for s in m.solutions.all() :
+				privilegios.append( "%s-%s" % (s.id, m.id) ) #el formato es 1-4 = solution_id-module_id
+
+		#for i in privilegios:
+		#	print u"%s" % (i)
 	except Exception, e:
 		Message.error(request, e)
-		return Redirect.to_action(request, "index")
+	c = {
+		"page_module":("Gestión de planes"),
+		"page_title":("Listado de planes del sistema."),
+		"module_list":module_list,
+		"module_list_len":len(module_list),
+		"solution_list":solution_list,
+		"solution_list_len":len(solution_list),
+		"privilegios":privilegios,
+		}
+	return render_to_response("sad/module/module_plans_edit.html", c, context_instance = RequestContext(request))
 #endregion module
 
 
@@ -1212,7 +1281,6 @@ def group_delete(request, key):
 		Message.error(request, e)
 		return Redirect.to_action(request, "index")
 
-@login_required(login_url="/account/login/")
 @permission_resource_required
 @transaction.commit_on_success
 def group_permissions_edit(request):

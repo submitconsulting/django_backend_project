@@ -4,7 +4,9 @@
 {% block content %}
     {% load notify %}
     {% get_notify request %}
-
+    <script type="text/javascript">
+        DwUpdateUrl("/home/"); //hace que http://localhost:8000/ = http://localhost:8000/home/
+    </script>
  <div class="container-fluid dw-shell-view">
     
     <div class="hero-unit">

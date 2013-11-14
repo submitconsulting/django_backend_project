@@ -57,6 +57,18 @@ class Person(models.Model):
 	"""
 	Tabla que amplía la información de los usuarios del sistema
 	"""
+	DEFAULT="DNI"
+	CE="CE"
+	PART_NAC="PART_NAC"
+	OTHERS="OTHERS"
+	IDENTITY_TYPES = ( # esta variable no está syncdb
+        (DEFAULT, "D.N.I."),
+        (CE, "C.E."),
+        (PART_NAC, "P.NAC."),
+        (OTHERS, "Otro.")
+    )
+	identity_type = models.CharField(max_length=10, choices=IDENTITY_TYPES, default=DEFAULT)# este campo no está syncdb
+	identity_num = models.CharField(max_length=20, null=True, blank=True) # este campo no está syncdb
 	first_name = models.CharField(max_length=50, null=True, blank=True)
 	last_name = models.CharField(max_length=50, null=True, blank=True)
 	birth_date = models.DateField(null=True, blank=True)

@@ -1,0 +1,141 @@
+[2013-11-13 00:01:34,369][WARNING] [sistema] [/sad/user/state/inactivar/1.2c1018ef865f7cb692d364d9657e2035/][admin][127.0.0.1] Lo sentimos, pero este usuario no se puede inactivar. 
+[2013-11-13 00:01:35,704][WARNING] [sistema] [/sad/user/state/inactivar/1.2c1018ef865f7cb692d364d9657e2035/][admin][127.0.0.1] Lo sentimos, pero este usuario no se puede inactivar. 
+[2013-11-13 00:01:38,148][WARNING] [sistema] [/sad/user/delete/1.66a1b4b48ee81450e798d80fe8770ef8/][admin][127.0.0.1] Lo sentimos, pero este usuario no se puede eliminar. 
+[2013-11-13 00:03:15,130][INFO] [sistema] [/sad/module/state/reactivar/2.582c74152858f7723da3c699f1bc03d1/][admin][127.0.0.1] Módulo Ventas ha sido reactivado correctamente. 
+[2013-11-13 00:03:19,631][INFO] [sistema] [/space/solution/state/reactivar/1.390e1f1b498d70044819749a530f9e88/][admin][127.0.0.1] Solución Shomware Basic ha sido reactivado correctamente. 
+[2013-11-13 00:03:28,332][INFO] [sistema] [/sad/menu/state/reactivar/21.b1b1b8edc032103ce7b95ced5dfcf92c/][admin][127.0.0.1] Menú Productos ha sido reactivado correctamente. 
+[2013-11-13 00:09:26,588][WARNING] [sistema] [/sad/user/delete/2.d05352d924b2978e8012147604a34693/][admin][127.0.0.1] Lo sentimos, pero este usuario no se puede eliminar. 
+[2013-11-13 00:09:57,548][ERROR] [sistema] [/sad/user/delete/2.d05352d924b2978e8012147604a34693/][admin][127.0.0.1] 'username' 
+[2013-11-13 00:10:41,563][ERROR] [sistema] [/sad/user/delete/2.d05352d924b2978e8012147604a34693/][admin][127.0.0.1] 'username' 
+[2013-11-13 00:11:43,042][ERROR] [sistema] [/sad/user/delete/2.d05352d924b2978e8012147604a34693/][admin][127.0.0.1] Usuario asullom tiene permisos asignados. 
+[2013-11-13 00:11:52,394][WARNING] [sistema] [/sad/user/delete/1.66a1b4b48ee81450e798d80fe8770ef8/][admin][127.0.0.1] Lo sentimos, pero este usuario no se puede eliminar. 
+[2013-11-13 00:11:55,822][ERROR] [sistema] [/sad/user/delete/2.d05352d924b2978e8012147604a34693/][admin][127.0.0.1] Usuario asullom tiene permisos asignados. 
+[2013-11-13 00:12:40,127][WARNING] [sistema] [/sad/user/state/inactivar/1.2c1018ef865f7cb692d364d9657e2035/][admin][127.0.0.1] Lo sentimos, pero este usuario no se puede inactivar. 
+[2013-11-13 00:12:42,240][INFO] [sistema] [/sad/user/state/inactivar/2.2ec3109067c2118b0e68925453ef2634/][admin][127.0.0.1] Usuario asullom ha sido inactivado correctamente. 
+[2013-11-13 00:12:44,542][INFO] [sistema] [/sad/user/state/reactivar/2.44af7bcdb5d253b4013d536f2d2a05a7/][admin][127.0.0.1] Usuario asullom ha sido reactivado correctamente. 
+[2013-11-13 10:38:25,107][ERROR] [sistema] [/sad/user/edit/3.50c4f22b9c5ea335c36ea29fc0a355d7/][admin][127.0.0.1]  
+[2013-11-13 10:42:32,111][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario user2 ha sido registrado correctamente. 
+[2013-11-13 10:42:44,247][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario user2 ha sido actualizado correctamente. 
+[2013-11-13 10:46:28,561][ERROR] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] auth_user.last_name may not be NULL 
+[2013-11-13 10:46:37,571][ERROR] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] auth_user.last_name may not be NULL 
+[2013-11-13 10:47:58,107][ERROR] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] auth_user.last_name may not be NULL 
+[2013-11-13 10:48:11,203][ERROR] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] auth_user.last_name may not be NULL 
+[2013-11-13 10:49:34,233][ERROR] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] auth_user.last_name may not be NULL 
+[2013-11-13 10:49:35,775][ERROR] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] auth_user.last_name may not be NULL 
+[2013-11-13 10:49:51,434][ERROR] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] auth_user.last_name may not be NULL 
+[2013-11-13 10:50:29,809][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario user2 ha sido actualizado correctamente. 
+[2013-11-13 10:50:34,049][ERROR] [sistema] [/sad/user/edit/1.200e94e2b14579541fb272ff80753e1b/][admin][127.0.0.1] auth_user.last_name may not be NULL 
+[2013-11-13 10:51:53,187][ERROR] [sistema] [/sad/user/edit/1.200e94e2b14579541fb272ff80753e1b/][admin][127.0.0.1] auth_user.last_name may not be NULL 
+[2013-11-13 10:51:56,428][ERROR] [sistema] [/sad/user/edit/1.200e94e2b14579541fb272ff80753e1b/][admin][127.0.0.1] auth_user.last_name may not be NULL 
+[2013-11-13 10:53:06,148][INFO] [sistema] [/sad/user/edit/1.200e94e2b14579541fb272ff80753e1b/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 10:53:10,486][INFO] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-13 10:53:16,426][INFO] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-13 10:53:39,270][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario user2 ha sido actualizado correctamente. 
+[2013-11-13 10:54:03,619][INFO] [sistema] [/sad/user/edit/4.a17c16fa1d6083f2f33edfbf363b8521/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
+[2013-11-13 10:54:06,951][INFO] [sistema] [/sad/user/edit/3.50c4f22b9c5ea335c36ea29fc0a355d7/][admin][127.0.0.1] Usuario abel ha sido actualizado correctamente. 
+[2013-11-13 10:54:14,428][INFO] [sistema] [/sad/user/edit/3.50c4f22b9c5ea335c36ea29fc0a355d7/][admin][127.0.0.1] Usuario abel ha sido actualizado correctamente. 
+[2013-11-13 10:56:21,592][INFO] [sistema] [/sad/user/edit/1.200e94e2b14579541fb272ff80753e1b/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 10:56:35,627][INFO] [sistema] [/sad/user/edit/3.50c4f22b9c5ea335c36ea29fc0a355d7/][admin][127.0.0.1] Usuario abel ha sido actualizado correctamente. 
+[2013-11-13 10:56:41,654][INFO] [sistema] [/sad/user/edit/3.50c4f22b9c5ea335c36ea29fc0a355d7/][admin][127.0.0.1] Usuario abel ha sido actualizado correctamente. 
+[2013-11-13 10:57:15,263][INFO] [sistema] [/sad/user/edit/4.a17c16fa1d6083f2f33edfbf363b8521/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
+[2013-11-13 10:57:19,036][ERROR] [sistema] [/sad/user/delete/5.14a29bbe4066a736a0e82d4b27abf4b5/][admin][127.0.0.1] Usuario user2 tiene permisos asignados. 
+[2013-11-13 10:57:30,894][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario user2 ha sido actualizado correctamente. 
+[2013-11-13 10:57:42,028][INFO] [sistema] [/sad/user/delete/5.14a29bbe4066a736a0e82d4b27abf4b5/][admin][127.0.0.1] Usuario user2 ha sido eliminado correctamente. 
+[2013-11-13 11:03:35,538][INFO] [sistema] [/sad/user/edit/4.a17c16fa1d6083f2f33edfbf363b8521/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
+[2013-11-13 12:49:13,655][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] 'unicode' object has no attribute 'd' 
+[2013-11-13 12:51:28,891][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] La persona Angel su y DNI06812118 ya existe  
+[2013-11-13 12:53:05,894][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario sullon ha sido registrado correctamente. 
+[2013-11-13 17:58:37,917][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] global name 'normalize' is not defined 
+[2013-11-13 17:59:03,769][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Su y DNI:06812118 ya existe  
+[2013-11-13 17:59:21,115][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sú y DNI:06812118 ya existe  
+[2013-11-13 17:59:34,309][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 17:59:48,601][INFO] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-13 18:01:48,983][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] La persona Angel Sullon y DNI:06812118 ya existe  
+[2013-11-13 18:02:53,160][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] 'User' object has no attribute 'get_identity_type_display' 
+[2013-11-13 18:03:32,098][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] 'User' object has no attribute 'get_identity_type_display' 
+[2013-11-13 18:04:42,296][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] 'User' object has no attribute 'get_identity_type_display' 
+[2013-11-13 18:06:10,923][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] La persona Angel Sullon con DNI:06812118 ya existe  
+[2013-11-13 18:10:57,831][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] tuple indices must be integers, not unicode 
+[2013-11-13 18:12:18,052][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] 'tuple' object is not callable 
+[2013-11-13 18:13:18,151][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] La persona Angel Sullon con DNI::06812118 ya existe  
+[2013-11-13 18:13:37,517][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] La persona Angel Sullon con DNI:06812118 ya existe  
+[2013-11-13 18:14:01,220][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] La persona Angel Sullon con D.N.I.:06812118 ya existe  
+[2013-11-13 18:14:55,674][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 18:15:03,627][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y DNI:06812118 ya existe  
+[2013-11-13 18:15:50,421][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y DNI:06812118 ya existe  
+[2013-11-13 18:15:58,994][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y D.N.I.:06812118 ya existe  
+[2013-11-13 18:16:04,262][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y D.N.I.:06812118 ya existe  
+[2013-11-13 18:16:11,148][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 18:16:25,552][ERROR] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] La persona Angel Sullón y Carnet de extranjería:06812118 ya existe  
+[2013-11-13 18:28:31,190][INFO] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 18:28:46,312][INFO] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 18:29:18,619][INFO] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 18:48:59,398][INFO] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 18:49:08,184][INFO] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 18:50:18,762][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] La persona con C.E.:06812118 ya existe  
+[2013-11-13 18:50:26,089][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] La persona con D.N.I.:06812118 ya existe  
+[2013-11-13 18:50:33,703][INFO] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 18:50:38,921][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] La persona con D.N.I.:06812118 ya existe  
+[2013-11-13 18:54:38,101][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:54:51,124][INFO] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-13 18:55:42,190][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:56:16,703][INFO] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-13 18:56:27,319][INFO] [sistema] [/sad/user/edit/1.200e94e2b14579541fb272ff80753e1b/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 18:56:46,697][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:56:58,936][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 18:57:09,763][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 18:57:15,421][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:57:52,785][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:57:54,631][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:57:56,131][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:58:03,950][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 18:58:16,884][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 18:58:25,299][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:58:40,289][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:58:41,943][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:58:43,253][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:59:33,183][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:59:34,921][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:59:36,859][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 18:59:39,789][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona con D.N.I.:06812118 ya existe  
+[2013-11-13 18:59:41,371][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona con D.N.I.:06812118 ya existe  
+[2013-11-13 18:59:47,276][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona con P.NAC.:06812118 ya existe  
+[2013-11-13 18:59:49,259][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona con P.NAC.:06812118 ya existe  
+[2013-11-13 19:01:34,559][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona con P.NAC.:06812118 ya existe  
+[2013-11-13 19:01:37,903][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona con P.NAC.:06812118 ya existe  
+[2013-11-13 19:01:44,352][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona con P.NAC.:06812118 ya existe  
+[2013-11-13 19:01:59,657][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La p.exclude(id = d.person.id)ersona con P.NAC.:06812118 ya existe  
+[2013-11-13 19:02:21,234][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona con P.NAC.:06812118 ya existe  
+[2013-11-13 19:04:30,467][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 19:04:42,355][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 19:05:03,341][INFO] [sistema] [/sad/user/edit/4.a17c16fa1d6083f2f33edfbf363b8521/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
+[2013-11-13 19:05:12,342][ERROR] [sistema] [/sad/user/edit/3.50c4f22b9c5ea335c36ea29fc0a355d7/][admin][127.0.0.1] La persona con D.N.I.: ya existe  
+[2013-11-13 19:05:24,134][INFO] [sistema] [/sad/user/edit/3.50c4f22b9c5ea335c36ea29fc0a355d7/][admin][127.0.0.1] Usuario abel ha sido actualizado correctamente. 
+[2013-11-13 19:06:12,934][ERROR] [sistema] [/sad/user/edit/3.50c4f22b9c5ea335c36ea29fc0a355d7/][admin][127.0.0.1] La persona con D.N.I.: ya existe  
+[2013-11-13 19:07:32,874][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1]  
+[2013-11-13 19:08:05,256][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1]  
+[2013-11-13 19:08:48,165][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1]  
+[2013-11-13 19:09:08,589][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] La persona con D.N.I.:06812118 ya existe  
+[2013-11-13 19:09:27,095][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario admin2 ha sido registrado correctamente. 
+[2013-11-13 19:09:43,888][INFO] [sistema] [/sad/user/delete/6.f35b44654dbb3a1ee238556e4a9ce564/][admin][127.0.0.1] Usuario admin2 ha sido eliminado correctamente. 
+[2013-11-13 19:10:19,997][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] La persona con D.N.I.:06812118 ya existe  
+[2013-11-13 19:11:37,086][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] La persona con D.N.I.:06812118 ya existe  
+[2013-11-13 19:12:15,757][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 19:12:27,394][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 19:13:21,538][INFO] [sistema] [/sad/user/edit/1.200e94e2b14579541fb272ff80753e1b/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 19:14:16,588][INFO] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-13 19:14:22,223][INFO] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-13 19:14:30,223][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 19:15:32,474][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 19:15:35,107][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona Angel Sullon y C.E.:06812118 ya existe  
+[2013-11-13 19:15:40,114][INFO] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-13 19:17:03,851][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 19:17:11,604][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 19:17:26,579][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 19:17:53,492][INFO] [sistema] [/sad/user/edit/2.8bfff2e7774d63d68e18b6ce36828b1f/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-13 19:19:34,430][INFO] [sistema] [/sad/user/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-13 19:19:41,029][ERROR] [sistema] [/sad/user/profile/][admin][127.0.0.1] La persona con D.N.I.:06812118 ya existe  
+[2013-11-13 19:20:11,506][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-13 19:20:19,650][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona con D.N.I.:06812118 ya existe  
+[2013-11-13 19:20:31,328][ERROR] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] La persona con D.N.I.:06812118 ya existe  
+[2013-11-13 19:20:38,210][INFO] [sistema] [/sad/user/edit/5.fa8404304875c88bcd96a9fa84bccc60/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 

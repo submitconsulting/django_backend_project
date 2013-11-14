@@ -162,3 +162,8 @@ class UserProfileAssociation(models.Model):
 
 	def __unicode__(self):
 		return "%s %s - %s" % (self.user.username, self.group.name, self.association.name)
+
+#Usaremos las tablas de django:
+#User
+#Group (para nosotros Perfil)
+#Permission+ContentType (para nosostros Recursos)

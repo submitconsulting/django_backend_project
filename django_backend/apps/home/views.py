@@ -20,29 +20,28 @@ from apps.sad.models import Module
 from django.db.models import Q
 from apps.sad.decorators import is_admin, permission_resource_required
 
+#region home OK
 #@csrf_exempt
 #@permission_resource_required # no asignar permiso es la página de inicio
 def index(request):
 	"""
 	Muestra la página inical del sistema, ie http://localhost:8000/ = http://localhost:8000/home/
 	"""
-	#request.path="/home/"
-	#return redirect("/home/index")
-	t = {
+	
+	c = {
 		"page_module":("Home"),
 		"page_title":("DjangoBackend Home Page."),
 		}
-	return render_to_response("home/index.html", t, context_instance = RequestContext(request))
+	return render_to_response("home/index.html", c, context_instance = RequestContext(request))
 
 @csrf_exempt
 @permission_resource_required
-def choice_headquart(request, field="enterprise__name", value="None", order="-id"):
+def choice_headquart(request, field="enterprise__name", value="None"):
 	"""
 	Muestra el listado de sedes con sus respectivos módulos a las cuales el usuario tiene acceso 
 	"""
 	field = (field if not request.REQUEST.get("field") else request.REQUEST.get("field")).strip()
 	value = (value if not request.REQUEST.get("value") else request.REQUEST.get("value")).strip()
-	order = (order if not request.REQUEST.get("order") else request.REQUEST.get("order")).strip()
 
 	value_f = "" if value == "None" else value
 	column_contains = u"%s__%s" % (field,"contains")
@@ -84,7 +83,7 @@ def choice_headquart(request, field="enterprise__name", value="None", order="-id
 
 		"field":field,
 		"value":value.replace("/", "-"),
-		"order":order,
+		#"order":order,
 		}
 	return render_to_response("home/choice_headquart.html", c, context_instance = RequestContext(request))
-
+#endregion home OK

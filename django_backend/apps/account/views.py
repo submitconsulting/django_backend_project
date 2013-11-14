@@ -28,15 +28,15 @@ from apps.home.views import choice_headquart
 from unicodedata import normalize
 #from django.template.defaultfilters import slugify
 
-@login_required
-def profile(request): #TODO sin uso, borrar este método
-    if not request.user.is_authenticated():
-        return HrttpResponseRedirect("/login/")
-    account = request.user.get_profile
-    context = {"account": account}
-    return render_to_response("home/dashboard.html", context, context_instance=RequestContext(request))
+#@login_required
+#def profile(request): #TODO sin uso, borrar este método
+#    if not request.user.is_authenticated():
+#        return HrttpResponseRedirect("/login/")
+#    account = request.user.get_profile
+#    context = {"account": account}
+#    return render_to_response("home/dashboard.html", context, context_instance=RequestContext(request))
 
-
+@login_required(login_url="/account/login/")
 @transaction.commit_on_success
 def add_enterprise(request):
 
@@ -285,7 +285,7 @@ def signup_sys(request):
 		}
 	return render_to_response("account/signup.html", t, context_instance = RequestContext(request))
 
-@login_required
+@login_required(login_url="/account/login/")
 def load_access(request, headquart_id, module_id):
 	if request.is_ajax():
 		return HttpResponse("ESTA OPERACION NO DEBE SER CARGADO CON AJAX, Presione F5")

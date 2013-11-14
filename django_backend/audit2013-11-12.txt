@@ -1,0 +1,16 @@
+[2013-11-12 16:34:55,596][ERROR] [sistema] [/space/headquart/delete/1.46e89a4dc61de660d4baf1544d2ec671/][admin][127.0.0.1] Sede Principal tiene usuarios y grupos asignados. 
+[2013-11-12 16:36:02,903][ERROR] [sistema] [/space/headquart/delete/1.46e89a4dc61de660d4baf1544d2ec671/][admin][127.0.0.1] Sede Principal tiene usuarios y grupos asignados. 
+[2013-11-12 16:36:11,351][ERROR] [sistema] [/space/headquart/delete/1.46e89a4dc61de660d4baf1544d2ec671/][admin][127.0.0.1] Sede Principal tiene usuarios y grupos asignados. 
+[2013-11-12 16:36:54,608][ERROR] [sistema] [/space/headquart/delete/1.46e89a4dc61de660d4baf1544d2ec671/][admin][127.0.0.1] Sede Principal de Empresa Úno tiene usuarios y grupos asignados. 
+[2013-11-12 23:54:50,522][INFO] [sistema] [/sad/user/delete/1.9f5953d5d666547accdf5b6889dc70b5/][admin][127.0.0.1] Usuario admin ha sido eliminado correctamente. 
+[2013-11-12 23:59:21,355][WARNING] [sistema] [/sad/user/state/inactivar/1.274203591dfff2c2c9293dd96509bd2d/][admin][127.0.0.1] Lo sentimos, pero este usuario no se puede inactivar. 
+[2013-11-12 23:59:35,436][INFO] [sistema] [/sad/user/state/inactivar/1.274203591dfff2c2c9293dd96509bd2d/][admin][127.0.0.1] Usuario admin ha sido inactivado correctamente. 
+[2013-11-12 23:59:38,125][WARNING] [sistema] [/sad/user/state/reactivar/1.72f146ac8f35747cc57c06ada2134f11/][admin][127.0.0.1] Tu no posees permisos para acceder a /sad/user/state/ 
+[2013-11-12 23:59:49,778][WARNING] [sistema] [/sad/user/index/][admin][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 
+[2013-11-12 23:59:51,930][WARNING] [sistema] [/sad/user/index/][admin][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 
+[2013-11-12 23:59:52,714][WARNING] [sistema] [/space/headquart/index/][admin][127.0.0.1] Tu no posees permisos para acceder a /space/headquart/index/ 
+[2013-11-12 23:59:54,729][WARNING] [sistema] [/sad/user/index/][admin][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 
+[2013-11-12 23:59:55,417][WARNING] [sistema] [/params/locality/index/][admin][127.0.0.1] Tu no posees permisos para acceder a /params/locality/index/ 
+[2013-11-13 00:00:36,825][WARNING] [sistema] [/sad/user/index/][admin][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 
+[2013-11-13 00:00:38,976][WARNING] [sistema] [/space/headquart/index/][admin][127.0.0.1] Tu no posees permisos para acceder a /space/headquart/index/ 
+[2013-11-13 00:00:39,617][WARNING] [sistema] [/sad/user/index/][admin][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 

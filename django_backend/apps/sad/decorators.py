@@ -58,6 +58,8 @@ def permission_resource_required_decorator(template_denied_name="denied_mod_back
             response.write('alert("Hola")')
             response.write('</script>')
             try:
+                #if request.path =="/":
+                #    request.path="/home/"
                 path = request.path.strip("/") #request.get_full_path().strip("/") #"/apps/controller/action/" to "apps/controller/action"
                 #print "path=%s" % path
                 #print "request path=%s" % request.path

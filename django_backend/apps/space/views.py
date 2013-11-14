@@ -182,7 +182,7 @@ def headquart_change_association(request, key):
 			try:
 				d.association  = Association.objects.get(name=d.association_name)
 			except:
-				raise Exception( "La asociación <b>%s</b> no existe " % (request.POST.get("association_name")) )
+				raise Exception( "La asociación <b>%s</b> no existe, vuelva a intentar " % (request.POST.get("association_name")) )
 			#salvar registro
 			d.save()
 			if d.id:
@@ -204,31 +204,6 @@ def headquart_change_association(request, key):
 		"association_name_list":association_name_list,
 		}
 	return render_to_response("space/headquart/change_association.html", c, context_instance = RequestContext(request))
-
-@permission_resource_required
-def headquart_delete(request, key):
-	"""
-	Elimina sede
-	"""
-	id=Security.is_valid_key(request, key, "headquart_del")
-	if not id:
-		return Redirect.to_action(request, "index")
-	try:
-		d = get_object_or_404(Headquart, id=id)
-	except:
-		Message.error(request, ("Sede no se encuentra en la base de datos."))
-		return Redirect.to_action(request, "index")
-	try:
-		if d.enterprise.headquart_set.count() == 1:
-			raise Exception( ("Empresa <b>%(name)s</b> no puede quedar sin ninguna sede.") % {"name":d.enterprise.name} )
-		#agregue aquí sus otras relgas de negocio
-		d.delete()
-		if not d.id:
-			Message.info(request,("Sede <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
-			return Redirect.to_action(request, "index")
-	except Exception, e:
-		Message.error(request, e)
-		return Redirect.to_action(request, "index")
 
 @permission_resource_required
 def headquart_state(request, state, key):
@@ -258,6 +233,34 @@ def headquart_state(request, state, key):
 					else:
 						Message.info(request,("Sede <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.name}, True)
 					return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
+
+@permission_resource_required
+def headquart_delete(request, key):
+	"""
+	Elimina sede
+	"""
+	id=Security.is_valid_key(request, key, "headquart_del")
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Headquart, id=id)
+	except:
+		Message.error(request, ("Sede no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		if d.enterprise.headquart_set.count() == 1:
+			raise Exception( ("Empresa <b>%(name)s</b> no puede quedar sin ninguna sede.") % {"name":d.enterprise.name} )
+		if d.userprofileheadquart_set.count() > 0:
+			raise Exception( ("Sede <b>%(name)s de %(empresa)s</b> tiene usuarios y grupos asignados.") % {"name":d.name, "empresa":d.enterprise.name} )
+		
+		#agregue aquí sus otras relgas de negocio
+		d.delete()
+		if not d.id:
+			Message.info(request,("Sede <b>%(name)s de %(empresa)s</b> ha sido eliminado correctamente.") % {"name":d.name, "empresa":d.enterprise.name}, True)
+			return Redirect.to_action(request, "index")
 	except Exception, e:
 		Message.error(request, e)
 		return Redirect.to_action(request, "index")
@@ -292,6 +295,19 @@ def enterprise_index(request):
 		"enterprise_list":enterprise_list,
 		}
 	return render_to_response("space/enterprise/index.html", c, context_instance = RequestContext(request))
+
+@csrf_exempt
+def enterprise_upload(request):
+	"""
+	Sube logo
+	"""
+	data = {}
+	try:
+		filename = Upload.save_file(request.FILES["logo"],"empresas/")
+		data ["name"] = "%s"%filename
+	except Exception, e:
+		Message.error(request, e)
+	return HttpResponse(json.dumps(data))
 
 @permission_resource_required
 @transaction.commit_on_success
@@ -410,66 +426,6 @@ def enterprise_edit(request, key):
 
 @permission_resource_required
 @transaction.commit_on_success
-def enterprise_delete(request, key):
-	"""
-	Elimina empresa con todas sus sedes
-	"""
-	id=Security.is_valid_key(request, key, "enterprise_del")
-	if not id:
-		return Redirect.to_action(request, "index")
-	try:
-		d = get_object_or_404(Enterprise, id=id)
-	except:
-		Message.error(request, ("Empresa no se encuentra en la base de datos."))
-		return Redirect.to_action(request, "index")
-	try:
-		association=Association.objects.get(id=DataAccessToken.get_association_id(request.session))
-		if Enterprise.objects.filter(headquart__association_id=DataAccessToken.get_association_id(request.session)).count() == 1:
-			raise Exception( ("Asociación <b>%(name)s</b> no puede quedar sin ninguna sede asociada.") % {"name":association.name} )		
-		#agregue aquí sus otras relgas de negocio
-		d.delete()
-		if not d.id:
-			Message.info(request,("Empresa <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
-			return Redirect.to_action(request, "index")
-	except Exception, e:
-		transaction.rollback()
-		Message.error(request, e)
-		return Redirect.to_action(request, "index")
-
-@permission_resource_required
-def enterprise_state(request, state, key):
-	"""
-	Inactiva y reactiva el estado de la sede
-	"""
-	id=Security.is_valid_key(request, key, "enterprise_%s" % state )
-	if not id:
-		return Redirect.to_action(request, "index")
-	try:
-		d = get_object_or_404(Enterprise, id=id)
-	except:
-		Message.error(request, ("Empresa no se encuentra en la base de datos."))
-		return Redirect.to_action(request, "index")
-	try:
-		if state == "inactivar" and d.is_active == False:
-			Message.error(request, ("Empresa ya se encuentra inactivo."))
-		else:
-			if state == "reactivar" and d.is_active == True:
-				Message.error(request, ("Empresa ya se encuentra activo."))
-			else:
-				d.is_active = (True if state == "reactivar" else False)
-				d.save()
-				if d.id:
-					if d.is_active:
-						Message.info(request,("Empresa <b>%(name)s</b> ha sido reactivado correctamente.") % {"name":d.name}, True)
-					else:
-						Message.info(request,("Empresa <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.name}, True)
-					return Redirect.to_action(request, "index")
-	except Exception, e:
-		Message.error(request, e)
-		return Redirect.to_action(request, "index")
-
-@permission_resource_required
-@transaction.commit_on_success
 def enterprise_edit_current(request):
 	"""
 	Actualiza datos de la empresa a la que ingresó el usuario
@@ -519,21 +475,83 @@ def enterprise_edit_current(request):
 		}
 	return render_to_response("space/enterprise/edit_current.html", c, context_instance = RequestContext(request))
 
+@permission_resource_required
+def enterprise_state(request, state, key):
+	"""
+	Inactiva y reactiva el estado de la sede
+	"""
+	id=Security.is_valid_key(request, key, "enterprise_%s" % state )
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Enterprise, id=id)
+	except:
+		Message.error(request, ("Empresa no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		if state == "inactivar" and d.is_active == False:
+			Message.error(request, ("Empresa ya se encuentra inactivo."))
+		else:
+			if state == "reactivar" and d.is_active == True:
+				Message.error(request, ("Empresa ya se encuentra activo."))
+			else:
+				d.is_active = (True if state == "reactivar" else False)
+				d.save()
+				if d.id:
+					if d.is_active:
+						Message.info(request,("Empresa <b>%(name)s</b> ha sido reactivado correctamente.") % {"name":d.name}, True)
+					else:
+						Message.info(request,("Empresa <b>%(name)s</b> ha sido inactivado correctamente.") % {"name":d.name}, True)
+					return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
+
+@permission_resource_required
+@transaction.commit_on_success
+def enterprise_delete(request, key):
+	"""
+	Elimina empresa con todas sus sedes
+	"""
+	id=Security.is_valid_key(request, key, "enterprise_del")
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Enterprise, id=id)
+	except:
+		Message.error(request, ("Empresa no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		association=Association.objects.get(id=DataAccessToken.get_association_id(request.session))
+		if Enterprise.objects.filter(headquart__association_id=DataAccessToken.get_association_id(request.session)).count() == 1:
+			raise Exception( ("Asociación <b>%(name)s</b> no puede quedar sin ninguna sede asociada.") % {"name":association.name} )		
+		if d.userprofileenterprise_set.count() > 0:
+			raise Exception( ("Empresa <b>%(name)s</b> tiene usuarios y grupos asignados.") % {"name":d.name} )
+		#agregue aquí sus otras relgas de negocio
+		d.delete()
+		if not d.id:
+			Message.info(request,("Empresa <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
+			return Redirect.to_action(request, "index")
+	except Exception, e:
+		transaction.rollback()
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
+#endregion enterprise
+
+#region association OK
 @csrf_exempt
-def enterprise_upload(request):
+def association_upload(request):
 	"""
 	Sube logo
 	"""
 	data = {}
 	try:
-		filename = Upload.save_file(request.FILES["logo"],"empresas/")
+		filename = Upload.save_file(request.FILES["logo"],"asociaciones/")
 		data ["name"] = "%s"%filename
 	except Exception, e:
 		Message.error(request, e)
 	return HttpResponse(json.dumps(data))
-#endregion enterprise
 
-#region association OK
 @transaction.commit_on_success
 @permission_resource_required
 def association_edit_current(request):
@@ -579,19 +597,6 @@ def association_edit_current(request):
 		"solution_list":solution_list,
 		}
 	return render_to_response("space/association/edit_current.html", c, context_instance = RequestContext(request))
-
-@csrf_exempt
-def association_upload(request):
-	"""
-	Sube logo
-	"""
-	data = {}
-	try:
-		filename = Upload.save_file(request.FILES["logo"],"asociaciones/")
-		data ["name"] = "%s"%filename
-	except Exception, e:
-		Message.error(request, e)
-	return HttpResponse(json.dumps(data))
 #endregion association
 
 #region solution OK
@@ -676,35 +681,6 @@ def solution_edit(request, key):
 	return render_to_response("space/solution/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-def solution_delete(request, key):
-	"""
-	Elimina solución
-	"""
-	id=Security.is_valid_key(request, key, "solution_del")
-	if not id:
-		return Redirect.to_action(request, "index")
-	try:
-		d = get_object_or_404(Solution, id=id)
-	except:
-		Message.error(request, ("Solución no se encuentra en la base de datos."))
-		return Redirect.to_action(request, "index")
-	try:
-		#rastreando dependencias
-		if d.module_set.count() > 0:
-			raise Exception( ("Solución <b>%(name)s</b> tiene módulos asignados.") % {"name":d.name} )
-		if d.association_set.count() > 0:
-			raise Exception( ("Solución <b>%(name)s</b> está asignado en asociaciones.") % {"name":d.name} )
-		if d.enterprise_set.count() > 0:
-			raise Exception( ("Solución <b>%(name)s</b> está asignado en empresas.") % {"name":d.name} )
-		d.delete()
-		if not d.id:
-			Message.info(request,("Solución <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
-			return Redirect.to_action(request, "index")
-	except Exception, e:
-		Message.error(request, e)
-		return Redirect.to_action(request, "index")
-
-@permission_resource_required
 def solution_state(request, state, key):
 	"""
 	Inactiva y reactiva el estado del la solución/plan
@@ -736,4 +712,32 @@ def solution_state(request, state, key):
 		Message.error(request, e)
 		return Redirect.to_action(request, "index")
 
+@permission_resource_required
+def solution_delete(request, key):
+	"""
+	Elimina solución
+	"""
+	id=Security.is_valid_key(request, key, "solution_del")
+	if not id:
+		return Redirect.to_action(request, "index")
+	try:
+		d = get_object_or_404(Solution, id=id)
+	except:
+		Message.error(request, ("Solución no se encuentra en la base de datos."))
+		return Redirect.to_action(request, "index")
+	try:
+		#rastreando dependencias
+		if d.module_set.count() > 0:
+			raise Exception( ("Solución <b>%(name)s</b> tiene módulos asignados.") % {"name":d.name} )
+		if d.association_set.count() > 0:
+			raise Exception( ("Solución <b>%(name)s</b> está asignado en asociaciones.") % {"name":d.name} )
+		if d.enterprise_set.count() > 0:
+			raise Exception( ("Solución <b>%(name)s</b> está asignado en empresas.") % {"name":d.name} )
+		d.delete()
+		if not d.id:
+			Message.info(request,("Solución <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
+			return Redirect.to_action(request, "index")
+	except Exception, e:
+		Message.error(request, e)
+		return Redirect.to_action(request, "index")
 #endregion solution

@@ -58,6 +58,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="control-group">
+                            <label class="control-label">{% trans "IDENTITY_TYPES" %}<span class="req"> *</span></label>
+                            <select id="identity_type" name="identity_type"  class="field select input-xlarge input-required input-list show-errors" required="required">
+                                    
+                                    {% for key,value in IDENTITY_TYPES %}
+                                        <option value="{{ key }}" {% if d.identity_type == key %} selected {%endif%}>{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                                <p class="help-block"> <span class="help-error" id="err_identity_type"></span></p>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="control-group">
+                            <label class="control-label">{% trans "NUMERO" %}<span class="req"> </span></label>
+                            <input id="identity_num" name="identity_num" type="text" value="{{ d.identity_num }}" class="field text input-xlarge mask-pint show-error">
+                            <p class="help-block"> <span class="help-error" id="err_identity_num"></span></p>
+                        </div>
+                    </div>
+                </div>
                 
 
 

@@ -422,135 +422,6 @@ def user_edit(request, key):
 		}
 	return render_to_response("sad/user/edit.html", c, context_instance = RequestContext(request))
 
-@permission_resource_required
-@transaction.commit_on_success
-def user_profile(request):
-	"""
-	Actualiza perfil del usuario
-	"""
-	d = None
-	try:
-		d = request.user
-		try:
-			person = Person.objects.get(user_id=d.id)
-			if person.id:
-				d.first_name = d.person.first_name
-				d.last_name = d.person.last_name
-				d.photo = d.person.photo
-				d.identity_type = d.person.identity_type
-				d.identity_num = d.person.identity_num
-		except:
-			pass
-		
-	except Exception, e:
-		Message.error(request, ("Usuario no se encuentra en la base de datos. %s" % e))
-		
-
-	if request.method == "POST":
-		try:
-			#d.username = request.POST.get("login")
-			
-			#if User.objects.exclude(id = d.id).filter(username = d.username).count()>0:
-			#	raise Exception( "El usuario <b>%s</b> ya existe " % d.username )
-
-			if request.POST.get("email"):
-				d.email = request.POST.get("email")
-				if User.objects.exclude(id = d.id).filter(email = d.email).count()>0:
-					raise Exception( "El email <b>%s</b> ya existe " % d.email )
-			if request.POST.get("password"):
-				d.set_password(request.POST.get("password"))
-			d.save()
-			try:
-				person = Person.objects.get(user=d)
-			except:
-				person = Person(user=d)
-				person.save()
-				pass
-
-			d.first_name = request.POST.get("first_name")
-			d.last_name = request.POST.get("last_name")
-			d.identity_type = request.POST.get("identity_type")
-			d.identity_num = request.POST.get("identity_num")
-
-			identity_type_display = dict((x, y) for x, y in Person.IDENTITY_TYPES)[d.identity_type]
-			if Person.objects.exclude(id = d.person.id).filter(identity_type=d.identity_type, identity_num=d.identity_num).count()>0:
-				raise Exception( "La persona con %s:<b>%s</b> ya existe " % (identity_type_display, d.identity_num) )
-			
-			if normalize("NFKD", u"%s %s" % (d.first_name, d.last_name)).encode("ascii", "ignore").lower() in list(
-				normalize("NFKD", u"%s %s" % (col["first_name"], col["last_name"])).encode("ascii", "ignore").lower() for col in Person.objects.values("first_name","last_name").exclude(id = d.person.id).filter(identity_type=d.identity_type, identity_num=d.identity_num)
-				):
-				raise Exception( "La persona <b>%s %s</b> y %s:<b>%s</b> ya existe " % (d.first_name, d.last_name, identity_type_display, d.identity_num) )
-			
-			
-			person.first_name=request.POST.get("first_name")
-			person.last_name=request.POST.get("last_name")
-			person.identity_type = request.POST.get("identity_type")
-			person.identity_num = request.POST.get("identity_num")
-			person.photo = request.POST.get("persona_fotografia")
-
-			person.save()
-			
-			if d.id:
-				Message.info(request,("Usuario <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.username}, True)
-				return Redirect.to(request, "/home/choice_headquart/")
-
-		except Exception, e:
-			transaction.rollback()
-			Message.error(request, e)
-	try:
-		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
-		headquart_list_by_user_profile_headquart = Headquart.objects.filter(id__in= UserProfileHeadquart.objects.values("headquart_id").filter(user=d).distinct())
-
-		user_profile_headquart_list = UserProfileHeadquart.objects.filter(user=d).order_by("headquart")
-		user_profile_enterprise_list = UserProfileEnterprise.objects.filter(user=d).order_by("enterprise")
-		user_profile_association_list = UserProfileAssociation.objects.filter(user=d).order_by("association")
-
-		#for user_profile_headquart in user_profile_headquart_list:
-		#	print user_profile_headquart.headquart
-		#	print user_profile_headquart.group
-
-
-		solution_enterprise=Solution.objects.get(id=headquart.enterprise.solution.id )
-		solution_association=Solution.objects.get(id=headquart.association.solution.id )
-		module_list = Module.objects.filter(Q(solutions = solution_enterprise) | Q(solutions = solution_association) ).distinct()
-		group_perm_list = Group.objects.filter(module_set__in=module_list).order_by("-id").distinct() #trae los objetos relacionados sad.Module
-		#print group_perm_list
-		#print "=====================x"
-		#pero hay que adornarlo de la forma Module>Group/perfil
-		group_list_by_module=[]
-		group_list_by_module_unique_temp=[]#solo para verificar que el Group no se repita si este está en dos o más módulos
-		for module in module_list:
-			for group in Group.objects.filter(module_set=module).distinct():
-				if len(group_list_by_module)==0:
-					group_list_by_module.append({
-					"group": group,
-					"module": module,
-					})
-					group_list_by_module_unique_temp.append(group)
-				else:
-					if group not in group_list_by_module_unique_temp:
-						group_list_by_module.append({
-						"group": group,
-						"module": module,
-						})
-						group_list_by_module_unique_temp.append(group)
-		#print group_list_by_module_unique_temp
-		
-		
-
-	except Exception, e:
-		Message.error(request, e)
-	c = {
-		"page_module":("Perfil del usuario"),
-		"page_title":("Actualizar información del usuario."),
-		"d":d,
-		"user_profile_headquart_list":user_profile_headquart_list,
-		"user_profile_enterprise_list":user_profile_enterprise_list,
-		"user_profile_association_list":user_profile_association_list,
-		"IDENTITY_TYPES":Person.IDENTITY_TYPES,
-		}
-	return render_to_response("sad/user/profile.html", c, context_instance = RequestContext(request))
-
 def user_view(request, key):
 	"""
 	Visualiza información del usuario
@@ -1152,7 +1023,7 @@ def module_plans_edit(request):
 		Message.error(request, e)
 	c = {
 		"page_module":("Gestión de planes"),
-		"page_title":("Listado de planes del sistema."),
+		"page_title":("Configuración de planes del sistema."),
 		"module_list":module_list,
 		"module_list_len":len(module_list),
 		"solution_list":solution_list,

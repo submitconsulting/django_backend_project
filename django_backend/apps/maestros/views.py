@@ -24,11 +24,9 @@ from django.db.models import Q
 from apps.maestros.models import Producto
 from apps.params.models import Categoria
 
-#region user OK
-
 from apps.space.models import Headquart
 
-#region user OK
+#region producto OK
 @csrf_exempt
 @login_required(login_url="/account/login/")
 @permission_resource_required
@@ -176,7 +174,7 @@ def producto_edit(request, key):
 
 @permission_resource_required
 @transaction.commit_on_success
-def producto_delete(request, key):
+def producto_delete(reqproductoest, key):
 	"""
 	Elimina producto
 	"""
@@ -196,4 +194,4 @@ def producto_delete(request, key):
 	except Exception, e:
 		Message.error(request, e)
 		return Redirect.to_action(request, "index")
-#endregion user
+#endregion producto

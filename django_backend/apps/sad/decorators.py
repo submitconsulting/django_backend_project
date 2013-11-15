@@ -26,6 +26,18 @@ from django.template.context import RequestContext
 def is_admin(view_func):
     '''
     Verifica si es admin o no
+    Usage::
+
+        from apps.sad.decorators import is_admin
+
+        @is_admin 
+        def function_name(request):
+
+    Example::
+
+        #@is_admin
+        def locality_index(request, field="name", value="None", order="-id"):
+            return render_to_response("params/locality/index.html", c, context_instance = RequestContext(request))
     '''
     def _wrapped_view_func(request, *args, **kwargs):
         if not request.user.is_superuser:
@@ -36,7 +48,24 @@ def is_admin(view_func):
 
 def permission_resource_required(function=None, template_denied_name="denied_mod_backend.html"):
     """
-    
+    Verifica si el usuario tiene permiso para acceder al recurso actual (request.path)
+
+    Usage::
+
+        from apps.sad.decorators import permission_resource_required
+
+        @permission_resource_required
+        def function_name(request):
+
+        @permission_resource_required(template_denied_name="denied_mod_ventas.html")
+        def function_name(request):
+
+    Example::
+
+        @permission_resource_required
+        def user_index(request, field="username", value="None", order="-id"):
+            ...
+            render_to_response("sad/user/index.html", c, context_instance = RequestContext(request))
     """
     actual_decorator = permission_resource_required_decorator(
         template_denied_name=template_denied_name
@@ -46,6 +75,9 @@ def permission_resource_required(function=None, template_denied_name="denied_mod
     return actual_decorator
 
 def permission_resource_required_decorator(template_denied_name="denied_mod_backend.html"):
+    """
+    Implementa el docorador permission_resource_required
+    """
     def decorator(view_func):
         @wraps(view_func, assigned=available_attrs(view_func))
         def _wrapped_view(request, *args, **kwargs) :
@@ -113,9 +145,8 @@ def permission_resource_required_decorator(template_denied_name="denied_mod_back
         return _wrapped_view
     return decorator
 
-
-#Metodos decorators en testing
-
+#region basura
+#Metodos decorators en testing, estos decoradores no son usados, puedes borrarlos
 def permission_codename_required(perm, login_url='mod_backend_dashboard', raise_exception=False):
 	"""
     Decorator for views that checks whether a user has a particular permission
@@ -147,10 +178,6 @@ def permission_codename_required(perm, login_url='mod_backend_dashboard', raise_
 	    return wraps(func)(inner_decorator)
 	return decorator
 
-
-
-
-
 def xlogin_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
     """
     Decorator for views that checks that the user is logged in, redirecting
@@ -163,7 +190,6 @@ def xlogin_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, logi
     if function:
         return actual_decorator(function)
     return actual_decorator
-
 
 def eeee(login_url=None):
 	def decorator(view_func):
@@ -181,11 +207,6 @@ def eeee(login_url=None):
 	    return _wrapped_view
 	return decorator
 
-
-
-# eliminar estos decorators
-
-
 def user_passes_testx(test_func=None, login_url=None):
 	def decorator(view_func):
 	    @wraps(view_func, assigned=available_attrs(view_func))
@@ -199,17 +220,12 @@ def user_passes_testx(test_func=None, login_url=None):
 	    return _wrapped_view
 	return decorator
 
-
-
-
-
 def user_passes_testy(test_func=None, login_url=None):
 	actual_decorator = user_passes_test(
         lambda u: u.is_authenticated(),
         login_url=login_url
     )
 	return actual_decorator
-
 
 def access_required(permission=None):
 	def decorator(func):
@@ -224,7 +240,6 @@ def access_required(permission=None):
 	        
 	    return wraps(func)(inner_decorator)
 	return decorator
-
 
 def access_requiredx(view_func): 
     def _wrapped_view_func(request, *args, **kwargs):
@@ -256,3 +271,4 @@ def xpermission_requiredx(perm, login_url=None, raise_exception=False):
         # As the last resort, show the login form
         return False
     return user_passes_test(check_perms, login_url=login_url)
+#endregion basura

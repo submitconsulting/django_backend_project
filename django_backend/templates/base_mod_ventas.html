@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{% static 'css/backend/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/backend/themes/default/default.css' %}">
     <link rel="stylesheet" href="{% static 'css/file-upload.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap-fileupload.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap-fileupload.min.css' %}">
 
 
     {% block extra_css %}{% endblock extra_css %}
@@ -63,6 +65,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bootstrap/bootstrap-datepicker.js' %}"></script>
+
+    <script src="{% static 'js/bootstrap/bootstrap-fileupload.js' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-fileupload.min.js' %}"></script>
+
     <script src="{% static 'js/jquery/jquery.kumbiaphp.js' %}"></script>
     <script src="{% static 'js/jquery/jquery.keyfilter.js' %}"></script>
     <script src="{% static 'js/jquery/jquery.dwgrid.js' %}"></script>
@@ -169,6 +175,15 @@
         $("[rel=tooltip]").tooltip();
       });
     </script>
-    {% block extra_js %}{% endblock extra_js %}
+    {% block extra_js %}
+    <!--upload cuando carga con ajax de debe cargar al final-->
+    <script src="{% static 'js/jquery/ui/jquery.ui.widget.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload-fp.js' %}"></script>
+    <script src="{% static 'js/jquery/jquery-file-upload/jquery.fileupload-ui.js' %}"></script>
+    <!--[if gte IE 8]><script src="{% static 'js/jquery/jquery-file-upload/cors/jquery.xdr-transport.js' %}"></script> <![endif]-->
+    <!--end upload -->
+    {% endblock extra_js %}
   </body>
 </html>

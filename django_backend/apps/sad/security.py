@@ -19,8 +19,9 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 class DataAccessToken:
-
-
+	"""
+		Clase que permite almacenar y recuperar los permisos a datos de las empresas solicitados por los usuarios.
+	"""
 	@staticmethod
 	def set_association_id(request, association_id):
 		request.session['association_id'] = association_id
@@ -56,6 +57,9 @@ class DataAccessToken:
 class SessionContext:
 	@staticmethod
 	def is_administrator(request):
+		""" 
+		Valida si usuario es superuser
+	    """		
 		if request.user.is_superuser:
 			return True
 		else:
@@ -70,6 +74,18 @@ class Security:
 	#Método para generar las llaves de seguridad
 	@staticmethod
 	def get_key(id, action_name):
+		""" 
+		Genera una llave de seguridad válida durante todo el día %Y-%m-%d
+
+		Entrada::
+
+			id=1
+			action_name="user_upd"
+
+		Salida::
+
+			1.dfad09debee34f8e85fccc5adaa2dadb
+	    """
 		key="%s%s" % (Security.TEXT_KEY, datetime.datetime.now().strftime('%Y-%m-%d'))
 
 		m = hashlib.md5("%s%s%s" % (id, key, action_name) )
@@ -85,6 +101,18 @@ class Security:
 	#Método para verificar si la llave es válida
 	@staticmethod
 	def is_valid_key(request, key_value, action_name):
+		""" 
+		Genera una llave de seguridad válida durante todo el día %Y-%m-%d
+
+		Entrada::
+
+			key_value=1.dfad09debee34f8e85fccc5adaa2dadb
+			action_name="user_upd"
+
+		Salida::
+
+			1
+	    """
 		key = key_value.split('.')
 		id=key[0]
 		valid_key=Security.get_key(id, action_name)
@@ -108,6 +136,17 @@ class Menus:
 	#Método para cargar en variables los menús
 	@staticmethod
 	def load(request, menu_module): #TODO filtar por usuarios
+		""" 
+		Carga el menú del usuario
+
+		Entrada::
+
+			menu_module=DBM
+
+		Salida::
+
+			menu_item_list[menu]
+	    """
 		Menus.menu_module=menu_module
 		print "\n\n\n"
 		print "user=%s"%request.user
@@ -127,6 +166,9 @@ class Menus:
 	#Método para renderizar el menú de escritorio
 	@staticmethod
 	def desktop(request):
+		""" 
+		Método para renderizar el menú de escritorio
+	    """
 		html = ''
 		route = request.path;
 		if Menus.menu_list:
@@ -139,6 +181,7 @@ class Menus:
 			html = html + '</ul>\n'
 		return html
 
+	#metodo privado
 	@staticmethod
 	def linkdf(action, text, icon):#, attrs = None, icon='', loadAjax=True
 		action = ('/%s' % action if action != '#' else '#')
@@ -148,6 +191,7 @@ class Menus:
 		html = '<a href="%s"  class="dw-spinner dw-ajax main-menu-link" data-filter="sub-menu-%s" >%s %s</a>\n'%(action, text.lower().replace(" ","_"), texti, text )
 		return html
 
+	#metodo privado
 	@staticmethod
 	def link(action, text, icon):#, attrs = None, icon='', loadAjax=True
 		action = ('/%s' % action if action != '#' else '#')
@@ -157,6 +201,7 @@ class Menus:
 		html = '<a href="%s"  class="dw-spinner dw-ajax" >%s %s</a>\n'%(action, texti, text )
 		return html
 
+	#metodo privado
 	@staticmethod
 	def linknoajax(action, text, icon):#, attrs = None, icon='', loadAjax=True
 		action = ('/%s' % action if action != '#' else '#')
@@ -166,6 +211,7 @@ class Menus:
 		html = '<a href="%s"  class="dw-spinner" >%s %s</a>\n'%(action, texti, text )
 		return html
 
+	#metodo privado
 	@staticmethod
 	def linkphone(action, text, icon):#, attrs = None, icon='', loadAjax=True
 		action = ('/%s' % action if action != '#' else '#')
@@ -178,6 +224,9 @@ class Menus:
 	#Método para listar los items en el backend
 	@staticmethod
 	def desktop_items(request):
+		""" 
+		Método para listar los items del menu de escritorio
+	    """		
 		html = ''
 		route = request.path;
 		for menu,items in Menus.menu_item_list.iteritems():
@@ -196,6 +245,9 @@ class Menus:
 	#Método para renderizar el menú de dispositivos móviles
 	@staticmethod
 	def phone(request):
+		""" 
+		Método para renderizar el menú de dispositivos móviles
+	    """	
 		html = ''
 		route = request.path;
 		if Menus.menu_list:
@@ -217,7 +269,9 @@ class Menus:
 
 class Redirect:
 	"""
-		Antes::
+	Clase que permite re-dirigir a un controller, cuaya solicitud se haya realizado con ajax o no
+
+	Antes::
 
 		if request.is_ajax():
 			request.path="/params/locality/index/" #/app/controller_path/action/$params
@@ -226,10 +280,10 @@ class Redirect:
 			return redirect("/params/locality/index/")
 		
 
-		Ahora solo use::
+	Ahora solo use (Example)::
 
-			return Redirect.to(request, "/sad/user/index/")
-			return Redirect.to_action(request, "index")
+		return Redirect.to(request, "/sad/user/index/")
+		return Redirect.to_action(request, "index")
 	"""
 
 	@staticmethod

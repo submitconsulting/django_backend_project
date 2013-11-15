@@ -1,0 +1,5 @@
+[2013-11-15 16:05:40,055][INFO] [sistema] [/sad/user/edit/5.edefbf1860be186c3b132262649d1b1b/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-15 16:06:34,691][INFO] [sistema] [/sad/user/edit/5.edefbf1860be186c3b132262649d1b1b/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-15 16:09:49,253][INFO] [sistema] [/sad/user/edit/5.edefbf1860be186c3b132262649d1b1b/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-15 16:10:12,315][INFO] [sistema] [/sad/user/edit/5.edefbf1860be186c3b132262649d1b1b/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-15 16:13:23,503][INFO] [sistema] [/sad/user/edit/5.edefbf1860be186c3b132262649d1b1b/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 

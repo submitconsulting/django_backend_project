@@ -22,7 +22,7 @@
                       
       
       {% if user.is_authenticated %}
-        {% url 'backend_dashboard' as get_url %}
+        {% url 'mod_backend_dashboard' as get_url %}
         {% get_grupos request get_url %}
       {% endif %}
 
@@ -66,7 +66,7 @@
         <ul class="dropdown-menu">
           <li><a href="{% url 'choice_headquart' %}"  class="" >Página de inicio</a></li>
           <li class="divider"></li>
-          <li><a href="/sad/user/profile/"  class="dw-ajax dw-spinner" >Perfil</a></li>
+          <li><a href="/account/profile/"  class="dw-ajax dw-spinner" >Perfil</a></li>
           <li class="divider"></li>
           <li><a href="/account/logout/"  class="no-load" ><i class="icon-off icon-expand"></i> Salir</a></li>
         </ul>

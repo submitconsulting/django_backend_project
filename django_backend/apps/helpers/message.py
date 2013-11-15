@@ -49,11 +49,25 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 
 class Message:
+   	"""
+	Clase para la gestión de mensajería instantánea del sistema
 
+	Usage::
+
+	    from apps.helpers.message import Message
+	    Message.info(request,"message")
+
+	"""
 	content_msj = []
 
 	@staticmethod
 	def set_msg(request, name, msg, audit=False):
+		"""
+		Método interno, que asigna el mensaje en la variable content_msj 
+	    y, deacuerdo al tipo de mensaje recibido en name, guarda en 
+	    logger.info() #por ejemplo.
+		"""
+
 		try:
 			d = request.session['messages']
 			if d:
@@ -87,6 +101,7 @@ class Message:
 
 	@staticmethod
 	def info(request, msg, audit=False):
+
 		#logger.info("%s - %s"%(request.user, msg))
 		Message.set_msg(request, "info", msg, audit)
 

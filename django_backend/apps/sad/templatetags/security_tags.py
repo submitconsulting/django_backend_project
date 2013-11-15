@@ -44,7 +44,7 @@ def key(id, action_name):
 @register.filter(name='get_dict_value')
 def get_dict_value(dictionary, key):
 	"""
-	devuelve el valor del key de un dict
+	Devuelve el VALUE buscado por su KEY de un dict
 
 	Usage::
 

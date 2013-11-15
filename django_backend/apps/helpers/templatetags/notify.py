@@ -20,7 +20,10 @@ register = template.Library()
 @register.simple_tag
 def get_notify(request):
 	"""
-	Muestra los mensajes de error, advertencias o de información en los templates
+	Muestra los mensajes de error, advertencias o de información en los templates.
+	Estos mensajes son recepcionados con la clase Message.
+	p.e: 
+		Message.info(request,"message")
 	
 	Usage::
 		

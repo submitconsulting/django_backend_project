@@ -8,9 +8,8 @@ Con el DjangoBackend podrás gestionar de manera rápida y segura los usuarios, 
 Documentación
 -------------------
 
-`Guía de inicio rápido <http://djangobackend-model.appspot.com>`_
+`Diseño del sistema <http://djangobackend-model.appspot.com>`_
 
-**[Demo](http://djangobackend-model.appspot.com)**
 
 Instalación
 -------------------

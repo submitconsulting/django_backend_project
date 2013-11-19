@@ -17,6 +17,8 @@ from array import *
 from django.shortcuts import redirect
 reload(sys)
 sys.setdefaultencoding('utf-8')
+from django.contrib.auth.models import User, Group, Permission 
+from django.db.models import Q
 
 class DataAccessToken:
 	"""
@@ -148,19 +150,36 @@ class Menus:
 			menu_item_list[menu]
 	    """
 		Menus.menu_module=menu_module
+		user=request.user
+
 		print "\n\n\n"
-		print "user=%s"%request.user
+		#print 'Permisos del User a travez de sus Groups'
+		#print user.get_group_permissions() # no sirve pk tambien debemos comparar con la sede
 
+		#los Grupos del User según su espacio actual
+		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
+		group_id_list_by_user_and_headquart = list( col["id"] for col in Group.objects.values("id").filter(userprofileheadquart__headquart__id = headquart.id, userprofileheadquart__user__id = user.id).distinct())
+		group_id_list_by_user_and_enterprise = list( col["id"] for col in Group.objects.values("id").filter(userprofileenterprise__enterprise__id = headquart.enterprise.id, userprofileenterprise__user__id = user.id).distinct())
+		group_id_list_by_user_and_association = list( col["id"] for col in Group.objects.values("id").filter(userprofileassociation__association__id = headquart.association.id, userprofileassociation__user__id = user.id).distinct())
+		group_id_list_by_user_and_hea=list(set(group_id_list_by_user_and_headquart+group_id_list_by_user_and_enterprise+group_id_list_by_user_and_association))
+		
+		#print 'Groups del User a travez de su espacio actual'
+		#print group_id_list_by_user_and_hea
+
+		#print 'Permisos del User a travez de su espacio actual'
+		permission_list = Permission.objects.filter(group__in = group_id_list_by_user_and_hea).distinct() #compara con los Group del user
+		if request.user.is_superuser:
+			permission_list = [] #si es uperuser mostrarme todo los menús
 		menu = Menu()
-		#if not Menus.menu_list:
-		Menus.menu_list = Menu.objects.filter(parent_id=None, module=menu_module, is_active=True).order_by("pos")
+		
+		#obtengo los hijos y luego saco sus padres, esto es para no mostrar un menu sin items
+		menu_item_list_t = Menu.objects.filter(Q(permission__in=permission_list) | Q( id__isnull= True if permission_list else False ), module=menu_module, is_active =True).order_by("pos")
+		Menus.menu_list = Menu.objects.filter(menu__in=menu_item_list_t, module=menu_module, is_active =True).order_by("pos").distinct()
 		#print Menus.menu_list
-		if Menus.menu_list: #not Menus.menu_item_list and 
+		if Menus.menu_list:
 			for menu in Menus.menu_list:
-				Menus.menu_item_list[menu.title] = Menu.objects.filter(parent_id=menu.id, is_active=True).exclude(parent_id=None).order_by("pos") #.lower().replace(" ","_")
+				Menus.menu_item_list[menu.title] = Menu.objects.filter(Q(permission__in=permission_list) | Q( id__isnull= True if permission_list else False ),parent_id=menu.id, is_active=True).order_by("pos") #.lower().replace(" ","_")
 		#print Menus.menu_item_list
-
-
 		return ""
 
 	#Método para renderizar el menú de escritorio

@@ -3,7 +3,11 @@ Django Backend Manager
 
 Backend para aplicaciones web para la nube con Django con la elegancia de Bootstrap de Twitter.
 
-Con el DjangoBackend podrás gestionar de manera rápida y segura los usuarios, perfiles o grupos, recursos o permisos de django, menús dinámicos, y mucho más!.
+Con el DjangoBackend podrás gestionar de manera RÁPIDA y SEGURA a los usuarios, perfiles y permisos de usuario, recursos del sistema, módulos y planes del sistema, menús dinámicos, empresas, y mucho más...!
+
+Ahora, cuando inicias un proyecto comenzarás directamente a atender(implementar) los requisitos de tu nuevo sistema. Ya que este módulo (Backend) se encargó de todo el trabajo inicial repetitivo de todo proyecto de software así como de los componentes o librerías que necesitas antes de comenzar a desarrollar cualquier software.
+
+DjangoBackend es el entregable más importante de todo UN MARCO DE TRABAJO para desarrollar app WEB SEGURAS sobre django. Este marco, además, incluye la documentación del diseño del sistema, librerías se seguridad y helpers bien documentadas, métodos y técnicas de codeo, manual del desarrollador o programador, manual del usuario, ejemplos de integración, etc. 
 
 Documentación
 -------------------
@@ -19,11 +23,10 @@ Usuario: admin
 
 Pass: 12345
 
+Requirements:
 
-#Installing python 2.7.5
-
-
-#Installing Django 1.5.1
+python 2.7.5
+Django 1.5.1
 
 
 To install Django, run the following command::

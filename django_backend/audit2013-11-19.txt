@@ -1,0 +1,16 @@
+[2013-11-19 09:29:45,838][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-11-19 09:29:47,177][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-11-19 11:04:52,315][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-11-19 11:04:57,947][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-11-19 11:05:35,517][WARNING] [sistema] [/sad/menu/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-11-19 11:16:04,943][WARNING] [sistema] [/maestros/producto/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /maestros/producto/index/ 
+[2013-11-19 11:52:21,296][INFO] [sistema] [/sad/user/edit/1.e27367095e3c518b8deee991070aa02d/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-19 11:55:37,078][WARNING] [sistema] [/sad/user/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 
+[2013-11-19 11:55:41,157][WARNING] [sistema] [/sad/user/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/user/index/ 
+[2013-11-19 11:57:25,395][WARNING] [sistema] [/sad/resource/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/resource/index/ 
+[2013-11-19 12:01:03,532][WARNING] [sistema] [/sad/group/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/index/ 
+[2013-11-19 12:01:10,931][WARNING] [sistema] [/sad/group/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/index/ 
+[2013-11-19 12:01:11,739][WARNING] [sistema] [/sad/group/permissions_edit/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/permissions_edit/ 
+[2013-11-19 12:01:12,747][WARNING] [sistema] [/sad/group/permissions_edit/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/permissions_edit/ 
+[2013-11-19 12:01:13,634][WARNING] [sistema] [/sad/group/index/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/index/ 
+[2013-11-19 12:01:14,657][WARNING] [sistema] [/sad/group/permissions_edit/][asullom][127.0.0.1] Tu no posees permisos para acceder a /sad/group/permissions_edit/ 

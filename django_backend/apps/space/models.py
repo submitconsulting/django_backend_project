@@ -45,7 +45,7 @@ class Association(models.Model):
 	MIXED="MIXED"
 	OTHERS="OTHERS"
 	TYPES = (
-        (GOVERMENT, "Gobierno"),
+        (GOVERMENT, "Gobiernó"),
         (PRIVATE, "Privada"),
         (MIXED, "Mixto"),
         (OTHERS, "Otros")

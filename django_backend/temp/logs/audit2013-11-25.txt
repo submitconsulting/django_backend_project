@@ -1,0 +1,102 @@
+[2013-11-25 05:32:13,609][INFO] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] Employee 353456456 ha sido registrado correctamente. 
+[2013-11-25 05:32:19,355][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:32:36,438][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:32:41,345][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:32:43,059][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:32:44,691][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:32:47,058][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:32:48,105][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:33:11,085][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:33:12,371][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:33:13,509][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:33:17,450][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:33:18,290][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:33:20,348][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:89785 ya existe  
+[2013-11-25 05:33:29,081][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] El employee 353456456 ya existe  
+[2013-11-25 05:33:32,219][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] El employee 353456456 ya existe  
+[2013-11-25 05:33:57,971][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] El employee 353456456 ya existe  
+[2013-11-25 05:34:39,944][INFO] [sistema] [/rrhh/employee/delete/8.9bc6be404bcdfd1836e9ddec9461c5c6/][admin][127.0.0.1] Employee 353456456 ha sido eliminado correctamente. 
+[2013-11-25 05:35:54,644][INFO] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] Employee 45435 ha sido registrado correctamente. 
+[2013-11-25 05:36:41,509][INFO] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] Employee 34324 ha sido registrado correctamente. 
+[2013-11-25 05:51:01,453][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 7684234 ha sido actualizado correctamente. 
+[2013-11-25 05:54:59,519][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 45435 ha sido actualizado correctamente. 
+[2013-11-25 05:55:08,283][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 45435 ha sido actualizado correctamente. 
+[2013-11-25 05:55:39,937][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 45435 ha sido actualizado correctamente. 
+[2013-11-25 05:57:28,569][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 45435 ha sido actualizado correctamente. 
+[2013-11-25 06:00:59,460][ERROR] [sistema] [/rrhh/employee/choice/1/][admin][127.0.0.1] Acceso denegado. La llave de seguridad es incorrecta. 
+[2013-11-25 06:03:26,470][ERROR] [sistema] [/rrhh/employee/choice/1/][admin][127.0.0.1] Acceso denegado. La llave de seguridad es incorrecta. 
+[2013-11-25 06:04:21,125][ERROR] [sistema] [/rrhh/employee/choice/2.0583384af8be28f432166657d1c94949/][admin][127.0.0.1] Acceso denegado. La llave de seguridad es incorrecta. 
+[2013-11-25 06:05:49,242][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 3 ha sido actualizado correctamente. 
+[2013-11-25 06:14:42,996][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 3 ha sido actualizado correctamente. 
+[2013-11-25 06:32:46,108][ERROR] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee no se encuentra en la base de datos. No Employee matches the given query. 
+[2013-11-25 06:32:47,813][ERROR] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee no se encuentra en la base de datos. No Employee matches the given query. 
+[2013-11-25 06:33:18,434][ERROR] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee no se encuentra en la base de datos. No Employee matches the given query. 
+[2013-11-25 06:33:22,530][ERROR] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee no se encuentra en la base de datos. No Employee matches the given query. 
+[2013-11-25 06:33:27,885][ERROR] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee no se encuentra en la base de datos. No Employee matches the given query. 
+[2013-11-25 06:33:32,678][ERROR] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee no se encuentra en la base de datos. No Employee matches the given query. 
+[2013-11-25 06:41:11,753][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario admint ha sido registrado correctamente. 
+[2013-11-25 06:42:24,813][ERROR] [sistema] [/sad/user/delete/6.9cf73c25fbbec1df8ff895583c6d4bfe/][admin][127.0.0.1] Usuario admint tiene permisos asignados. 
+[2013-11-25 06:42:32,717][INFO] [sistema] [/sad/user/edit/6.4acc0ec7db6e6a0bae189b99f881e0c0/][admin][127.0.0.1] Usuario admint ha sido actualizado correctamente. 
+[2013-11-25 06:42:35,993][INFO] [sistema] [/sad/user/delete/6.9cf73c25fbbec1df8ff895583c6d4bfe/][admin][127.0.0.1] Usuario admint ha sido eliminado correctamente. 
+[2013-11-25 06:44:59,111][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario weqt ha sido registrado correctamente. 
+[2013-11-25 06:45:09,068][INFO] [sistema] [/sad/user/delete/6.9cf73c25fbbec1df8ff895583c6d4bfe/][admin][127.0.0.1] Usuario weqt ha sido eliminado correctamente. 
+[2013-11-25 06:52:18,812][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario werwer ha sido registrado correctamente. 
+[2013-11-25 06:52:29,151][ERROR] [sistema] [/sad/user/delete/6.9cf73c25fbbec1df8ff895583c6d4bfe/][admin][127.0.0.1] 'User' object has no attribute 'user' 
+[2013-11-25 06:54:11,585][ERROR] [sistema] [/sad/user/delete/6.9cf73c25fbbec1df8ff895583c6d4bfe/][admin][127.0.0.1]  
+[2013-11-25 06:55:09,447][INFO] [sistema] [/sad/user/delete/6.9cf73c25fbbec1df8ff895583c6d4bfe/][admin][127.0.0.1] Usuario werwer ha sido eliminado correctamente. 
+[2013-11-25 06:56:52,196][WARNING] [sistema] [/sad/user/delete/1.6ef7b4f4d2d113a5144086c942bc1000/][admin][127.0.0.1] Lo sentimos, pero este usuario no se puede eliminar. 
+[2013-11-25 06:57:27,987][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario ytytyu ha sido registrado correctamente. 
+[2013-11-25 07:02:08,676][ERROR] [sistema] [/sad/user/delete/6.9cf73c25fbbec1df8ff895583c6d4bfe/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 
+[2013-11-25 07:03:13,367][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario adasd ha sido registrado correctamente. 
+[2013-11-25 07:09:00,213][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario 324234 ha sido registrado correctamente. 
+[2013-11-25 07:09:09,503][INFO] [sistema] [/sad/user/delete/6.9cf73c25fbbec1df8ff895583c6d4bfe/][admin][127.0.0.1] Usuario 324234 ha sido eliminado correctamente. 
+[2013-11-25 07:09:40,786][INFO] [sistema] [/rrhh/employee/delete/102.f6f8ad8a2e1984d1268d53683b18161d/][admin][127.0.0.1] Employee 00199 ha sido eliminado correctamente. 
+[2013-11-25 07:39:57,017][ERROR] [sistema] [/sad/user/edit/1.3662b18c6bce10c08e3ee48849a84b71/][admin][127.0.0.1] sad_profile.person_id may not be NULL 
+[2013-11-25 08:08:06,684][ERROR] [sistema] [/sad/user/edit/1.3662b18c6bce10c08e3ee48849a84b71/][admin][127.0.0.1] 'user' is an invalid keyword argument for this function 
+[2013-11-25 08:09:29,770][INFO] [sistema] [/sad/user/edit/1.3662b18c6bce10c08e3ee48849a84b71/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-25 08:22:03,608][ERROR] [sistema] [/sad/user/edit/1.3662b18c6bce10c08e3ee48849a84b71/][admin][127.0.0.1] Usuario no se encuentra en la base de datos. 'User' object has no attribute 'pofile' 
+[2013-11-25 08:28:09,838][ERROR] [sistema] [/sad/user/edit/1.3662b18c6bce10c08e3ee48849a84b71/][admin][127.0.0.1] La persona con D.N.I.: ya existe  
+[2013-11-25 08:29:37,609][INFO] [sistema] [/sad/user/edit/1.3662b18c6bce10c08e3ee48849a84b71/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-25 08:32:30,453][ERROR] [sistema] [/sad/user/edit/2.27de249c5f4a23edeff6724a2a9076d5/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-11-25 08:32:33,933][ERROR] [sistema] [/sad/user/edit/2.27de249c5f4a23edeff6724a2a9076d5/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-11-25 08:32:43,842][INFO] [sistema] [/sad/user/edit/1.3662b18c6bce10c08e3ee48849a84b71/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-25 08:32:46,927][ERROR] [sistema] [/sad/user/edit/2.27de249c5f4a23edeff6724a2a9076d5/][admin][127.0.0.1] Usuario no se encuentra en la base de datos.  
+[2013-11-25 08:33:41,779][ERROR] [sistema] [/sad/user/edit/2.27de249c5f4a23edeff6724a2a9076d5/][admin][127.0.0.1] La persona con D.N.I.: ya existe  
+[2013-11-25 08:33:49,719][INFO] [sistema] [/sad/user/edit/2.27de249c5f4a23edeff6724a2a9076d5/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
+[2013-11-25 08:33:58,181][INFO] [sistema] [/sad/user/edit/3.1f39add0462594b6a2bcc7fcc406ff42/][admin][127.0.0.1] Usuario abel ha sido actualizado correctamente. 
+[2013-11-25 08:34:03,377][INFO] [sistema] [/sad/user/edit/4.721869f0cf87f75a2f6de987915d7e4c/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
+[2013-11-25 08:34:08,247][INFO] [sistema] [/sad/user/edit/5.a5e1ce8e9855b963c1a92f61cfea3e23/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-25 08:39:21,868][INFO] [sistema] [/sad/user/add/][admin][127.0.0.1] Usuario weq2q ha sido registrado correctamente. 
+[2013-11-25 08:41:27,447][INFO] [sistema] [/sad/user/delete/6.9cf73c25fbbec1df8ff895583c6d4bfe/][admin][127.0.0.1] Usuario weq2q ha sido eliminado correctamente. 
+[2013-11-25 08:44:52,500][INFO] [sistema] [/sad/user/state/inactivar/5.d5fcc34649a802242e4869ca03e4d83b/][admin][127.0.0.1] Usuario sullon ha sido inactivado correctamente. 
+[2013-11-25 08:44:53,940][INFO] [sistema] [/sad/user/state/reactivar/5.dcf021c57c483a4d8e4079a9b8af180b/][admin][127.0.0.1] Usuario sullon ha sido reactivado correctamente. 
+[2013-11-25 08:44:57,950][WARNING] [sistema] [/sad/user/state/inactivar/1.1b2c847722aabd011b110f227b681a3c/][admin][127.0.0.1] Lo sentimos, pero este usuario no se puede inactivar. 
+[2013-11-25 08:44:59,848][WARNING] [sistema] [/sad/user/state/inactivar/1.1b2c847722aabd011b110f227b681a3c/][admin][127.0.0.1] Lo sentimos, pero este usuario no se puede inactivar. 
+[2013-11-25 08:45:01,198][INFO] [sistema] [/sad/user/state/inactivar/2.fe43515bebfb06de7f50ec821b238fc8/][admin][127.0.0.1] Usuario asullom ha sido inactivado correctamente. 
+[2013-11-25 08:45:02,306][INFO] [sistema] [/sad/user/state/reactivar/2.b0adf94d90449a8f993d890ee9633c9e/][admin][127.0.0.1] Usuario asullom ha sido reactivado correctamente. 
+[2013-11-25 08:45:36,405][ERROR] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee no se encuentra en la base de datos. No Employee matches the given query. 
+[2013-11-25 08:45:39,513][ERROR] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee no se encuentra en la base de datos. No Employee matches the given query. 
+[2013-11-25 08:46:14,355][ERROR] [sistema] [/account/load_access/2/1/][admin][127.0.0.1] 'last_headquart_id' is an invalid keyword argument for this function 
+[2013-11-25 08:46:17,970][ERROR] [sistema] [/account/load_access/2/1/][admin][127.0.0.1] 'last_headquart_id' is an invalid keyword argument for this function 
+[2013-11-25 08:53:55,697][ERROR] [sistema] [/account/profile/][admin][127.0.0.1] 'User' object has no attribute 'person' 
+[2013-11-25 09:22:30,602][ERROR] [sistema] [/account/profile/][admin][127.0.0.1] 'User' object has no attribute 'person' 
+[2013-11-25 09:22:33,845][ERROR] [sistema] [/account/profile/][admin][127.0.0.1] 'User' object has no attribute 'person' 
+[2013-11-25 09:23:04,752][INFO] [sistema] [/account/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-25 09:23:21,789][INFO] [sistema] [/account/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-11-25 09:24:31,845][ERROR] [sistema] [/account/load_access/2/1/][admin][127.0.0.1] 'last_headquart_id' is an invalid keyword argument for this function 
+[2013-11-25 09:57:01,690][WARNING] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /rrhh/employee/add/ 
+[2013-11-25 09:57:15,262][WARNING] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /rrhh/employee/add/ 
+[2013-11-25 09:57:52,881][WARNING] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /rrhh/employee/add/ 
+[2013-11-25 10:00:10,450][WARNING] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /rrhh/employee/add/ 
+[2013-11-25 10:00:14,286][WARNING] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /rrhh/employee/add/ 
+[2013-11-25 10:00:19,062][WARNING] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /rrhh/employee/add/ 
+[2013-11-25 10:01:11,668][WARNING] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /rrhh/employee/add/ 
+[2013-11-25 10:01:28,696][WARNING] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /rrhh/employee/add/ 
+[2013-11-25 10:01:50,868][WARNING] [sistema] [/sad/menu/index/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-11-25 10:01:58,506][WARNING] [sistema] [/sad/menu/index/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /sad/menu/index/ 
+[2013-11-25 10:02:04,147][WARNING] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Tu no posees permisos para acceder a /rrhh/employee/add/ 
+[2013-11-25 10:04:14,959][INFO] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Employee 123 ha sido registrado correctamente. 
+[2013-11-25 10:06:09,158][INFO] [sistema] [/rrhh/employee/edit/][ufinal][127.0.0.1] Employee 123 ha sido actualizado correctamente. 
+[2013-11-25 10:20:52,885][INFO] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Employee 002 ha sido registrado correctamente. 
+[2013-11-25 11:09:10,756][INFO] [sistema] [/sad/user/edit/5.a5e1ce8e9855b963c1a92f61cfea3e23/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
+[2013-11-25 11:12:33,378][INFO] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] Employee 54645 ha sido registrado correctamente. 

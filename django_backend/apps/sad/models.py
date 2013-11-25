@@ -10,18 +10,54 @@ from django.db import models
 from django.contrib.auth.models import User, Group, Permission 
 from apps.space.models import Solution, Enterprise, Headquart
 from apps.space.models import Association
+from apps.params.models import Person
+
 # Create your models here.
+class Profile(models.Model):
+	"""
+	Tabla que amplía la información de los usuarios del sistema
+	"""
+	#is_admin  = models.BooleanField(default=False)
+	last_headquart_id= models.CharField(max_length=50, null=True, blank=True)
+	last_module_id= models.CharField(max_length=50, null=True, blank=True)
+
+	user = models.OneToOneField(User)
+	
+	person = models.OneToOneField(Person)
+
+	class Meta:
+		permissions = (
+			#("person", "Puede hacer TODAS las operaciones de personas"),
+			#("person_index", "Puede ver el index de personas"),
+			#("person_add", "Puede agregar persona"),
+			#("person_edit", "Puede actualizar personas"),
+			#("person_delete", "Puede eliminar personas"),
+			#("person_report", "Puede reportar personas"),
+			#("person_list", "xPuede listar personas"),
+		)
+
+	def __unicode__(self):
+		return self.user.username
+
+	def create_user_profile(sender, instance, created, **kwargs):
+		if created :
+			Profile.objects.create(user=instance)
+		post_save.connect(create_user_profile, sender=User)
+
 class Module(models.Model):
 	"""
 	Módulos del sistema
 	"""
+	PRO ="PRO"
 	WEB ="WEB"
 	VENTAS ="VENTAS"
 	DBM ="DBM"
 	MODULES = (
+		(PRO, "Profesional"),
         (WEB, "Web informativa"),
         (VENTAS, "Ventas"),
         (DBM, "Backend Manager"),
+
     )
 	module = models.CharField(max_length=50, choices=MODULES, default=DBM)
 	name = models.CharField(max_length=50)
@@ -55,15 +91,9 @@ class Menu(models.Model):
 	"""
 	Menús del sistema. 
 	"""
-	WEB ="WEB"
-	VENTAS ="VENTAS"
-	DBM ="DBM"
-	MODULES = (
-        (WEB, "Web informativa"),
-        (VENTAS, "Ventas"),
-        (DBM, "Backend Manager"),
-    )
-	module = models.CharField(max_length=50, choices=MODULES, default=DBM)
+	MODULES = Module.MODULES
+
+	module = models.CharField(max_length=50, choices=MODULES, default=Module.DBM)
 	title = models.CharField(max_length=50)
 	url = models.CharField(max_length=150,default="#")
 	pos = models.IntegerField(max_length=50,default=1)

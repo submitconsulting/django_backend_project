@@ -75,13 +75,13 @@ class Person(models.Model):
 	photo = models.ImageField(upload_to="personas", verbose_name="Foto",default="personas/default.png")
 	
 	#is_admin  = models.BooleanField(default=False)
-	last_headquart_id= models.CharField(max_length=50, null=True, blank=True)
-	last_module_id= models.CharField(max_length=50, null=True, blank=True)
+	#last_headquart_id= models.CharField(max_length=50, null=True, blank=True)
+	#last_module_id= models.CharField(max_length=50, null=True, blank=True)
 
 	registered_at = models.DateTimeField(auto_now_add=True)
 	modified_in = models.DateTimeField(auto_now=True)
 
-	user = models.OneToOneField(User)
+	#user = models.OneToOneField(User, null=True, blank=True)
 
 	class Meta:
 		permissions = (
@@ -97,10 +97,10 @@ class Person(models.Model):
 	def __unicode__(self):
 		return self.first_name
 
-	def create_user_profile(sender, instance, created, **kwargs):
-		if created :
-			Person.objects.create(user=instance)
-		post_save.connect(create_user_profile, sender=User)
+	#def create_user_profile(sender, instance, created, **kwargs):
+	#	if created :
+	#		Person.objects.create(user=instance)
+	#	post_save.connect(create_user_profile, sender=User)
 
 #mis params tables SHOMWARE
 class Categoria(models.Model):
@@ -144,4 +144,6 @@ Installed 0 object(s) from 0 fixture(s)
 G:\dev\apps\django_backend_project\django_backend>
 
 y se agregarán las nuevas tablas con sus permissions previamente definidos
+luego ejecute 
+delete from auth_permission where codename like 'add_%'or  codename like 'change_%' or codename like 'delete_%'
 """

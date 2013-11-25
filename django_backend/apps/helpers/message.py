@@ -26,7 +26,7 @@ logger.setLevel(logging.DEBUG)
 #logger.setLevel(logging.INFO)
 
 # create file handler and set level to debug
-fh = logging.FileHandler('audit%s.txt' % (datetime.datetime.now().strftime("%Y-%m-%d"))) #, "a", encoding = "UTF-8" 
+fh = logging.FileHandler('temp/logs/audit%s.txt' % (datetime.datetime.now().strftime("%Y-%m-%d"))) #, "a", encoding = "UTF-8" 
 fh.setLevel(logging.DEBUG)
 #fh.setLevel(logging.INFO)
 

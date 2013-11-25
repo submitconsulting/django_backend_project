@@ -1,0 +1,1 @@
+[2013-11-21 10:12:17,622][INFO] [sistema] [/sad/user/edit/5.11fdef53dcb0c2629e7761dadd1752b7/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 

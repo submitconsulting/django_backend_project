@@ -149,6 +149,8 @@ class Menus:
 
 			menu_item_list[menu]
 	    """
+		Menus.menu_list = []
+		Menus.menu_item_list = {}
 		Menus.menu_module=menu_module
 		user=request.user
 
@@ -178,7 +180,7 @@ class Menus:
 		#print Menus.menu_list
 		if Menus.menu_list:
 			for menu in Menus.menu_list:
-				Menus.menu_item_list[menu.title] = Menu.objects.filter(Q(permission__in=permission_list) | Q( id__isnull= True if permission_list else False ),parent_id=menu.id, is_active=True).order_by("pos") #.lower().replace(" ","_")
+				Menus.menu_item_list[menu.title] = Menu.objects.filter(Q(permission__in=permission_list) | Q( id__isnull= True if permission_list else False ), parent_id=menu.id, module=menu_module, is_active=True).order_by("pos") #.lower().replace(" ","_")
 		#print Menus.menu_item_list
 		return ""
 
@@ -220,6 +222,16 @@ class Menus:
 		html = '<a href="%s"  class="dw-spinner dw-ajax" >%s %s</a>\n'%(action, texti, text )
 		return html
 
+	#metodo privado 
+	@staticmethod
+	def link_side(action, text, icon):#, attrs = None, icon='', loadAjax=True
+		action = ('/%s' % action if action != '#' else '#')
+		texti=""
+		if icon:
+			texti='<i class="%s icon-expand"></i>' % icon
+		html = '<a href="%s"  class="dw-spinner dw-ajax subnav2" >%s <i class="icon-chevron-right"></i>%s</a>\n'%(action, texti, text )
+		return html
+
 	#metodo privado
 	@staticmethod
 	def linknoajax(action, text, icon):#, attrs = None, icon='', loadAjax=True
@@ -247,14 +259,14 @@ class Menus:
 		Método para listar los items del menu de escritorio
 	    """		
 		html = ''
-		route = request.path;
+		route = request.path
 		for menu,items in Menus.menu_item_list.iteritems():
 			html= html + '<div id="sub-menu-%s" class="subnav hidden">\n'% menu.lower().replace(" ","_")
 			html= html + '<ul class="nav nav-pills">\n'
 			
 			if menu in Menus.menu_item_list:
 				for item in Menus.menu_item_list[menu]:
-					active = ('active' if item.url==route else '')
+					active = ('active' if item.url.strip("/")==route.strip("/") else '')
 					html= html + '<li class="%s">%s</li>\n' %(active,Menus.link(item.url, item.title, item.icon))
 			html = html + '</ul>\n'
 			html = html + '</div>\n'
@@ -285,6 +297,23 @@ class Menus:
 			html= html + '</ul>\n'
 		return html
 
+	#Método para listar los items en el sidebar
+	@staticmethod
+	def side_items(request):
+		""" 
+		Método para listar los items del menu del sidebar
+	    """		
+		html = ''
+		route = request.path
+		for menu,items in Menus.menu_item_list.iteritems():
+
+			
+			if menu in Menus.menu_item_list:
+				for item in Menus.menu_item_list[menu]:
+					active = ('active' if item.url.strip("/")==route.strip("/") else '')
+					html= html + '<li class="%s">%s</li>\n' %(active,Menus.link_side(item.url, item.title, item.icon))
+
+		return html
 
 class Redirect:
 	"""

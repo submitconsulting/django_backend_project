@@ -4,7 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, render, redirect
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+#from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
@@ -27,7 +27,7 @@ from apps.params.models import Categoria
 from apps.space.models import Headquart
 
 #region producto OK
-@csrf_exempt
+#@csrf_exempt
 @login_required(login_url="/account/login/")
 @permission_resource_required
 def producto_index(request, field="descripcion", value="None", order="-id"):

@@ -96,6 +96,22 @@ def phone(request):
 	
 	return Menus.phone(request)
 
+@register.simple_tag
+def side_items(request):
+	"""
+	Interfáz del Método para listar los items en el sidebar
+
+	Usage::
+		
+		{% side_items request %}
+
+	Examples::
+
+		{% side_items request %}
+
+	"""
+	
+	return Menus.side_items(request)
 
 @register.simple_tag
 def get_grupos(request, url):

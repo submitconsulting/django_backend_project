@@ -19,7 +19,7 @@ from django.http import HttpResponse
 #from django.template.defaultfilters import capfirst
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, render, redirect
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+#from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 
@@ -30,7 +30,7 @@ from apps.params.models import Person
 from django.contrib.auth.models import User, Group, Permission 
 from django.contrib.contenttypes.models import ContentType
 from apps.space.models import Headquart
-from apps.sad.models import Module, Menu, UserProfileAssociation, UserProfileEnterprise, UserProfileHeadquart
+from apps.sad.models import Profile, Module, Menu, UserProfileAssociation, UserProfileEnterprise, UserProfileHeadquart
 from apps.space.models import Solution
 from django.db.models import Q
 from apps.sad.upload import Upload
@@ -38,7 +38,7 @@ from apps.sad.decorators import is_admin, permission_resource_required
 from apps.sad.security import Security, DataAccessToken, Redirect
 
 #region user OK.
-@csrf_exempt
+#@csrf_exempt
 @login_required(login_url="/account/login/")
 @permission_resource_required
 def user_index(request, field="username", value="None", order="-id"):
@@ -76,7 +76,7 @@ def user_index(request, field="username", value="None", order="-id"):
 		}
 	return render_to_response("sad/user/index.html", c, context_instance = RequestContext(request))
 
-@csrf_exempt
+#@csrf_exempt
 def user_upload(request):
 	"""
 	Sube fotografia
@@ -121,16 +121,22 @@ def user_add(request):
 			user = User.objects.create_user(username=d.username, email = d.email, password = request.POST.get("password"))
 			user.save()
 
+
 			if Person.objects.filter(identity_type=d.identity_type, identity_num=d.identity_num).count()>0:
 				raise Exception( "La persona con %s:<b>%s</b> ya existe " % (identity_type_display, d.identity_num) )
 			
 			#if Person.objects.filter(first_name=d.first_name, last_name=d.last_name, identity_type=d.identity_type, identity_num=d.identity_num).count()>0:
 			if normalize("NFKD", u"%s %s" % (d.first_name, d.last_name)).encode("ascii", "ignore").lower() in list(
-				normalize("NFKD", u"%s %s" % (col["first_name"], col["last_name"])).encode("ascii", "ignore").lower() for col in Person.objects.values("first_name","last_name").exclude(id = d.id).filter(identity_type=d.identity_type, identity_num=d.identity_num)
+				normalize("NFKD", u"%s %s" % (col["first_name"], col["last_name"])).encode("ascii", "ignore").lower() for col in Person.objects.values("first_name","last_name").filter(identity_type=d.identity_type, identity_num=d.identity_num)
 				):
 				raise Exception( "La persona <b>%s %s</b> con %s:<b>%s</b> ya existe " % (d.first_name, d.last_name, identity_type_display, d.identity_num) )
-			person = Person(user=user, first_name=d.first_name, last_name=d.last_name, identity_type=d.identity_type, identity_num=d.identity_num, photo=d.photo)
+			person = Person(first_name=d.first_name, last_name=d.last_name, identity_type=d.identity_type, identity_num=d.identity_num, photo=d.photo)
 			person.save()
+
+			profile = Profile(user=user)
+			profile.person=person
+			profile.save()
+
 			d=user
 
 			#agregando en UserProfileHeadquart
@@ -236,13 +242,13 @@ def user_edit(request, key):
 	try:
 		d = get_object_or_404(User, id=id)
 		try:
-			person = Person.objects.get(user_id=d.id)
-			if person.id:
-				d.first_name = d.person.first_name
-				d.last_name = d.person.last_name
-				d.photo = d.person.photo
-				d.identity_type = d.person.identity_type
-				d.identity_num = d.person.identity_num
+			profile = Profile.objects.get(user=d.id)
+			if profile.id:
+				d.first_name = d.profile.person.first_name
+				d.last_name = d.profile.person.last_name
+				d.photo = d.profile.person.photo
+				d.identity_type = d.profile.person.identity_type
+				d.identity_num = d.profile.person.identity_num
 		except:
 			pass
 		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
@@ -273,11 +279,21 @@ def user_edit(request, key):
 			d.save()
 
 			try:
-				person = Person.objects.get(user=d)
+				person = Person.objects.get(profile=d.profile)
 			except:
-				person = Person(user=d)
+				person = Person()
 				person.save()
 				pass
+
+			try:
+				profile = Profile.objects.get(user=d)
+			except:
+				profile = Profile(user=d)
+				profile.person=person
+				profile.save()
+				pass
+
+			
 
 			#form = ImageUploadForm(request.POST, request.FILES)
 			#d.photo = request.FILES["imagen2"]
@@ -300,11 +316,9 @@ def user_edit(request, key):
 			person.last_name=request.POST.get("last_name")
 			person.identity_type = request.POST.get("identity_type")
 			person.identity_num = request.POST.get("identity_num")
-			
-			#f = request.FILES.get("image")
 			person.photo = request.POST.get("persona_fotografia")
 			person.save()
-			
+			d.photo = person.photo
 
 			#Elimino los antiguos privilegios
 			group_id_list_by_user_and_hea=list(set(group_id_list_by_user_and_headquart+group_id_list_by_user_and_enterprise+group_id_list_by_user_and_association))
@@ -433,13 +447,13 @@ def user_view(request, key):
 	try:
 		d = get_object_or_404(User, id=id)
 		try:
-			person = Person.objects.get(user_id=d.id)
-			if person.id:
-				d.first_name = d.person.first_name
-				d.last_name = d.person.last_name
-				d.photo = d.person.photo
-				d.identity_type = d.person.identity_type
-				d.identity_num = d.person.identity_num
+			profile = Profile.objects.get(user=d.id)
+			if profile.id:
+				d.first_name = d.profile.person.first_name
+				d.last_name = d.profile.person.last_name
+				d.photo = d.profile.person.photo
+				d.identity_type = d.profile.person.identity_type
+				d.identity_num = d.profile.person.identity_num
 		except:
 			pass
 	except Exception, e:
@@ -573,7 +587,7 @@ def user_delete(request, key):
 
 
 #region menu OK
-@csrf_exempt
+#@csrf_exempt
 @login_required(login_url="/account/login/")
 @permission_resource_required
 def menu_index(request, field="title", value="None", order="pos"):

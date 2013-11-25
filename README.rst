@@ -23,10 +23,14 @@ Usuario: admin
 
 Pass: 12345
 
+
 Requirements:
 
-python 2.7.5
-Django 1.5.1
+Python 2.7.5
+
+Django==1.5.1
+
+PIL==1.1.7
 
 
 To install Django, run the following command::

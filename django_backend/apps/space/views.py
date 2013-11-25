@@ -125,10 +125,10 @@ def headquart_edit(request, key):
 			d.name = request.POST.get("name")
 			d.phone = request.POST.get("phone")
 			d.address = request.POST.get("address")
-			d.locality_name = request.POST.get("locality_name")
-			if request.POST.get("locality_name"):
+			d.locality_name = request.POST.get("locality_name").strip()
+			if request.POST.get("locality_name").strip():
 				d.locality, is_locality_created  = Locality.objects.get_or_create(
-					name=request.POST.get("locality_name"), #name__iexact
+					name=request.POST.get("locality_name").strip(), #name__iexact
 					)
 			if normalize("NFKD", u"%s" % d.name).encode("ascii", "ignore").lower() in list(
 				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Headquart.objects.values("name").exclude(id = d.id).filter(enterprise_id=d.enterprise_id)
@@ -145,7 +145,8 @@ def headquart_edit(request, key):
 			transaction.rollback()
 			Message.error(request, e)
 	try:
-		locality_name_list = json.dumps(list(col["name"]+""  for col in Locality.objects.values("name").filter().order_by("name")))
+		locality_name_list = json.dumps(list(" "+col["name"]+""  for col in Locality.objects.values("name").filter().order_by("name")))
+		#locality_name_list = json.dumps(list(x[1]) for x in Association.TYPES) )
 	except Exception, e:
 		Message.error(request, e)
 	c = {

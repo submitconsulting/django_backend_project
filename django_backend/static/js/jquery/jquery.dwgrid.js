@@ -1,5 +1,3 @@
-(function($)
-{     
         function getCookie(name) 
         {
             var cookieValue = null;
@@ -23,6 +21,10 @@
             $( "#csrfmiddlewaretoken" ).val(getCookie('csrftoken'));
         }
     //TODO: onsubmit="setCsrfToken()" para el search
+
+(function($)
+{     
+
     var methods = {  
         
         init : function( options ) { 
@@ -41,6 +43,14 @@
                     
                     $.extend(opt, options); //Extiende las opciones recibidas con las default
                     
+                    $.ajaxSetup({ //Permite la busqueda autorixando el CSRFToken
+                        beforeSend: function(xhr, settings) {
+                            if(settings.type == "POST")
+                            {
+                                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                            }
+                        }
+                    });
                     return this.each(function(k) {  
                         
                         var table = $(this); //Tomamos el objeto tansformado en jquery                                                                                        

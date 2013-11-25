@@ -42,8 +42,8 @@
                     <th>#</th>
                     <th class="col-collapse" data-search="is_superuser">{% trans "USER" %}</th>
                     <th class="col-collapse" data-search="username">{% trans "LOGIN" %}</th>
-                    <th class="col-collapse" data-search="person__first_name">{% trans "NOMBRE" %}</th>
-                    <th class="col-collapse" data-search="person__last_name">{% trans "APELLIDO" %}</th>
+                    <th class="col-collapse" data-search="profile__person__first_name">{% trans "NOMBRE" %}</th>
+                    <th class="col-collapse" data-search="profile__person__last_name">{% trans "APELLIDO" %}</th>
                     <th class="col-collapse">{% trans "IDENTIFICACION" %}</th>
                     <th class="col-collapse" data-search="email">{% trans "EMAIL" %}</th>
                     
@@ -57,9 +57,9 @@
 					<td>{{ user_page.start_index|add:forloop.counter0 }}</td>
                     <td><span class="label label-success">{{ d.is_superuser|yesno:'SUPERUSER,user' }}</span></td>
                     <td><span class="label label-success">{{ d.username }}</span></td>
-                	<td>{{ d.person.first_name }}</td>
-                	<td>{{ d.person.last_name }}</td>
-                    <td>{{ d.person.get_identity_type_display }}{{ d.person.identity_num|add:'' }}</td>
+                	<td>{{ d.profile.person.first_name }}</td>
+                	<td>{{ d.profile.person.last_name }}</td>
+                    <td>{{ d.profile.person.get_identity_type_display }}{{ d.profile.person.identity_num|add:'' }}</td>
                     <td>{{ d.email }}</td>
                     <td><span class="label label-success">{{ d.is_active|yesno:'SI,NO' }}</span></td>
                     

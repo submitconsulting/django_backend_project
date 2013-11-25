@@ -1,4 +1,0 @@
-[2013-11-08 11:03:24,839][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] Cannot resolve keyword 'groups' into field. Choices are: id, initial_groups_module_set, module_set, name, permissions, user, userprofileassociation, userprofileenterprise, userprofileheadquart 
-[2013-11-08 11:03:58,198][ERROR] [sistema] [/sad/user/add/][admin][127.0.0.1] Cannot resolve keyword 'groups' into field. Choices are: id, initial_groups_module_set, module_set, name, permissions, user, userprofileassociation, userprofileenterprise, userprofileheadquart 
-[2013-11-08 11:10:43,101][INFO] [sistema] [/sad/user/edit/2.21d4ba200748bfc14884ea13fae23395/][admin][127.0.0.1] Usuario asullom ha sido actualizado correctamente. 
-[2013-11-08 11:24:41,523][WARNING] [sistema] [/sad/menu/edit/16.cbada77ffc316dfd0312500d8dc6751f/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 

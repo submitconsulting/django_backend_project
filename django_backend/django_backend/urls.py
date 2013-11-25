@@ -28,11 +28,15 @@ urlpatterns = patterns('',
 
     url(r'^mod_backend/', include('apps.mod_backend.urls')),
     url(r'^mod_ventas/', include('apps.mod_ventas.urls')),
+    url(r'^mod_pro/', include('apps.mod_pro.urls')),
 
     url(r'^sad/', include('apps.sad.urls')),
     url(r'^space/', include('apps.space.urls')),
 
     url(r'^maestros/', include('apps.maestros.urls')),
+
+    url(r'^rrhh/', include('apps.rrhh.urls')),
+    
 
     url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT,}),
 )

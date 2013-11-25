@@ -1,6 +1,0 @@
-[2013-11-04 21:58:06,118][INFO] [sistema] [/sad/user/add/][asullom][127.0.0.1] Usuario aaaa ha sido registrado correctamente. 
-[2013-11-04 22:31:13,153][INFO] [sistema] [/sad/user/edit/3.6902d931513785f3cf29c0dfa2a6a2fd/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
-[2013-11-04 22:32:51,869][INFO] [sistema] [/sad/user/edit/3.6902d931513785f3cf29c0dfa2a6a2fd/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
-[2013-11-04 22:35:34,289][INFO] [sistema] [/sad/user/edit/3.6902d931513785f3cf29c0dfa2a6a2fd/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
-[2013-11-04 22:36:04,135][INFO] [sistema] [/sad/user/edit/3.6902d931513785f3cf29c0dfa2a6a2fd/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 
-[2013-11-04 22:38:28,444][INFO] [sistema] [/sad/user/edit/3.6902d931513785f3cf29c0dfa2a6a2fd/][asullom][127.0.0.1] Usuario aaaa ha sido actualizado correctamente. 

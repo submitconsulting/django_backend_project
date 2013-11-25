@@ -23,7 +23,7 @@ from django.contrib.auth.models import User, Group
 #from apps.sad.models import *
 from apps.params.models import Person
 from apps.space.models import Association, Enterprise, Headquart, Solution
-from apps.sad.models import  Module, UserProfileAssociation, UserProfileEnterprise, UserProfileHeadquart
+from apps.sad.models import Profile, Module, UserProfileAssociation, UserProfileEnterprise, UserProfileHeadquart
 from apps.home.views import choice_headquart
 from unicodedata import normalize
 #from django.template.defaultfilters import slugify
@@ -185,8 +185,13 @@ def signup_sys(request):
 			if Person.objects.filter(first_name=d.first_name, last_name=d.last_name).count()>0:
 				raise Exception( "La persona <b>%s %s</b> ya existe " % (d.first_name, d.last_name) )
 			
-			person = Person(user=user, first_name=d.first_name, last_name=d.last_name, photo=d.photo)
+			person = Person(first_name=d.first_name, last_name=d.last_name, photo=d.photo)
 			person.save()
+			
+			profile = Profile(user=user)
+			profile.person=person
+			profile.save()
+
 			association = Association(name=d.association_name, type_a=d.association_type_a, solution=solution)
 			if normalize("NFKD", u"%s" % d.association_name).encode("ascii", "ignore").lower() in list(
 				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Association.objects.values("name")
@@ -316,23 +321,34 @@ def load_access(request, headquart_id, module_id):
 			DataAccessToken.set_headquart_id(request, headquart.id)
 
 			try:
-				person = Person.objects.get(user_id=request.user.id)
-				if person.id:
-					person.last_headquart_id = headquart_id
-					person.last_module_id = module_id
-					person.save()
+				profile = Profile.objects.get(user_id=request.user.id)
+				if profile.id:
+					profile.last_headquart_id = headquart_id
+					profile.last_module_id = module_id
+					profile.save()
 			except:
-				person = Person(user=request.user, first_name=request.user.first_name, last_name=request.user.last_name, last_headquart_id = headquart_id, last_module_id = module_id)
+				person = Person(first_name=request.user.first_name, last_name=request.user.last_name)
 				person.save()
+
+				profile = Profile(user=request.user, last_headquart_id = headquart_id, last_module_id = module_id)
+				profile.person=person
+				profile.save()
 				pass
 
 			#Message.info(request, ("La sede %(name)s ha sido cargado correctamente.") % {"name":headquart_id} )
 			if module.DBM == module.module:
 				#return HttpResponseRedirect("/mod_backend/dashboard/")
 				return Redirect.to(request, "/mod_backend/dashboard/")
-			else:
-				#return HttpResponseRedirect("/mod_ventas/dashboard/")
+			if module.VENTAS == module.module:
 				return Redirect.to(request, "/mod_ventas/dashboard/")
+			if module.PRO == module.module:
+				return Redirect.to(request, "/mod_pro/dashboard/")
+			
+			#TODO agregue aqui su nuevo modulo
+
+			else:
+				Message.error(request, "Módulo no definido")
+				return HttpResponseRedirect("/home/choice_headquart/")
 		except Exception, e:
 			Message.error(request, e)
 		return HttpResponseRedirect("/home/choice_headquart/")
@@ -348,13 +364,13 @@ def login_sys(request):
 
 	if request.user.is_authenticated():
 		try:#intentar cargar la última session
-			person = Person.objects.get(user_id=request.user.id)
-			if person.last_headquart_id and person.last_module_id:
+			profile = Profile.objects.get(user_id=request.user.id)
+			if profile.last_headquart_id and profile.last_module_id:
 				if request.is_ajax():
-					request.path="/account/load_access/%s/%s/" % (person.last_headquart_id, person.last_module_id) #/app/controller_path/action/$params
-					return load_access(request, person.last_headquart_id, person.last_module_id)
+					request.path="/account/load_access/%s/%s/" % (profile.last_headquart_id, profile.last_module_id) #/app/controller_path/action/$params
+					return load_access(request, profile.last_headquart_id, profile.last_module_id)
 				else:						
-					return redirect("/account/load_access/%s/%s/" % (person.last_headquart_id, person.last_module_id))
+					return redirect("/account/load_access/%s/%s/" % (profile.last_headquart_id, profile.last_module_id))
 		except:
 			pass
 		return HttpResponseRedirect("/home/choice_headquart/")
@@ -369,13 +385,13 @@ def login_sys(request):
 			#request.session["id"] = "Hola"
 			Message.info(request, ("Bienvenido <b>%(name)s</b>.") % {"name":account.username} )
 			try:#intentar cargar la última session
-				person = Person.objects.get(user_id=request.user.id)
-				if person.last_headquart_id and person.last_module_id:
+				profile = Profile.objects.get(user_id=request.user.id)
+				if profile.last_headquart_id and profile.last_module_id:
 					if request.is_ajax():
-						request.path="/account/load_access/%s/%s/" % (person.last_headquart_id, person.last_module_id) #/app/controller_path/action/$params
-						return load_access(request, person.last_headquart_id, person.last_module_id)
+						request.path="/account/load_access/%s/%s/" % (profile.last_headquart_id, profile.last_module_id) #/app/controller_path/action/$params
+						return load_access(request, profile.last_headquart_id, profile.last_module_id)
 					else:						
-						return redirect("/account/load_access/%s/%s/" % (person.last_headquart_id, person.last_module_id))
+						return redirect("/account/load_access/%s/%s/" % (profile.last_headquart_id, profile.last_module_id))
 			except:
 				pass
 			return HttpResponseRedirect("/home/choice_headquart/")
@@ -401,13 +417,13 @@ def user_profile(request):
 	try:
 		d = request.user
 		try:
-			person = Person.objects.get(user_id=d.id)
-			if person.id:
-				d.first_name = d.person.first_name
-				d.last_name = d.person.last_name
-				d.photo = d.person.photo
-				d.identity_type = d.person.identity_type
-				d.identity_num = d.person.identity_num
+			profile = Profile.objects.get(user_id=d.id)
+			if profile.id:
+				d.first_name = d.profile.person.first_name
+				d.last_name = d.profile.person.last_name
+				d.photo = d.profile.person.photo
+				d.identity_type = d.profile.person.identity_type
+				d.identity_num = d.profile.person.identity_num
 		except:
 			pass
 		
@@ -429,12 +445,22 @@ def user_profile(request):
 			if request.POST.get("password"):
 				d.set_password(request.POST.get("password"))
 			d.save()
+
 			try:
-				person = Person.objects.get(user=d)
+				person = Person.objects.get(profile=d.profile)
 			except:
-				person = Person(user=d)
+				person = Person()
 				person.save()
 				pass
+
+			try:
+				profile = Profile.objects.get(user=d)
+			except:
+				profile = Profile(user=d)
+				profile.person=person
+				profile.save()
+				pass
+
 
 			d.first_name = request.POST.get("first_name")
 			d.last_name = request.POST.get("last_name")
@@ -442,11 +468,11 @@ def user_profile(request):
 			d.identity_num = request.POST.get("identity_num")
 
 			identity_type_display = dict((x, y) for x, y in Person.IDENTITY_TYPES)[d.identity_type]
-			if Person.objects.exclude(id = d.person.id).filter(identity_type=d.identity_type, identity_num=d.identity_num).count()>0:
+			if Person.objects.exclude(id = person.id).filter(identity_type=d.identity_type, identity_num=d.identity_num).count()>0:
 				raise Exception( "La persona con %s:<b>%s</b> ya existe " % (identity_type_display, d.identity_num) )
 			
 			if normalize("NFKD", u"%s %s" % (d.first_name, d.last_name)).encode("ascii", "ignore").lower() in list(
-				normalize("NFKD", u"%s %s" % (col["first_name"], col["last_name"])).encode("ascii", "ignore").lower() for col in Person.objects.values("first_name","last_name").exclude(id = d.person.id).filter(identity_type=d.identity_type, identity_num=d.identity_num)
+				normalize("NFKD", u"%s %s" % (col["first_name"], col["last_name"])).encode("ascii", "ignore").lower() for col in Person.objects.values("first_name","last_name").exclude(id = person.id).filter(identity_type=d.identity_type, identity_num=d.identity_num)
 				):
 				raise Exception( "La persona <b>%s %s</b> y %s:<b>%s</b> ya existe " % (d.first_name, d.last_name, identity_type_display, d.identity_num) )
 			
@@ -458,7 +484,7 @@ def user_profile(request):
 			person.photo = request.POST.get("persona_fotografia")
 
 			person.save()
-			
+			d.photo = person.photo
 			if d.id:
 				Message.info(request,("Usuario <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.username}, True)
 				return Redirect.to(request, "/home/choice_headquart/")

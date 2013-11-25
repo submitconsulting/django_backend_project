@@ -17,7 +17,7 @@ from django.conf import settings
 from apps.params.models import Locality, LocalityType
 from apps.sad.views import resource_index
 from apps.helpers.message import Message
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+#from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from apps.sad.decorators import is_admin, permission_resource_required
 from django.template import Context, Template, loader 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -42,7 +42,7 @@ def params_index(request): # solo si va tener un index para toda la app params
 	return HttpResponse(output)
 
 #Locality
-@csrf_exempt
+#@csrf_exempt
 #@login_required(login_url="/account/login/")
 #@is_admin #para verificar si es administrador
 @permission_resource_required

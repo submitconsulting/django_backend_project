@@ -1,4 +1,0 @@
-[2013-11-14 14:25:21,707][ERROR] [sistema] [/account/profile/][admin][127.0.0.1] global name 'Q' is not defined 
-[2013-11-14 14:26:23,994][ERROR] [sistema] [/account/profile/][admin][127.0.0.1] global name 'Q' is not defined 
-[2013-11-14 14:27:32,035][INFO] [sistema] [/account/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
-[2013-11-14 14:33:54,171][INFO] [sistema] [/account/profile/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 

@@ -1,19 +1,5 @@
 delete from auth_permission where codename like 'add_%' or codename like 'change_%' or codename like 'delete_%';
 
-delete from space_association;
-insert  into `space_association`(`id`,`name`,`logo`,`type_a`,`is_active`,`registered_at`,`modified_in`,`solution_id`) values 
-(1,'Asociacion Ini.','asociaciones/default.png','PRIVATE',1,'2013-11-01 03:09:38','2013-11-08 16:11:44',2);
-
-
-delete from space_enterprise;
-insert  into `space_enterprise`(`id`,`name`,`logo`,`tax_id`,`type_e`,`is_active`,`registered_at`,`modified_in`,`solution_id`) values 
-(1,'Empresa Ini.','empresas/default.png','10123456789','PRIVATE',1,'2013-11-01 03:09:38','2013-11-19 23:15:32',2);
-
-delete from space_headquart;
-insert  into `space_headquart`(`id`,`name`,`phone`,`address`,`is_main`,`is_active`,`registered_at`,`modified_in`,`locality_id`,`association_id`,`enterprise_id`) values 
-(1,'Principal','','',1,1,'2013-11-01 03:09:38','2013-11-19 22:32:52',NULL,1,1);
-
-
 
 delete from space_solution;
 insert  into space_solution(id,name,description,is_active,registered_at,modified_in) values 
@@ -206,8 +192,6 @@ insert  into `auth_permission`(`id`,`name`,`content_type_id`,`codename`) values
 (94,'mod_pro',28,'dashboard');
 insert  into `auth_permission`(`id`,`name`,`content_type_id`,`codename`) values
 (161,'Puede hacer TODAS las operaciones de empleados',29,'employee');
-insert  into `auth_permission`(`id`,`name`,`content_type_id`,`codename`) values
-(351,'Puede hacer TODAS las operaciones de empleados',49,'employee');
 
 
 

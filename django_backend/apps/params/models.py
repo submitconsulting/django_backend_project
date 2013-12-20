@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 
 class LocalityType(models.Model):
 	"""
-	Tabla para tipos de localidades. P.e: Departamento, Provincia, Distrito, etc.
+	Tabla params_localitytype para tipos de localidades. 
+	P.e: Departamento, Provincia, Distrito, etc.
 	"""
 	name = models.CharField(max_length=50)
 

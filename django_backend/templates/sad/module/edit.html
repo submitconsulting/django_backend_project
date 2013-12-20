@@ -53,7 +53,7 @@
             <div class="row-fluid">
                 <div class="span12">
                     <div class="control-group">
-                        <label class="control-label">{% trans "PERFILES QUE SE ASIGNARÁN A LA NUEVA CUENTA  AL MOMENTO DE REGISTRARSE POR PRIMERA VEZ" %}</label>
+                        <label class="control-label">{% trans "PERFILES QUE SE ASIGNARÁN POR DEFECTO A LA NUEVA CUENTA  AL MOMENTO DE REGISTRARSE POR PRIMERA VEZ" %}</label>
                         <select id="initial_groups" name="initial_groups"  class="field select input-xlarge input-list show-errors" multiple="multiple">
                             {% for group in group_list %}
                                 <option value="{{ group.id }}"{% if group in d.initial_groups.all %} selected {%endif%}>{{ group.name }}</option>

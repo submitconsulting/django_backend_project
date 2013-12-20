@@ -100,3 +100,15 @@
 [2013-11-25 10:20:52,885][INFO] [sistema] [/rrhh/employee/add/][ufinal][127.0.0.1] Employee 002 ha sido registrado correctamente. 
 [2013-11-25 11:09:10,756][INFO] [sistema] [/sad/user/edit/5.a5e1ce8e9855b963c1a92f61cfea3e23/][admin][127.0.0.1] Usuario sullon ha sido actualizado correctamente. 
 [2013-11-25 11:12:33,378][INFO] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] Employee 54645 ha sido registrado correctamente. 
+[2013-11-25 12:23:58,066][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 54645 ha sido actualizado correctamente. 
+[2013-11-25 12:24:00,834][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 54645 ha sido actualizado correctamente. 
+[2013-11-25 12:24:32,901][INFO] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] Employee 342324 ha sido registrado correctamente. 
+[2013-11-25 12:24:48,104][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:32432 ya existe  
+[2013-11-25 12:24:55,098][ERROR] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] La persona con D.N.I.:32432 ya existe  
+[2013-11-25 12:25:17,782][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 342324 ha sido actualizado correctamente. 
+[2013-11-25 12:25:25,191][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 342324 ha sido actualizado correctamente. 
+[2013-11-25 12:33:47,148][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 54645 ha sido actualizado correctamente. 
+[2013-11-25 16:37:09,063][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 001097 ha sido actualizado correctamente. 
+[2013-11-25 16:37:36,374][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 001097 ha sido actualizado correctamente. 
+[2013-11-25 16:37:41,178][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 001097 ha sido actualizado correctamente. 
+[2013-11-25 16:37:50,884][INFO] [sistema] [/rrhh/employee/edit/][admin][127.0.0.1] Employee 001097 ha sido actualizado correctamente. 

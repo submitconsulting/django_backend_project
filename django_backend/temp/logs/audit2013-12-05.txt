@@ -1,0 +1,8 @@
+[2013-12-05 04:30:36,415][WARNING] [sistema] [/sad/resource/edit/19.22036278bf80651bc1e0ecc899be4a54/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2013-12-05 07:16:37,766][WARNING] [sistema] [/sad/menu/edit/16.86354eae08de46aa9aa49baca5b28063/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-12-05 07:38:14,621][INFO] [sistema] [/sad/user/edit/1.06cb9127af4bfc179027328d04c527c6/][admin][127.0.0.1] Usuario admin ha sido actualizado correctamente. 
+[2013-12-05 18:31:14,155][WARNING] [sistema] [/sad/menu/edit/15.c6ec9b9f78e75b71a42c1ed63b4f9116/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-12-05 18:31:17,582][WARNING] [sistema] [/sad/menu/edit/9.ba148ceea52edda35a9f3750d7c6d370/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-12-05 18:31:21,516][WARNING] [sistema] [/sad/menu/edit/1.695db36cdd9b4c5d13d36cda7dc401fb/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-12-06 07:26:06,171][WARNING] [sistema] [/sad/menu/edit/15.1aca3a37c9997d771d2704f97ab75fe2/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2013-12-06 07:26:08,612][WARNING] [sistema] [/sad/menu/edit/13.1603bb39d8d27b052823bf48853c30d1/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 

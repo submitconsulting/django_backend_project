@@ -64,7 +64,11 @@
             dialogo.append(footer);
             footer.append('<button class="btn" data-dismiss="modal" aria-hidden="true">CANCELAR</button>');
             if(este.hasClass('dw-ajax')) {
-                footer.append('<a class="btn btn-success dw-ajax dw-spinner" href="'+este.attr("href")+'">ACEPTAR</a>');
+                if(este.hasClass('subnav2')) {
+                    footer.append('<a class="btn btn-success dw-ajax subnav2 dw-spinner" href="'+este.attr("href")+'">ACEPTAR</a>');
+                }else{
+                    footer.append('<a class="btn btn-success dw-ajax dw-spinner" href="'+este.attr("href")+'">ACEPTAR</a>');
+                }
             } else {
                 footer.append('<button class="btn btn-success">ACEPTAR</a>');
             }

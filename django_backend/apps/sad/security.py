@@ -19,6 +19,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 from django.contrib.auth.models import User, Group, Permission 
 from django.db.models import Q
+from django.http import HttpResponse
 
 class DataAccessToken:
 	"""
@@ -137,7 +138,7 @@ class Menus:
 
 	#Método para cargar en variables los menús
 	@staticmethod
-	def load(request, menu_module): #TODO filtar por usuarios
+	def load(request, menu_module): 
 		""" 
 		Carga el menú del usuario
 
@@ -157,19 +158,22 @@ class Menus:
 		print "\n\n\n"
 		#print 'Permisos del User a travez de sus Groups'
 		#print user.get_group_permissions() # no sirve pk tambien debemos comparar con la sede
-
+		#if not DataAccessToken.get_headquart_id(request.session):
+		#	return HttpResponse("Sede no seleccionada, seleccione en la Página de inicio para cargar el menú")
 		#los Grupos del User según su espacio actual
-		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
-		group_id_list_by_user_and_headquart = list( col["id"] for col in Group.objects.values("id").filter(userprofileheadquart__headquart__id = headquart.id, userprofileheadquart__user__id = user.id).distinct())
-		group_id_list_by_user_and_enterprise = list( col["id"] for col in Group.objects.values("id").filter(userprofileenterprise__enterprise__id = headquart.enterprise.id, userprofileenterprise__user__id = user.id).distinct())
-		group_id_list_by_user_and_association = list( col["id"] for col in Group.objects.values("id").filter(userprofileassociation__association__id = headquart.association.id, userprofileassociation__user__id = user.id).distinct())
-		group_id_list_by_user_and_hea=list(set(group_id_list_by_user_and_headquart+group_id_list_by_user_and_enterprise+group_id_list_by_user_and_association))
+		permission_list = []
+		if not request.user.is_superuser:
+			headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
+			group_id_list_by_user_and_headquart = list( col["id"] for col in Group.objects.values("id").filter(userprofileheadquart__headquart__id = headquart.id, userprofileheadquart__user__id = user.id).distinct())
+			group_id_list_by_user_and_enterprise = list( col["id"] for col in Group.objects.values("id").filter(userprofileenterprise__enterprise__id = headquart.enterprise.id, userprofileenterprise__user__id = user.id).distinct())
+			group_id_list_by_user_and_association = list( col["id"] for col in Group.objects.values("id").filter(userprofileassociation__association__id = headquart.association.id, userprofileassociation__user__id = user.id).distinct())
+			group_id_list_by_user_and_hea=list(set(group_id_list_by_user_and_headquart+group_id_list_by_user_and_enterprise+group_id_list_by_user_and_association))
 		
 		#print 'Groups del User a travez de su espacio actual'
 		#print group_id_list_by_user_and_hea
 
 		#print 'Permisos del User a travez de su espacio actual'
-		permission_list = Permission.objects.filter(group__in = group_id_list_by_user_and_hea).distinct() #compara con los Group del user
+			permission_list = Permission.objects.filter(group__in = group_id_list_by_user_and_hea).distinct() #compara con los Group del user
 		if request.user.is_superuser:
 			permission_list = [] #si es uperuser mostrarme todo los menús
 		menu = Menu()

@@ -66,7 +66,7 @@ def employee_index(request, field="codigo", value="None", order="-id"):
 		value_f = "" if value == "None" else value
 		column_contains = u"%s__%s" % (field,"contains")
 		employee_list = Employee.objects.filter(headquart=headquart, **{ column_contains: value_f }).order_by("pos").order_by(order)
-		paginator = Paginator(employee_list, 1000)
+		paginator = Paginator(employee_list, 100)
 		try:
 			employee_page = paginator.page(request.GET.get("page"))
 		except PageNotAnInteger:
@@ -277,10 +277,10 @@ def employee_add_all(request):
 	Agrega Employee
 	"""
 	d = Employee()
-	n=200
-	i=101
+	n=1010
+	i=10
 	k=i
-	while i<n:
+	while i<=n:
 		print i
 		d = Employee()
 		d.codigo = "00%s"%i

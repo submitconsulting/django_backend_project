@@ -1,0 +1,1 @@
+[2013-12-04 14:51:32,424][WARNING] [sistema] [/sad/resource/edit/19.d6f162eafbc0bad1dc9d8a170c3d6544/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 

@@ -35,7 +35,7 @@ def is_admin(view_func):
 
     Example::
 
-        #@is_admin
+        @is_admin
         def locality_index(request, field="name", value="None", order="-id"):
             return render_to_response("params/locality/index.html", c, context_instance = RequestContext(request))
     '''

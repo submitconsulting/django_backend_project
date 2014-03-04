@@ -56,6 +56,7 @@ def headquart_index(request):
 	return render_to_response("space/headquart/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def headquart_add(request):
 	"""
@@ -103,6 +104,7 @@ def headquart_add(request):
 	return render_to_response("space/headquart/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def headquart_edit(request, key):
 	"""
@@ -311,6 +313,7 @@ def enterprise_upload(request):
 	return HttpResponse(json.dumps(data))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def enterprise_add(request):
 	"""
@@ -371,6 +374,7 @@ def enterprise_add(request):
 	return render_to_response("space/enterprise/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def enterprise_edit(request, key):
 	"""
@@ -426,6 +430,7 @@ def enterprise_edit(request, key):
 	return render_to_response("space/enterprise/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def enterprise_edit_current(request):
 	"""
@@ -509,6 +514,7 @@ def enterprise_state(request, state, key):
 		return Redirect.to_action(request, "index")
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def enterprise_delete(request, key):
 	"""
@@ -553,6 +559,7 @@ def association_upload(request):
 		Message.error(request, e)
 	return HttpResponse(json.dumps(data))
 
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 @permission_resource_required
 def association_edit_current(request):
@@ -580,6 +587,7 @@ def association_edit_current(request):
 
 			#salvar registro
 			d.save()
+			#raise Exception( ("Asociación <b>%(name)s</b> ya existe.") % {"name":d.name} )
 			if d.id:
 				Message.info(request,("Asociación <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.name})
 

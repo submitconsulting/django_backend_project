@@ -88,6 +88,7 @@ def employee_index(request, field="codigo", value="None", order="-id"):
 	return render_to_response("rrhh/employee/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required(template_denied_name="denied_mod_pro.html")
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def employee_add(request):
 	"""
@@ -164,6 +165,7 @@ def employee_choice(request, key):
 
 
 @permission_resource_required(template_denied_name="denied_mod_pro.html")
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def employee_edit(request):
 	"""
@@ -247,6 +249,7 @@ def employee_edit(request):
 	return render_to_response("rrhh/employee/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required(template_denied_name="denied_mod_pro.html")
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def employee_delete(request, key):
 	"""
@@ -271,6 +274,7 @@ def employee_delete(request, key):
 
 
 @permission_resource_required(template_denied_name="denied_mod_pro.html")
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def employee_add_all(request):
 	"""

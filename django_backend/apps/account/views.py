@@ -32,6 +32,7 @@ from django.db.models import Q
 
 #region registro cuenta OK
 @login_required(login_url="/account/login/")
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def add_enterprise(request):
 
@@ -150,6 +151,7 @@ def add_enterprise(request):
 		}
 	return render_to_response("account/add_enterprise.html", c, context_instance = RequestContext(request))
 
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def signup_sys(request):
 	if request.user.is_authenticated():
@@ -407,6 +409,7 @@ def logout_sys(request):
 	return HttpResponseRedirect("/")
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def user_profile(request):
 	"""

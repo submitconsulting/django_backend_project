@@ -15,6 +15,22 @@ Documentación
 `Diseño del sistema <http://djangobackend-model.appspot.com>`_
 
 
+Demo
+-------------------
+
+`Demo en línea <http://dbackend.python.org.pe>`_
+
+Usuario: admin
+
+Pass: 12345
+
+
+Manual del programador
+-------------------
+
+`Descargar en PDF <https://github.com/submitconsulting/django_backend_project/blob/master/manuales/Manual%20del%20Programador.pdf?raw=true>`_
+
+
 Instalación
 -------------------
 Para instalar el DjangoBackend simplemente lo descargas y usas inicialmente la base de datos del archivo sdbm.db ubicado en la carpeta "/django_backend_project/django_backend/", para mayor seguridad editas el settings.py con los parámetros de conexión y vuelves a hacer `syncdb`.
@@ -26,9 +42,9 @@ Pass: 12345
 
 Requirements:
 
-Python 2.7.5
+Python 2.7.6
 
-Django==1.5.1
+Django==1.6.2
 
 PIL==1.1.7
 
@@ -36,7 +52,7 @@ PIL==1.1.7
 To install Django, run the following command::
 
     ```
-    >>> pip install django==1.5.1
+    >>> pip install django==1.6.2
     ```
 
 Recursos del sistema

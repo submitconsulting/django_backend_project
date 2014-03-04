@@ -71,6 +71,7 @@ def producto_index(request, field="descripcion", value="None", order="-id"):
 	return render_to_response("maestros/producto/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def producto_add(request):
 	"""
@@ -114,6 +115,7 @@ def producto_add(request):
 	return render_to_response("maestros/producto/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def producto_edit(request, key):
 	"""
@@ -173,6 +175,7 @@ def producto_edit(request, key):
 	return render_to_response("maestros/producto/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def producto_delete(reqproductoest, key):
 	"""

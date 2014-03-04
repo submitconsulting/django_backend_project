@@ -173,6 +173,7 @@ def locality_add(request):
 		}
 	return render_to_response("params/locality/add.html", c, context_instance = RequestContext(request))
 
+@transaction.non_atomic_requests
 @transaction.commit_on_success #para que funcione basta poner en el except o donde sea conveniente transaction.rollback()
 @permission_resource_required
 def locality_edit(request, key):

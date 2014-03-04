@@ -90,6 +90,7 @@ def user_upload(request):
 	return HttpResponse(json.dumps(data))
 	
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def user_add(request):
 	"""
@@ -228,6 +229,7 @@ def user_add(request):
 	return render_to_response("sad/user/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def user_edit(request, key):
 	"""
@@ -510,6 +512,7 @@ def user_view(request, key):
 	return render_to_response("sad/user/view.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def user_state(request, state, key):
 	"""
@@ -548,6 +551,7 @@ def user_state(request, state, key):
 		return Redirect.to_action(request, "index")
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def user_delete(request, key):
 	"""
@@ -813,6 +817,7 @@ def module_index(request):
 	return render_to_response("sad/module/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def module_add(request):
 	"""
@@ -859,6 +864,7 @@ def module_add(request):
 	return render_to_response("sad/module/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def module_edit(request, key):
 	"""
@@ -994,6 +1000,7 @@ def module_delete(request, key):
 		return Redirect.to_action(request, "index")
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def module_plans_edit(request):
 	if request.method == "POST":
@@ -1167,6 +1174,7 @@ def group_delete(request, key):
 		return Redirect.to_action(request, "index")
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def group_permissions_edit(request):
 	"""
@@ -1244,6 +1252,7 @@ def resource_index(request):
 	return render_to_response("sad/resource/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def resource_add(request):
 	"""
@@ -1294,6 +1303,7 @@ def resource_add(request):
 	return render_to_response("sad/resource/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
+@transaction.non_atomic_requests
 @transaction.commit_on_success
 def resource_edit(request, key):
 	"""

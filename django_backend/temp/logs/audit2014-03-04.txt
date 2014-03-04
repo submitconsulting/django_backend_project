@@ -1,0 +1,7 @@
+[2014-03-04 00:04:51,368][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación Asociación Inixxx2 ya existe. 
+[2014-03-04 00:05:03,010][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación Asociación Inixxx33 ya existe. 
+[2014-03-04 00:06:30,937][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación Asociación Ini2 ya existe. 
+[2014-03-04 00:08:50,927][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación Asociación Ini33333 ya existe. 
+[2014-03-04 00:17:12,584][INFO] [sistema] [/sad/user/edit/2.417fc2eacd78a7e8fe2643631b41ebf4/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
+[2014-03-04 00:22:42,131][INFO] [sistema] [/sad/user/edit/2.417fc2eacd78a7e8fe2643631b41ebf4/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
+[2014-03-04 00:23:38,858][INFO] [sistema] [/rrhh/employee/add/][admin][127.0.0.1] Employee 213 ha sido registrado correctamente. 

@@ -1,5 +1,5 @@
 {% extends request.is_ajax|yesno:"base_ajax.html,base_mod_ventas.html" %}
-
+{% load l10n %}
 {% load i18n %}
 {% block title %} {{ page_title }} {% endblock %}
 {% block content %}
@@ -39,8 +39,8 @@
                 
                 <div class="span4">
                     <div class="control-group">
-                        <label class="control-label">{% trans "PRECIO VENTA" %}<span class="req"> *</span></label>
-                        <input id="precio_venta" name="precio_venta" type="text" value="{{ d.precio_venta }}" class="field input-large input-required mask-pnum show-error" required="required">
+                        <label class="control-label">{% trans "PRECIO VENTA" %}<span class="req"> {{ 2.3 }}*</span></label>
+                        <input id="precio_venta" name="precio_venta" type="text" value="{{ d.precio_venta|unlocalize }}" class="field input-large input-required mask-pnum show-error" required="required">
                         <p class="help-block"> <span class="help-error" id="err_precio_venta"></span></p>
                     </div>
                 </div>

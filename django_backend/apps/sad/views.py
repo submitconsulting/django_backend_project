@@ -90,8 +90,8 @@ def user_upload(request):
 	return HttpResponse(json.dumps(data))
 	
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def user_add(request):
 	"""
 	Agrega usuario
@@ -102,6 +102,7 @@ def user_add(request):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
 
 			d.username = request.POST.get("login")
@@ -186,7 +187,7 @@ def user_add(request):
 				Message.info(request,("Usuario <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.username}, True)
 				return Redirect.to_action(request, "index")
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))
@@ -229,8 +230,8 @@ def user_add(request):
 	return render_to_response("sad/user/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def user_edit(request, key):
 	"""
 	Actualiza user
@@ -267,6 +268,7 @@ def user_edit(request, key):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.username = request.POST.get("login")
 			
 			if User.objects.exclude(id = d.id).filter(username = d.username).count()>0:
@@ -391,7 +393,7 @@ def user_edit(request, key):
 				return Redirect.to_action(request, "index")
 
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		
@@ -512,8 +514,6 @@ def user_view(request, key):
 	return render_to_response("sad/user/view.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
 def user_state(request, state, key):
 	"""
 	Inactiva y reactiva el estado del usuario
@@ -551,8 +551,7 @@ def user_state(request, state, key):
 		return Redirect.to_action(request, "index")
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
 def user_delete(request, key):
 	"""
 	Elimina usuario
@@ -817,8 +816,8 @@ def module_index(request):
 	return render_to_response("sad/module/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def module_add(request):
 	"""
 	Agrega módulo
@@ -827,6 +826,7 @@ def module_add(request):
 	d.description=""
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.module = request.POST.get("module")
 			d.name = request.POST.get("name")
 			d.description = request.POST.get("description")
@@ -848,7 +848,7 @@ def module_add(request):
 				Message.info(request,("Modulo <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.name})
 				return Redirect.to_action(request, "index")
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		group_list = Group.objects.all().order_by("name")
@@ -864,8 +864,8 @@ def module_add(request):
 	return render_to_response("sad/module/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def module_edit(request, key):
 	"""
 	Actualiza módulo
@@ -882,6 +882,7 @@ def module_edit(request, key):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.module = request.POST.get("module")
 			d.name = request.POST.get("name")
 			d.description = request.POST.get("description")
@@ -922,7 +923,7 @@ def module_edit(request, key):
 				return Redirect.to_action(request, "index")
 
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		group_list = Group.objects.all().order_by("-id")
@@ -1000,12 +1001,12 @@ def module_delete(request, key):
 		return Redirect.to_action(request, "index")
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def module_plans_edit(request):
 	if request.method == "POST":
 		try:
-			
+			sid = transaction.savepoint()
 			privilegios_r = request.POST.getlist("privilegios")
 			old_privilegios_r = request.POST.get("old_privilegios")
 			if old_privilegios_r:
@@ -1026,7 +1027,7 @@ def module_plans_edit(request):
 
 			Message.info(request, ("Los planes se han actualizados correctamente!") )
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		module_list = Module.objects.filter(is_active=True).order_by("module")
@@ -1174,15 +1175,15 @@ def group_delete(request, key):
 		return Redirect.to_action(request, "index")
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def group_permissions_edit(request):
 	"""
 	Actualiza permisos(recursos) por grupo(perfil) de usuario en django.contrib.auth.models.Group.permissions.add(recurso)
 	"""
 	if request.method == "POST":
 		try:
-			
+			sid = transaction.savepoint()
 			privilegios_r = request.POST.getlist("privilegios")
 			old_privilegios_r = request.POST.get("old_privilegios")
 			if old_privilegios_r:
@@ -1202,7 +1203,7 @@ def group_permissions_edit(request):
 				group.permissions.add(recur)
 			Message.info(request, ("Los privilegios se han actualizados correctamente!") )
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		resource_list = Permission.objects.all().order_by("content_type__app_label","content_type__model")
@@ -1252,8 +1253,8 @@ def resource_index(request):
 	return render_to_response("sad/resource/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def resource_add(request):
 	"""
 	Agrega recurso en django.contrib.auth.models.Permission y obtiene o agrega un django.contrib.contenttypes.models.ContentType (ContentType.objects.get_or_create)
@@ -1262,6 +1263,7 @@ def resource_add(request):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.description = request.POST.get("description")
 			d.controller_view=request.POST.get("controller_view")
 			d.app_label=request.POST.get("app_label")
@@ -1293,7 +1295,7 @@ def resource_add(request):
 				Message.info(request,("Recurso %(recurso)s ha sido registrado correctamente.") % {"recurso":recurso})
 				return Redirect.to_action(request, "index")
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	c = {
 		"page_module":("Gestión de recursos"),
@@ -1303,8 +1305,8 @@ def resource_add(request):
 	return render_to_response("sad/resource/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def resource_edit(request, key):
 	"""
 	Actualiza recurso en django.contrib.auth.models.Permission y obtiene o agrega un django.contrib.contenttypes.models.ContentType (ContentType.objects.get_or_create)
@@ -1331,6 +1333,7 @@ def resource_edit(request, key):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.controller_view=request.POST.get("controller_view")
 			d.app_label=request.POST.get("app_label")
 			d.action_view=request.POST.get("action_view")
@@ -1364,7 +1367,7 @@ def resource_edit(request, key):
 				return Redirect.to_action(request, "index")
 
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	c = {
 		"page_module":("Gestión de recursos"),

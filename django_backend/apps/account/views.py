@@ -32,8 +32,8 @@ from django.db.models import Q
 
 #region registro cuenta OK
 @login_required(login_url="/account/login/")
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def add_enterprise(request):
 
 	#data = "cáñété"´píñána+bâ"x"
@@ -51,7 +51,7 @@ def add_enterprise(request):
 		#with transaction.commit_manually():
 		#transaction.set_autocommit(False)
 		try:
-			
+			sid = transaction.savepoint()
 			d.enterprise_name = request.POST.get("enterprise_name")
 			d.enterprise_tax_id = request.POST.get("enterprise_tax_id")
 			d.association_name = request.POST.get("association_name")
@@ -134,7 +134,7 @@ def add_enterprise(request):
 			Message.info(request,("Empresa <b>%(name)s</b> ha sido registrado correctamente!.") % {"name":d.enterprise_name})
 			return Redirect.to(request, "/home/choice_headquart/")
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		type_a_list = Association.TYPES
@@ -151,8 +151,8 @@ def add_enterprise(request):
 		}
 	return render_to_response("account/add_enterprise.html", c, context_instance = RequestContext(request))
 
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def signup_sys(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect("/home/choice_headquart/")
@@ -161,6 +161,7 @@ def signup_sys(request):
 	d.last_name=""
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.first_name = request.POST.get("first_name")
 			d.last_name = request.POST.get("last_name")
 			d.username = request.POST.get("login")
@@ -269,7 +270,7 @@ def signup_sys(request):
 			else:
 				return redirect("/account/login/")
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		type_a_list = Association.TYPES
@@ -409,8 +410,8 @@ def logout_sys(request):
 	return HttpResponseRedirect("/")
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def user_profile(request):
 	"""
 	Actualiza perfil del usuario
@@ -436,6 +437,7 @@ def user_profile(request):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			#d.username = request.POST.get("login")
 			
 			#if User.objects.exclude(id = d.id).filter(username = d.username).count()>0:
@@ -493,7 +495,7 @@ def user_profile(request):
 				return Redirect.to(request, "/home/choice_headquart/")
 
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		headquart = Headquart.objects.get(id = DataAccessToken.get_headquart_id(request.session))

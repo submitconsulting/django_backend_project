@@ -173,8 +173,8 @@ def locality_add(request):
 		}
 	return render_to_response("params/locality/add.html", c, context_instance = RequestContext(request))
 
-@transaction.non_atomic_requests
-@transaction.commit_on_success #para que funcione basta poner en el except o donde sea conveniente transaction.rollback()
+@transaction.atomic
+#@transaction.commit_on_success #para que funcione basta poner en el except o donde sea conveniente transaction.rollback()
 @permission_resource_required
 def locality_edit(request, key):
 	id=Security.is_valid_key(request, key, "locality_upd")
@@ -189,17 +189,19 @@ def locality_edit(request, key):
 
 	if request.method == "POST":
 		try:
-			#para probar transaction 
-			#locality_type=LocalityType()
-			#locality_type.name="Rural4"
-			#if LocalityType.objects.filter(name = locality_type.name).count() > 0:
-			#	raise Exception(_("LocalityType <b>%(name)s</b> name"s already in use.") % {"name":locality_type.name}) #trhow new Exception("msg")
-			#locality_type.save()
-			#d.locality_type=locality_type
+			sid = transaction.savepoint() #begin transaction, no amerita el decorador @transaction.atomic pero dejadlo para las nuevas version 
 
 			#Aquí asignar los datos
 			d.name = request.POST.get("name")
 			d.is_active=True
+
+			#para probar transaction 
+			#locality_type=LocalityType()
+			#locality_type.name="Rural5"
+			#if LocalityType.objects.filter(name = locality_type.name).count() > 0:
+			#	raise Exception(_("LocalityType <b>%(name)s</b> name's already in use.") % {"name":locality_type.name}) #trhow new Exception("msg")
+			#locality_type.save()
+			#d.locality_type=locality_type
 
 			if normalize("NFKD", u"%s" % d.name).encode("ascii", "ignore").lower() in list(
 				normalize("NFKD", u"%s" % col["name"]).encode("ascii", "ignore").lower() for col in Locality.objects.values("name").exclude(id = d.id) #puede .filter()
@@ -207,12 +209,14 @@ def locality_edit(request, key):
 				raise Exception(_("Locality <b>%(name)s</b> name's already in use.") % {"name":d.name}) #trhow new Exception("msg")
 			#salvar registro
 			d.save()
+			#para probar transaction
+			#raise Exception("Error para no salvar. Si funciona")
 			if d.id:
-				#transaction.commit() se colocaría solo al final, pero no amerita pk ya está decorado con @transaction.commit_on_success
+				#transaction.savepoint_commit(sid) se colocaría solo al final, pero no amerita pk ya está decorado con @transaction.atomic
 				Message.info(request,("Localidad <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.name}, True)
 				return Redirect.to_action(request, "index")
 		except Exception, e:
-			transaction.rollback() #para reversar en caso de error en alguna de las tablas
+			transaction.savepoint_rollback(sid) #para reversar en caso de error en alguna de las tablas
 			Message.error(request, e)
 	try:
 		locality_type_list = LocalityType.objects.all().order_by("name")

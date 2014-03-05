@@ -56,8 +56,8 @@ def headquart_index(request):
 	return render_to_response("space/headquart/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def headquart_add(request):
 	"""
 	Agrega sede
@@ -68,6 +68,7 @@ def headquart_add(request):
 	#d.locality_name
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.name = request.POST.get("name")
 			d.phone = request.POST.get("phone")
 			d.address = request.POST.get("address")
@@ -89,7 +90,7 @@ def headquart_add(request):
 				Message.info(request,("Sede <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.name})
 				return Redirect.to_action(request, "index")
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		locality_name_list = json.dumps(list(col["name"]+""  for col in Locality.objects.values("name").filter().order_by("name")))
@@ -104,8 +105,8 @@ def headquart_add(request):
 	return render_to_response("space/headquart/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def headquart_edit(request, key):
 	"""
 	Actualiza sede
@@ -124,6 +125,7 @@ def headquart_edit(request, key):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.name = request.POST.get("name")
 			d.phone = request.POST.get("phone")
 			d.address = request.POST.get("address")
@@ -144,7 +146,7 @@ def headquart_edit(request, key):
 				return Redirect.to_action(request, "index")
 
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		locality_name_list = json.dumps(list(" "+col["name"]+""  for col in Locality.objects.values("name").filter().order_by("name")))
@@ -160,7 +162,6 @@ def headquart_edit(request, key):
 	return render_to_response("space/headquart/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-#@transaction.commit_on_success
 def headquart_change_association(request, key):
 	"""
 	Cambia de asociación a la sede
@@ -193,7 +194,7 @@ def headquart_change_association(request, key):
 				return Redirect.to_action(request, "index")
 
 		except Exception, e:
-			transaction.rollback()
+			
 			Message.error(request, e)
 	try:
 		association_name_list = json.dumps(list(col["name"]+""  for col in Association.objects.values("name").filter(is_active=True).order_by("name")))
@@ -313,8 +314,8 @@ def enterprise_upload(request):
 	return HttpResponse(json.dumps(data))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def enterprise_add(request):
 	"""
 	Agrega empresa dentro de una asociación, para ello deberá agregarse con una sede Principal
@@ -324,6 +325,7 @@ def enterprise_add(request):
 	#d.locality_name
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.name = request.POST.get("name")
 			d.tax_id = request.POST.get("tax_id")
 			d.type_e = request.POST.get("type_e")
@@ -358,7 +360,7 @@ def enterprise_add(request):
 				Message.info(request,("Empresa <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.name})
 				return Redirect.to_action(request, "index")
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		solution_list = Solution.objects.filter(is_active=True).order_by("id")
@@ -374,8 +376,8 @@ def enterprise_add(request):
 	return render_to_response("space/enterprise/add.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def enterprise_edit(request, key):
 	"""
 	Actualiza empresa
@@ -393,6 +395,7 @@ def enterprise_edit(request, key):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.name = request.POST.get("name")
 			d.tax_id = request.POST.get("tax_id")
 			d.type_e = request.POST.get("type_e")
@@ -414,7 +417,7 @@ def enterprise_edit(request, key):
 				return Redirect.to_action(request, "index")
 
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		solution_list = Solution.objects.filter(is_active=True).order_by("id")
@@ -430,8 +433,8 @@ def enterprise_edit(request, key):
 	return render_to_response("space/enterprise/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def enterprise_edit_current(request):
 	"""
 	Actualiza datos de la empresa a la que ingresó el usuario
@@ -445,6 +448,7 @@ def enterprise_edit_current(request):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.name = request.POST.get("name")
 			d.tax_id = request.POST.get("tax_id")
 			d.type_e = request.POST.get("type_e")
@@ -466,7 +470,7 @@ def enterprise_edit_current(request):
 				Message.info(request,("Empresa <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.name})
 
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		solution_list = Solution.objects.filter(is_active=True).order_by("id")
@@ -514,8 +518,8 @@ def enterprise_state(request, state, key):
 		return Redirect.to_action(request, "index")
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def enterprise_delete(request, key):
 	"""
 	Elimina empresa con todas sus sedes
@@ -529,6 +533,7 @@ def enterprise_delete(request, key):
 		Message.error(request, ("Empresa no se encuentra en la base de datos."))
 		return Redirect.to_action(request, "index")
 	try:
+		sid = transaction.savepoint()
 		association=Association.objects.get(id=DataAccessToken.get_association_id(request.session))
 		if Enterprise.objects.filter(headquart__association_id=DataAccessToken.get_association_id(request.session)).count() == 1:
 			raise Exception( ("Asociación <b>%(name)s</b> no puede quedar sin ninguna sede asociada.") % {"name":association.name} )		
@@ -540,7 +545,7 @@ def enterprise_delete(request, key):
 			Message.info(request,("Empresa <b>%(name)s</b> ha sido eliminado correctamente.") % {"name":d.name}, True)
 			return Redirect.to_action(request, "index")
 	except Exception, e:
-		transaction.rollback()
+		transaction.savepoint_rollback(sid)
 		Message.error(request, e)
 		return Redirect.to_action(request, "index")
 #endregion enterprise
@@ -559,8 +564,8 @@ def association_upload(request):
 		Message.error(request, e)
 	return HttpResponse(json.dumps(data))
 
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 @permission_resource_required
 def association_edit_current(request):
 	"""
@@ -575,6 +580,7 @@ def association_edit_current(request):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.name = request.POST.get("name")
 			d.type_a = request.POST.get("type_a")
 			d.solution_id = request.POST.get("solution_id")
@@ -587,12 +593,13 @@ def association_edit_current(request):
 
 			#salvar registro
 			d.save()
-			#raise Exception( ("Asociación <b>%(name)s</b> ya existe.") % {"name":d.name} )
+			raise Exception( ("Asociación <b>%(name)s</b> ya existe.") % {"name":d.name} )
 			if d.id:
 				Message.info(request,("Asociación <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.name})
 
 		except Exception, e:
-			transaction.rollback()
+			#transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	try:
 		solution_list = Solution.objects.filter(is_active=True).order_by("id")

@@ -6,7 +6,7 @@ from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, render, redirect
 #from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.contrib.auth.decorators import login_required
-from django.db import transaction
+from django.db import transaction, IntegrityError
 
 from apps.sad.decorators import is_admin, permission_resource_required
 from apps.sad.security import Security, DataAccessToken, Redirect
@@ -71,8 +71,8 @@ def producto_index(request, field="descripcion", value="None", order="-id"):
 	return render_to_response("maestros/producto/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def producto_add(request):
 	"""
 	Agrega Producto
@@ -81,7 +81,7 @@ def producto_add(request):
 	d.descripcion=""
 	if request.method == "POST":
 		try:
-			
+			sid = transaction.savepoint()
 			d.codigo = request.POST.get("codigox")
 			d.descripcion = request.POST.get("descripcion")
 			d.precio_venta = request.POST.get("precio_venta")
@@ -99,7 +99,7 @@ def producto_add(request):
 				Message.info(request,("Producto <b>%(name)s</b> ha sido registrado correctamente.") % {"name":d.codigo}, True)
 				return Redirect.to_action(request, "index")
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	categoria_nombre_list=[]
 	try:
@@ -114,9 +114,11 @@ def producto_add(request):
 		}
 	return render_to_response("maestros/producto/add.html", c, context_instance = RequestContext(request))
 
+
+#@transaction.non_atomic_requests
+#@transaction.commit_on_success
+@transaction.atomic
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
 def producto_edit(request, key):
 	"""
 	Actualiza Producto
@@ -141,29 +143,43 @@ def producto_edit(request, key):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint() #https://docs.djangoproject.com/en/1.6/topics/db/transactions/#topics-db-transactions-savepoints
 			d.codigo = request.POST.get("codigox")
 			d.descripcion = request.POST.get("descripcion")
 			d.precio_venta = request.POST.get("precio_venta")
 			d.headquart_id = DataAccessToken.get_headquart_id(request.session)
-			
+			print "PV=%s"%d.precio_venta
 			if request.POST.get("categoria_nombre"):
+				
 				d.categoria, is_created  = Categoria.objects.get_or_create(
 					nombre=request.POST.get("categoria_nombre"),
 					)
+				#d.categoria, is_created  = Categoria.objects.get_or_create(#esto puede ser un for
+				#	nombre="catx2",
+				#	)
+				
 
 			if Producto.objects.filter(codigo = d.codigo).exclude(id = d.id).count()>0:
 				raise Exception( "El producto <b>%s</b> ya existe " % d.codigo )
 			d.save()
+			#raise Exception( "El producto <b>%s</b> ya existe " % d.codigo )
+			##transaction.commit()
+			#transaction.savepoint_commit(sid)
+			
 			if d.id:
 				Message.info(request,("Producto <b>%(name)s</b> ha sido actualizado correctamente.") % {"name":d.codigo}, True)
 				return Redirect.to_action(request, "index")
 
 		except Exception, e:
-			transaction.rollback()
+			##transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
+		#except IntegrityError:
+		#	Message.error(request, "Error")
 	categoria_nombre_list=[]
 	try:
 		categoria_nombre_list = json.dumps(list(col["nombre"]+""  for col in Categoria.objects.values("nombre").filter().order_by("nombre")))
+		print "PV=%s"%d.precio_venta
 	except Exception, e:
 		Message.error(request, e)
 	c = {
@@ -175,9 +191,9 @@ def producto_edit(request, key):
 	return render_to_response("maestros/producto/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.non_atomic_requests
-@transaction.commit_on_success
-def producto_delete(reqproductoest, key):
+@transaction.atomic #no es necesario
+#@transaction.commit_on_success
+def producto_delete(request, key):
 	"""
 	Elimina producto
 	"""
@@ -190,11 +206,13 @@ def producto_delete(reqproductoest, key):
 		Message.error(request, ("Producto no se encuentra en la base de datos."))
 		return Redirect.to_action(request, "index")
 	try:
+		#sid = transaction.savepoint()
 		d.delete()
 		if not d.id:
 			Message.info(request,("Producto <b>%(username)s</b> ha sido eliminado correctamente.") % {"username":d.codigo}, True)
 			return Redirect.to_action(request, "index")
 	except Exception, e:
+		#transaction.savepoint_rollback(sid)
 		Message.error(request, e)
 		return Redirect.to_action(request, "index")
 #endregion producto

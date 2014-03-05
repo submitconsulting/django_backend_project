@@ -36,7 +36,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'sdbm.db',                      # Or path to database file if using sqlite3.
-        'ATOMIC_REQUESTS': True,
+        #'ATOMIC_REQUESTS': False,
+        #'autocommit': True,
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -157,7 +158,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.transaction.TransactionMiddleware',
+    #'django.middleware.transaction.TransactionMiddleware',#quedó obsoleto
 )
 
 ROOT_URLCONF = 'django_backend.urls'

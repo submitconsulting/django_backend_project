@@ -14,6 +14,8 @@ Documentación
 
 `Diseño del sistema <http://djangobackend-model.appspot.com>`_
 
+`Manual del programador en PDF <https://github.com/submitconsulting/django_backend_project/blob/master/manuales/Manual%20del%20Programador.pdf?raw=true>`_
+
 
 Demo
 -------------------
@@ -23,12 +25,6 @@ Demo
 Usuario: admin
 
 Pass: 12345
-
-
-Manual del programador
--------------------
-
-`Descargar en PDF <https://github.com/submitconsulting/django_backend_project/blob/master/manuales/Manual%20del%20Programador.pdf?raw=true>`_
 
 
 Instalación
@@ -54,6 +50,34 @@ To install Django, run the following command::
     ```
     >>> pip install django==1.6.2
     ```
+
+To install `Descargar admin doc utils <http://sourceforge.net/projects/docutils/files/docutils/0.11/docutils-0.11.tar.gz/download?use_mirror=ufpr&download=>`_
+run the following command::
+
+    ```
+    >>>docutils-0.11>python setup.py install
+    ```
+
+Unit testing
+-------------------
+
+To exec unit test, run the following command::
+
+    ```
+    >>> django_backend_project\django_backend>python manage.py test apps.params.tests.SimpleTest.test_basic_addition
+    ```
+
+Local Run
+-------------------
+
+To exec webapp, run the following command::
+
+    ```
+    >>> django_backend_project\django_backend>python manage.py runserver
+    ```
+    
+Mayor detalle, revise `Manuales para principiantes <http://es.scribd.com/asullom>`_
+
 
 Recursos del sistema
 -------------------

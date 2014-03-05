@@ -1,0 +1,126 @@
+[2014-03-05 01:20:55,476][INFO] [sistema] [/params/locality/add/][admin][127.0.0.1] Localidad Juliaca ha sido registrado correctamente. 
+[2014-03-05 01:22:30,002][INFO] [sistema] [/maestros/producto/edit/1.aa2bfb385fe6b673643b1a8d3b5cc75d/][admin][127.0.0.1] Producto 12 ha sido actualizado correctamente. 
+[2014-03-05 01:22:43,098][ERROR] [sistema] [/maestros/producto/edit/1.aa2bfb385fe6b673643b1a8d3b5cc75d/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:23:26,165][ERROR] [sistema] [/maestros/producto/edit/1.aa2bfb385fe6b673643b1a8d3b5cc75d/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:23:29,937][ERROR] [sistema] [/maestros/producto/edit/1.aa2bfb385fe6b673643b1a8d3b5cc75d/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:25:14,667][ERROR] [sistema] [/maestros/producto/edit/1.aa2bfb385fe6b673643b1a8d3b5cc75d/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:28:04,657][INFO] [sistema] [/maestros/producto/edit/1.aa2bfb385fe6b673643b1a8d3b5cc75d/][admin][127.0.0.1] Producto 12 ha sido actualizado correctamente. 
+[2014-03-05 01:28:12,273][INFO] [sistema] [/maestros/producto/edit/1.aa2bfb385fe6b673643b1a8d3b5cc75d/][admin][127.0.0.1] Producto 12 ha sido actualizado correctamente. 
+[2014-03-05 01:28:32,867][INFO] [sistema] [/maestros/producto/edit/1.aa2bfb385fe6b673643b1a8d3b5cc75d/][admin][127.0.0.1] Producto 12 ha sido actualizado correctamente. 
+[2014-03-05 01:28:39,795][INFO] [sistema] [/maestros/producto/edit/1.aa2bfb385fe6b673643b1a8d3b5cc75d/][admin][127.0.0.1] Producto 12 ha sido actualizado correctamente. 
+[2014-03-05 01:29:24,273][INFO] [sistema] [/maestros/producto/add/][admin][127.0.0.1] Producto as ha sido registrado correctamente. 
+[2014-03-05 01:30:13,624][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 01:30:32,740][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 01:30:57,549][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:33:33,619][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:41:13,565][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:41:23,010][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:49:33,937][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:50:57,130][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 01:51:42,036][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 01:51:55,381][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:53:02,977][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 01:53:08,127][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 01:53:15,964][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:58:34,816][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 01:59:23,864][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:00:07,394][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:03:34,493][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:03:37,891][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:04:01,198][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] __exit__ 
+[2014-03-05 02:04:25,221][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:04:33,115][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:04:46,443][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 02:04:55,012][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 02:05:01,061][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:06:12,457][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:06:16,328][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:06:54,861][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:07:11,690][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:16:53,571][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 02:17:06,427][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 02:17:24,112][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 02:18:01,578][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 02:25:53,430][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:25:57,993][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:29:42,990][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 02:29:49,595][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 02:30:01,658][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 02:34:48,414][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 02:35:11,316][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 02:43:40,049][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 02:43:50,434][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 02:44:09,224][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 02:44:30,061][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 02:45:44,721][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 02:47:54,849][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 02:52:04,608][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 02:52:14,815][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 02:53:35,857][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 02:57:44,273][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 02:57:57,772][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 02:58:30,437][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 02:58:51,608][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 02:59:28,588][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 03:01:31,351][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 03:01:42,184][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 03:01:50,151][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 03:02:01,313][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 03:02:29,528][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Your database backend doesn't behave properly when autocommit is off. Turn it on before using 'atomic'. 
+[2014-03-05 03:02:48,532][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] __exit__ 
+[2014-03-05 03:02:59,828][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 03:03:09,196][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 03:04:54,295][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 03:05:03,661][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 03:05:17,617][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 03:06:55,839][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 03:07:18,579][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 03:07:33,125][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 03:11:54,809][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 03:12:37,782][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 03:13:13,473][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 03:21:56,016][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 03:22:28,927][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 03:23:01,394][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 03:26:14,184][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación Asociación Ini ya existe. 
+[2014-03-05 03:29:46,232][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación Asociación Ini2 ya existe. 
+[2014-03-05 03:32:52,069][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación Asociación Ini ya existe. 
+[2014-03-05 03:34:07,088][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación Asociación Ini2 ya existe. 
+[2014-03-05 03:36:31,585][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación Asociación Ini ya existe. 
+[2014-03-05 03:36:39,867][ERROR] [sistema] [/space/association/edit_current/][admin][127.0.0.1] Asociación Asociación Ini ya existe. 
+[2014-03-05 03:43:12,039][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 03:43:50,737][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 03:44:38,377][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 03:45:50,325][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 03:46:08,315][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 13 ya existe  
+[2014-03-05 03:52:26,937][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 03:57:54,415][INFO] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] Localidad Juliaca ha sido actualizado correctamente. 
+[2014-03-05 03:57:54,437][INFO] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] Localidad Juliaca ha sido actualizado correctamente. 
+[2014-03-05 03:59:14,775][INFO] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] Localidad Juliaca ha sido actualizado correctamente. 
+[2014-03-05 03:59:26,232][INFO] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] Localidad Juliaca2 ha sido actualizado correctamente. 
+[2014-03-05 04:01:20,247][INFO] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] Localidad Juliaca2 ha sido actualizado correctamente. 
+[2014-03-05 04:01:40,563][ERROR] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] LocalityType Rural4 name's already in use. 
+[2014-03-05 04:02:22,779][ERROR] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] LocalityType Rural4 name's already in use. 
+[2014-03-05 04:02:51,265][ERROR] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] LocalityType Rural4 name's already in use. 
+[2014-03-05 04:04:30,427][ERROR] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] LocalityType Rural4 name's already in use. 
+[2014-03-05 04:09:31,144][ERROR] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] LocalityType Rural4 name's already in use. 
+[2014-03-05 04:11:12,602][ERROR] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] LocalityType Rural4 name's already in use. 
+[2014-03-05 04:11:47,910][ERROR] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] LocalityType Rural4 name's already in use. 
+[2014-03-05 04:13:31,355][ERROR] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] LocalityType Rural4 name's already in use. 
+[2014-03-05 04:16:08,993][INFO] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] Localidad Juliaca ha sido actualizado correctamente. 
+[2014-03-05 04:16:18,588][ERROR] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] LocalityType Rural5 name's already in use. 
+[2014-03-05 04:18:01,915][ERROR] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] Error para no salvar 
+[2014-03-05 04:19:42,226][INFO] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] Localidad Juliacax ha sido actualizado correctamente. 
+[2014-03-05 04:19:47,615][INFO] [sistema] [/params/locality/edit/1.e427735aab8535937e27b46107a436ea/][admin][127.0.0.1] Localidad Juliaca ha sido actualizado correctamente. 
+[2014-03-05 04:20:34,187][ERROR] [sistema] [/params/locality/add/][admin][127.0.0.1] Locality Juliaca name's already in use. 
+[2014-03-05 04:20:46,249][INFO] [sistema] [/params/locality/add/][admin][127.0.0.1] Localidad Puno ha sido registrado correctamente. 
+[2014-03-05 04:21:16,605][ERROR] [sistema] [/params/locality/edit/2.7b7e7f77a52a3cca2080fedd8b54a27e/][admin][127.0.0.1] Locality juliaca name's already in use. 
+[2014-03-05 04:49:48,358][INFO] [sistema] [/maestros/producto/add/][admin][127.0.0.1] Producto q ha sido registrado correctamente. 
+[2014-03-05 04:51:34,036][INFO] [sistema] [/maestros/producto/delete/3.d8dac130c3d507c20ec9c4f8bcbc480b/][admin][127.0.0.1] Producto q ha sido eliminado correctamente. 
+[2014-03-05 04:51:43,124][INFO] [sistema] [/maestros/producto/add/][admin][127.0.0.1] Producto qe ha sido registrado correctamente. 
+[2014-03-05 04:51:50,644][INFO] [sistema] [/maestros/producto/delete/3.d8dac130c3d507c20ec9c4f8bcbc480b/][admin][127.0.0.1] Producto qe ha sido eliminado correctamente. 
+[2014-03-05 04:53:42,989][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 04:56:20,733][WARNING] [sistema] [/sad/resource/edit/10.55f36515afde20f5f18e18805fc722ba/][admin][127.0.0.1] Lo sentimos, pero este recurso no se puede editar. 
+[2014-03-05 04:57:27,644][INFO] [sistema] [/sad/user/edit/2.820eb76c8dea55e5379d0677d49efeee/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
+[2014-03-05 04:57:38,523][INFO] [sistema] [/sad/user/edit/2.820eb76c8dea55e5379d0677d49efeee/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
+[2014-03-05 04:57:46,654][INFO] [sistema] [/sad/user/edit/2.820eb76c8dea55e5379d0677d49efeee/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 

@@ -88,8 +88,8 @@ def employee_index(request, field="codigo", value="None", order="-id"):
 	return render_to_response("rrhh/employee/index.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required(template_denied_name="denied_mod_pro.html")
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def employee_add(request):
 	"""
 	Agrega Employee
@@ -98,7 +98,7 @@ def employee_add(request):
 	d.photo="personas/default.png"
 	if request.method == "POST":
 		try:
-			
+			sid = transaction.savepoint()
 			d.first_name = request.POST.get("first_name")
 			d.last_name = request.POST.get("last_name")
 			d.photo = request.POST.get("persona_fotografia")
@@ -137,7 +137,7 @@ def employee_add(request):
 				return render_to_response("rrhh/employee/edit.html", c, context_instance = RequestContext(request))
 
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 	#categoria_nombre_list=[]
 	try:
@@ -165,8 +165,8 @@ def employee_choice(request, key):
 
 
 @permission_resource_required(template_denied_name="denied_mod_pro.html")
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#@transaction.commit_on_success
 def employee_edit(request):
 	"""
 	Actualiza Employee
@@ -198,6 +198,7 @@ def employee_edit(request):
 
 	if request.method == "POST":
 		try:
+			sid = transaction.savepoint()
 			d.codigo = request.POST.get("codigox")
 
 			if Employee.objects.filter(codigo = d.codigo).exclude(id = d.id).count()>0:
@@ -237,7 +238,7 @@ def employee_edit(request):
 				#return Redirect.to_action(request, "index")
 
 		except Exception, e:
-			transaction.rollback()
+			transaction.savepoint_rollback(sid)
 			Message.error(request, e)
 
 	c = {
@@ -249,8 +250,7 @@ def employee_edit(request):
 	return render_to_response("rrhh/employee/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required(template_denied_name="denied_mod_pro.html")
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
 def employee_delete(request, key):
 	"""
 	Elimina employee
@@ -274,8 +274,8 @@ def employee_delete(request, key):
 
 
 @permission_resource_required(template_denied_name="denied_mod_pro.html")
-@transaction.non_atomic_requests
-@transaction.commit_on_success
+@transaction.atomic
+#
 def employee_add_all(request):
 	"""
 	Agrega Employee

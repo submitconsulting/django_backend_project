@@ -13,7 +13,7 @@ import datetime
 from django.template.loader import render_to_string
 from django.contrib.sessions.models import Session
 from django.conf import settings
-from apps.sad.security import DataAccessToken
+
 from apps.space.models import Enterprise, Headquart
 
 from django.template.defaultfilters import stringfilter

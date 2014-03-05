@@ -132,3 +132,34 @@
 [2014-03-05 06:24:32,088][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
 [2014-03-05 06:24:38,891][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
 [2014-03-05 06:24:45,838][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:57:33,581][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:57:37,971][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:58:11,378][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:58:14,079][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:58:16,904][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:58:23,187][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:58:26,509][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:58:30,516][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:58:41,759][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:58:45,336][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:58:51,263][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:59:08,792][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:59:14,404][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 07:59:30,131][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 07:59:50,986][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 08:00:15,348][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 08:00:24,890][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 08:00:45,951][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 08:04:03,457][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 08:04:43,542][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 08:04:45,753][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 08:05:24,266][ERROR] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] El producto 12 ya existe  
+[2014-03-05 08:05:30,404][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 12x ha sido actualizado correctamente. 
+[2014-03-05 08:09:54,855][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 12x ha sido actualizado correctamente. 
+[2014-03-05 08:09:58,819][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 12x ha sido actualizado correctamente. 
+[2014-03-05 08:32:40,453][WARNING] [sistema] [/sad/menu/edit/15.fcd8f8a8d5522d54a16de1b125aeaa5f/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2014-03-05 08:32:45,993][WARNING] [sistema] [/sad/menu/edit/16.a25ce687cecde44897e020109ca08a13/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2014-03-05 10:15:02,371][WARNING] [sistema] [/sad/menu/edit/15.fcd8f8a8d5522d54a16de1b125aeaa5f/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2014-03-05 10:15:06,134][WARNING] [sistema] [/sad/menu/edit/16.a25ce687cecde44897e020109ca08a13/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2014-03-05 11:35:23,904][WARNING] [sistema] [/sad/menu/edit/15.fcd8f8a8d5522d54a16de1b125aeaa5f/][admin][127.0.0.1] Lo sentimos, pero este menú no se puede editar. 
+[2014-03-05 11:39:02,447][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 12x ha sido actualizado correctamente. 

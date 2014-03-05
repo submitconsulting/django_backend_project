@@ -47,10 +47,11 @@ DATABASES = {
 }
 
 ########## CACHE CONFIGURATION
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#caches  https://pythonhosted.org/johnny-cache/
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        #'LOCATION': '127.0.0.1:11211',
     }
 }
 ########## END CACHE CONFIGURATION

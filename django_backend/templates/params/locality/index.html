@@ -1,7 +1,7 @@
 {% extends request.is_ajax|yesno:"base_ajax.html,base_mod_backend.html" %}
 {% load staticfiles %}
 {% load i18n %}
-{% load security_tags %}
+{% load app_security %}
 {% block title %} {{ page_title }} {% endblock %}
 {% block content %}
     {% load notify %}

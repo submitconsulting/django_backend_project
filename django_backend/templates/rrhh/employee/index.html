@@ -1,11 +1,12 @@
 {% extends request.is_ajax|yesno:"base_ajax.html,base_mod_pro.html" %}
 {% load staticfiles %}
 {% load i18n %}
+{% load app_security %}
+
 {% block title %} {{ page_title }} {% endblock %}
 {% block content %}
     {% load notify %}
     {% get_notify request %}
-    {% load security_tags %}
 
     <script type="text/javascript">
     $(function() {

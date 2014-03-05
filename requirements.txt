@@ -1,2 +1,3 @@
-Django==1.5.1
+Django==1.6.2
+#johnny-cache==1.4
 PIL==1.1.7 #sino logra instalar, instalar manualmente de http://www.pythonware.com/products/pil/

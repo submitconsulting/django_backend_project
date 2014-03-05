@@ -72,7 +72,6 @@ def producto_index(request, field="descripcion", value="None", order="-id"):
 
 @permission_resource_required
 @transaction.atomic
-#@transaction.commit_on_success
 def producto_add(request):
 	"""
 	Agrega Producto
@@ -92,7 +91,7 @@ def producto_add(request):
 					nombre=request.POST.get("categoria_nombre"),
 					)
 
-			if Producto.objects.filter(codigo = d.codigo).exclude(id = d.id).count()>0:
+			if Producto.objects.filter(codigo = d.codigo).exclude(id = d.id, headquart_id = d.headquart_id).count()>0:
 				raise Exception( "El producto <b>%s</b> ya existe " % d.codigo )
 			d.save()
 			if d.id:
@@ -147,8 +146,6 @@ def producto_edit(request, key):
 			d.codigo = request.POST.get("codigox")
 			d.descripcion = request.POST.get("descripcion")
 			d.precio_venta = request.POST.get("precio_venta")
-			d.headquart_id = DataAccessToken.get_headquart_id(request.session)
-			print "PV=%s"%d.precio_venta
 			if request.POST.get("categoria_nombre"):
 				
 				d.categoria, is_created  = Categoria.objects.get_or_create(
@@ -159,7 +156,7 @@ def producto_edit(request, key):
 				#	)
 				
 
-			if Producto.objects.filter(codigo = d.codigo).exclude(id = d.id).count()>0:
+			if Producto.objects.filter(codigo = d.codigo).exclude(id = d.id, headquart_id = d.headquart_id).count()>0:
 				raise Exception( "El producto <b>%s</b> ya existe " % d.codigo )
 			d.save()
 			#raise Exception( "El producto <b>%s</b> ya existe " % d.codigo )
@@ -191,8 +188,7 @@ def producto_edit(request, key):
 	return render_to_response("maestros/producto/edit.html", c, context_instance = RequestContext(request))
 
 @permission_resource_required
-@transaction.atomic #no es necesario
-#@transaction.commit_on_success
+@transaction.atomic #no es necesario pk no tiene transaction
 def producto_delete(request, key):
 	"""
 	Elimina producto
@@ -209,7 +205,7 @@ def producto_delete(request, key):
 		#sid = transaction.savepoint()
 		d.delete()
 		if not d.id:
-			Message.info(request,("Producto <b>%(username)s</b> ha sido eliminado correctamente.") % {"username":d.codigo}, True)
+			Message.info(request,("Producto <b>%(codigo)s</b> ha sido eliminado correctamente.") % {"codigo":d.codigo}, True)
 			return Redirect.to_action(request, "index")
 	except Exception, e:
 		#transaction.savepoint_rollback(sid)

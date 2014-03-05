@@ -1,8 +1,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load user_info %}
-{% load menu_tags %}
-{% load security_tags %}
+{% load user_menu %}
 <script type="text/javascript">
     $(function() {        
         $('#codigo').typeahead({
@@ -45,13 +44,11 @@
                     if(datos[i] == item){
                       
                         $('#id_entity').val(ids[i]);
-                        $('#codigo').val(cods[i]);
-                        //$('#descripcion').text(descs[i]);
                         //$('#precio_venta').val(pvs[i]);"+ids[i]+"
 
-                        //{ % with ids[i] as id %}
-                        //window.location.href ="/rrhh/employee/edit/{{ id|key:'employee_upd' }}/";
-                        //{ % endwith %}
+                        $('#codigo').val(cods[i]);
+                        //$('#descripcion').text(descs[i]);
+                        
                         window.location.href ="/rrhh/employee/choice/"+ids[i]+"/";
                         break;
                     }

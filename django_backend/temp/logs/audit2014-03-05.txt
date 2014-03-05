@@ -124,3 +124,11 @@
 [2014-03-05 04:57:27,644][INFO] [sistema] [/sad/user/edit/2.820eb76c8dea55e5379d0677d49efeee/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
 [2014-03-05 04:57:38,523][INFO] [sistema] [/sad/user/edit/2.820eb76c8dea55e5379d0677d49efeee/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
 [2014-03-05 04:57:46,654][INFO] [sistema] [/sad/user/edit/2.820eb76c8dea55e5379d0677d49efeee/][admin][127.0.0.1] Usuario jarib ha sido actualizado correctamente. 
+[2014-03-05 06:20:34,108][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 06:21:15,977][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 06:22:40,644][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 06:22:54,135][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 06:24:25,575][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 06:24:32,088][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 06:24:38,891][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 
+[2014-03-05 06:24:45,838][INFO] [sistema] [/maestros/producto/edit/2.dac254a8c23af21e3b48a4b4b349d30e/][admin][127.0.0.1] Producto 13 ha sido actualizado correctamente. 

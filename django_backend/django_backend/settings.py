@@ -67,7 +67,7 @@ TIME_ZONE = 'America/Lima'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'es-PE'
+LANGUAGE_CODE = 'es-pe' # en-us
 LOCALE_PATHS = [
     normpath(join(SITE_ROOT, 'locale')),
 ]
@@ -87,7 +87,7 @@ USE_I18N = True
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
 USE_L10N = True
-
+USE_THOUSAND_SEPARATOR = False 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
@@ -130,12 +130,19 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'av+=stai2#+sras+=)yq1)r2()%*9b!gd)pl6v54)wx972a-=*'
 
+########## SITE CONFIGURATION
+# Hosts/domain names that are valid for this site
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ['*']
+########## END SITE CONFIGURATION
+
 ########## TEMPLATE CONFIGURATION #para session.get('flash_msg', False)
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
+    #'django.core.context_processors.l10n',
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.tz',

@@ -51,7 +51,7 @@ To install Django, run the following command::
     >>> pip install django==1.6.2
     ```
 
-To install `Descargar admin doc utils <http://sourceforge.net/projects/docutils/files/docutils/0.11/docutils-0.11.tar.gz/download?use_mirror=ufpr&download=>`_
+To install `admin doc utils <http://sourceforge.net/projects/docutils/files/docutils/0.11/docutils-0.11.tar.gz/download?use_mirror=ufpr&download=>`_
 run the following command::
 
     ```
@@ -75,7 +75,7 @@ To exec webapp, run the following command::
     ```
     >>> django_backend_project\django_backend>python manage.py runserver
     ```
-    
+
 Mayor detalle, revise `Manuales para principiantes <http://es.scribd.com/asullom>`_
 
 

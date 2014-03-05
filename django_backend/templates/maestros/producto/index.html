@@ -55,7 +55,7 @@
 					<td>{{ producto_page.start_index|add:forloop.counter0 }}</td>
                     <td>{{ d.codigo }}</td>
                     <td>{{ d.descripcion }}</td>
-                	<td>{{ d.precio_venta|unlocalize }}</td>
+                	<td>{{ d.precio_venta }}</td>
                 	<td>{{ d.categoria.nombre }}</td>
                     
                     <td><span class="label label-success">{{ d.is_active|yesno:'SI,NO' }}</span></td>
